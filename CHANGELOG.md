@@ -10,6 +10,17 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.2.10] - 2026-08-01
+### Fixed
+- **`CLAUDE.md`:** documented `maritime.html`, which shipped in `0.2.0` but was never
+  added to the Project Overview. Corrected the `manufacturing.html` description, which
+  still described the superseded OEE-dashboard positioning. Vertical count corrected
+  from three to four throughout.
+
+### Added
+- **`CLAUDE.md`:** notes on the per-page accent-color convention, the duplicated nav
+  markup, `sitemap.xml`'s extensionless URLs, and the unversioned `pre-push` branch guard.
+
 ## [0.2.9] - 2026-08-01
 ### Added
 - `CHANGELOG.md` and `CONTRIBUTING.md` establishing the Git Flow, semantic versioning,
@@ -63,7 +74,8 @@ listed individually.
 - Initial static site: homepage plus the Intelligence and Manufacturing vertical pages,
   `CNAME`, `robots.txt`, `sitemap.xml`, and the `demodashboard/` demo pages.
 
-[Unreleased]: https://github.com/opsight-intelligence/opsight-website/compare/v0.2.9...HEAD
+[Unreleased]: https://github.com/opsight-intelligence/opsight-website/compare/v0.2.10...HEAD
+[0.2.10]: https://github.com/opsight-intelligence/opsight-website/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/opsight-intelligence/opsight-website/compare/v0.2.8...v0.2.9
 [0.2.4]: https://github.com/opsight-intelligence/opsight-website/compare/v0.2.0...v0.2.4
 [0.2.0]: https://github.com/opsight-intelligence/opsight-website/compare/v0.1.0...v0.2.0
