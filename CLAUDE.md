@@ -31,3 +31,15 @@ python3 -m http.server 8000
 `intelligence.html` supports English (`en`), Korean (`ko`), and Turkish (`tr`) via `data-lang` attributes toggled by switching `html[lang]`. Content for all languages lives in the same HTML file with CSS-driven visibility.
 
 `manufacturing.html` and `opsentry.html` are English-only. `index.html` is the homepage linking to all three verticals.
+
+## Conventions
+
+Branching, versioning, changelog, and documentation rules are in
+[CONTRIBUTING.md](CONTRIBUTING.md). In short:
+
+- Work on `feature/*` off `develop`; never commit to `main` or `develop` directly
+- `main` is what GitHub Pages serves — a merge to `main` is a deploy
+- Every commit bumps `VERSION`, adds a `CHANGELOG.md` entry, and updates affected docs
+- New pages must be added to `sitemap.xml`, linked from `index.html`, and described in
+  the Project Overview above
+- Routine `stats.json` refreshes are exempt from the version bump and changelog
