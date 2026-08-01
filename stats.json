@@ -1,10 +1,10 @@
 {
-  "entities": "2350+",
-  "clusters": "140+",
+  "entities": "2200+",
+  "clusters": "145+",
   "bank": "100+",
   "phone": "160+",
   "crypto": "20+",
-  "members": "13.5M+",
+  "members": "11.7M+",
   "markets": 2,
-  "updated": "2026-07-31"
+  "updated": "2026-08-02"
 }
