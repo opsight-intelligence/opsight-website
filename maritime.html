@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Opsight Intelligence - Maritime Intelligence (Drydock)</title>
-<meta name="description" content="Drydock: Korean shipbuilding intelligence from satellite radar, AIS, and OSINT. Physical yard-activity signals observed before they reach earnings and filings. Factual measurements from public data.">
-<meta name="keywords" content="maritime intelligence, shipbuilding, alternative data, SAR, satellite intelligence, AIS, Korean shipyards, drydock, yard activity">
+<title>Opsight Intelligence - Korean Public Procurement Intelligence (Drydock)</title>
+<meta name="description" content="Drydock: Korean public procurement intelligence. Every tender, every bidder and every winning price against the published estimate — 39,679 notices and 25,884 awards, collected nightly from public data.">
+<meta name="keywords" content="Korean public procurement, 나라장터, KONEPS, 입찰 분석, 낙찰률, bid analysis, tender intelligence, procurement data, 기초금액, drydock">
 <meta name="author" content="Opsight Intelligence">
-<meta property="og:title" content="Opsight Intelligence — Maritime Intelligence (Drydock)">
-<meta property="og:description" content="Korean shipbuilding activity from satellite, AIS, and OSINT — observed before the filings.">
+<meta property="og:title" content="Opsight Intelligence — Korean Public Procurement Intelligence (Drydock)">
+<meta property="og:description" content="Every Korean public tender, bidder and winning price — against the published estimate.">
 <meta property="og:url" content="https://opsightintel.com/maritime">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Opsight Intelligence — Maritime Intelligence (Drydock)">
-<meta name="twitter:description" content="Korean shipbuilding activity from satellite, AIS, and OSINT — observed before the filings.">
+<meta name="twitter:title" content="Opsight Intelligence — Korean Public Procurement Intelligence (Drydock)">
+<meta name="twitter:description" content="Every Korean public tender, bidder and winning price — against the published estimate.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -131,6 +131,16 @@ a:hover{text-decoration:underline}
   transition:box-shadow .2s;
 }
 .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+/* Live vs roadmap. Every capability on this page carries one, so a reader
+   never has to guess which claims are backed by data collecting today. */
+.status-pill{
+  display:inline-block;margin-bottom:10px;
+  padding:3px 10px;border-radius:12px;
+  font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+}
+.status-live{background:#e6f5ec;color:#1a7f45;border:1px solid #b8e2c8}
+.status-dev{background:#f2f2f4;color:#6b6b76;border:1px solid #dcdce2}
+.card--dev{border-left-color:#c9c9d1;opacity:.92}
 .card-icon{font-size:1.6rem;margin-bottom:12px;display:block;color:var(--mar-accent)}
 .card h3{font-size:1.05rem;font-weight:600;margin-bottom:8px;color:#1a1a1a}
 .card p{font-size:.9rem;color:var(--text-secondary);line-height:1.55}
@@ -203,12 +213,13 @@ a:hover{text-decoration:underline}
   <div class="hero-inner">
     <div class="brand">OPSIGHT <span class="brand-accent">DRYDOCK</span></div>
     <p class="tagline" style="font-size:1.25rem;opacity:1;font-weight:500;">
-      Korean shipbuilding activity, observed from orbit — before it reaches the filings.
+      Korean public procurement, collected nightly and made comparable.
     </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-8px;">
-      Satellite radar, AIS, and public filings fused into a queryable yard-activity signal.
+      Every tender, every bidder, every winning price — against the published estimate.
+      Satellite and AIS yard monitoring are in development; see the roadmap below.
     </p>
-    <span class="hero-badge">Maritime Intelligence &middot; in active development</span>
+    <span class="hero-badge">Procurement intelligence &middot; collecting nightly</span>
   </div>
 </section>
 
@@ -217,20 +228,20 @@ a:hover{text-decoration:underline}
   <div class="section-inner">
     <div class="stats-grid">
       <div>
-        <div class="stat-number">Sentinel-1</div>
-        <div class="stat-label">SAR Radar, Day/Night/All-Weather</div>
+        <div class="stat-number">39,679</div>
+        <div class="stat-label">Tender notices collected</div>
       </div>
       <div>
-        <div class="stat-number">~12 days</div>
-        <div class="stat-label">Satellite Revisit Cadence</div>
+        <div class="stat-number">25,884</div>
+        <div class="stat-label">Awards with winning price &amp; rate</div>
       </div>
       <div>
-        <div class="stat-number">3 sources</div>
-        <div class="stat-label">SAR + AIS + OSINT Fusion</div>
+        <div class="stat-number">31,174</div>
+        <div class="stat-label">Individual bids, named per company</div>
       </div>
       <div>
-        <div class="stat-number">$0</div>
-        <div class="stat-label">Public / Free-Tier Data</div>
+        <div class="stat-number">Nightly</div>
+        <div class="stat-label">Automated collection, public data</div>
       </div>
     </div>
   </div>
@@ -239,57 +250,95 @@ a:hover{text-decoration:underline}
 <!-- Thesis -->
 <section class="section">
   <div class="section-inner">
-    <h2 class="section-title">The Thesis</h2>
+    <h2 class="section-title">The Problem</h2>
     <div class="accent-bar"></div>
     <p class="thesis">
-      Public markets react to <strong>earnings, news, and filings</strong>.
-      Alternative data can observe <strong>physical production activity</strong> —
-      hulls at the quay, docks occupied, vessels on sea trials — weeks before those
-      events become visible through traditional reporting channels.
+      Korean public tenders are published, awarded and closed in the open — and then
+      effectively forgotten. A company can bid <strong>thirty times without winning
+      once</strong> and never learn what the winning price was, how many rivals it was
+      up against, or how far off its own number sat. The record exists; nobody
+      assembles it.
     </p>
   </div>
 </section>
 
-<!-- What We Track -->
+<!-- What We Track: live -->
 <section class="section" style="background:var(--card-bg)">
   <div class="section-inner">
-    <h2 class="section-title">What We Track</h2>
+    <h2 class="section-title">What We Collect Today</h2>
     <div class="accent-bar"></div>
-    <p class="section-subtitle">Every signal is a factual measurement, traceable to its source</p>
+    <p class="section-subtitle">Every figure below comes from data already in the store, collected nightly from public sources</p>
     <div class="cards">
       <div class="card">
+        <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25C9;</span>
-        <h3>Dock Occupancy (SAR)</h3>
-        <p>Calibrated Sentinel-1 radar backscatter over each yard, turned into an occupancy proxy per scene — independent of cloud cover or daylight.</p>
+        <h3>Every Tender, Every Category</h3>
+        <p>Public bid notices across 공사, 용역, 물품, 외자 and 기타 — the demanding agency, the budget, the deadline and how the contract is let. 39,679 notices and counting.</p>
       </div>
       <div class="card">
+        <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25CE;</span>
-        <h3>Sea-Trial Events (AIS)</h3>
-        <p>Derived vessel-movement events around yard waters. A new hull running speed trials is a strong, early signal of imminent delivery.</p>
+        <h3>Who Won, At What Price</h3>
+        <p>25,884 awards with the winning company, the amount, and the 낙찰률 — the winning bid as a percentage of the estimate. The price benchmark, published rather than inferred.</p>
       </div>
       <div class="card">
+        <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25D0;</span>
-        <h3>Filings &amp; Contracts (OSINT)</h3>
-        <p>Public DART disclosures, procurement notices, and shipbuilding press — contract wins, counterparties, and delivery windows, structured.</p>
+        <h3>The Full Bidding Field</h3>
+        <p>31,174 individual bids naming every company that competed, not just the winner — with its 투찰률 and rank. A firm that bids often and rarely wins is visible only here.</p>
       </div>
       <div class="card">
+        <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25C7;</span>
-        <h3>Yard Activity Index</h3>
-        <p>A simple, explainable activity score per yard over time — read the timeline and tell a busy quarter from a quiet one at a glance.</p>
+        <h3>The Estimate Behind the Rate</h3>
+        <p>기초금액 — the figure a tender is scored against — with the 예비가격 randomisation band. Without it a win rate is a percentage; with it, it is a number you can price against.</p>
       </div>
       <div class="card">
+        <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25A3;</span>
-        <h3>Delivery Cadence</h3>
-        <p>Occupancy and trial trends projected into an expected delivery rhythm — a backlog-execution proxy built on observed, not reported, activity.</p>
+        <h3>Competitive Position</h3>
+        <p>How contested a tender was, how your bid compared to the one that won, and which agencies concentrate their awards. Keyed on 사업자등록번호, so a company is tracked through name changes.</p>
       </div>
       <div class="card">
+        <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25C8;</span>
-        <h3>Cross-Source Corroboration</h3>
-        <p>When radar, AIS, and filings agree, confidence rises; when they disagree, the contradiction is flagged rather than hidden.</p>
+        <h3>Data Quality, Stated</h3>
+        <p>Implausible figures are flagged, never silently dropped or rewritten — the raw public value is preserved and the reason for exclusion travels with it. Headline numbers say what they left out.</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Roadmap: built but not yet collecting -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">In Development</h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">Built and tested, not yet producing data. Listed here so the line between the two is clear</p>
+    <div class="cards">
+      <div class="card card--dev">
+        <span class="status-pill status-dev">In development</span>
+        <span class="card-icon" aria-hidden="true">&#x25CB;</span>
+        <h3>Dock Occupancy (SAR)</h3>
+        <p>Sentinel-1 radar backscatter over shipyards as an occupancy proxy. The detector and pipeline exist; validation so far does not support it as a commercial signal, and we will not sell it until it does.</p>
+      </div>
+      <div class="card card--dev">
+        <span class="status-pill status-dev">In development</span>
+        <span class="card-icon" aria-hidden="true">&#x25CB;</span>
+        <h3>Sea-Trial Events (AIS)</h3>
+        <p>Vessel-movement events around yard waters, where a new hull running speed trials signals imminent delivery. Coded and tested; awaiting a live data feed.</p>
+      </div>
+      <div class="card card--dev">
+        <span class="status-pill status-dev">In development</span>
+        <span class="card-icon" aria-hidden="true">&#x25CB;</span>
+        <h3>Filings &amp; Contracts (DART)</h3>
+        <p>Public disclosure of contract wins, counterparties and delivery windows, structured and joined to procurement activity. Collector built; not currently scheduled.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 <!-- Coverage -->
 <section class="section">
@@ -298,16 +347,16 @@ a:hover{text-decoration:underline}
     <div class="accent-bar"></div>
     <div class="coverage-grid">
       <div class="coverage-item">
-        <h3>Korean Tier-1 Yards</h3>
-        <p>The major shipbuilding clusters — Geoje, Ulsan, Yeongam, Busan — monitored scene by scene.</p>
+        <h3>Every Public Buyer</h3>
+        <p>Central government, local authorities, schools and public bodies — whoever published the tender, named and coded, so award concentration is visible per agency.</p>
       </div>
       <div class="coverage-item">
-        <h3>Regional Context</h3>
-        <p>Chinese and Japanese yards tracked for competitive baseline, so Korean activity is read in context.</p>
+        <h3>Nationwide, Not Sampled</h3>
+        <p>The whole country, every category, collected nightly &mdash; not a sector slice. A firm's record is complete rather than whatever happened to be sampled.</p>
       </div>
       <div class="coverage-item">
-        <h3>LNG Demand Signal</h3>
-        <p>Global LNG-carrier fleet utilization as a demand-side complement to yard-side supply signals.</p>
+        <h3>용역 Bidder Detail</h3>
+        <p>Service tenders are enriched with the full bidding field. 공사 is deliberately excluded: with thousands of bidders against a randomised estimate, win-rate analysis there means little.</p>
       </div>
     </div>
   </div>
@@ -319,8 +368,9 @@ a:hover{text-decoration:underline}
     <h2 class="section-title">How It's Built</h2>
     <div class="accent-bar"></div>
     <p style="font-size:1rem;color:var(--text-secondary);line-height:1.7;margin-bottom:16px;">
-      A deterministic pipeline: collect public satellite, AIS, and filing data, normalize it, detect
-      activity, score it, and report — every output traceable to the raw observation it came from.
+      A deterministic pipeline: collect the public procurement record nightly, normalize it, key it
+      per lot and per company, flag implausible figures, and report — every output traceable to the
+      published record it came from.
       Built entirely on public and free-tier sources with a license-clean, sellable footprint.
     </p>
     <p style="font-size:.92rem;color:var(--text-secondary);line-height:1.7;">
@@ -335,11 +385,11 @@ a:hover{text-decoration:underline}
   <div class="section-inner">
     <h2 class="section-title">Early Access</h2>
     <div class="accent-bar"></div>
-    <p class="section-subtitle">Sample weekly briefs on Korean shipbuilding activity are in preparation. Get on the list.</p>
+    <p class="section-subtitle">Bid-history and price-benchmark reports for Korean public procurement. Tell us the 사업자등록번호 and we will show you the record.</p>
     <a href="mailto:utku@opsightintel.com?subject=Drydock%20Early%20Access" class="mar-cta">utku@opsightintel.com</a>
     <p class="legal-note">
       Factual measurements derived from public data. Not investment advice. Commercial-vessel and
-      aggregate yard metrics only. Contains modified Copernicus Sentinel data.
+      aggregate metrics only. Satellite work in development contains modified Copernicus Sentinel data.
     </p>
   </div>
 </section>

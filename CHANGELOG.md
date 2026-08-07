@@ -8,6 +8,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.3.0] - 2026-08-07
+
+### Changed
+
+- **The maritime page now leads with what actually collects.** Every headline
+  capability it advertised — Dock Occupancy (SAR), Sea-Trial Events (AIS),
+  Filings & Contracts (DART) — is backed by **zero rows** in the live database,
+  while the one maritime capability that runs nightly appeared as three words
+  inside a bullet.
+
+  The page now separates **Live** from **In development**, with a status pill on
+  every capability so a reader never has to guess which claims are backed by
+  data collecting today:
+
+  - **Live** — 39,679 tender notices, 25,884 awards with winning price and
+    낙찰률, 31,174 individual bids named per company, 기초금액 estimates with the
+    예비가격 band, agency concentration, and stated data-quality handling.
+  - **In development** — SAR occupancy, AIS sea-trials and DART filings, each
+    labelled as built-but-not-collecting rather than presented as a service.
+
+  The SAR card says plainly that validation so far does not support it as a
+  commercial signal and that we will not sell it until it does. That matches the
+  engine's own analysis (occupancy vs revenue pearson −0.57, 2 of 11 yards
+  SAR-legible), which the previous copy contradicted.
+
+- **Coverage rewritten from yards to buyers.** "Geoje, Ulsan, Yeongam, Busan
+  monitored scene by scene" described monitoring that is not happening; it now
+  describes the public bodies actually in the data, nationwide coverage, and why
+  공사 is deliberately excluded from bidder enrichment.
+
+- **Meta tags, keywords and the homepage card updated to match.** Search results
+  and link previews carried the satellite framing too, and the homepage still
+  described maritime as "shipbuilding activity from satellite radar" — the two
+  pages would otherwise have contradicted each other.
+
+- The Copernicus attribution is kept but scoped to the in-development satellite
+  work rather than implying live use.
+
+
 ## [Unreleased]
 
 ## [0.2.10] - 2026-08-01
