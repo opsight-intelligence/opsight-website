@@ -8,6 +8,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.3.1] - 2026-08-07
+
+### Changed
+
+- **The manufacturing insight examples no longer read as client results.** The
+  section was headed *"Real, unedited AI output from a live analysis run"* above
+  three cards naming equipment (DCM-401, PRESS-201, STAMP-503) and quoting
+  precise figures — 516 stops, 121 hours of downtime, an 18,618-part loss,
+  $2,100–$2,520/yr.
+
+  The AI output genuinely is real and unedited. **The data underneath is
+  synthetic.** `data/samples/README.md` in opsight-manufacturing states it
+  plainly — *"No real customer data; all suppliers / equipment / parts are
+  fictitious"* — and DCM-401 is an authored archetype in
+  `demo_stories_text.py`, the deliberate "false hero" of the demo tour.
+
+  Named machines beside dollar impacts invite the reading that a real factory
+  was analysed, and the word "Real" was doing exactly that work. The subtitle
+  now says the run is on our synthetic demo dataset, and a note above the cards
+  states outright that these are not client results and the equipment is
+  fictitious.
+
+  What the note keeps is the genuine strength: the analysis, the quantified
+  impact and the ranked actions are exactly what the engine produces, unedited,
+  and it can be rerun live. That is a checkable claim, which an unattributable
+  case study is not.
+
+- The Interactive Demos subtitle says the dashboards run on the same synthetic
+  dataset, so the two sections agree.
+
+### Notes
+
+Unlike the maritime page, the rest of this page needed no change. It is an
+**offer** rather than a claim of observation — "send us one Excel file", 48-hour
+first insights, zero IT setup — and a service that runs on the client's data
+does not need data of its own. The four lenses, the dashboards and the engine
+all exist. The overreach was confined to one subtitle.
+
+
 ## [0.3.0] - 2026-08-07
 
 ### Changed
