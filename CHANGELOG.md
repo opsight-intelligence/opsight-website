@@ -8,6 +8,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.4.1] - 2026-08-08
+
+### Changed
+
+- **Nav labels are consistent: Home · Fraud · Manufacturing · Procurement ·
+  OpSentry.** "Fraud Intelligence" was the only two-word entry, which read as
+  though that line were the intelligence product and the others something else.
+  Opsight Intelligence is the parent brand; repeating it inside one child label
+  weakens it rather than reinforcing it.
+
+- **"Maritime" → "Procurement" in the nav**, for the same reason v0.4.0 changed
+  the brand line. The label pointed at a page that now reads OPSIGHT PROCUREMENT
+  everywhere else on it, so leaving it would have reproduced one level down the
+  exact mismatch v0.4.0 fixed. The href stays `maritime.html` — the URL is live
+  and the engine repo is `opsight-maritime`.
+
+Applied across all five pages; the per-page `class="active"` state is preserved
+on each.
+
+### Not changed
+
+The homepage service cards still read "Fraud Intelligence", "Manufacturing
+Intelligence", "Procurement Intelligence", "AI Governance", "Defense
+Intelligence". Those are full service names in a context that has room for them,
+and they are already consistent with each other. The nav is a different job — it
+wants short labels — so the two are not in conflict.
+
+
 ## [0.4.0] - 2026-08-08
 
 ### Changed
