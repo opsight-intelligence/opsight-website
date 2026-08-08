@@ -8,6 +8,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.5.0] - 2026-08-08
+
+### Added
+
+- **The procurement figures are live.** They were hardcoded HTML pinned on
+  2026-08-07; two nightlies later the real notice count was ~4,300 higher, so the
+  page understated by about 10% and worsened daily. The page's central claim is
+  *collected nightly* and the evidence it offered was three numbers that visibly
+  never moved.
+
+  `maritime.html` now fetches `procurement-stats.json`, written nightly by
+  opsight-maritime and deployed by opsight-fraud's `deploy_website_stats.py`.
+  Six elements update from one payload — the three stat blocks and the three
+  prose mentions, which previously had to be edited in six places by hand.
+
+- **An "as of" line under the figures.** Undated numbers are what made the stale
+  ones misleading rather than merely old. It appears only once real data has
+  arrived, so a date is never shown without figures to date.
+
+- `procurement-stats.json` is seeded with the values that were already on the
+  page and their true date, so the page gains its "as of" line immediately
+  rather than at the next nightly.
+
+### Changed
+
+- **The meta description no longer quotes counts.** JavaScript cannot refresh a
+  meta tag for a crawler that does not run it, so a figure there is stale the day
+  after it is written with no way to fix it. It describes the product instead.
+
+### Notes
+
+The hardcoded numbers stay in the HTML deliberately, as the fallback: a failed
+fetch shows the last known-true values rather than blanks.
+
+
 ## [0.4.1] - 2026-08-08
 
 ### Changed

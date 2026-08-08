@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Opsight Intelligence - Korean Public Procurement Intelligence</title>
-<meta name="description" content="Opsight Procurement: Korean public procurement intelligence. Every tender, every bidder and every winning price against the published estimate — 39,679 notices and 25,884 awards, collected nightly from public data.">
+<meta name="description" content="Opsight Procurement: Korean public procurement intelligence. Every tender, every bidder and every winning price against the published estimate, collected nightly from 조달청 / 나라장터 public data.">
 <meta name="keywords" content="Korean public procurement, 나라장터, KONEPS, 입찰 분석, 낙찰률, bid analysis, tender intelligence, procurement data, 기초금액, 조달청, 공공조달">
 <meta name="author" content="Opsight Intelligence">
 <meta property="og:title" content="Opsight Intelligence — Korean Public Procurement Intelligence">
@@ -96,6 +96,12 @@ a:hover{text-decoration:underline}
   color:var(--mar-accent);
   margin-bottom:8px;
   text-align:center;
+}
+/* Filled by the procurement-stats fetch; hidden until real data arrives, so an
+   empty line never appears and a date is never shown without figures. */
+.stats-as-of{
+  display:none;text-align:center;margin-top:18px;
+  font-size:.8rem;opacity:.65;
 }
 .section-subtitle{
   color:var(--text-secondary);
@@ -228,15 +234,15 @@ a:hover{text-decoration:underline}
   <div class="section-inner">
     <div class="stats-grid">
       <div>
-        <div class="stat-number">39,679</div>
+        <div class="stat-number" id="stat-notices">39,679</div>
         <div class="stat-label">Tender notices collected</div>
       </div>
       <div>
-        <div class="stat-number">25,884</div>
+        <div class="stat-number" id="stat-awards">25,884</div>
         <div class="stat-label">Awards with winning price &amp; rate</div>
       </div>
       <div>
-        <div class="stat-number">31,174</div>
+        <div class="stat-number" id="stat-bids">31,174</div>
         <div class="stat-label">Individual bids, named per company</div>
       </div>
       <div>
@@ -244,6 +250,7 @@ a:hover{text-decoration:underline}
         <div class="stat-label">Automated collection, public data</div>
       </div>
     </div>
+    <p id="stats-as-of" class="stats-as-of"></p>
   </div>
 </section>
 
@@ -273,19 +280,19 @@ a:hover{text-decoration:underline}
         <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25C9;</span>
         <h3>Every Tender, Every Category</h3>
-        <p>Public bid notices across 공사, 용역, 물품, 외자 and 기타 — the demanding agency, the budget, the deadline and how the contract is let. 39,679 notices and counting.</p>
+        <p>Public bid notices across 공사, 용역, 물품, 외자 and 기타 — the demanding agency, the budget, the deadline and how the contract is let. <span id="prose-notices">39,679</span> notices and counting.</p>
       </div>
       <div class="card">
         <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25CE;</span>
         <h3>Who Won, At What Price</h3>
-        <p>25,884 awards with the winning company, the amount, and the 낙찰률 — the winning bid as a percentage of the estimate. The price benchmark, published rather than inferred.</p>
+        <p><span id="prose-awards">25,884</span> awards with the winning company, the amount, and the 낙찰률 — the winning bid as a percentage of the estimate. The price benchmark, published rather than inferred.</p>
       </div>
       <div class="card">
         <span class="status-pill status-live">Live</span>
         <span class="card-icon" aria-hidden="true">&#x25D0;</span>
         <h3>The Full Bidding Field</h3>
-        <p>31,174 individual bids naming every company that competed, not just the winner — with its 투찰률 and rank. A firm that bids often and rarely wins is visible only here.</p>
+        <p><span id="prose-bids">31,174</span> individual bids naming every company that competed, not just the winner — with its 투찰률 and rank. A firm that bids often and rarely wins is visible only here.</p>
       </div>
       <div class="card">
         <span class="status-pill status-live">Live</span>
@@ -398,6 +405,40 @@ a:hover{text-decoration:underline}
 <footer class="footer">
   &copy; 2026 Opsight Intelligence. All rights reserved. &mdash; <a href="mailto:utku@opsightintel.com">utku@opsightintel.com</a>
 </footer>
+
+<script>
+// Live procurement figures. The numbers above ship in the HTML as a fallback,
+// so a failed fetch shows the last known-true values rather than blanks -- but
+// they were pinned by hand on 2026-08-07 and were understating notices by ~10%
+// two nights later, which is what this fixes.
+//
+// procurement-stats.json is written nightly by opsight-maritime and deployed by
+// opsight-fraud's deploy_website_stats.py. It is a SEPARATE file from
+// stats.json on purpose: that one is rewritten wholesale by the fraud
+// generator, which would silently drop any procurement key added to it.
+(function(){
+  fetch("procurement-stats.json", {cache: "no-cache"})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if(!d) return;
+      ["notices","awards","bids"].forEach(function(k){
+        if(!d[k]) return;
+        ["stat-","prose-"].forEach(function(prefix){
+          var el = document.getElementById(prefix + k);
+          if(el) el.textContent = d[k];
+        });
+      });
+      // Undated figures are what made the stale ones misleading rather than
+      // merely old, so the date only appears once real data has arrived.
+      var asOf = document.getElementById("stats-as-of");
+      if(asOf && d.as_of){
+        asOf.textContent = "Figures as of " + d.as_of + ", updated nightly.";
+        asOf.style.display = "block";
+      }
+    })
+    .catch(function(){});
+})();
+</script>
 
 </body>
 </html>
