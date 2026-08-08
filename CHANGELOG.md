@@ -8,6 +8,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.4.0] - 2026-08-08
+
+### Changed
+
+- **The procurement sub-brand is `OPSIGHT PROCUREMENT`, not `DRYDOCK`.** The page
+  content was rewritten for procurement on 2026-08-07 but the product name was
+  left behind, so the page said "drydock" — a dock drained of water to work on a
+  ship's hull — above an offer about Korean public tenders.
+
+  The site's own convention settles it: sub-brands here are descriptive
+  (`OPSIGHT MANUFACTURING`), with one genuine product name (`OPSENTRY`, which is
+  actually installable via brew and pip). `DRYDOCK` was the only codename and the
+  only one that described the wrong thing.
+
+  Changed in 8 places: page title, meta description, og:title, twitter:title, the
+  brand line, the mailto subject, the keyword list, and the card on the index.
+
+- **`drydock` stays internal and stays out of customer-facing copy.** It is the
+  Python package, the database, `DRYDOCK_DATABASE_URL`, the venv and CI config
+  across two repos — renaming that is real churn for no customer benefit, and an
+  internal codename differing from a product name is ordinary. The data path a
+  customer touches never carries it either: procurement artifacts publish to the
+  bus as `source: koneps`.
+
+- `CLAUDE.md` no longer describes this page as satellite-radar shipbuilding
+  intelligence. It records why the filename is still `maritime.html` (the URL is
+  live, the engine repo is `opsight-maritime`) and points at the sellability map
+  before anyone restores the SAR thesis.
+
+
 ## [0.3.1] - 2026-08-07
 
 ### Changed
