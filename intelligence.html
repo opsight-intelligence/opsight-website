@@ -206,6 +206,34 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
 }
 
 /* --- Contact --- */
+/* --- Pricing --- */
+/* A floor, not a ceiling. "From" filters out buyers who were never going to
+   pay, without anchoring a number that has never been tested on a real one. */
+.pricing-section{background:var(--card-bg);border-top:1px solid var(--border)}
+.price-card{
+  max-width:520px;margin:0 auto;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  border-radius:8px;
+  padding:32px 28px;
+  text-align:center;
+}
+.price-figure{
+  font-size:2.1rem;font-weight:700;color:var(--primary);
+  line-height:1.2;
+}
+.price-unit{font-size:.95rem;font-weight:500;color:var(--text-secondary)}
+.price-name{
+  font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:14px;
+}
+.price-detail{
+  font-size:.9rem;color:var(--text-secondary);line-height:1.6;margin-top:14px;
+}
+.price-note{
+  max-width:520px;margin:20px auto 0;
+  font-size:.82rem;color:#888;line-height:1.6;text-align:center;
+}
 .contact-section{text-align:center}
 .contact-email{
   display:inline-block;
@@ -583,6 +611,52 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section pricing-section">
+  <div class="section-inner">
+    <h2 class="section-title">
+      <span data-lang="en">Pricing</span>
+      <span data-lang="kr">가격</span>
+      <span data-lang="tr">Fiyatlandırma</span>
+    </h2>
+    <div class="accent-bar"></div>
+    <p class="section-subtitle">
+      <span data-lang="en">Published, so you know before you write.</span>
+      <span data-lang="kr">문의 전에 확인하실 수 있도록 공개합니다.</span>
+      <span data-lang="tr">Yazmadan önce bilmeniz için açıkça yayınlanmıştır.</span>
+    </p>
+
+    <div class="price-card">
+      <div class="price-name">
+        <span data-lang="en">Early Warning &mdash; alert subscription</span>
+        <span data-lang="kr">Early Warning &mdash; 조기경보 구독</span>
+        <span data-lang="tr">Early Warning &mdash; erken uyarı aboneliği</span>
+      </div>
+      <div class="price-figure">
+        <span data-lang="en">from &#8361;1,000,000</span>
+        <span data-lang="kr">₩1,000,000부터</span>
+        <span data-lang="tr">&#8361;1.000.000'dan başlayan</span>
+      </div>
+      <div class="price-unit">
+        <span data-lang="en">per month</span>
+        <span data-lang="kr">월</span>
+        <span data-lang="tr">aylık</span>
+      </div>
+      <div class="price-detail">
+        <span data-lang="en">Nightly email or webhook. New entities, escalations, and networks that have gone quiet &mdash; scored, deduplicated, and delivered against your own watchlist. Final price depends on markets in scope and delivery channel.</span>
+        <span data-lang="kr">매일 밤 이메일 또는 웹훅으로 전송됩니다. 신규 엔티티, 위험도 상승, 활동이 중단된 네트워크를 점수화·중복제거하여 고객 관심 대상 기준으로 전달합니다. 최종 가격은 대상 시장과 전달 방식에 따라 결정됩니다.</span>
+        <span data-lang="tr">Her gece e-posta veya webhook ile. Yeni varlıklar, yükselen riskler ve sessizleşen ağlar &mdash; puanlanmış, yinelenenlerden arındırılmış ve kendi izleme listenize göre iletilir. Nihai fiyat kapsamdaki pazarlara ve teslim kanalına göre belirlenir.</span>
+      </div>
+    </div>
+
+    <p class="price-note">
+      <span data-lang="en">Other products &mdash; curated wallet feeds, sanitized bank risk briefs, and the managed intelligence package &mdash; are scoped per buyer. Ask and you will get a number, not a discovery call.</span>
+      <span data-lang="kr">그 외 제품 &mdash; 선별된 지갑 피드, 비식별화된 은행 리스크 브리프, 매니지드 인텔리전스 패키지 &mdash; 는 고객별로 범위를 정합니다. 문의하시면 사전 상담 절차 없이 견적을 바로 드립니다.</span>
+      <span data-lang="tr">Diğer ürünler &mdash; seçilmiş cüzdan akışları, anonimleştirilmiş banka risk brifingleri ve yönetilen istihbarat paketi &mdash; alıcıya göre kapsamlandırılır. Sorun, keşif görüşmesi değil, doğrudan bir fiyat alın.</span>
+    </p>
   </div>
 </section>
 
