@@ -210,8 +210,15 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
 /* A floor, not a ceiling. "From" filters out buyers who were never going to
    pay, without anchoring a number that has never been tested on a real one. */
 .pricing-section{background:var(--card-bg);border-top:1px solid var(--border)}
+.price-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+  max-width:860px;margin:0 auto;
+  align-items:stretch;
+}
 .price-card{
-  max-width:520px;margin:0 auto;
+  display:flex;flex-direction:column;
   background:var(--bg);
   border:1px solid var(--border);
   border-left:3px solid var(--accent);
@@ -231,8 +238,11 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
   font-size:.9rem;color:var(--text-secondary);line-height:1.6;margin-top:14px;
 }
 .price-note{
-  max-width:520px;margin:20px auto 0;
+  max-width:860px;margin:20px auto 0;
   font-size:.82rem;color:#888;line-height:1.6;text-align:center;
+}
+@media(max-width:700px){
+  .price-grid{grid-template-columns:1fr}
 }
 .contact-section{text-align:center}
 .contact-email{
@@ -629,6 +639,8 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
       <span data-lang="tr">Yazmadan önce bilmeniz için açıkça yayınlanmıştır.</span>
     </p>
 
+    <div class="price-grid">
+
     <div class="price-card">
       <div class="price-name">
         <span data-lang="en">Early Warning &mdash; alert subscription</span>
@@ -652,10 +664,35 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
       </div>
     </div>
 
+    <div class="price-card">
+      <div class="price-name">
+        <span data-lang="en">Curated wallet feed</span>
+        <span data-lang="kr">선별 지갑 피드</span>
+        <span data-lang="tr">Seçilmiş cüzdan akışı</span>
+      </div>
+      <div class="price-figure">
+        <span data-lang="en">from &#8361;2,000,000</span>
+        <span data-lang="kr">₩2,000,000부터</span>
+        <span data-lang="tr">&#8361;2.000.000'dan başlayan</span>
+      </div>
+      <div class="price-unit">
+        <span data-lang="en">per month, per market</span>
+        <span data-lang="kr">월, 시장별</span>
+        <span data-lang="tr">aylık, pazar başına</span>
+      </div>
+      <div class="price-detail">
+        <span data-lang="en">A maintained watchlist, not a one-off list. Addresses observed in closed Telegram markets, corroborated across markets before they ship, delivered as JSON plus a blocklist CSV in your own format. Curated rather than bulk &mdash; every address is one we would defend individually.</span>
+        <span data-lang="kr">일회성 목록이 아닌 지속 관리되는 워치리스트입니다. 폐쇄형 텔레그램 시장에서 관측된 주소를 시장 간 교차 검증한 후 제공하며, JSON과 고객 포맷에 맞춘 차단 목록 CSV로 전달합니다. 대량 수집이 아닌 선별 방식으로, 모든 주소는 개별적으로 근거를 제시할 수 있습니다.</span>
+        <span data-lang="tr">Tek seferlik bir liste değil, sürekli güncellenen bir izleme listesi. Kapalı Telegram pazarlarında gözlemlenen adresler, yayınlanmadan önce pazarlar arası doğrulanır; JSON ve kendi formatınızda bir engelleme listesi CSV'si olarak teslim edilir. Toplu değil seçilmiş &mdash; her adresi tek tek savunabiliriz.</span>
+      </div>
+    </div>
+
+    </div>
+
     <p class="price-note">
-      <span data-lang="en">Other products &mdash; curated wallet feeds, sanitized bank risk briefs, and the managed intelligence package &mdash; are scoped per buyer. Ask and you will get a number, not a discovery call.</span>
-      <span data-lang="kr">그 외 제품 &mdash; 선별된 지갑 피드, 비식별화된 은행 리스크 브리프, 매니지드 인텔리전스 패키지 &mdash; 는 고객별로 범위를 정합니다. 문의하시면 사전 상담 절차 없이 견적을 바로 드립니다.</span>
-      <span data-lang="tr">Diğer ürünler &mdash; seçilmiş cüzdan akışları, anonimleştirilmiş banka risk brifingleri ve yönetilen istihbarat paketi &mdash; alıcıya göre kapsamlandırılır. Sorun, keşif görüşmesi değil, doğrudan bir fiyat alın.</span>
+      <span data-lang="en">Both are monthly subscriptions and both scale with the markets in scope. Sanitized bank risk briefs and the managed intelligence package are scoped per buyer &mdash; ask and you will get a number, not a discovery call.</span>
+      <span data-lang="kr">두 제품 모두 월 구독이며, 대상 시장 범위에 따라 가격이 조정됩니다. 비식별화된 은행 리스크 브리프와 매니지드 인텔리전스 패키지는 고객별로 범위를 정합니다 &mdash; 문의하시면 사전 상담 절차 없이 견적을 바로 드립니다.</span>
+      <span data-lang="tr">Her ikisi de aylık aboneliktir ve kapsamdaki pazar sayısına göre ölçeklenir. Anonimleştirilmiş banka risk brifingleri ve yönetilen istihbarat paketi alıcıya göre kapsamlandırılır &mdash; sorun, keşif görüşmesi değil, doğrudan bir fiyat alın.</span>
     </p>
   </div>
 </section>

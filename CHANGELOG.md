@@ -8,6 +8,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.8.0] - 2026-08-10
+
+### Added
+
+- **The curated wallet feed is priced: from ₩2,000,000 per month, per market.**
+  Sold as a subscription rather than a snapshot, which is the deliberate choice
+  here. `SELLABILITY_MAP.md` is explicit that the address count cannot carry a
+  volume price and that the feed must never be sold as "thousands of wallets";
+  a monthly subscription prices the *maintenance* — nightly collection,
+  cross-market corroboration, curation — instead of the row count, and turns
+  the one exchange-ready asset into recurring revenue against a company that
+  currently has none.
+
+  **No address counts appear on the page**, deliberately. Any published count
+  invites a buyer to divide the fee by it, which is precisely the volume framing
+  the map warns against; and a count is a snapshot of a list that changes
+  nightly, so it would be stale the day after it shipped. The copy carries the
+  claim that matters instead — every address is one we would defend
+  individually.
+
+  The two cards now sit in a 2-up grid that collapses to one column under 700px.
+
+### Changed
+
+- The note under the pricing cards no longer lists the wallet feed as "scoped
+  per buyer" — it has a number now.
+
 ## [0.7.0] - 2026-08-10
 
 ### Added
