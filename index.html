@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Opsight Intelligence</title>
-<meta name="description" content="Opsight Intelligence: an intelligence platform turning raw signals into actionable intelligence products — across fraud, manufacturing, maritime, and beyond. Plus OpSentry, security guardrails for AI coding assistants.">
-<meta name="keywords" content="intelligence platform, threat intelligence, fraud intelligence, manufacturing analytics, maritime intelligence, alternative data, AI governance, OSINT, AML">
+<meta name="description" content="Opsight Intelligence: an intelligence platform turning raw signals into actionable intelligence products — across fraud, Korean public procurement, and manufacturing. Plus OpSentry, security guardrails for AI coding assistants.">
+<meta name="keywords" content="intelligence platform, threat intelligence, fraud intelligence, Korean public procurement, 나라장터, KONEPS, manufacturing analytics, alternative data, AI governance, OSINT, AML">
 <meta name="author" content="Opsight Intelligence">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Opsight Intelligence">
 <meta property="og:description" content="An intelligence platform turning raw signals into actionable intelligence products across multiple domains.">
 <meta property="og:url" content="https://opsightintel.com/">
@@ -104,7 +105,7 @@ a:hover{text-decoration:underline}
   justify-content:center;
 }
 .services-inner{
-  max-width:980px;
+  max-width:860px;
   width:100%;
 }
 .services-heading{
@@ -119,15 +120,11 @@ a:hover{text-decoration:underline}
   text-align:center;color:var(--text-secondary);
   font-size:.9rem;margin-bottom:36px;
 }
-.group-divider{
-  text-align:center;
-  font-size:.78rem;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;color:#9aa3ad;
-  margin:48px 0 24px;
-}
+/* Four domains in a three-column grid left one card stranded alone on the
+   second row, which reads as a gap rather than a layout. 2x2 is even. */
 .service-cards{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,1fr);
   gap:24px;
 }
 .service-card{
@@ -146,8 +143,6 @@ a:hover{text-decoration:underline}
   transform:translateY(-2px);
 }
 .service-card.clickable{cursor:pointer}
-.service-card.soon{opacity:.7}
-.service-card.soon:hover{transform:none;box-shadow:none}
 .service-icon{
   font-size:1.7rem;
   margin-bottom:16px;
@@ -182,15 +177,6 @@ a:hover{text-decoration:underline}
   transition:background .2s;
 }
 .service-link:hover{background:var(--primary-light);text-decoration:none}
-.badge-soon{
-  display:inline-block;
-  background:#e0e0e0;
-  color:#777;
-  padding:9px 24px;
-  border-radius:5px;
-  font-size:.88rem;
-  font-weight:600;
-}
 
 /* --- Footer --- */
 .footer{
@@ -218,7 +204,7 @@ a:hover{text-decoration:underline}
   <a href="index.html" class="active">Home</a>
   <a href="intelligence.html">Fraud</a>
   <a href="manufacturing.html">Manufacturing</a>
-  <a href="maritime.html">Procurement</a>
+  <a href="procurement.html">Procurement</a>
   <a href="opsentry.html">OpSentry</a>
 </nav>
 
@@ -258,11 +244,11 @@ a:hover{text-decoration:underline}
         <a href="manufacturing.html" class="service-link" style="background:#e07b39">Learn More</a>
       </div>
 
-      <div class="service-card clickable" onclick="location.href='maritime.html'">
-        <span class="service-icon" aria-hidden="true" style="background:#1f7a8c">&#x2693;</span>
+      <div class="service-card clickable" onclick="location.href='procurement.html'">
+        <span class="service-icon" aria-hidden="true" style="background:#1f7a8c">&#x25A4;</span>
         <h3>Procurement Intelligence</h3>
         <p>Every Korean public tender, bidder and winning price — against the published estimate. 39,679 notices and 25,884 awards, collected nightly.</p>
-        <a href="maritime.html" class="service-link" style="background:#1f7a8c">Learn More</a>
+        <a href="procurement.html" class="service-link" style="background:#1f7a8c">Learn More</a>
       </div>
 
       <div class="service-card clickable" onclick="location.href='opsentry.html'">
@@ -274,18 +260,6 @@ a:hover{text-decoration:underline}
 
     </div>
 
-    <p class="group-divider">Expanding the platform</p>
-
-    <div class="service-cards">
-
-      <div class="service-card soon">
-        <span class="service-icon" aria-hidden="true" style="background:#5a6b7b">&#x25B2;</span>
-        <h3>Defense Intelligence</h3>
-        <p>Procurement announcements, contract awards, and government disclosures fused into open-source defense-sector intelligence.</p>
-        <span class="badge-soon">Coming Soon</span>
-      </div>
-
-    </div>
   </div>
 </section>
 

@@ -8,6 +8,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.6.0] - 2026-08-10
+
+Prompted by an outside reader who was sent the link and reported back what they
+saw. Everything here is something a first-time visitor notices before reading a
+word of the content.
+
+### Changed
+
+- **The procurement page is at `/procurement`, not `/maritime`.** The product is
+  Korean public procurement; the URL said maritime, `og:url` said maritime, and
+  the homepage card wore an anchor (⚓). Anyone sent the link saw a shipping word
+  and a boat icon on a public-tender product before seeing anything else. The
+  file is renamed, `og:url` corrected, a `rel=canonical` added, and the card icon
+  is now a neutral geometric mark consistent with the other three.
+- **The homepage is four domains, not five.** "Defense Intelligence — Coming
+  Soon" advertised something unbuilt; on a one-person company it reads as an
+  unfinished hobby rather than a roadmap, and it added no value a buyer could
+  act on. Removed, along with the now-dead `.group-divider`, `.service-card.soon`
+  and `.badge-soon` CSS and the empty section wrapper.
+- **The domain cards are a 2x2 grid.** Four cards in a three-column grid left one
+  stranded alone on the second row, which reads as a missing card rather than a
+  layout.
+- The homepage `description` and `keywords` no longer say "maritime"; they name
+  Korean public procurement, 나라장터 and KONEPS, which is what the page is about
+  and what anyone would search for.
+
+### Added
+
+- **`maritime.html` is now a redirect stub** — `rel=canonical`, a meta refresh,
+  `location.replace` so it leaves no back-button trap, and `robots: noindex,
+  follow`. Links to the old URL are already out in the world, and GitHub Pages
+  serves static files and cannot issue a real 301, so this is the honest
+  substitute. **Do not delete this file.**
+- **A favicon.** All five pages previously shipped none, so every tab showed the
+  browser's blank default page icon — including in the tab of whoever was sent
+  the link. `favicon.svg`, referenced from every page.
+
+### Fixed
+
+- `sitemap.xml` pointed at `/maritime` and carried a `lastmod` of 2026-06-11 on
+  every URL, two months stale on a site whose selling point is nightly data.
+- An HTML comment in the page source named the internal engine repo. The rule
+  that internal names stay out of customer-facing copy applies to view-source
+  too.
+
 ## [0.5.0] - 2026-08-08
 
 ### Added
