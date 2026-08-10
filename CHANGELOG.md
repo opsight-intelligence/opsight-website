@@ -8,6 +8,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.7.0] - 2026-08-10
+
+### Added
+
+- **A published price on the fraud page.** Until now only OpSentry carried a
+  number and the other three verticals said "email us", which for an unknown
+  vendor means no inbound at all — the buyer cannot tell whether they are
+  looking at a ₩500k tool or a ₩50M engagement, so they don't write.
+
+  Early Warning is quoted at **from ₩1,000,000 per month**, in all three
+  languages the page supports. "From" is deliberate: the figure is a floor that
+  filters buyers who were never going to pay, without anchoring a price that
+  has never been tested on a real one — every non-OpSentry number in
+  `SELLABILITY_MAP.md` is still labelled *proposed*. Final price is stated to
+  depend on markets in scope and delivery channel, which is true and leaves
+  room upward.
+
+  A note under the card covers the wallet feed, bank risk brief and managed
+  package as scoped per buyer, with the promise that asking produces a number
+  rather than a discovery call.
+
+  Early Warning was chosen to carry the first public price because it is built,
+  runs nightly, needs no new collection, and is the difference between project
+  revenue and recurring revenue.
+
 ## [0.6.0] - 2026-08-10
 
 Prompted by an outside reader who was sent the link and reported back what they
