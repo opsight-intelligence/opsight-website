@@ -1,0 +1,21 @@
+---
+// A number is fed by a pipeline and dated, or labelled synthetic. No third state.
+interface Props {
+  id: string;        // element id the runtime fetch fills (stat-<key>)
+  label: string;
+  line: 'fraud' | 'procurement' | 'manufacturing';
+  liveBadge: string;
+  source: string;    // file name shown as provenance
+  lastWrittenLabel: string;
+  sourceLabel: string;
+}
+const { id, label, line, liveBadge, source, lastWrittenLabel, sourceLabel } = Astro.props;
+---
+<div class={`stat stat--line line-${line}`}>
+  <div class="stat__value" id={id} aria-live="polite">—</div>
+  <div class="stat__label">{label}</div>
+  <div class="stat__meta">
+    <span class="badge badge--live">{liveBadge}</span>
+    <span>{lastWrittenLabel} <span data-updated-for={source}>…</span> · {sourceLabel} {source}</span>
+  </div>
+</div>

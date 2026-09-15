@@ -1,7 +1,7 @@
 # Contributing
 
-Static site for OpSight Intelligence, served by GitHub Pages from `main`. There is no
-build step — what is committed is what ships, so `main` is production.
+Astro site for OpSight Intelligence. GitHub Actions builds `main` and publishes the
+result to GitHub Pages, so `main` is production; `dist/` is never committed.
 
 ## Branching model (Git Flow)
 
@@ -44,17 +44,19 @@ rather than listed one per refresh — otherwise the history is unreadable.
 ## Previewing locally
 
 ```bash
-python3 -m http.server 8000
+npm ci
+npm run dev
 ```
 
-Then open <http://localhost:8000>.
+Then open <http://localhost:4321>. `npm run build && npm run preview` serves exactly what
+Pages will.
 
 ## Adding a page
 
-1. Create the HTML file at the repo root, following the inline-`<style>` convention used
-   by the existing pages
-2. Add it to `sitemap.xml`
-3. Link it from `index.html`
+1. Add `src/pages/<name>.astro` and `src/pages/ko/<name>.astro`, with the copy in
+   `src/i18n/<name>.ts` (one object per locale) and the shared layout/components
+2. Add both URLs to `public/sitemap.xml`
+3. Add the nav entry in `src/layouts/Base.astro`
 4. Describe it in the Project Overview section of `CLAUDE.md`
 5. Bump `VERSION` (MINOR) and add the changelog entry
 

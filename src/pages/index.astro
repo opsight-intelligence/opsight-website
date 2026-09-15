@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import Home from '../components/Home.astro';
+import { home } from '../i18n/home';
+const copy = home.en;
+---
+<Base copy={copy} current="home" canonical="/" alternate="/ko/">
+  <Home copy={copy} />
+</Base>

@@ -1,0 +1,99 @@
+---
+// The home page body, rendered once per locale from the copy object.
+import type { HomeCopy } from '../i18n/home';
+import StatTile from './StatTile.astro';
+import ProductCard from './ProductCard.astro';
+interface Props { copy: HomeCopy }
+const { copy } = Astro.props;
+const n = copy.numbers;
+---
+<section class="hero">
+  <div class="eyebrow">{copy.hero.eyebrow}</div>
+  <h1>{copy.hero.title}</h1>
+  <p class="hero__lead">{copy.hero.lead}</p>
+  <p class="mono muted" style="font-size:var(--text-sm)">{copy.hero.lifecycle}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href={copy.hero.primaryHref}>{copy.hero.primary}</a>
+    <a class="btn btn--quiet" href={copy.hero.secondaryHref}>{copy.hero.secondary}</a>
+  </div>
+</section>
+
+<section class="section" id="numbers">
+  <div class="eyebrow">{n.heading}</div>
+  <p class="muted">{n.lead}</p>
+  <div class="grid">
+    <StatTile id="stat-entities" label={n.entities} line="fraud" liveBadge={n.liveBadge} source="stats.json" lastWrittenLabel={n.lastWritten} sourceLabel={n.source} />
+    <StatTile id="stat-clusters" label={n.clusters} line="fraud" liveBadge={n.liveBadge} source="stats.json" lastWrittenLabel={n.lastWritten} sourceLabel={n.source} />
+    <StatTile id="stat-notices" label={n.notices} line="procurement" liveBadge={n.liveBadge} source="procurement-stats.json" lastWrittenLabel={n.lastWritten} sourceLabel={n.source} />
+    <StatTile id="stat-awards" label={n.awards} line="procurement" liveBadge={n.liveBadge} source="procurement-stats.json" lastWrittenLabel={n.lastWritten} sourceLabel={n.source} />
+  </div>
+</section>
+
+<section class="section" id="lines">
+  <div class="eyebrow">{copy.lines.heading}</div>
+  <p class="muted">{copy.lines.lead}</p>
+  <div class="grid">
+    <ProductCard card={copy.lines.fraud} line="fraud" />
+    <ProductCard card={copy.lines.procurement} line="procurement" />
+    <ProductCard card={copy.lines.manufacturing} line="manufacturing" />
+    <ProductCard card={copy.lines.opsentry} line="opsentry" />
+  </div>
+</section>
+
+<section class="section">
+  <div class="callout callout--live">
+    <div class="callout__title"><span class="badge badge--live">{copy.honesty.badge}</span> {copy.honesty.title}</div>
+    <p>{copy.honesty.body}</p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="eyebrow">{copy.contact.heading}</div>
+  <p>{copy.contact.lead}</p>
+  <form class="form" action={copy.contact.mailto} method="get" id="sample-form">
+    <label for="email">{copy.contact.emailLabel}</label>
+    <input id="email" name="email" type="email" autocomplete="email" required>
+    <label for="line">{copy.contact.lineLabel}</label>
+    <textarea id="line" name="body" placeholder={copy.contact.linePlaceholder}></textarea>
+    <div class="form__hint">{copy.contact.hint}</div>
+    <div><button class="btn btn--primary" type="submit">{copy.contact.button}</button></div>
+  </form>
+</section>
+
+<script>
+  // Live numbers: read from the repo's raw files, not the built site, so the
+  // nightly stats push needs no site build. Values are shown only when the
+  // file is readable; a tile that cannot be filled keeps its dash and its
+  // date stays blank -- never a stale or invented number.
+  const RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/';
+  function fill(file: string, map: Record<string, string>) {
+    fetch(RAW + file, { cache: 'no-cache' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d) return;
+        for (const [key, id] of Object.entries(map)) {
+          const el = document.getElementById(id);
+          if (el && d[key] !== undefined && d[key] !== null) el.textContent = String(d[key]);
+        }
+        const updated = d.updated || d.generated_at || d.as_of || '';
+        document.querySelectorAll<HTMLElement>(`[data-updated-for="${file}"]`).forEach((el) => {
+          el.textContent = updated ? String(updated).slice(0, 10) : '';
+        });
+      })
+      .catch(() => { /* leave the dash; nothing is invented */ });
+  }
+  fill('stats.json', { entities: 'stat-entities', clusters: 'stat-clusters' });
+  fill('procurement-stats.json', { notices: 'stat-notices', awards: 'stat-awards' });
+
+  // The sample form opens the visitor's mail client with the two fields
+  // prefilled -- no backend, no data stored anywhere.
+  const form = document.getElementById('sample-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const line = (document.getElementById('line') as HTMLTextAreaElement).value;
+    const base = form.getAttribute('action') || '';
+    const body = encodeURIComponent(`${line}\n\nFrom: ${email}`);
+    window.location.href = `${base}&body=${body}`;
+  });
+</script>

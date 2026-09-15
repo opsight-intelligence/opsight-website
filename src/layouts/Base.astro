@@ -1,0 +1,65 @@
+---
+// Base layout: head, nav, footer, and the shared design layer.
+// The design CSS is linked from /design/ (served verbatim from public/) rather
+// than bundled, so /design/ and every page read the exact same bytes.
+import type { HomeCopy } from '../i18n/home';
+
+interface Props {
+  copy: HomeCopy;
+  current: 'home' | 'fraud' | 'procurement' | 'manufacturing' | 'opsentry';
+  canonical: string;
+  alternate: string; // the other locale's URL for this page
+}
+const { copy, current, canonical, alternate } = Astro.props;
+const site = 'https://opsightintel.com';
+const isKo = copy.htmlLang === 'ko';
+---
+<!DOCTYPE html>
+<html lang={copy.htmlLang}>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{copy.title}</title>
+<meta name="description" content={copy.description}>
+<meta name="author" content="Opsight Intelligence">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href={site + canonical}>
+<link rel="alternate" hreflang="en" href={site + (isKo ? alternate : canonical)}>
+<link rel="alternate" hreflang="ko" href={site + (isKo ? canonical : alternate)}>
+<link rel="alternate" hreflang="x-default" href={site + (isKo ? alternate : canonical)}>
+<meta property="og:title" content={copy.title}>
+<meta property="og:description" content={copy.description}>
+<meta property="og:url" content={site + canonical}>
+<meta property="og:type" content="website">
+<meta property="og:locale" content={isKo ? 'ko_KR' : 'en_US'}>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={copy.title}>
+<meta name="twitter:description" content={copy.description}>
+<link rel="stylesheet" href="/design/tokens.css">
+<link rel="stylesheet" href="/design/components.css">
+<slot name="head" />
+</head>
+<body>
+<nav class="nav" aria-label="Primary">
+  <div class="container nav__inner">
+    <a class="nav__brand" href={isKo ? '/ko/' : '/'}>{copy.nav.brand}</a>
+    <ul class="nav__links">
+      <li><a href="/intelligence" aria-current={current === 'fraud' ? 'page' : undefined}>{copy.nav.fraud}</a></li>
+      <li><a href="/procurement" aria-current={current === 'procurement' ? 'page' : undefined}>{copy.nav.procurement}</a></li>
+      <li><a href="/manufacturing" aria-current={current === 'manufacturing' ? 'page' : undefined}>{copy.nav.manufacturing}</a></li>
+      <li><a href="/opsentry" aria-current={current === 'opsentry' ? 'page' : undefined}>{copy.nav.opsentry}</a></li>
+      <li><a class="nav__lang" href={copy.nav.switchHref} hreflang={isKo ? 'en' : 'ko'} lang={isKo ? 'en' : 'ko'}>{copy.nav.switchLabel}</a></li>
+    </ul>
+  </div>
+</nav>
+<main class="container">
+  <slot />
+</main>
+<footer class="footer">
+  <div class="container footer__inner">
+    <span>{copy.footer.rights}</span>
+    <span>{copy.footer.method}</span>
+  </div>
+</footer>
+</body>
+</html>

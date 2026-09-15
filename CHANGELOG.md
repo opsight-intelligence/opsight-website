@@ -8,6 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.10.0] - 2026-09-15
+
+### Added
+- **The site moves to Astro, one page at a time, starting with the home page**
+  (`src/pages/index.astro`, `src/pages/ko/index.astro`) — the first page
+  built on the design layer, bilingual by construction (English at `/`,
+  Korean at `/ko/`, `hreflang` pairs, a language switch in the nav), with
+  every figure read live and dated (entities and clusters from `stats.json`,
+  notices and awards from `procurement-stats.json`), one action (request a
+  sample — a mailto with no backend), and the site-wide honesty statement.
+  Korean copy needs a native read before the professional launch.
+- **GitHub Actions build for Pages** (`.github/workflows/pages.yml`): builds
+  `dist/` on source pushes to `main` and deploys it. The nightly stats push
+  is excluded by path, so it costs no Actions minutes.
+
+### Changed
+- Every not-yet-migrated page (`intelligence`, `procurement`, `manufacturing`,
+  `opsentry`, the `maritime` redirect, `demodashboard/`, `design/`, `CNAME`,
+  `favicon.svg`, `robots.txt`, `sitemap.xml`) now lives under `public/` and
+  is served verbatim, unchanged. The old home page is kept as
+  `public/index-legacy.html` until the new one has been read in both
+  languages.
+- `intelligence.html` and `procurement.html` fetch their live figures from
+  the repo's raw URL instead of the site root, so the numbers keep moving
+  every night without a site build.
+- `sitemap.xml` lists `/ko/`.
+- `CLAUDE.md` and `CONTRIBUTING.md` describe the Astro layout, the
+  page-by-page migration rule, the raw-URL stats path and the new commands.
+
 ## [0.9.1] - 2026-09-15
 
 ### Removed

@@ -9,7 +9,8 @@
 .env.*
 *.local
 
-# Build tooling output (if a build step is added later)
-node_modules/
-dist/
+# Build tooling output
 build/
+dist/
+node_modules/
+.astro/
