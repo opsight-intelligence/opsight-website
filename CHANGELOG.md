@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.19.1] - 2026-09-15
+
+### Fixed
+- **The "request a sample" buttons did nothing on most desktops.** They were
+  bare `mailto:` links, which are silent when the browser has no mail
+  handler (anyone reading Gmail in a tab). Every contact section is now a
+  `ContactPanel`: the address as a copyable chip with a Copy button, an
+  "open in your mail app" link, and the one-line form that composes the
+  mail — so a click always leads somewhere visible. No backend, nothing
+  stored. Labels in EN/KO/TR (`common.ts`); the address switches to
+  `contact@` in one place once the alias exists.
+
 ## [0.19.0] - 2026-09-15
 
 ### Added

@@ -199,3 +199,8 @@
 .viz-median { fill: var(--line, var(--brand)); stroke: var(--surface-1); stroke-width: 2; }
 .viz-bar { fill: var(--line, var(--brand)); }
 .viz-bar:hover, .viz-range:hover { opacity: 0.85; }
+
+/* ── v0.19.1: contact panel — the one action always leads somewhere ─────── */
+.contact-panel { display: grid; gap: var(--s-4); max-width: 560px; }
+.contact-panel__address { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; }
+.contact-panel__email { font-family: var(--font-mono); font-size: var(--text-md); padding: var(--s-2) var(--s-3); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); user-select: all; }

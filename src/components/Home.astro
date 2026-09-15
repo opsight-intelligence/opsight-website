@@ -1,4 +1,5 @@
 ---
+import ContactPanel from './ContactPanel.astro';
 import HeroBand from './HeroBand.astro';
 // The home page body, rendered once per locale from the copy object.
 import type { HomeCopy, HomeLocale } from '../i18n/home';
@@ -48,28 +49,9 @@ const n = copy.numbers;
 <section class="section" id="contact">
   <div class="eyebrow">{copy.contact.heading}</div>
   <p>{copy.contact.lead}</p>
-  <form class="form" action={copy.contact.mailto} method="get" id="sample-form">
-    <label for="email">{copy.contact.emailLabel}</label>
-    <input id="email" name="email" type="email" autocomplete="email" required>
-    <label for="line">{copy.contact.lineLabel}</label>
-    <textarea id="line" name="body" placeholder={copy.contact.linePlaceholder}></textarea>
-    <div class="form__hint">{copy.contact.hint}</div>
-    <div><button class="btn btn--primary" type="submit">{copy.contact.button}</button></div>
-  </form>
+  <ContactPanel locale={locale} subject={copy.contact.button} />
 </section>
 
 <LiveStats files={{ 'stats.json': { entities: 'stat-entities', clusters: 'stat-clusters' }, 'procurement-stats.json': { notices: 'stat-notices', awards: 'stat-awards' } }} />
 
-<script>
-  // The sample form opens the visitor's mail client with the two fields
-  // prefilled -- no backend, no data stored anywhere.
-  const form = document.getElementById('sample-form') as HTMLFormElement | null;
-  form?.addEventListener('submit', (ev) => {
-    ev.preventDefault();
-    const email = (document.getElementById('email') as HTMLInputElement).value;
-    const line = (document.getElementById('line') as HTMLTextAreaElement).value;
-    const base = form.getAttribute('action') || '';
-    const body = encodeURIComponent(`${line}\n\nFrom: ${email}`);
-    window.location.href = `${base}&body=${body}`;
-  });
-</script>
+

@@ -1,0 +1,50 @@
+---
+// The one action on every page, made to always do something visible.
+// A mailto: alone is silent when the browser has no mail handler, which is
+// most desktops with webmail. This panel shows the address with a Copy
+// button, an "open in your mail app" link, and the one-line form that
+// composes the mail -- so a click always leads somewhere, with no backend
+// and nothing stored anywhere.
+import { common, type Locale } from '../i18n/common';
+interface Props { locale: Locale; subject?: string; id?: string }
+const { locale, subject, id = 'contact-panel' } = Astro.props;
+const c = common[locale].contact;
+const subj = encodeURIComponent(subject || c.subjectDefault);
+const mailto = `mailto:${c.address}?subject=${subj}`;
+---
+<div class="contact-panel" id={id} data-mailto={mailto}>
+  <div class="contact-panel__address">
+    <code class="contact-panel__email" data-address>{c.address}</code>
+    <button class="btn btn--quiet" type="button" data-copy data-copied={c.copied}>{c.copy}</button>
+    <a class="btn btn--quiet" href={mailto}>{c.openMail}</a>
+  </div>
+  <form class="form" data-compose>
+    <label for={`${id}-email`}>{c.emailLabel}</label>
+    <input id={`${id}-email`} name="email" type="email" autocomplete="email" required>
+    <label for={`${id}-line`}>{c.lineLabel}</label>
+    <textarea id={`${id}-line`} name="body"></textarea>
+    <div><button class="btn btn--primary" type="submit">{c.send}</button></div>
+    <div class="form__hint">{c.fallback}</div>
+  </form>
+</div>
+<script is:inline>
+(function () {
+  document.querySelectorAll('.contact-panel').forEach(function (panel) {
+    var addr = panel.querySelector('[data-address]');
+    var copy = panel.querySelector('[data-copy]');
+    var form = panel.querySelector('[data-compose]');
+    if (copy && addr) copy.addEventListener('click', function () {
+      var text = addr.textContent || '';
+      var done = function () { var t = copy.textContent; copy.textContent = copy.getAttribute('data-copied'); setTimeout(function () { copy.textContent = t; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done); else { var r = document.createRange(); r.selectNodeContents(addr); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done(); }
+    });
+    if (form) form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var email = form.querySelector('input[name=email]').value;
+      var line = form.querySelector('textarea[name=body]').value;
+      var body = encodeURIComponent(line + '\n\nFrom: ' + email);
+      window.location.href = panel.getAttribute('data-mailto') + '&body=' + body;
+    });
+  });
+})();
+</script>

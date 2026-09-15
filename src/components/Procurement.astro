@@ -1,4 +1,5 @@
 ---
+import ContactPanel from './ContactPanel.astro';
 import HeroBand from './HeroBand.astro';
 import ArtProcurement from './ArtProcurement.astro';
 import type { ProcurementCopy, ProcLocale } from '../i18n/procurement';
@@ -65,9 +66,7 @@ const { copy, locale } = Astro.props;
 <section class="section" id="contact">
   <div class="eyebrow">{copy.contact.heading}</div>
   <p>{copy.contact.lead}</p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href={copy.contact.mailto}>{copy.contact.button}</a>
-  </div>
+  <ContactPanel locale={locale} subject={copy.contact.button} />
   <p class="muted" style="font-size:var(--text-xs);margin-top:var(--s-5)">{copy.contact.disclaimer}</p>
 </section>
 

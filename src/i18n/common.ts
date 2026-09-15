@@ -11,6 +11,7 @@ export interface CommonCopy {
   langNames: Record<Locale, string>;
   footer: { rights: string; method: string };
   live: { badge: string; lastWritten: string; source: string };
+  contact: { address: string; emailLabel: string; lineLabel: string; copy: string; copied: string; openMail: string; send: string; fallback: string; subjectDefault: string };
 }
 
 export const common: Record<Locale, CommonCopy> = {
@@ -21,6 +22,7 @@ export const common: Record<Locale, CommonCopy> = {
     langNames: { en: 'English', ko: '한국어', tr: 'Türkçe' },
     footer: { rights: '© 2026 Opsight Intelligence. All rights reserved.', method: 'Built on public and free-tier sources.' },
     live: { badge: 'Live', lastWritten: 'last written', source: 'source' },
+    contact: { address: 'utku@opsightintel.com', emailLabel: 'Your work email', lineLabel: 'One line about what you want to see', copy: 'Copy address', copied: 'Copied', openMail: 'Open in your mail app', send: 'Compose the email', fallback: 'If nothing opens, copy the address and write from wherever you read mail. One email, one line — that is all.', subjectDefault: 'Sample request' },
   },
   ko: {
     htmlLang: 'ko',
@@ -29,6 +31,7 @@ export const common: Record<Locale, CommonCopy> = {
     langNames: { en: 'English', ko: '한국어', tr: 'Türkçe' },
     footer: { rights: '© 2026 Opsight Intelligence. All rights reserved.', method: '공개 및 무료 데이터 소스로 구축했습니다.' },
     live: { badge: '실시간', lastWritten: '작성일', source: '출처' },
+    contact: { address: 'utku@opsightintel.com', emailLabel: '업무용 이메일', lineLabel: '보고 싶은 내용 한 줄', copy: '주소 복사', copied: '복사됨', openMail: '메일 앱에서 열기', send: '메일 작성', fallback: '아무것도 열리지 않으면 주소를 복사해 평소 쓰는 메일에서 보내주세요. 이메일 하나, 한 줄이면 됩니다.', subjectDefault: '샘플 요청' },
   },
   tr: {
     htmlLang: 'tr',
@@ -37,6 +40,7 @@ export const common: Record<Locale, CommonCopy> = {
     langNames: { en: 'English', ko: '한국어', tr: 'Türkçe' },
     footer: { rights: '© 2026 Opsight Intelligence. Tüm hakları saklıdır.', method: 'Açık ve ücretsiz kaynaklar üzerine kuruludur.' },
     live: { badge: 'Canlı', lastWritten: 'yazıldı', source: 'kaynak' },
+    contact: { address: 'utku@opsightintel.com', emailLabel: 'İş e-postanız', lineLabel: 'Görmek istediğiniz şey, tek satır', copy: 'Adresi kopyala', copied: 'Kopyalandı', openMail: 'Posta uygulamasında aç', send: 'E-postayı oluştur', fallback: 'Hiçbir şey açılmazsa adresi kopyalayıp kullandığınız postadan yazın. Bir e-posta, bir satır — hepsi bu.', subjectDefault: 'Örnek talebi' },
   },
 };
 
