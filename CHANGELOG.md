@@ -8,6 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.11.0] - 2026-09-15
+
+### Added
+- **The fraud page, migrated to Astro at `/fraud`** with `/ko/fraud` and
+  `/tr/fraud` (Turkish kept: the line's buyers include Turkish firms). Per the
+  copy inventory: the nine capability blocks folded into four (collect /
+  connect / warn / deliver), implementation names out of the customer copy,
+  Turkey described as monitored rather than as a product, five live dated
+  tiles from `stats.json`, no pricing (on request), no client reference, the
+  "your current vendor" line kept, one action (sample report).
+- `src/i18n/common.ts` (nav, footer, live labels per locale) and a
+  page-agnostic `Base.astro` with hreflang for every locale a page has;
+  `LiveStats.astro` as the one runtime stats fetch.
+
+### Changed
+- `public/intelligence.html` is now a redirect stub to `/fraud`
+  (canonical + meta refresh + `noindex, follow`), kept for links already
+  shared. Sitemap lists `/fraud`, `/ko/fraud`, `/tr/fraud`.
+
 ## [0.10.0] - 2026-09-15
 
 ### Added

@@ -2,39 +2,42 @@
 // Base layout: head, nav, footer, and the shared design layer.
 // The design CSS is linked from /design/ (served verbatim from public/) rather
 // than bundled, so /design/ and every page read the exact same bytes.
-import type { HomeCopy } from '../i18n/home';
+import { common, localePath, type Locale } from '../i18n/common';
 
 interface Props {
-  copy: HomeCopy;
+  locale: Locale;
+  title: string;
+  description: string;
+  path: string;                 // locale-less path of this page, e.g. '/' or '/fraud'
+  locales: Locale[];            // locales this page exists in (drives hreflang + switch)
   current: 'home' | 'fraud' | 'procurement' | 'manufacturing' | 'opsentry';
-  canonical: string;
-  alternate: string; // the other locale's URL for this page
 }
-const { copy, current, canonical, alternate } = Astro.props;
+const { locale, title, description, path, locales, current } = Astro.props;
+const c = common[locale];
 const site = 'https://opsightintel.com';
-const isKo = copy.htmlLang === 'ko';
+const here = localePath(locale, path);
+const others = locales.filter((l) => l !== locale);
 ---
 <!DOCTYPE html>
-<html lang={copy.htmlLang}>
+<html lang={c.htmlLang}>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{copy.title}</title>
-<meta name="description" content={copy.description}>
+<title>{title}</title>
+<meta name="description" content={description}>
 <meta name="author" content="Opsight Intelligence">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href={site + canonical}>
-<link rel="alternate" hreflang="en" href={site + (isKo ? alternate : canonical)}>
-<link rel="alternate" hreflang="ko" href={site + (isKo ? canonical : alternate)}>
-<link rel="alternate" hreflang="x-default" href={site + (isKo ? alternate : canonical)}>
-<meta property="og:title" content={copy.title}>
-<meta property="og:description" content={copy.description}>
-<meta property="og:url" content={site + canonical}>
+<link rel="canonical" href={site + here}>
+{locales.map((l) => <link rel="alternate" hreflang={l} href={site + localePath(l, path)} />)}
+<link rel="alternate" hreflang="x-default" href={site + localePath('en', path)}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={site + here}>
 <meta property="og:type" content="website">
-<meta property="og:locale" content={isKo ? 'ko_KR' : 'en_US'}>
+<meta property="og:locale" content={c.ogLocale}>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content={copy.title}>
-<meta name="twitter:description" content={copy.description}>
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
 <link rel="stylesheet" href="/design/tokens.css">
 <link rel="stylesheet" href="/design/components.css">
 <slot name="head" />
@@ -42,13 +45,15 @@ const isKo = copy.htmlLang === 'ko';
 <body>
 <nav class="nav" aria-label="Primary">
   <div class="container nav__inner">
-    <a class="nav__brand" href={isKo ? '/ko/' : '/'}>{copy.nav.brand}</a>
+    <a class="nav__brand" href={localePath(locale === 'tr' ? 'en' : locale, '/')}>{c.nav.brand}</a>
     <ul class="nav__links">
-      <li><a href="/intelligence" aria-current={current === 'fraud' ? 'page' : undefined}>{copy.nav.fraud}</a></li>
-      <li><a href="/procurement" aria-current={current === 'procurement' ? 'page' : undefined}>{copy.nav.procurement}</a></li>
-      <li><a href="/manufacturing" aria-current={current === 'manufacturing' ? 'page' : undefined}>{copy.nav.manufacturing}</a></li>
-      <li><a href="/opsentry" aria-current={current === 'opsentry' ? 'page' : undefined}>{copy.nav.opsentry}</a></li>
-      <li><a class="nav__lang" href={copy.nav.switchHref} hreflang={isKo ? 'en' : 'ko'} lang={isKo ? 'en' : 'ko'}>{copy.nav.switchLabel}</a></li>
+      <li><a href={localePath(locale, '/fraud')} aria-current={current === 'fraud' ? 'page' : undefined}>{c.nav.fraud}</a></li>
+      <li><a href="/procurement" aria-current={current === 'procurement' ? 'page' : undefined}>{c.nav.procurement}</a></li>
+      <li><a href="/manufacturing" aria-current={current === 'manufacturing' ? 'page' : undefined}>{c.nav.manufacturing}</a></li>
+      <li><a href="/opsentry" aria-current={current === 'opsentry' ? 'page' : undefined}>{c.nav.opsentry}</a></li>
+      {others.map((l) => (
+        <li><a class="nav__lang" href={localePath(l, path)} hreflang={l} lang={l}>{c.langNames[l]}</a></li>
+      ))}
     </ul>
   </div>
 </nav>
@@ -57,8 +62,8 @@ const isKo = copy.htmlLang === 'ko';
 </main>
 <footer class="footer">
   <div class="container footer__inner">
-    <span>{copy.footer.rights}</span>
-    <span>{copy.footer.method}</span>
+    <span>{c.footer.rights}</span>
+    <span>{c.footer.method}</span>
   </div>
 </footer>
 </body>

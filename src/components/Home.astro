@@ -1,10 +1,11 @@
 ---
 // The home page body, rendered once per locale from the copy object.
-import type { HomeCopy } from '../i18n/home';
+import type { HomeCopy, HomeLocale } from '../i18n/home';
 import StatTile from './StatTile.astro';
 import ProductCard from './ProductCard.astro';
-interface Props { copy: HomeCopy }
-const { copy } = Astro.props;
+import LiveStats from './LiveStats.astro';
+interface Props { copy: HomeCopy; locale: HomeLocale }
+const { copy, locale } = Astro.props;
 const n = copy.numbers;
 ---
 <section class="hero">
@@ -22,10 +23,10 @@ const n = copy.numbers;
   <div class="eyebrow">{n.heading}</div>
   <p class="muted">{n.lead}</p>
   <div class="grid">
-    <StatTile id="stat-entities" label={n.entities} line="fraud" liveBadge={n.liveBadge} source="stats.json" lastWrittenLabel={n.lastWritten} sourceLabel={n.source} />
-    <StatTile id="stat-clusters" label={n.clusters} line="fraud" liveBadge={n.liveBadge} source="stats.json" lastWrittenLabel={n.lastWritten} sourceLabel={n.source} />
-    <StatTile id="stat-notices" label={n.notices} line="procurement" liveBadge={n.liveBadge} source="procurement-stats.json" lastWrittenLabel={n.lastWritten} sourceLabel={n.source} />
-    <StatTile id="stat-awards" label={n.awards} line="procurement" liveBadge={n.liveBadge} source="procurement-stats.json" lastWrittenLabel={n.lastWritten} sourceLabel={n.source} />
+    <StatTile id="stat-entities" label={n.entities} line="fraud" source="stats.json" locale={locale} />
+    <StatTile id="stat-clusters" label={n.clusters} line="fraud" source="stats.json" locale={locale} />
+    <StatTile id="stat-notices" label={n.notices} line="procurement" source="procurement-stats.json" locale={locale} />
+    <StatTile id="stat-awards" label={n.awards} line="procurement" source="procurement-stats.json" locale={locale} />
   </div>
 </section>
 
@@ -60,31 +61,9 @@ const n = copy.numbers;
   </form>
 </section>
 
-<script>
-  // Live numbers: read from the repo's raw files, not the built site, so the
-  // nightly stats push needs no site build. Values are shown only when the
-  // file is readable; a tile that cannot be filled keeps its dash and its
-  // date stays blank -- never a stale or invented number.
-  const RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/';
-  function fill(file: string, map: Record<string, string>) {
-    fetch(RAW + file, { cache: 'no-cache' })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (!d) return;
-        for (const [key, id] of Object.entries(map)) {
-          const el = document.getElementById(id);
-          if (el && d[key] !== undefined && d[key] !== null) el.textContent = String(d[key]);
-        }
-        const updated = d.updated || d.generated_at || d.as_of || '';
-        document.querySelectorAll<HTMLElement>(`[data-updated-for="${file}"]`).forEach((el) => {
-          el.textContent = updated ? String(updated).slice(0, 10) : '';
-        });
-      })
-      .catch(() => { /* leave the dash; nothing is invented */ });
-  }
-  fill('stats.json', { entities: 'stat-entities', clusters: 'stat-clusters' });
-  fill('procurement-stats.json', { notices: 'stat-notices', awards: 'stat-awards' });
+<LiveStats files={{ 'stats.json': { entities: 'stat-entities', clusters: 'stat-clusters' }, 'procurement-stats.json': { notices: 'stat-notices', awards: 'stat-awards' } }} />
 
+<script>
   // The sample form opens the visitor's mail client with the two fields
   // prefilled -- no backend, no data stored anywhere.
   const form = document.getElementById('sample-form') as HTMLFormElement | null;

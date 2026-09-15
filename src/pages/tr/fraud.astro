@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import Fraud from '../../components/Fraud.astro';
+import { fraud } from '../../i18n/fraud';
+const copy = fraud.tr;
+---
+<Base locale="tr" title={copy.title} description={copy.description} path="/fraud" locales={['en', 'ko', 'tr']} current="fraud">
+  <Fraud copy={copy} locale="tr" />
+</Base>

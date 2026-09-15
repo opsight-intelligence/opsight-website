@@ -1,0 +1,27 @@
+---
+// The runtime fetch that fills stat tiles. Include once per page.
+// Reads from the repo's raw files, not the built site, so the nightly stats
+// push needs no site build. A tile that cannot be filled keeps its dash and
+// its date stays blank -- never a stale or invented number.
+interface Props { files: Record<string, Record<string, string>> } // file -> {jsonKey: elementId}
+const { files } = Astro.props;
+---
+<script is:inline define:vars={{ files }}>
+  const RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/';
+  Object.entries(files).forEach(function ([file, map]) {
+    fetch(RAW + file, { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d) return;
+        Object.entries(map).forEach(function ([key, id]) {
+          var el = document.getElementById(id);
+          if (el && d[key] !== undefined && d[key] !== null) el.textContent = String(d[key]);
+        });
+        var updated = d.updated || d.generated_at || d.as_of || '';
+        document.querySelectorAll('[data-updated-for="' + file + '"]').forEach(function (el) {
+          el.textContent = updated ? String(updated).slice(0, 10) : '';
+        });
+      })
+      .catch(function () { /* leave the dash; nothing is invented */ });
+  });
+</script>
