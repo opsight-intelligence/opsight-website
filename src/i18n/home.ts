@@ -109,7 +109,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
       primary: '샘플 요청하기',
       primaryHref: '#contact',
       secondary: '어떻게 만드는지 보기',
-      secondaryHref: '/procurement#how',
+      secondaryHref: '/ko/procurement#how',
     },
     numbers: {
       heading: '주요 수치',
@@ -134,7 +134,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
         title: '공공조달 인텔리전스',
         body: '한국 공공입찰의 모든 공고, 입찰자, 낙찰가를 기초금액과 비교합니다. 매일 밤 전국 단위로 수집하며, 표본이 아닙니다.',
         action: '수집 항목 보기 →',
-        href: '/procurement',
+        href: '/ko/procurement',
       },
       manufacturing: {
         badge: '제조',

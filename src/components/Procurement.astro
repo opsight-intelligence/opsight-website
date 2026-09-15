@@ -1,0 +1,74 @@
+---
+import type { ProcurementCopy, ProcLocale } from '../i18n/procurement';
+import StatTile from './StatTile.astro';
+import LiveStats from './LiveStats.astro';
+interface Props { copy: ProcurementCopy; locale: ProcLocale }
+const { copy, locale } = Astro.props;
+---
+<section class="hero line-procurement">
+  <div class="eyebrow">{copy.hero.eyebrow}</div>
+  <h1>{copy.hero.title}</h1>
+  <p class="hero__lead">{copy.hero.lead}</p>
+  <p class="muted" style="font-size:var(--text-sm)"><span class="badge badge--live">●</span> {copy.hero.live}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="#contact">{copy.hero.primary}</a>
+  </div>
+</section>
+
+<section class="section" id="numbers">
+  <div class="grid">
+    <StatTile id="stat-notices" label={copy.numbers.notices} line="procurement" source="procurement-stats.json" locale={locale} />
+    <StatTile id="stat-awards" label={copy.numbers.awards} line="procurement" source="procurement-stats.json" locale={locale} />
+    <StatTile id="stat-bids" label={copy.numbers.bids} line="procurement" source="procurement-stats.json" locale={locale} />
+  </div>
+</section>
+
+<section class="section" id="problem">
+  <div class="eyebrow">{copy.problem.heading}</div>
+  <p style="font-size:var(--text-lg)">{copy.problem.body}</p>
+</section>
+
+<section class="section" id="collect">
+  <div class="eyebrow">{copy.collect.heading}</div>
+  <p class="muted">{copy.collect.lead}</p>
+  <div class="grid">
+    {copy.collect.blocks.map((b) => (
+      <article class="card line-procurement">
+        <div class="card__line"></div>
+        <span class="badge badge--live">{copy.collect.liveBadge}</span>
+        <h3>{b.title}</h3>
+        <p>{b.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="coverage">
+  <div class="eyebrow">{copy.coverage.heading}</div>
+  <div class="grid">
+    {copy.coverage.blocks.map((b) => (
+      <article class="card line-procurement">
+        <div class="card__line"></div>
+        <h3>{b.title}</h3>
+        <p>{b.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="eyebrow">{copy.how.heading}</div>
+  <p>{copy.how.body}</p>
+  <div class="callout"><p>{copy.how.platform}</p></div>
+</section>
+
+<section class="section" id="contact">
+  <div class="eyebrow">{copy.contact.heading}</div>
+  <p>{copy.contact.lead}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href={copy.contact.mailto}>{copy.contact.button}</a>
+  </div>
+  <p class="muted" style="font-size:var(--text-xs);margin-top:var(--s-5)">{copy.contact.disclaimer}</p>
+</section>
+
+<LiveStats files={{ 'procurement-stats.json': { notices: 'stat-notices', awards: 'stat-awards', bids: 'stat-bids' } }} />

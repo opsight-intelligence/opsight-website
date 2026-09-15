@@ -8,6 +8,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.12.0] - 2026-09-15
+
+### Added
+- **The procurement page, migrated to Astro at `/procurement`** with
+  `/ko/procurement`. Hero, "The problem", the six Live blocks and the
+  coverage blocks carried over; three live dated tiles from
+  `procurement-stats.json` (which today reads 82,729 notices against the
+  39,679 the old page had pinned in its HTML).
+
+### Removed
+- From the procurement page: the maritime "in development" section (SAR,
+  AIS, DART) and the vessel/Copernicus disclaimer — the shipbuilding thesis
+  is recorded as unsellable and did not belong on the procurement product
+  page; "license-clean, sellable footprint" (internal language while the
+  licence question is open).
+
+### Changed
+- The procurement call to action is the **aggregate sample** (category /
+  agency / size band), not "tell us your 사업자등록번호" — a named-firm record
+  is the open naming question. `public/procurement.html` deleted (the
+  `maritime.html` stub still redirects to `/procurement`).
+
 ## [0.11.0] - 2026-09-15
 
 ### Added
