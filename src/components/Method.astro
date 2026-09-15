@@ -1,0 +1,66 @@
+---
+import type { MethodCopy } from '../i18n/method';
+import HeroBand from './HeroBand.astro';
+interface Props { copy: MethodCopy }
+const { copy } = Astro.props;
+---
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} lifecycleLabels={copy.lifecycle.stages.map((s) => s.title.toUpperCase())} />
+
+<section class="section" id="lifecycle">
+  <div class="eyebrow">{copy.lifecycle.heading}</div>
+  <p class="muted">{copy.lifecycle.lead}</p>
+  <div class="grid">
+    {copy.lifecycle.stages.map((s, i) => (
+      <article class="card"><div class="card__line"></div><span class="badge badge--line">{String(i + 1).padStart(2, '0')}</span><h3>{s.title}</h3><p>{s.body}</p></article>
+    ))}
+  </div>
+</section>
+
+<div class="band section--tint"><div class="container"><section class="section" id="object">
+  <div class="eyebrow">{copy.object.heading}</div>
+  <p class="muted">{copy.object.lead}</p>
+  <div class="grid">
+    {copy.object.fields.map((f) => (
+      <article class="card"><div class="card__line"></div><h3>{f.title}</h3><p>{f.body}</p></article>
+    ))}
+  </div>
+</section></div></div>
+
+<section class="section" id="severity">
+  <div class="eyebrow">{copy.severity.heading}</div>
+  <p class="muted">{copy.severity.lead}</p>
+  <div class="table-wrap">
+    <table class="table">
+      <tbody>
+        {copy.severity.rows.map((r) => (
+          <tr><th scope="row" style="white-space:nowrap"><span class={`badge badge--${r.level}`}>{r.label}</span></th><td>{r.body}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="honesty">
+  <div class="eyebrow">{copy.honesty.heading}</div>
+  <div class="stack">
+    <div class="callout callout--live"><div class="callout__title"><span class="badge badge--live">Live</span></div><p>{copy.honesty.live}</p></div>
+    <div class="callout callout--synthetic"><div class="callout__title"><span class="badge badge--synthetic">Synthetic</span></div><p>{copy.honesty.synthetic}</p></div>
+    <div class="callout"><p>{copy.honesty.pseudonymized}</p></div>
+  </div>
+</section>
+
+<section class="section" id="sources">
+  <div class="eyebrow">{copy.sources.heading}</div>
+  <div class="grid">
+    {copy.sources.blocks.map((b) => (
+      <article class="card"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="limits">
+  <div class="eyebrow">{copy.limits.heading}</div>
+  <ul style="padding-left:1.2em;max-width:var(--measure)">
+    {copy.limits.items.map((i) => <li style="margin-bottom:var(--s-3)">{i}</li>)}
+  </ul>
+</section>

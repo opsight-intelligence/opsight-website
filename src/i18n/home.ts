@@ -38,7 +38,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
       primary: 'Request a sample',
       primaryHref: '#contact',
       secondary: 'How it is built',
-      secondaryHref: '/procurement#how',
+      secondaryHref: '/method',
     },
     numbers: {
       heading: 'By the numbers',
@@ -109,7 +109,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
       primary: '샘플 요청하기',
       primaryHref: '#contact',
       secondary: '어떻게 만드는지 보기',
-      secondaryHref: '/ko/procurement#how',
+      secondaryHref: '/ko/method',
     },
     numbers: {
       heading: '주요 수치',
