@@ -1,4 +1,5 @@
 ---
+import ContactPanel from './ContactPanel.astro';
 import HeroBand from './HeroBand.astro';
 import ArtFraud from './ArtFraud.astro';
 import type { Locale } from '../i18n/common';
@@ -66,9 +67,7 @@ const n = copy.numbers;
   <div class="eyebrow">{copy.contact.heading}</div>
   <h2>{copy.contact.lead} <em>{copy.contact.sharp}</em></h2>
   <p>{copy.contact.sample}</p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href={copy.contact.mailto}>{copy.contact.button}</a>
-  </div>
+  <ContactPanel locale={locale} subject={copy.contact.button} />
 </section>
 
 <LiveStats files={{ 'stats.json': { entities: 'stat-entities', bank: 'stat-bank', phone: 'stat-phone', crypto: 'stat-crypto', clusters: 'stat-clusters' } }} />

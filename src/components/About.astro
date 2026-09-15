@@ -1,8 +1,9 @@
 ---
+import ContactPanel from './ContactPanel.astro';
 import type { AboutCopy } from '../i18n/about';
 import HeroBand from './HeroBand.astro';
-interface Props { copy: AboutCopy }
-const { copy } = Astro.props;
+interface Props { copy: AboutCopy; locale: 'en' | 'ko' }
+const { copy, locale } = Astro.props;
 ---
 <HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} />
 
@@ -25,11 +26,7 @@ const { copy } = Astro.props;
 <section class="section" id="contact">
   <div class="eyebrow">{copy.contact.heading}</div>
   <p>{copy.contact.lead}</p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href={copy.contact.mailto}>{copy.contact.button}</a>
-    <a class="btn btn--quiet mono" href={copy.contact.mailto}>{copy.contact.email}</a>
-  </div>
-  <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-4)">{copy.contact.hint}</p>
+  <ContactPanel locale={locale} />
 </section>
 
 <section class="section" id="statement">

@@ -1,9 +1,10 @@
 ---
+import ContactPanel from './ContactPanel.astro';
 import HeroBand from './HeroBand.astro';
 import ArtManufacturing from './ArtManufacturing.astro';
 import type { ManufacturingCopy, MfgLocale } from '../i18n/manufacturing';
 interface Props { copy: ManufacturingCopy; locale: MfgLocale }
-const { copy } = Astro.props;
+const { copy, locale } = Astro.props;
 ---
 <HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="manufacturing">
   <Fragment slot="actions"><a class="btn btn--primary" href="#contact">{copy.hero.primary}</a></Fragment>
@@ -90,8 +91,6 @@ const { copy } = Astro.props;
 <section class="section" id="contact">
   <div class="eyebrow">{copy.contact.heading}</div>
   <p>{copy.contact.lead}</p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href={copy.contact.mailto}>{copy.contact.button}</a>
-  </div>
+  <ContactPanel locale={locale} subject={copy.contact.button} />
   <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-4)">{copy.contact.sample}</p>
 </section>
