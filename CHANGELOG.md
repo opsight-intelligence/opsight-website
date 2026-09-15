@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.21.0] - 2026-09-15
+
+### Added
+- **OpSentry in Korean** at `/ko/opsentry`, so every page on the site is
+  English + Korean; the fraud page additionally keeps Turkish for its
+  Turkish buyers. Product names, commands, statute and standard names stay
+  as they are. Written by the agent; needs a native read.
+
 ## [0.20.2] - 2026-09-15
 
 ### Changed
