@@ -4,6 +4,6 @@ import Home from '../../components/Home.astro';
 import { home } from '../../i18n/home';
 const copy = home.ko;
 ---
-<Base copy={copy} current="home" canonical="/ko/" alternate="/">
-  <Home copy={copy} />
+<Base locale="ko" title={copy.title} description={copy.description} path="/" locales={['en', 'ko']} current="home">
+  <Home copy={copy} locale="ko" />
 </Base>

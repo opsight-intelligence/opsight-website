@@ -1,0 +1,77 @@
+---
+import type { Locale } from '../i18n/common';
+import type { FraudCopy } from '../i18n/fraud';
+import StatTile from './StatTile.astro';
+import LiveStats from './LiveStats.astro';
+interface Props { copy: FraudCopy; locale: Locale }
+const { copy, locale } = Astro.props;
+const n = copy.numbers;
+---
+<section class="hero line-fraud">
+  <div class="eyebrow">{copy.hero.eyebrow}</div>
+  <h1>{copy.hero.title}</h1>
+  <p class="hero__lead">{copy.hero.lead}</p>
+  <p class="muted" style="font-size:var(--text-sm)"><span class="badge badge--live">●</span> {copy.hero.live}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="#contact">{copy.hero.primary}</a>
+  </div>
+</section>
+
+<section class="section" id="what">
+  <div class="eyebrow">{copy.what.heading}</div>
+  <p class="muted">{copy.what.lead}</p>
+  <div class="grid">
+    {copy.what.blocks.map((b, i) => (
+      <article class="card line-fraud">
+        <div class="card__line"></div>
+        <span class="badge badge--line">{String(i + 1).padStart(2, '0')}</span>
+        <h3>{b.title}</h3>
+        <p>{b.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="coverage">
+  <div class="eyebrow">{copy.coverage.heading}</div>
+  <p class="muted">{copy.coverage.lead}</p>
+  <div class="grid">
+    {copy.coverage.blocks.map((b) => (
+      <article class="card line-fraud">
+        <div class="card__line"></div>
+        <h3>{b.title}</h3>
+        <p>{b.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="numbers">
+  <div class="eyebrow">{n.heading}</div>
+  <p class="muted">{n.lead}</p>
+  <div class="grid">
+    <StatTile id="stat-entities" label={n.entities} line="fraud" source="stats.json" locale={locale} />
+    <StatTile id="stat-bank" label={n.bank} line="fraud" source="stats.json" locale={locale} />
+    <StatTile id="stat-phone" label={n.phone} line="fraud" source="stats.json" locale={locale} />
+    <StatTile id="stat-crypto" label={n.crypto} line="fraud" source="stats.json" locale={locale} />
+    <StatTile id="stat-clusters" label={n.clusters} line="fraud" source="stats.json" locale={locale} />
+  </div>
+</section>
+
+<section class="section" id="delivery">
+  <div class="callout">
+    <div class="callout__title">{copy.delivery.heading}</div>
+    <p>{copy.delivery.body}</p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="eyebrow">{copy.contact.heading}</div>
+  <h2>{copy.contact.lead} <em>{copy.contact.sharp}</em></h2>
+  <p>{copy.contact.sample}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href={copy.contact.mailto}>{copy.contact.button}</a>
+  </div>
+</section>
+
+<LiveStats files={{ 'stats.json': { entities: 'stat-entities', bank: 'stat-bank', phone: 'stat-phone', crypto: 'stat-crypto', clusters: 'stat-clusters' } }} />

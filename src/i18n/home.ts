@@ -7,32 +7,28 @@
 // professional launch (rule 5 of the UX doc). Mark corrections here, not in
 // the templates.
 
-export type Locale = 'en' | 'ko';
+import type { Locale } from './common';
+export type HomeLocale = Extract<Locale, 'en' | 'ko'>;
 
 export interface HomeCopy {
-  htmlLang: string;
   title: string;
   description: string;
-  nav: { brand: string; fraud: string; procurement: string; manufacturing: string; opsentry: string; switchLabel: string; switchHref: string };
   hero: { eyebrow: string; title: string; lead: string; lifecycle: string; primary: string; primaryHref: string; secondary: string; secondaryHref: string };
-  numbers: { heading: string; lead: string; entities: string; clusters: string; notices: string; awards: string; liveBadge: string; lastWritten: string; source: string };
+  numbers: { heading: string; lead: string; entities: string; clusters: string; notices: string; awards: string };
   lines: { heading: string; lead: string; fraud: LineCard; procurement: LineCard; manufacturing: LineCard; opsentry: LineCard };
   honesty: { badge: string; title: string; body: string };
   contact: { heading: string; lead: string; emailLabel: string; lineLabel: string; linePlaceholder: string; hint: string; button: string; mailto: string };
-  footer: { rights: string; method: string };
 }
 
 export interface LineCard { badge: string; title: string; body: string; action: string; href: string }
 
 const CONTACT = 'utku@opsightintel.com'; // becomes contact@ once the alias is confirmed (inventory X2)
 
-export const home: Record<Locale, HomeCopy> = {
+export const home: Record<HomeLocale, HomeCopy> = {
   en: {
-    htmlLang: 'en',
     title: 'Opsight Intelligence',
     description:
       'An intelligence platform turning raw signals into intelligence products: fraud ecosystems on Telegram, Korean public procurement, manufacturing forensics, and AI governance.',
-    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: 'Fraud', procurement: 'Procurement', manufacturing: 'Manufacturing', opsentry: 'OpSentry', switchLabel: '한국어', switchHref: '/ko/' },
     hero: {
       eyebrow: 'Intelligence platform',
       title: 'Raw signals in. Intelligence products out.',
@@ -51,9 +47,6 @@ export const home: Record<Locale, HomeCopy> = {
       clusters: 'Clusters mapped',
       notices: 'Tender notices collected',
       awards: 'Awards with winning price',
-      liveBadge: 'Live',
-      lastWritten: 'last written',
-      source: 'source',
     },
     lines: {
       heading: 'Three intelligence lines, one platform',
@@ -63,7 +56,7 @@ export const home: Record<Locale, HomeCopy> = {
         title: 'Fraud Intelligence',
         body: 'Telegram and OSINT monitoring of criminal and grey-market ecosystems — financial crime, illegal betting, drug trafficking and laundering — delivered as feeds, alerts and evidence-grade reports.',
         action: 'Request a sample report →',
-        href: '/intelligence',
+        href: '/fraud',
       },
       procurement: {
         badge: 'Procurement',
@@ -102,14 +95,11 @@ export const home: Record<Locale, HomeCopy> = {
       button: 'Request the sample',
       mailto: `mailto:${CONTACT}?subject=Sample%20request`,
     },
-    footer: { rights: '© 2026 Opsight Intelligence. All rights reserved.', method: 'Built on public and free-tier sources.' },
   },
   ko: {
-    htmlLang: 'ko',
     title: 'Opsight Intelligence',
     description:
       '원시 신호를 인텔리전스 제품으로 바꾸는 플랫폼: 텔레그램 사기 생태계, 한국 공공조달, 제조 포렌식, AI 거버넌스.',
-    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: '사기 인텔리전스', procurement: '공공조달', manufacturing: '제조', opsentry: 'OpSentry', switchLabel: 'English', switchHref: '/' },
     hero: {
       eyebrow: '인텔리전스 플랫폼',
       title: '원시 신호를 넣으면, 인텔리전스 제품이 나옵니다.',
@@ -128,9 +118,6 @@ export const home: Record<Locale, HomeCopy> = {
       clusters: '매핑된 클러스터',
       notices: '수집된 입찰공고',
       awards: '낙찰가가 확인된 낙찰',
-      liveBadge: '실시간',
-      lastWritten: '작성일',
-      source: '출처',
     },
     lines: {
       heading: '세 개의 인텔리전스 라인, 하나의 플랫폼',
@@ -140,7 +127,7 @@ export const home: Record<Locale, HomeCopy> = {
         title: '사기 인텔리전스',
         body: '텔레그램과 OSINT로 범죄·회색시장 생태계를 모니터링합니다 — 금융범죄, 불법도박, 마약, 자금세탁 — 피드, 알림, 증거 수준 보고서로 전달합니다.',
         action: '샘플 보고서 요청 →',
-        href: '/intelligence',
+        href: '/ko/fraud',
       },
       procurement: {
         badge: '공공조달',
@@ -179,6 +166,5 @@ export const home: Record<Locale, HomeCopy> = {
       button: '샘플 요청하기',
       mailto: `mailto:${CONTACT}?subject=%EC%83%98%ED%94%8C%20%EC%9A%94%EC%B2%AD`,
     },
-    footer: { rights: '© 2026 Opsight Intelligence. All rights reserved.', method: '공개 및 무료 데이터 소스로 구축했습니다.' },
   },
 };

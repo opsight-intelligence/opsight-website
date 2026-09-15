@@ -6,8 +6,9 @@
 // URL, so the numbers move every night while the site is rebuilt only when
 // its source changes (the org's Actions minutes are the constraint).
 //
-// i18n: English at /, Korean at /ko/. Both are first-class; the layout
-// renders the same page from one copy object per locale (src/i18n/).
+// i18n: English at /, Korean at /ko/, and Turkish at /tr/ for the fraud page
+// only (its buyers include Turkish firms). The layout renders the same page
+// from one copy object per locale (src/i18n/).
 //
 // Pages not yet migrated (intelligence, procurement, manufacturing, opsentry,
 // maritime redirect, demodashboard/, design/) are served verbatim from public/.
@@ -25,7 +26,7 @@ export default defineConfig({
   },
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ko'],
+    locales: ['en', 'ko', 'tr'],
     routing: { prefixDefaultLocale: false },
   },
 });

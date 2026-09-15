@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub Pages with Cloudflare DNS. Four business verticals:
 
-- **Fraud Intelligence** (`intelligence.html`): fraud ecosystem monitoring for financial institutions (vishing networks, mule accounts, image OCR, REST API, evidence-grade reporting). 2 core markets (Korea, Turkey) plus custom client pipelines.
+- **Fraud Intelligence** (`/fraud`, `/ko/fraud`, `/tr/fraud` — `src/pages/*/fraud.astro`, copy in `src/i18n/fraud.ts`; migrated 2026-09-15): Telegram intelligence for financial institutions, regulators and compliance teams — collect / connect / warn / deliver, coverage by market, live dated numbers, no public pricing (on request), no client reference. `public/intelligence.html` is now a redirect stub to `/fraud` (canonical + meta refresh + `noindex, follow`); **do not delete it**, links to it are in the world.
 - **Manufacturing Intelligence** (`manufacturing.html`): forensic operational insights for Tier 1 manufacturers, positioned explicitly *against* dashboards — each finding carries root cause, quantified dollar impact, ranked actions, a causal-vs-correlational judgment, and success criteria. Excel-native input, no IT project, cross-industry rather than auto-only.
 - **Procurement Intelligence** (`procurement.html`): Korean public procurement — every tender, bidder and winning price against the published estimate (기초금액), collected nightly from 조달청 / 나라장터 open APIs. **Renamed from `maritime.html` on 2026-08-10** — the old name shipped a fishing-industry word and an anchor icon on a Korean public-tender product, which is what a recipient saw first when the link was shared. `maritime.html` remains as a redirect stub (canonical + meta refresh + `noindex, follow`) because links to it are already out in the world; **do not delete it**. GitHub Pages cannot issue a real 301, so the stub is the honest substitute. The SAR/AIS shipbuilding thesis this page used to carry is **not sellable** (detector precision 0.57, 2 of 11 yards SAR-legible, AIS receiving nothing) and was removed on 2026-08-07 — see `opsight-company/strategy/gtm/SELLABILITY_MAP.md` §3 before putting it back. Sub-brand is **OPSIGHT PROCUREMENT**; `drydock` remains the internal package name only and must not appear in customer-facing copy.
 - **OpSentry** (`opsentry.html`): AI coding assistant security guardrails. Three-layer enforcement, 157 tests, ISO 27001/EU AI Act/Korean AI Basic Act compliance. Free + Team ($15/dev/mo) + Business ($25/dev/mo) tiers.
@@ -17,9 +17,9 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
   (`.github/workflows/pages.yml`) and published to GitHub Pages from the build
   artifact. `npm run build` writes `dist/`; nothing in `dist/` is committed.
 - **Migration is page by page.** `src/pages/` holds the migrated pages (today:
-  the home page, `index.astro` and `ko/index.astro`). Pages not yet migrated —
-  `intelligence.html`, `procurement.html`, `manufacturing.html`,
-  `opsentry.html`, the `maritime.html` redirect, `demodashboard/` — live
+  the home page and the fraud page, in `en`/`ko` and — fraud only — `tr`). Pages not yet migrated —
+  `procurement.html`, `manufacturing.html`, `opsentry.html`, the
+  `maritime.html` and `intelligence.html` redirects, `demodashboard/` — live
   under `public/` and are served verbatim; on GitHub Pages a `<name>.html`
   file wins over a `<name>/index.html` directory, so a page is migrated by
   adding `src/pages/<name>.astro` and deleting `public/<name>.html` in the
@@ -41,10 +41,12 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
   and the Pages workflow ignores those paths, so a stats push costs no
   Actions minutes and the figures still move every night. A tile whose file
   cannot be read keeps its dash — nothing stale or invented is shown.
-- **Copy lives in `src/i18n/<page>.ts`**, one object per locale (`en`, `ko`),
-  rendered by one component (`src/components/Home.astro`) inside
-  `src/layouts/Base.astro` (head, hreflang pairs, nav, footer). Korean at
-  `/ko/…`, English at `/…`. Korean written by the agent needs a native read
+- **Copy lives in `src/i18n/<page>.ts`**, one object per locale, with the
+  shared nav/footer/live labels in `src/i18n/common.ts`; each page is one
+  component (`src/components/<Page>.astro`) inside `src/layouts/Base.astro`
+  (head, hreflang for every locale the page has, nav with a language switch,
+  footer). English at `/…`, Korean at `/ko/…`, Turkish at `/tr/…` where a page
+  has it (fraud). `LiveStats.astro` is the one runtime fetch for stat tiles. Korean written by the agent needs a native read
   before the professional launch — correct it in the copy object.
 - `CNAME`, `favicon.svg`, `robots.txt`, `sitemap.xml` live in `public/` and
   ship unchanged. `sitemap.xml` is hand-kept and lists extensionless URLs plus
@@ -68,9 +70,9 @@ The migrated pages are bilingual by construction: `/` (English) and `/ko/`
 (Korean) come from the same component and copy object, with `hreflang`
 alternates in the head and a language switch in the nav.
 
-The not-yet-migrated `public/intelligence.html` still carries English, Korean
-and Turkish inline via `data-lang` attributes; `manufacturing.html`,
-`procurement.html` and `opsentry.html` are English-only until they migrate.
+The fraud page additionally has Turkish (`/tr/fraud`), because its buyers
+include Turkish firms. `manufacturing.html`, `procurement.html` and
+`opsentry.html` are English-only until they migrate.
 
 ## Conventions
 
