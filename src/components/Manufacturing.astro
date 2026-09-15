@@ -1,0 +1,99 @@
+---
+import type { ManufacturingCopy, MfgLocale } from '../i18n/manufacturing';
+interface Props { copy: ManufacturingCopy; locale: MfgLocale }
+const { copy } = Astro.props;
+---
+<section class="hero line-manufacturing">
+  <div class="eyebrow">{copy.hero.eyebrow}</div>
+  <h1>{copy.hero.title}</h1>
+  <p class="hero__lead">{copy.hero.lead}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="#contact">{copy.hero.primary}</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="grid">
+    {copy.tiles.map((t) => (
+      <div class="stat stat--line line-manufacturing">
+        <div class="stat__value">{t.value}</div>
+        <div class="stat__label">{t.label}</div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="insights">
+  <div class="eyebrow">{copy.insights.heading}</div>
+  <p class="muted">{copy.insights.lead}</p>
+  <div class="grid">
+    {copy.insights.blocks.map((b) => (
+      <article class="card line-manufacturing">
+        <div class="card__line"></div>
+        <h3>{b.title}</h3>
+        <p>{b.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="industries">
+  <div class="eyebrow">{copy.industries.heading}</div>
+  <p class="muted">{copy.industries.lead}</p>
+  <div class="grid">
+    {copy.industries.blocks.map((b) => (
+      <article class="card line-manufacturing">
+        <div class="card__line"></div>
+        <h3>{b.title}</h3>
+        <p>{b.body}</p>
+      </article>
+    ))}
+  </div>
+  <p class="muted" style="margin-top:var(--s-5)">{copy.compliance.body} <a href={copy.compliance.href}>{copy.compliance.link}</a></p>
+</section>
+
+<section class="section" id="examples">
+  <div class="eyebrow">{copy.examples.heading}</div>
+  <p class="muted">{copy.examples.lead}</p>
+  <div class="callout callout--synthetic">
+    <div class="callout__title"><span class="badge badge--synthetic">{copy.honesty.badge}</span> {copy.honesty.title}</div>
+    <p>{copy.honesty.body}</p>
+  </div>
+  <div class="grid" style="margin-top:var(--s-5)">
+    {copy.examples.items.map((x) => (
+      <article class="card line-manufacturing">
+        <div class="card__line"></div>
+        <div class="eyebrow">{x.lens}</div>
+        <h3>{x.title}</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:var(--s-2)">
+          {x.severity && <span class={`badge badge--${x.severity}`}>{x.severityLabel}</span>}
+          <span class="badge badge--low">{x.confidence}</span>
+          <span class="badge badge--low">{x.causality}</span>
+        </div>
+        <p>{x.body}</p>
+        <p><strong>{x.impactLabel}:</strong> {x.impact}</p>
+        <ul style="margin:0;padding-left:1.2em">
+          {x.actions.map((a) => <li>{a}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="demos">
+  <div class="eyebrow">{copy.demos.heading}</div>
+  <p class="muted">{copy.demos.lead} <span class="badge badge--synthetic">{copy.honesty.badge}</span></p>
+  <div class="hero__actions">
+    {copy.demos.items.map((d) => <a class="btn btn--quiet" href={d.href} target="_blank" rel="noopener">{d.label}</a>)}
+  </div>
+  <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-4)">{copy.demos.more}</p>
+</section>
+
+<section class="section" id="contact">
+  <div class="eyebrow">{copy.contact.heading}</div>
+  <p>{copy.contact.lead}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href={copy.contact.mailto}>{copy.contact.button}</a>
+  </div>
+  <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-4)">{copy.contact.sample}</p>
+</section>

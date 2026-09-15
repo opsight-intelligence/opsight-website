@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.13.0] - 2026-09-15
+
+### Added
+- **The manufacturing page, migrated to Astro at `/manufacturing`** with
+  `/ko/manufacturing`. The six "insights, not dashboards" blocks, the
+  industries, the three worked insights and the honesty statement carried
+  over word for word; the worked insights and the six demo dashboards carry
+  the Synthetic badge; severity and confidence rendered with the design
+  system's badges.
+
+### Removed
+- The unsourced "$2 billion was spent on enterprise AI for manufacturing"
+  hero line; the ISO/IATF paragraph cut to one sentence with a link to
+  OpSentry. `public/manufacturing.html` deleted.
+
 ## [0.12.0] - 2026-09-15
 
 ### Added
