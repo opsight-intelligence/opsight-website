@@ -1,0 +1,132 @@
+---
+import type { OpsentryCopy, Block } from '../i18n/opsentry';
+interface Props { copy: OpsentryCopy }
+const { copy } = Astro.props;
+const cards = (blocks: Block[]) => blocks;
+---
+<section class="hero line-opsentry">
+  <div class="eyebrow">{copy.hero.eyebrow}</div>
+  <h1>{copy.hero.title}</h1>
+  <p class="hero__lead"><strong>{copy.hero.lead}</strong> {copy.hero.sub}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href={copy.hero.primaryHref}>{copy.hero.primary}</a>
+    <a class="btn btn--quiet" href={copy.hero.secondaryHref} target="_blank" rel="noopener">{copy.hero.secondary}</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="grid">
+    {copy.tiles.map((t) => (
+      <div class="stat stat--line line-opsentry">
+        <div class="stat__value">{t.value}</div>
+        <div class="stat__label">{t.label}</div>
+      </div>
+    ))}
+  </div>
+  <div class="callout" style="margin-top:var(--s-5)">
+    {copy.facts.map((f) => <p>{f}</p>)}
+  </div>
+</section>
+
+<section class="section" id="deterministic">
+  <div class="eyebrow">{copy.deterministic.heading}</div>
+  <p>{copy.deterministic.p1}</p>
+  <p>{copy.deterministic.p2}</p>
+  <p><strong>{copy.deterministic.p3}</strong></p>
+</section>
+
+{[
+  ['problem', copy.problem.heading, copy.problem.lead, copy.problem.blocks],
+  ['layers', copy.layers.heading, copy.layers.lead, copy.layers.blocks],
+].map(([id, heading, lead, blocks]) => (
+  <section class="section" id={id as string}>
+    <div class="eyebrow">{heading}</div>
+    <p class="muted">{lead}</p>
+    <div class="grid">
+      {cards(blocks as Block[]).map((b) => (
+        <article class="card line-opsentry"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
+      ))}
+    </div>
+  </section>
+))}
+
+<section class="section" id="redteam">
+  <div class="eyebrow">{copy.redteam.heading}</div>
+  <p class="muted">{copy.redteam.lead} <a href={copy.redteam.href} target="_blank" rel="noopener">{copy.redteam.link} →</a></p>
+  <div class="grid">
+    {copy.redteam.blocks.map((b) => (
+      <article class="card line-opsentry"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="production">
+  <div class="eyebrow">{copy.production.heading}</div>
+  <div class="grid">
+    {copy.production.blocks.map((b) => (
+      <article class="card line-opsentry"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="install">
+  <div class="eyebrow">{copy.install.heading}</div>
+  <p class="muted">{copy.install.lead}</p>
+  <div class="table-wrap">
+    <table class="table">
+      <tbody>
+        {copy.install.items.map((i) => (
+          <tr><th scope="row" style="white-space:nowrap">{i.label}</th><td><code>{i.cmd}</code></td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{[
+  ['governance', copy.governance.heading, copy.governance.lead, copy.governance.blocks],
+  ['blocked', copy.blocked.heading, '', copy.blocked.blocks],
+].map(([id, heading, lead, blocks]) => (
+  <section class="section" id={id as string}>
+    <div class="eyebrow">{heading}</div>
+    {lead && <p class="muted">{lead}</p>}
+    <div class="grid">
+      {cards(blocks as Block[]).map((b) => (
+        <article class="card line-opsentry"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
+      ))}
+    </div>
+  </section>
+))}
+
+<section class="section" id="plans">
+  <div class="eyebrow">{copy.plans.heading}</div>
+  <p class="muted">{copy.plans.lead}</p>
+  <div class="grid">
+    {copy.plans.items.map((p) => (
+      <article class="card line-opsentry">
+        <div class="card__line"></div>
+        <h3>{p.name}</h3>
+        <div class="stat__value" style="font-size:var(--text-2xl)">{p.price}<small class="muted" style="font-size:var(--text-sm)">{p.per}</small></div>
+        <ul style="margin:0;padding-left:1.2em;color:var(--ink-secondary)">{p.items.map((i) => <li>{i}</li>)}</ul>
+        <a class={`btn ${p.primary ? 'btn--primary' : 'btn--quiet'} card__action`} href={p.href}>{p.cta}</a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="section" id="other">
+  <div class="callout">
+    <div class="callout__title">{copy.other.heading}</div>
+    <p>{copy.other.p1}</p>
+    <p>{copy.other.p2}</p>
+  </div>
+</section>
+
+<section class="section" id="cta">
+  <div class="eyebrow">{copy.cta.heading}</div>
+  <p>{copy.cta.lead}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href={copy.cta.primaryHref} target="_blank" rel="noopener">{copy.cta.primary}</a>
+    <a class="btn btn--quiet" href={copy.cta.secondaryHref}>{copy.cta.secondary}</a>
+  </div>
+</section>
