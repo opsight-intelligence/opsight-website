@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.20.0] - 2026-09-15
+
+### Added
+- **Formspree delivery for the contact panel.** With `FORMSPREE_ID` set in
+  `src/config.ts` (a public form id, not a secret), the one-line form POSTs
+  to Formspree in the background and shows "Sent" inline; a honeypot field
+  and the page path travel with it. While the id is empty — as shipped —
+  the form composes a mail via the visitor's mail app exactly as before,
+  and the copy-address and open-in-mail-app options stay either way.
+  Labels for sending / sent / failed in EN/KO/TR.
+
 ## [0.19.1] - 2026-09-15
 
 ### Fixed

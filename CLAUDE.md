@@ -58,6 +58,9 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
   change and commit the PNGs. `public/demodashboard/` keeps the generated
   Plotly dashboards, restyled onto the tokens by `dashboard.css` plus a nav
   and a Synthetic line injected into each file (`noindex`).
+- `src/config.ts` holds public site configuration: `FORMSPREE_ID` (the contact
+  form's Formspree id; empty = compose-a-mail fallback). Change it there, bump,
+  release — no env, no secret.
 - `CNAME`, `favicon.svg`, `robots.txt`, `sitemap.xml` live in `public/` and
   ship unchanged. `sitemap.xml` is hand-kept and lists extensionless URLs plus
   `/ko/`. `website.md` is the Cloudflare/SEO checklist; not published.
