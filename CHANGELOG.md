@@ -8,6 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.14.0] - 2026-09-15
+
+### Added
+- **The OpSentry page, migrated to Astro at `/opsentry`** (English only; a
+  Korean mirror is a follow-up). A faithful port of the dense original onto
+  the layout: every section kept, the two tiles that had no value now show
+  3 / 8 / 203 / 3, the install commands in a table, plan cards with real
+  destinations.
+
+### Changed
+- The anonymous testimonial ("Solution Engineering Lead, Korean
+  manufacturing intelligence startup") is replaced by the plain fact it
+  described: used internally at Opsight, deployed ahead of an ISO 27001
+  renewal, the incident log and guardrail config answered the auditor.
+  Plan prices unchanged. `public/opsentry.html` deleted — every product page
+  is now on Astro; only the two redirect stubs and `demodashboard/` remain
+  as static files.
+
 ## [0.13.0] - 2026-09-15
 
 ### Added
