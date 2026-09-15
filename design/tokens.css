@@ -1,0 +1,172 @@
+/* Opsight design tokens — the one shared layer.
+ *
+ * Version: 0.9.0 (keep in step with VERSION; the copilot and console repos
+ * copy this file and carry the same number so drift is visible).
+ *
+ * Rules this file encodes (strategy/product/website-and-app-ux.md):
+ *   - one identity on every surface: site, copilot, console, alert mail, PDF
+ *   - the navy is the brand anchor; each intelligence line gets ONE accent,
+ *     used only for its badge and its chart series, never for text
+ *   - dark theme from the start; both themes defined here, nothing elsewhere
+ *   - severity/status colours are reserved and never reused as a series
+ *   - every number wears tabular figures
+ *
+ * Palette validation (dataviz method, all-pairs, 2026-09-15):
+ *   line accents fraud/procurement/manufacturing pass every hard gate in both
+ *   modes; procurement aqua sits at 2.74:1 on the light surface, so a mark in
+ *   it always carries a visible label (the "relief rule"). Four all-pairs-safe
+ *   hues do not exist in this space, so OpSentry — a separate product, never
+ *   charted beside the three lines — uses the brand navy as its accent.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* brand */
+  --brand:            #1e3a5f;   /* navy anchor — unchanged from the 2026 site */
+  --brand-strong:     #14294a;
+  --brand-soft:       #2d5a87;
+  --brand-tint:       #e8eef6;
+
+  /* line accents (categorical order is fixed: fraud, procurement, manufacturing) */
+  --line-fraud:         #4a3aa7;
+  --line-procurement:   #1baf7a;
+  --line-manufacturing: #eb6834;
+  --line-opsentry:      var(--brand);
+
+  /* status / severity — fixed, never themed, never a series */
+  --sev-critical:     #d03b3b;
+  --sev-high:         #ec835a;
+  --sev-medium:       #fab219;
+  --sev-low:          #6b7280;
+  --status-good:      #0ca30c;
+  --status-live:      #0ca30c;   /* "Live" badge = fed by a pipeline, dated */
+  --status-synthetic: #7c3aed;   /* "Synthetic" badge = generated, labelled */
+
+  /* surfaces and ink */
+  --surface-0:        #f8f9fa;   /* page ground */
+  --surface-1:        #ffffff;   /* cards, panels */
+  --surface-2:        #f1f3f5;   /* inset, code, table stripes */
+  --border:           #e3e6ea;
+  --border-strong:    #c9ced5;
+  --ink:              #1b1f24;
+  --ink-secondary:    #4b5563;
+  --ink-muted:        #6b7280;
+  --ink-on-brand:     #ffffff;
+  --link:             var(--brand-soft);
+  --focus:            #2a78d6;
+
+  /* type */
+  --font-sans: "Inter", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo",
+               "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-md:   1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.375rem;
+  --text-2xl:  1.75rem;
+  --text-3xl:  2.25rem;
+  --text-hero: clamp(2rem, 5vw, 3rem);
+  --leading:   1.6;
+  --leading-tight: 1.2;
+  --tracking-caps: 0.08em;
+
+  /* space (4px grid) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --measure: 68ch;
+  --container: 1120px;
+
+  /* shape */
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 12px;
+  --shadow:    0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.10);
+  --shadow-lg: 0 8px 24px rgba(16, 24, 40, 0.12);
+}
+
+/* Dark theme: selected steps, not an automatic flip. Declared twice so the
+ * OS setting and an explicit data-theme toggle both work, and the toggle wins. */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --brand:            #8fb0d9;
+    --brand-strong:     #b7cde8;
+    --brand-soft:       #6f96c8;
+    --brand-tint:       #1a2739;
+    --line-fraud:         #9085e9;
+    --line-procurement:   #199e70;
+    --line-manufacturing: #d95926;
+    --line-opsentry:      var(--brand);
+    --sev-low:          #9ca3af;
+    --surface-0:        #121417;
+    --surface-1:        #1a1d21;
+    --surface-2:        #23272d;
+    --border:           #2c3138;
+    --border-strong:    #3d434c;
+    --ink:              #f3f4f6;
+    --ink-secondary:    #c3c7ce;
+    --ink-muted:        #9aa0a8;
+    --ink-on-brand:     #0f1419;
+    --link:             #8fb0d9;
+    --shadow:    0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --brand:            #8fb0d9;
+  --brand-strong:     #b7cde8;
+  --brand-soft:       #6f96c8;
+  --brand-tint:       #1a2739;
+  --line-fraud:         #9085e9;
+  --line-procurement:   #199e70;
+  --line-manufacturing: #d95926;
+  --line-opsentry:      var(--brand);
+  --sev-low:          #9ca3af;
+  --surface-0:        #121417;
+  --surface-1:        #1a1d21;
+  --surface-2:        #23272d;
+  --border:           #2c3138;
+  --border-strong:    #3d434c;
+  --ink:              #f3f4f6;
+  --ink-secondary:    #c3c7ce;
+  --ink-muted:        #9aa0a8;
+  --ink-on-brand:     #0f1419;
+  --link:             #8fb0d9;
+  --shadow:    0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* base */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading);
+  color: var(--ink);
+  background: var(--surface-0);
+  font-variant-numeric: tabular-nums;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+h1, h2, h3, h4 { line-height: var(--leading-tight); margin: 0 0 var(--s-3); color: var(--ink); }
+h1 { font-size: var(--text-hero); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: var(--text-2xl); font-weight: 650; }
+h3 { font-size: var(--text-xl); font-weight: 600; }
+h4 { font-size: var(--text-lg); font-weight: 600; }
+p  { margin: 0 0 var(--s-4); max-width: var(--measure); }
+small, .muted { color: var(--ink-muted); }
+code, pre, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+img, svg, video { max-width: 100%; height: auto; }

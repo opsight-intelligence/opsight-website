@@ -8,6 +8,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.9.0] - 2026-09-15
+
+### Added
+- **The design system** (`design/tokens.css`, `design/components.css`) and its
+  reference page at `/design/`. One shared layer for the site, the hackathon
+  copilot, the fraud console, the alert mail and the finding PDF: the navy
+  anchor, one accent per intelligence line (fraud / procurement /
+  manufacturing — validated as a set for colour-vision separation in both
+  themes; OpSentry keeps the brand navy), reserved severity and live/synthetic
+  status colours, a dark theme defined from the start, tabular figures
+  everywhere, and a deliberately short component list. The page renders every
+  token and component in both themes with a toggle, and reads its swatches
+  from the live computed tokens so it cannot drift. Unlisted (`noindex`, not
+  in the nav or sitemap): it is a reference, not a product page. Phase 1 of
+  `opsight-company/strategy/product/website-and-app-ux.md`; no existing page
+  changes yet.
+
+### Changed
+- Routine `stats.json` refreshes v0.8.1–v0.8.77 (2026-08-10 → 2026-09-15),
+  grouped here per the changelog convention.
+
 ## [0.8.0] - 2026-08-10
 
 ### Added
