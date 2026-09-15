@@ -141,7 +141,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
         title: '제조 인텔리전스',
         body: 'Tier 1 제조사를 위한 포렌식 인사이트 — 원인, 금액 영향, 해결책 — 이미 내보내고 있는 데이터로. IT 프로젝트가 필요 없습니다.',
         action: '엑셀 파일 하나 보내기 →',
-        href: '/manufacturing',
+        href: '/ko/manufacturing',
       },
       opsentry: {
         badge: 'OpSentry',

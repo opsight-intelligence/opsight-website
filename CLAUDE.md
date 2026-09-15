@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub Pages with Cloudflare DNS. Four business verticals:
 
 - **Fraud Intelligence** (`/fraud`, `/ko/fraud`, `/tr/fraud` — `src/pages/*/fraud.astro`, copy in `src/i18n/fraud.ts`; migrated 2026-09-15): Telegram intelligence for financial institutions, regulators and compliance teams — collect / connect / warn / deliver, coverage by market, live dated numbers, no public pricing (on request), no client reference. `public/intelligence.html` is now a redirect stub to `/fraud` (canonical + meta refresh + `noindex, follow`); **do not delete it**, links to it are in the world.
-- **Manufacturing Intelligence** (`manufacturing.html`): forensic operational insights for Tier 1 manufacturers, positioned explicitly *against* dashboards — each finding carries root cause, quantified dollar impact, ranked actions, a causal-vs-correlational judgment, and success criteria. Excel-native input, no IT project, cross-industry rather than auto-only.
+- **Manufacturing Intelligence** (`/manufacturing`, `/ko/manufacturing` — `src/pages/*/manufacturing.astro`, copy in `src/i18n/manufacturing.ts`; migrated 2026-09-15; the unsourced "$2 billion" hero line dropped, everything else word for word, the worked insights and demos labelled Synthetic): forensic operational insights for Tier 1 manufacturers, positioned explicitly *against* dashboards — each finding carries root cause, quantified dollar impact, ranked actions, a causal-vs-correlational judgment, and success criteria. Excel-native input, no IT project, cross-industry rather than auto-only.
 - **Procurement Intelligence** (`/procurement`, `/ko/procurement` — `src/pages/*/procurement.astro`, copy in `src/i18n/procurement.ts`; migrated 2026-09-15; the maritime "in development" roadmap and the vessel/Copernicus disclaimer were dropped from the page, and the call to action is the aggregate sample, not a named-firm record, until the licence and naming questions are answered): Korean public procurement — every tender, bidder and winning price against the published estimate (기초금액), collected nightly from 조달청 / 나라장터 open APIs. **Renamed from `maritime.html` on 2026-08-10** — the old name shipped a fishing-industry word and an anchor icon on a Korean public-tender product, which is what a recipient saw first when the link was shared. `maritime.html` remains as a redirect stub (canonical + meta refresh + `noindex, follow`) because links to it are already out in the world; **do not delete it**. GitHub Pages cannot issue a real 301, so the stub is the honest substitute. The SAR/AIS shipbuilding thesis this page used to carry is **not sellable** (detector precision 0.57, 2 of 11 yards SAR-legible, AIS receiving nothing) and was removed on 2026-08-07 — see `opsight-company/strategy/gtm/SELLABILITY_MAP.md` §3 before putting it back. Sub-brand is **OPSIGHT PROCUREMENT**; `drydock` remains the internal package name only and must not appear in customer-facing copy.
 - **OpSentry** (`opsentry.html`): AI coding assistant security guardrails. Three-layer enforcement, 157 tests, ISO 27001/EU AI Act/Korean AI Basic Act compliance. Free + Team ($15/dev/mo) + Business ($25/dev/mo) tiers.
 
@@ -17,8 +17,8 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
   (`.github/workflows/pages.yml`) and published to GitHub Pages from the build
   artifact. `npm run build` writes `dist/`; nothing in `dist/` is committed.
 - **Migration is page by page.** `src/pages/` holds the migrated pages (today:
-  home, fraud and procurement, in `en`/`ko` and — fraud only — `tr`). Pages not yet migrated —
-  `manufacturing.html`, `opsentry.html`, the
+  home, fraud, procurement and manufacturing, in `en`/`ko` and — fraud only — `tr`). Pages not yet migrated —
+  `opsentry.html`, the
   `maritime.html` and `intelligence.html` redirects, `demodashboard/` — live
   under `public/` and are served verbatim; on GitHub Pages a `<name>.html`
   file wins over a `<name>/index.html` directory, so a page is migrated by
@@ -71,8 +71,7 @@ The migrated pages are bilingual by construction: `/` (English) and `/ko/`
 alternates in the head and a language switch in the nav.
 
 The fraud page additionally has Turkish (`/tr/fraud`), because its buyers
-include Turkish firms. `manufacturing.html` and `opsentry.html` are
-English-only until they migrate.
+include Turkish firms. `opsentry.html` is English-only until it migrates.
 
 ## Conventions
 
