@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.20.1] - 2026-09-15
+
+### Changed
+- **Contact panel simplified** on the operator's review: one form in a card
+  (email, one line, Send) and under it a single quiet line — "Or write to
+  <address>", the address a link that also copies itself on click. The
+  Copy-address button, the "open in your mail app" button and the
+  fallback sentence are gone. Until `FORMSPREE_ID` is set, Send points at
+  the address line instead of composing a mail nobody's browser opens.
+
 ## [0.20.0] - 2026-09-15
 
 ### Added

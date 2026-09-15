@@ -200,7 +200,11 @@
 .viz-bar { fill: var(--line, var(--brand)); }
 .viz-bar:hover, .viz-range:hover { opacity: 0.85; }
 
-/* ── v0.19.1: contact panel — the one action always leads somewhere ─────── */
-.contact-panel { display: grid; gap: var(--s-4); max-width: 560px; }
-.contact-panel__address { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; }
-.contact-panel__email { font-family: var(--font-mono); font-size: var(--text-md); padding: var(--s-2) var(--s-3); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); user-select: all; }
+/* ── v0.20.1: contact panel — one form, one quiet address line ─────────── */
+.contact-panel { display: grid; gap: var(--s-4); max-width: 520px; }
+.contact-panel .form { background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow); }
+.contact-panel__alt { font-size: var(--text-sm); margin: 0; }
+.contact-panel__alt a { font-family: var(--font-mono); color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
+.contact-panel__alt a:hover { text-decoration-color: var(--brand); }
+.contact-panel__copied { margin-left: var(--s-2); font-size: var(--text-xs); color: var(--status-good); }
+.form__hint:empty { display: none; }
