@@ -1,11 +1,13 @@
 ---
 import HeroBand from './HeroBand.astro';
+import ArtManufacturing from './ArtManufacturing.astro';
 import type { ManufacturingCopy, MfgLocale } from '../i18n/manufacturing';
 interface Props { copy: ManufacturingCopy; locale: MfgLocale }
 const { copy } = Astro.props;
 ---
 <HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="manufacturing">
   <Fragment slot="actions"><a class="btn btn--primary" href="#contact">{copy.hero.primary}</a></Fragment>
+  <Fragment slot="art"><ArtManufacturing /></Fragment>
 </HeroBand>
 
 <section class="section">

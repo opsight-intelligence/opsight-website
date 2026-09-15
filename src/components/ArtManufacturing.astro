@@ -1,0 +1,28 @@
+---
+// Manufacturing: the same shift seen two ways. The cycle-time row is a
+// steady tick -- "99%". The downtime row is the truth: frequent stops.
+// Shapes only; the equipment is fictitious like everything on that page.
+const W = 480, x0 = 40;
+const stops = [ [0.08, 0.02], [0.19, 0.03], [0.27, 0.015], [0.41, 0.05], [0.55, 0.02], [0.63, 0.03], [0.78, 0.04], [0.9, 0.02] ];
+const ticks = Array.from({ length: 40 }, (_, i) => x0 + (i / 40) * W);
+---
+<svg class="art art-mfg" viewBox="0 0 560 280" role="img" aria-label="A shift as cycle-time ticks versus the stops that actually cost it" xmlns="http://www.w3.org/2000/svg">
+  <text class="label" x={x0} y="58">cycle time · looks like 99%</text>
+  <rect class="run" x={x0} y="70" width={W} height="26" rx="4" />
+  {ticks.map((t) => <line class="tick" x1={t} y1="74" x2={t} y2="92" />)}
+
+  <text class="label" x={x0} y="150">downtime · the truth</text>
+  <rect class="run" x={x0} y="162" width={W} height="26" rx="4" />
+  {stops.map(([s, w], i) => (
+    <rect class="stop" x={x0 + s * W} y="162" width={Math.max(6, w * W)} height="26" rx="3">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin={`${0.3 * i + 0.5}s`} fill="freeze" />
+    </rect>
+  ))}
+  <line class="playhead" x1={x0} y1="62" x2={x0} y2="196">
+    <animate attributeName="x1" values={`${x0};${x0 + W}`} dur="8s" repeatCount="indefinite" />
+    <animate attributeName="x2" values={`${x0};${x0 + W}`} dur="8s" repeatCount="indefinite" />
+  </line>
+  <text class="label label--faint" x={x0} y="216">shift start</text>
+  <text class="label label--faint" x={x0 + W} y="216" text-anchor="end">shift end</text>
+  <text class="caption" x="12" y="268">frequent stops, not slow cycles, are eating the shift</text>
+</svg>
