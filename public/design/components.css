@@ -1,5 +1,5 @@
 /* Opsight components — the whole list, deliberately short.
- * Requires tokens.css. Version 0.9.0.
+ * Requires tokens.css. Version 0.15.0.
  *
  *   nav · hero · stat tile · product card · evidence table · severity badge
  *   citation chip · callout (live / synthetic) · form · footer
@@ -108,4 +108,50 @@
   .nav__links { margin-left: 0; gap: var(--s-3); }
   .hero { padding-block: var(--s-6) var(--s-5); }
   .stat__value { font-size: var(--text-2xl); }
+}
+
+/* ── v0.15.0: the visual layer ─────────────────────────────────────────── */
+
+/* full-bleed band: breaks out of .container to the viewport edges */
+.band { width: 100vw; margin-left: calc(50% - 50vw); }
+.band > .container { max-width: var(--container); margin: 0 auto; padding-inline: var(--gutter); }
+
+/* hero band — dark navy on every theme, the one place the brand is a ground */
+.hero-band { background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(255,255,255,0.10), transparent 60%),
+    linear-gradient(160deg, #14294a 0%, #1e3a5f 55%, #0f1f38 100%);
+  color: #ffffff; overflow: hidden; position: relative; }
+.hero-band .hero { padding-block: var(--s-8) var(--s-8); display: grid; gap: var(--s-6); grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; }
+.hero-band h1 { color: #ffffff; font-size: var(--text-hero); letter-spacing: -0.015em; text-wrap: balance; }
+.hero-band .eyebrow { color: rgba(255,255,255,0.72); }
+.hero-band .hero__lead { color: rgba(255,255,255,0.82); }
+.hero-band .muted { color: rgba(255,255,255,0.66); }
+.hero-band .btn--primary { background: #ffffff; color: #14294a; }
+.hero-band .btn--primary:hover { background: #e8eef6; }
+.hero-band .btn--quiet { color: #ffffff; border-color: rgba(255,255,255,0.45); }
+.hero-band .btn--quiet:hover { background: rgba(255,255,255,0.10); }
+.hero-band .badge--live { color: #6fe39a; border-color: #6fe39a; }
+.hero__art { min-width: 0; }
+.hero__art svg { width: 100%; height: auto; display: block; }
+
+/* lifecycle diagram — nodes are ink-on-brand, the line accent lights the path */
+.lifecycle .node { fill: rgba(255,255,255,0.08); stroke: rgba(255,255,255,0.55); stroke-width: 1.5; }
+.lifecycle .node--last { fill: var(--line, #8fb0d9); stroke: var(--line, #8fb0d9); }
+.lifecycle .label { fill: rgba(255,255,255,0.85); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; }
+.lifecycle .path { fill: none; stroke: rgba(255,255,255,0.28); stroke-width: 1.5; stroke-dasharray: 4 6; }
+.lifecycle .pulse { fill: var(--line, #8fb0d9); filter: drop-shadow(0 0 6px var(--line, #8fb0d9)); }
+@media (prefers-reduced-motion: reduce) { .lifecycle .pulse { display: none; } }
+
+/* tinted sections alternate the rhythm without a second palette */
+.section--tint { background: var(--surface-2); }
+.section--tint .card, .section--tint .stat { background: var(--surface-1); }
+
+/* cards and tiles lift on hover; numbers count up when they land */
+.card, .stat { transition: transform .18s ease, box-shadow .18s ease; }
+.card:hover, .stat:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.stat__value.is-counting { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 800px) {
+  .hero-band .hero { grid-template-columns: 1fr; }
+  .hero__art { order: -1; max-width: 420px; }
 }

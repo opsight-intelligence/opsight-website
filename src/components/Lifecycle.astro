@@ -1,0 +1,39 @@
+---
+// The one image that says what Opsight is: signals travel through five
+// stages and come out as intelligence. Inline SVG so it inherits the page's
+// line accent via --line; the moving pulses are SMIL animateMotion, which
+// needs no script and is hidden under prefers-reduced-motion by CSS.
+interface Props { labels?: string[]; id?: string }
+const { labels = ['SIGNALS', 'OBSERVATIONS', 'FINDINGS', 'ASSESSMENTS', 'INTELLIGENCE'], id = 'lc' } = Astro.props;
+const xs = [40, 160, 280, 400, 520];
+const y = 90;
+const path = `M ${xs[0]} ${y} C ${xs[0] + 60} ${y - 50}, ${xs[1] - 60} ${y + 50}, ${xs[1]} ${y} S ${xs[2] - 60} ${y - 50}, ${xs[2]} ${y} S ${xs[3] - 60} ${y + 50}, ${xs[3]} ${y} S ${xs[4] - 60} ${y - 50}, ${xs[4]} ${y}`;
+const feeders = [
+  `M -10 20 C 10 20, 20 ${y - 10}, ${xs[0]} ${y}`,
+  `M -10 ${y} C 10 ${y}, 20 ${y}, ${xs[0]} ${y}`,
+  `M -10 160 C 10 160, 20 ${y + 10}, ${xs[0]} ${y}`,
+];
+---
+<svg class="lifecycle" viewBox="0 0 560 180" role="img" aria-labelledby={`${id}-t`} xmlns="http://www.w3.org/2000/svg">
+  <title id={`${id}-t`}>{labels.join(' → ')}</title>
+  {feeders.map((d) => <path class="path" d={d} />)}
+  <path id={`${id}-p`} class="path" d={path} />
+  {xs.map((x, i) => (
+    <g>
+      <circle class={i === xs.length - 1 ? 'node node--last' : 'node'} cx={x} cy={y} r={i === xs.length - 1 ? 16 : 11} />
+      <text class="label" x={x} y={y + (i % 2 === 0 ? 38 : -26)} text-anchor="middle">{labels[i]}</text>
+    </g>
+  ))}
+  {[0, 1, 2].map((k) => (
+    <circle class="pulse" r="4">
+      <animateMotion dur="6s" begin={`${k * 2}s`} repeatCount="indefinite" calcMode="linear">
+        <mpath href={`#${id}-p`} />
+      </animateMotion>
+    </circle>
+  ))}
+  {feeders.map((d, k) => (
+    <circle class="pulse" r="2.5" opacity="0.8">
+      <animateMotion dur="2.5s" begin={`${k * 0.8}s`} repeatCount="indefinite" path={d} />
+    </circle>
+  ))}
+</svg>

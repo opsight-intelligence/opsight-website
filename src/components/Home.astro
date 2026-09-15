@@ -1,4 +1,5 @@
 ---
+import HeroBand from './HeroBand.astro';
 // The home page body, rendered once per locale from the copy object.
 import type { HomeCopy, HomeLocale } from '../i18n/home';
 import StatTile from './StatTile.astro';
@@ -8,18 +9,14 @@ interface Props { copy: HomeCopy; locale: HomeLocale }
 const { copy, locale } = Astro.props;
 const n = copy.numbers;
 ---
-<section class="hero">
-  <div class="eyebrow">{copy.hero.eyebrow}</div>
-  <h1>{copy.hero.title}</h1>
-  <p class="hero__lead">{copy.hero.lead}</p>
-  <p class="mono muted" style="font-size:var(--text-sm)">{copy.hero.lifecycle}</p>
-  <div class="hero__actions">
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} lifecycleLabels={copy.hero.lifecycle.split(' → ')}>
+  <Fragment slot="actions">
     <a class="btn btn--primary" href={copy.hero.primaryHref}>{copy.hero.primary}</a>
     <a class="btn btn--quiet" href={copy.hero.secondaryHref}>{copy.hero.secondary}</a>
-  </div>
-</section>
+  </Fragment>
+</HeroBand>
 
-<section class="section" id="numbers">
+<div class="band section--tint"><div class="container"><section class="section" id="numbers">
   <div class="eyebrow">{n.heading}</div>
   <p class="muted">{n.lead}</p>
   <div class="grid">
@@ -28,7 +25,7 @@ const n = copy.numbers;
     <StatTile id="stat-notices" label={n.notices} line="procurement" source="procurement-stats.json" locale={locale} />
     <StatTile id="stat-awards" label={n.awards} line="procurement" source="procurement-stats.json" locale={locale} />
   </div>
-</section>
+</section></div></div>
 
 <section class="section" id="lines">
   <div class="eyebrow">{copy.lines.heading}</div>

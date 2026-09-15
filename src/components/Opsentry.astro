@@ -1,18 +1,16 @@
 ---
+import HeroBand from './HeroBand.astro';
 import type { OpsentryCopy, Block } from '../i18n/opsentry';
 interface Props { copy: OpsentryCopy }
 const { copy } = Astro.props;
 const cards = (blocks: Block[]) => blocks;
 ---
-<section class="hero line-opsentry">
-  <div class="eyebrow">{copy.hero.eyebrow}</div>
-  <h1>{copy.hero.title}</h1>
-  <p class="hero__lead"><strong>{copy.hero.lead}</strong> {copy.hero.sub}</p>
-  <div class="hero__actions">
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={`${copy.hero.lead} ${copy.hero.sub}`} line="opsentry" lifecycleLabels={['TOOL CALL', 'DETECT', 'PREVENT', 'SANDBOX', 'EXECUTE']}>
+  <Fragment slot="actions">
     <a class="btn btn--primary" href={copy.hero.primaryHref}>{copy.hero.primary}</a>
     <a class="btn btn--quiet" href={copy.hero.secondaryHref} target="_blank" rel="noopener">{copy.hero.secondary}</a>
-  </div>
-</section>
+  </Fragment>
+</HeroBand>
 
 <section class="section">
   <div class="grid">
@@ -98,7 +96,7 @@ const cards = (blocks: Block[]) => blocks;
   </section>
 ))}
 
-<section class="section" id="plans">
+<div class="band section--tint"><div class="container"><section class="section" id="plans">
   <div class="eyebrow">{copy.plans.heading}</div>
   <p class="muted">{copy.plans.lead}</p>
   <div class="grid">
@@ -112,7 +110,7 @@ const cards = (blocks: Block[]) => blocks;
       </article>
     ))}
   </div>
-</section>
+</section></div></div>
 
 <section class="section" id="other">
   <div class="callout">

@@ -1,0 +1,23 @@
+---
+// Full-bleed navy hero with the lifecycle diagram (or a per-line figure via
+// the "art" slot). Text on the left, art on the right; stacks on phones.
+interface Props { eyebrow: string; title: string; lead?: string; live?: string; line?: 'fraud' | 'procurement' | 'manufacturing' | 'opsentry'; lifecycleLabels?: string[] }
+const { eyebrow, title, lead, live, line, lifecycleLabels } = Astro.props;
+import Lifecycle from './Lifecycle.astro';
+---
+<div class={`band hero-band ${line ? `line-${line}` : ''}`}>
+  <div class="container">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">{eyebrow}</div>
+        <h1>{title}</h1>
+        {lead && <p class="hero__lead">{lead}</p>}
+        {live && <p class="muted" style="font-size:var(--text-sm)"><span class="badge badge--live">●</span> {live}</p>}
+        <div class="hero__actions"><slot name="actions" /></div>
+      </div>
+      <div class="hero__art">
+        <slot name="art"><Lifecycle labels={lifecycleLabels} /></slot>
+      </div>
+    </section>
+  </div>
+</div>

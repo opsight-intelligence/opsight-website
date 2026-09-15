@@ -8,6 +8,27 @@ const { files } = Astro.props;
 ---
 <script is:inline define:vars={{ files }}>
   const RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/';
+  // Count a numeric value up from zero over ~900ms, keeping any prefix/suffix
+  // ("2,300+", "82,729"). Non-numeric values are set directly. Honours
+  // prefers-reduced-motion by skipping the animation.
+  function countUp(el, finalText) {
+    var m = /^([^0-9]*)([0-9][0-9,\.]*)(.*)$/.exec(finalText);
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!m || reduce) { el.textContent = finalText; return; }
+    var prefix = m[1], suffix = m[3], raw = m[2];
+    var decimals = (raw.split('.')[1] || '').length;
+    var target = parseFloat(raw.replace(/,/g, ''));
+    if (!isFinite(target)) { el.textContent = finalText; return; }
+    var start = performance.now(), dur = 900;
+    el.classList.add('is-counting');
+    function fmt(n) { return n.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }); }
+    function step(now) {
+      var p = Math.min(1, (now - start) / dur); p = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + fmt(target * p) + suffix;
+      if (p < 1) requestAnimationFrame(step); else { el.textContent = finalText; el.classList.remove('is-counting'); }
+    }
+    requestAnimationFrame(step);
+  }
   Object.entries(files).forEach(function ([file, map]) {
     fetch(RAW + file, { cache: 'no-cache' })
       .then(function (r) { return r.ok ? r.json() : null; })
@@ -15,7 +36,8 @@ const { files } = Astro.props;
         if (!d) return;
         Object.entries(map).forEach(function ([key, id]) {
           var el = document.getElementById(id);
-          if (el && d[key] !== undefined && d[key] !== null) el.textContent = String(d[key]);
+          if (!el || d[key] === undefined || d[key] === null) return;
+          countUp(el, String(d[key]));
         });
         var updated = d.updated || d.generated_at || d.as_of || '';
         document.querySelectorAll('[data-updated-for="' + file + '"]').forEach(function (el) {
