@@ -48,7 +48,7 @@ const others = locales.filter((l) => l !== locale);
     <a class="nav__brand" href={localePath(locale === 'tr' ? 'en' : locale, '/')}>{c.nav.brand}</a>
     <ul class="nav__links">
       <li><a href={localePath(locale, '/fraud')} aria-current={current === 'fraud' ? 'page' : undefined}>{c.nav.fraud}</a></li>
-      <li><a href="/procurement" aria-current={current === 'procurement' ? 'page' : undefined}>{c.nav.procurement}</a></li>
+      <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/procurement')} aria-current={current === 'procurement' ? 'page' : undefined}>{c.nav.procurement}</a></li>
       <li><a href="/manufacturing" aria-current={current === 'manufacturing' ? 'page' : undefined}>{c.nav.manufacturing}</a></li>
       <li><a href="/opsentry" aria-current={current === 'opsentry' ? 'page' : undefined}>{c.nav.opsentry}</a></li>
       {others.map((l) => (
