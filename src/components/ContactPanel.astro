@@ -6,13 +6,14 @@
 // composes the mail -- so a click always leads somewhere, with no backend
 // and nothing stored anywhere.
 import { common, type Locale } from '../i18n/common';
+import { FORMSPREE_ENDPOINT } from '../config';
 interface Props { locale: Locale; subject?: string; id?: string }
 const { locale, subject, id = 'contact-panel' } = Astro.props;
 const c = common[locale].contact;
 const subj = encodeURIComponent(subject || c.subjectDefault);
 const mailto = `mailto:${c.address}?subject=${subj}`;
 ---
-<div class="contact-panel" id={id} data-mailto={mailto}>
+<div class="contact-panel" id={id} data-mailto={mailto} data-endpoint={FORMSPREE_ENDPOINT} data-sending={c.sending} data-sent={c.sent} data-failed={c.failed}>
   <div class="contact-panel__address">
     <code class="contact-panel__email" data-address>{c.address}</code>
     <button class="btn btn--quiet" type="button" data-copy data-copied={c.copied}>{c.copy}</button>
@@ -22,9 +23,12 @@ const mailto = `mailto:${c.address}?subject=${subj}`;
     <label for={`${id}-email`}>{c.emailLabel}</label>
     <input id={`${id}-email`} name="email" type="email" autocomplete="email" required>
     <label for={`${id}-line`}>{c.lineLabel}</label>
-    <textarea id={`${id}-line`} name="body"></textarea>
+    <textarea id={`${id}-line`} name="message"></textarea>
+    <input type="hidden" name="_subject" value={subject || c.subjectDefault}>
+    <input type="hidden" name="page" value={Astro.url.pathname}>
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="sr-only" aria-hidden="true">
     <div><button class="btn btn--primary" type="submit">{c.send}</button></div>
-    <div class="form__hint">{c.fallback}</div>
+    <div class="form__hint" data-status role="status" aria-live="polite">{c.fallback}</div>
   </form>
 </div>
 <script is:inline>
@@ -41,9 +45,21 @@ const mailto = `mailto:${c.address}?subject=${subj}`;
     if (form) form.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var email = form.querySelector('input[name=email]').value;
-      var line = form.querySelector('textarea[name=body]').value;
-      var body = encodeURIComponent(line + '\n\nFrom: ' + email);
-      window.location.href = panel.getAttribute('data-mailto') + '&body=' + body;
+      var line = form.querySelector('textarea[name=message]').value;
+      var status = form.querySelector('[data-status]');
+      var endpoint = panel.getAttribute('data-endpoint');
+      var compose = function () {
+        var body = encodeURIComponent(line + '\n\nFrom: ' + email);
+        window.location.href = panel.getAttribute('data-mailto') + '&body=' + body;
+      };
+      if (!endpoint) { compose(); return; }
+      // Formspree: JSON in, JSON out. The honeypot field stays empty for humans.
+      var btn = form.querySelector('button[type=submit]');
+      btn.disabled = true; status.textContent = panel.getAttribute('data-sending');
+      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email: email, message: line, _subject: form.querySelector('input[name=_subject]').value, page: form.querySelector('input[name=page]').value, _gotcha: form.querySelector('input[name=_gotcha]').value }) })
+        .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); status.textContent = panel.getAttribute('data-sent'); form.reset(); })
+        .catch(function () { status.textContent = panel.getAttribute('data-failed'); btn.disabled = false; });
     });
   });
 })();
