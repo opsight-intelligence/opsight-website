@@ -419,7 +419,9 @@ a:hover{text-decoration:underline}
 // stats.json on purpose: that one is rewritten wholesale by the fraud
 // generator, which would silently drop any procurement key added to it.
 (function(){
-  fetch("procurement-stats.json", {cache: "no-cache"})
+  // Read from the repo, not the built site: the nightly writes the file and
+  // pushes it without a site build (see .github/workflows/pages.yml).
+  fetch("https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/procurement-stats.json", {cache: "no-cache"})
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(d){
       if(!d) return;

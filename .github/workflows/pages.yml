@@ -1,0 +1,56 @@
+# Build the Astro site and publish it to GitHub Pages.
+#
+# Triggers only on SOURCE changes on main. The nightly stats deploy
+# (opsight-fraud scripts/deploy_website_stats.py) pushes stats.json,
+# procurement-stats.json, VERSION and CHANGELOG.md to main every prod night;
+# those paths are ignored here so a stats refresh costs no Actions minutes.
+# The pages read the two JSON files from the repo's raw URL, so the numbers
+# still move every night without a build.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'stats.json'
+      - 'procurement-stats.json'
+      - 'VERSION'
+      - 'CHANGELOG.md'
+      - 'website.md'
+      - 'README.md'
+      - 'CONTRIBUTING.md'
+      - 'CLAUDE.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-fund --no-audit
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

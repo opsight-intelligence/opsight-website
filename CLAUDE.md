@@ -13,39 +13,64 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
 
 ## Architecture
 
-- **No build system, no framework** — plain HTML/CSS/JS served directly via GitHub Pages
-- Page styling is still inline `<style>` blocks within each HTML file. The exception,
-  from v0.9.0, is the shared design layer under `design/`: `tokens.css` (brand, line
-  accents, severity/status, surfaces, type, space — light and dark) and
-  `components.css` (nav, hero, stat tile, product card, badges, citation chip, callout,
-  evidence table, form, footer). `design/index.html` renders all of it at `/design/`
-  with a theme toggle; it is `noindex`, unlisted in the nav and sitemap on purpose.
-  Pages migrate onto the layer in Phase 2 of `opsight-company/strategy/product/
-  website-and-app-ux.md`; until then only `/design/` uses it. The copilot and console
-  repos COPY these two files (never link at runtime) and carry the same version string.
-- `stats.json` — live stats (entities, clusters, members, markets) fetched by `intelligence.html` to display dynamic counters
-- `demodashboard/` — standalone demo dashboard pages (capacity, cycle time efficiency, run rate) for the manufacturing vertical
-- `CNAME` — points to `opsightintel.com`
-- `sitemap.xml` — lists all five public URLs; extensionless (`/procurement`, not `/procurement.html`). The `maritime.html` redirect stub is deliberately absent from it and carries `noindex, follow`
-- `website.md` — operational checklist for the Cloudflare/SEO visibility fix; not published
-
-Each vertical page is self-contained and carries its own accent color in a `:root` block
-(procurement uses `--mar-accent`, a name kept from the rename), over a shared navy `--primary`. The nav bar markup is
-duplicated across pages rather than shared — adding a page means editing the nav in each.
+- **Astro (static output) from v0.10.0**, built by GitHub Actions
+  (`.github/workflows/pages.yml`) and published to GitHub Pages from the build
+  artifact. `npm run build` writes `dist/`; nothing in `dist/` is committed.
+- **Migration is page by page.** `src/pages/` holds the migrated pages (today:
+  the home page, `index.astro` and `ko/index.astro`). Pages not yet migrated —
+  `intelligence.html`, `procurement.html`, `manufacturing.html`,
+  `opsentry.html`, the `maritime.html` redirect, `demodashboard/` — live
+  under `public/` and are served verbatim; on GitHub Pages a `<name>.html`
+  file wins over a `<name>/index.html` directory, so a page is migrated by
+  adding `src/pages/<name>.astro` and deleting `public/<name>.html` in the
+  same PR. `public/index-legacy.html` is the pre-Astro home page, kept until
+  the new one has been read in both languages, then deleted.
+- **The design layer** is `public/design/`: `tokens.css` (brand, line accents,
+  severity/status, surfaces, type, space — light and dark) and
+  `components.css` (nav, hero, stat tile, product card, badges, citation chip,
+  callout, evidence table, form, footer). `public/design/index.html` renders
+  all of it at `/design/` with a theme toggle (`noindex`, unlisted). The Astro
+  layout links these files rather than bundling them, so every page and
+  `/design/` read the same bytes. Other repos COPY the two files (never link
+  at runtime) and carry the same version string.
+- **Live numbers never need a build.** `stats.json` and
+  `procurement-stats.json` sit at the repo root and are rewritten nightly by
+  `opsight-fraud/scripts/deploy_website_stats.py` (pushed to `develop` and
+  `main`). Pages fetch them from the repo's raw URL
+  (`raw.githubusercontent.com/opsight-intelligence/opsight-website/main/…`),
+  and the Pages workflow ignores those paths, so a stats push costs no
+  Actions minutes and the figures still move every night. A tile whose file
+  cannot be read keeps its dash — nothing stale or invented is shown.
+- **Copy lives in `src/i18n/<page>.ts`**, one object per locale (`en`, `ko`),
+  rendered by one component (`src/components/Home.astro`) inside
+  `src/layouts/Base.astro` (head, hreflang pairs, nav, footer). Korean at
+  `/ko/…`, English at `/…`. Korean written by the agent needs a native read
+  before the professional launch — correct it in the copy object.
+- `CNAME`, `favicon.svg`, `robots.txt`, `sitemap.xml` live in `public/` and
+  ship unchanged. `sitemap.xml` is hand-kept and lists extensionless URLs plus
+  `/ko/`. `website.md` is the Cloudflare/SEO checklist; not published.
 
 ## Development
 
-No build, lint, or test commands. To preview locally, serve the directory with any static file server:
+```
+npm ci            # once; Node 22+
+npm run dev       # http://localhost:4321, live reload
+npm run build     # writes dist/ — what Pages serves
+npm run preview   # serve dist/ locally
+```
 
-```
-python3 -m http.server 8000
-```
+No lint or test commands yet. The one check that matters before a PR is
+`npm run build` succeeding and the two home pages rendering in both themes.
 
 ## Multi-language Support
 
-`intelligence.html` supports English (`en`), Korean (`ko`), and Turkish (`tr`) via `data-lang` attributes toggled by switching `html[lang]`. Content for all languages lives in the same HTML file with CSS-driven visibility.
+The migrated pages are bilingual by construction: `/` (English) and `/ko/`
+(Korean) come from the same component and copy object, with `hreflang`
+alternates in the head and a language switch in the nav.
 
-`manufacturing.html`, `procurement.html`, and `opsentry.html` are English-only. `index.html` is the homepage linking to all four verticals.
+The not-yet-migrated `public/intelligence.html` still carries English, Korean
+and Turkish inline via `data-lang` attributes; `manufacturing.html`,
+`procurement.html` and `opsentry.html` are English-only until they migrate.
 
 ## Conventions
 
@@ -53,10 +78,12 @@ Branching, versioning, changelog, and documentation rules are in
 [CONTRIBUTING.md](CONTRIBUTING.md). In short:
 
 - Work on `feature/*` off `develop`; never commit to `main` or `develop` directly
-- `main` is what GitHub Pages serves — a merge to `main` is a deploy
+- `main` is what GitHub Pages serves — a push to `main` that touches source triggers the
+  Pages build; stats-only pushes do not (see `pages.yml`)
 - Every commit bumps `VERSION`, adds a `CHANGELOG.md` entry, and updates affected docs
-- New pages must be added to `sitemap.xml`, linked from `index.html`, given a nav entry
-  on every other page, and described in the Project Overview above
+- New pages are `src/pages/<name>.astro` + `src/pages/ko/<name>.astro` with a copy object
+  in `src/i18n/`, added to `public/sitemap.xml`, given a nav entry in `Base.astro`, and
+  described in the Project Overview above
 - Routine `stats.json` refreshes still take a PATCH bump, but are grouped in the
   changelog rather than listed one per refresh
 - `main` and `develop` are guarded by a client-side `pre-push` hook that is **not**

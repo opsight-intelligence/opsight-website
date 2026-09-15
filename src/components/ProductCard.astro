@@ -1,0 +1,12 @@
+---
+import type { LineCard } from '../i18n/home';
+interface Props { card: LineCard; line: 'fraud' | 'procurement' | 'manufacturing' | 'opsentry' }
+const { card, line } = Astro.props;
+---
+<article class={`card line-${line}`}>
+  <div class="card__line"></div>
+  <span class="badge badge--line">{card.badge}</span>
+  <h3>{card.title}</h3>
+  <p>{card.body}</p>
+  <a class="card__action" href={card.href}>{card.action}</a>
+</article>
