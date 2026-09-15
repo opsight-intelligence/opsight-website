@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Opsentry from '../components/Opsentry.astro';
 import { opsentry } from '../i18n/opsentry';
+const copy = opsentry.en;
 ---
-<Base locale="en" title={opsentry.title} description={opsentry.description} path="/opsentry" locales={['en']} current="opsentry">
-  <Opsentry copy={opsentry} />
+<Base locale="en" title={copy.title} description={copy.description} path="/opsentry" locales={['en', 'ko']} current="opsentry">
+  <Opsentry copy={copy} />
 </Base>

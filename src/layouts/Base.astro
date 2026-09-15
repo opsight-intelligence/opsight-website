@@ -56,7 +56,7 @@ const ogImage = `${site}/og/${current}.png`;
       <li><a href={localePath(locale, '/fraud')} aria-current={current === 'fraud' ? 'page' : undefined}>{c.nav.fraud}</a></li>
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/procurement')} aria-current={current === 'procurement' ? 'page' : undefined}>{c.nav.procurement}</a></li>
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/manufacturing')} aria-current={current === 'manufacturing' ? 'page' : undefined}>{c.nav.manufacturing}</a></li>
-      <li><a href="/opsentry" aria-current={current === 'opsentry' ? 'page' : undefined}>{c.nav.opsentry}</a></li>
+      <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/opsentry')} aria-current={current === 'opsentry' ? 'page' : undefined}>{c.nav.opsentry}</a></li>
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/method')} aria-current={current === 'method' ? 'page' : undefined}>{c.nav.method}</a></li>
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/about')} aria-current={current === 'about' ? 'page' : undefined}>{c.nav.about}</a></li>
       {others.map((l) => (

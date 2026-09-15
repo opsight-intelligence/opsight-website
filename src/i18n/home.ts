@@ -148,7 +148,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
         title: 'AI 거버넌스',
         body: 'OpSentry로 지금 사용할 수 있습니다 — AI 코딩 어시스턴트를 위한 결정론적 보안 가드레일. ISO 27001, EU AI법, 한국 AI 기본법 대응 매핑 포함.',
         action: '무료 설치 →',
-        href: '/opsentry',
+        href: '/ko/opsentry',
       },
     },
     honesty: {
