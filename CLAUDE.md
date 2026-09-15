@@ -17,8 +17,8 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
   (`.github/workflows/pages.yml`) and published to GitHub Pages from the build
   artifact. `npm run build` writes `dist/`; nothing in `dist/` is committed.
 - **Migration is page by page.** `src/pages/` holds the migrated pages (today:
-  every product page: home, fraud, procurement, manufacturing in `en`/`ko`,
-  fraud also in `tr`, OpSentry in `en`). Still served verbatim from
+  every product page: home, fraud, procurement, manufacturing, method and
+  about in `en`/`ko`, fraud also in `tr`, OpSentry in `en`). Still served verbatim from
   `public/`: the `maritime.html` and `intelligence.html` redirect stubs and
   `demodashboard/`. On GitHub Pages a `<name>.html` file wins over a
   `<name>/index.html` directory, which is how the page-by-page migration

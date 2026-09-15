@@ -1,0 +1,40 @@
+---
+import type { AboutCopy } from '../i18n/about';
+import HeroBand from './HeroBand.astro';
+interface Props { copy: AboutCopy }
+const { copy } = Astro.props;
+---
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} />
+
+<section class="section" id="who">
+  <div class="eyebrow">{copy.who.heading}</div>
+  {copy.who.body.map((p) => <p>{p}</p>)}
+  <div class="eyebrow" style="margin-top:var(--s-5)">{copy.where.heading}</div>
+  <p>{copy.where.body}</p>
+</section>
+
+<div class="band section--tint"><div class="container"><section class="section" id="how">
+  <div class="eyebrow">{copy.how.heading}</div>
+  <div class="grid">
+    {copy.how.items.map((i) => (
+      <article class="card"><div class="card__line"></div><h3>{i.title}</h3><p>{i.body}</p></article>
+    ))}
+  </div>
+</section></div></div>
+
+<section class="section" id="contact">
+  <div class="eyebrow">{copy.contact.heading}</div>
+  <p>{copy.contact.lead}</p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href={copy.contact.mailto}>{copy.contact.button}</a>
+    <a class="btn btn--quiet mono" href={copy.contact.mailto}>{copy.contact.email}</a>
+  </div>
+  <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-4)">{copy.contact.hint}</p>
+</section>
+
+<section class="section" id="statement">
+  <div class="eyebrow">{copy.statement.heading}</div>
+  <div class="callout">
+    {copy.statement.body.map((p) => <p>{p}</p>)}
+  </div>
+</section>

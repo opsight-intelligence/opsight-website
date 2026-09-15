@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.18.0] - 2026-09-15
+
+### Added
+- **`/method` and `/about`** (EN/KO), completing the information
+  architecture. Method: the five-stage lifecycle, the fields every
+  intelligence object carries, the severity ladder that means the same on
+  every line, the live/synthetic/pseudonymized rule, sources, and the limits
+  we state. About: who, where, how we work, contact, and the honesty
+  statement in full. Both in the nav on every page; the home page's second
+  action now leads to `/method`.
+
 ## [0.17.0] - 2026-09-15
 
 ### Added

@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import Method from '../components/Method.astro';
+import { method } from '../i18n/method';
+const copy = method.en;
+---
+<Base locale="en" title={copy.title} description={copy.description} path="/method" locales={['en', 'ko']} current="method">
+  <Method copy={copy} />
+</Base>

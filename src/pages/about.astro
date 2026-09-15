@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import About from '../components/About.astro';
+import { about } from '../i18n/about';
+const copy = about.en;
+---
+<Base locale="en" title={copy.title} description={copy.description} path="/about" locales={['en', 'ko']} current="about">
+  <About copy={copy} />
+</Base>
