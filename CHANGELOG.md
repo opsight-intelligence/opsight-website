@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.20.2] - 2026-09-15
+
+### Changed
+- `FORMSPREE_ID` set: the contact form on every page now delivers to the
+  operator's inbox via Formspree, with an inline "Sent" confirmation. A
+  test submission was accepted (`ok: true`) before release.
+
 ## [0.20.1] - 2026-09-15
 
 ### Changed
