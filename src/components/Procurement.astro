@@ -1,19 +1,14 @@
 ---
+import HeroBand from './HeroBand.astro';
 import type { ProcurementCopy, ProcLocale } from '../i18n/procurement';
 import StatTile from './StatTile.astro';
 import LiveStats from './LiveStats.astro';
 interface Props { copy: ProcurementCopy; locale: ProcLocale }
 const { copy, locale } = Astro.props;
 ---
-<section class="hero line-procurement">
-  <div class="eyebrow">{copy.hero.eyebrow}</div>
-  <h1>{copy.hero.title}</h1>
-  <p class="hero__lead">{copy.hero.lead}</p>
-  <p class="muted" style="font-size:var(--text-sm)"><span class="badge badge--live">●</span> {copy.hero.live}</p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href="#contact">{copy.hero.primary}</a>
-  </div>
-</section>
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} live={copy.hero.live} line="procurement">
+  <Fragment slot="actions"><a class="btn btn--primary" href="#contact">{copy.hero.primary}</a></Fragment>
+</HeroBand>
 
 <section class="section" id="numbers">
   <div class="grid">
@@ -28,7 +23,7 @@ const { copy, locale } = Astro.props;
   <p style="font-size:var(--text-lg)">{copy.problem.body}</p>
 </section>
 
-<section class="section" id="collect">
+<div class="band section--tint"><div class="container"><section class="section" id="collect">
   <div class="eyebrow">{copy.collect.heading}</div>
   <p class="muted">{copy.collect.lead}</p>
   <div class="grid">
@@ -41,7 +36,7 @@ const { copy, locale } = Astro.props;
       </article>
     ))}
   </div>
-</section>
+</section></div></div>
 
 <section class="section" id="coverage">
   <div class="eyebrow">{copy.coverage.heading}</div>

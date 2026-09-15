@@ -27,7 +27,9 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
 - **The design layer** is `public/design/`: `tokens.css` (brand, line accents,
   severity/status, surfaces, type, space — light and dark) and
   `components.css` (nav, hero, stat tile, product card, badges, citation chip,
-  callout, evidence table, form, footer). `public/design/index.html` renders
+  callout, evidence table, form, footer; from v0.15.0 also the full-bleed
+  `band`/`hero-band`, the `lifecycle` SVG styles, `section--tint`, hover lift
+  and the count-up state). `public/design/index.html` renders
   all of it at `/design/` with a theme toggle (`noindex`, unlisted). The Astro
   layout links these files rather than bundling them, so every page and
   `/design/` read the same bytes. Other repos COPY the two files (never link
@@ -45,7 +47,9 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
   component (`src/components/<Page>.astro`) inside `src/layouts/Base.astro`
   (head, hreflang for every locale the page has, nav with a language switch,
   footer). English at `/…`, Korean at `/ko/…`, Turkish at `/tr/…` where a page
-  has it (fraud). `LiveStats.astro` is the one runtime fetch for stat tiles. Korean written by the agent needs a native read
+  has it (fraud). `HeroBand.astro` (navy band + `Lifecycle.astro` SVG, or a
+  per-line figure via the `art` slot) opens every page; `LiveStats.astro` is
+  the one runtime fetch for stat tiles and counts the numbers up. Korean written by the agent needs a native read
   before the professional launch — correct it in the copy object.
 - `CNAME`, `favicon.svg`, `robots.txt`, `sitemap.xml` live in `public/` and
   ship unchanged. `sitemap.xml` is hand-kept and lists extensionless URLs plus

@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.15.0] - 2026-09-15
+
+### Added
+- **The visual layer, first pass.** A full-bleed navy hero band on every page
+  with an animated lifecycle diagram (signals → observations → findings →
+  assessments → intelligence; OpSentry shows tool call → detect → prevent →
+  sandbox → execute), lit in the page's line accent, SMIL-animated with no
+  script and hidden under `prefers-reduced-motion`. One tinted full-bleed
+  section per page for rhythm, card and tile hover lift, and stat tiles
+  that count up when their live value lands. `HeroBand.astro` and
+  `Lifecycle.astro` are the new components; the design layer is at v0.15.0.
+
 ## [0.14.0] - 2026-09-15
 
 ### Added

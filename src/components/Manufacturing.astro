@@ -1,16 +1,12 @@
 ---
+import HeroBand from './HeroBand.astro';
 import type { ManufacturingCopy, MfgLocale } from '../i18n/manufacturing';
 interface Props { copy: ManufacturingCopy; locale: MfgLocale }
 const { copy } = Astro.props;
 ---
-<section class="hero line-manufacturing">
-  <div class="eyebrow">{copy.hero.eyebrow}</div>
-  <h1>{copy.hero.title}</h1>
-  <p class="hero__lead">{copy.hero.lead}</p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href="#contact">{copy.hero.primary}</a>
-  </div>
-</section>
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="manufacturing">
+  <Fragment slot="actions"><a class="btn btn--primary" href="#contact">{copy.hero.primary}</a></Fragment>
+</HeroBand>
 
 <section class="section">
   <div class="grid">
@@ -52,7 +48,7 @@ const { copy } = Astro.props;
   <p class="muted" style="margin-top:var(--s-5)">{copy.compliance.body} <a href={copy.compliance.href}>{copy.compliance.link}</a></p>
 </section>
 
-<section class="section" id="examples">
+<div class="band section--tint"><div class="container"><section class="section" id="examples">
   <div class="eyebrow">{copy.examples.heading}</div>
   <p class="muted">{copy.examples.lead}</p>
   <div class="callout callout--synthetic">
@@ -78,7 +74,7 @@ const { copy } = Astro.props;
       </article>
     ))}
   </div>
-</section>
+</section></div></div>
 
 <section class="section" id="demos">
   <div class="eyebrow">{copy.demos.heading}</div>

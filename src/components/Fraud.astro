@@ -1,4 +1,5 @@
 ---
+import HeroBand from './HeroBand.astro';
 import type { Locale } from '../i18n/common';
 import type { FraudCopy } from '../i18n/fraud';
 import StatTile from './StatTile.astro';
@@ -7,15 +8,9 @@ interface Props { copy: FraudCopy; locale: Locale }
 const { copy, locale } = Astro.props;
 const n = copy.numbers;
 ---
-<section class="hero line-fraud">
-  <div class="eyebrow">{copy.hero.eyebrow}</div>
-  <h1>{copy.hero.title}</h1>
-  <p class="hero__lead">{copy.hero.lead}</p>
-  <p class="muted" style="font-size:var(--text-sm)"><span class="badge badge--live">●</span> {copy.hero.live}</p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href="#contact">{copy.hero.primary}</a>
-  </div>
-</section>
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} live={copy.hero.live} line="fraud">
+  <Fragment slot="actions"><a class="btn btn--primary" href="#contact">{copy.hero.primary}</a></Fragment>
+</HeroBand>
 
 <section class="section" id="what">
   <div class="eyebrow">{copy.what.heading}</div>
@@ -46,7 +41,7 @@ const n = copy.numbers;
   </div>
 </section>
 
-<section class="section" id="numbers">
+<div class="band section--tint"><div class="container"><section class="section" id="numbers">
   <div class="eyebrow">{n.heading}</div>
   <p class="muted">{n.lead}</p>
   <div class="grid">
@@ -56,7 +51,7 @@ const n = copy.numbers;
     <StatTile id="stat-crypto" label={n.crypto} line="fraud" source="stats.json" locale={locale} />
     <StatTile id="stat-clusters" label={n.clusters} line="fraud" source="stats.json" locale={locale} />
   </div>
-</section>
+</section></div></div>
 
 <section class="section" id="delivery">
   <div class="callout">
