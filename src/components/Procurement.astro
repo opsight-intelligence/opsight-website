@@ -4,6 +4,7 @@ import ArtProcurement from './ArtProcurement.astro';
 import type { ProcurementCopy, ProcLocale } from '../i18n/procurement';
 import StatTile from './StatTile.astro';
 import LiveStats from './LiveStats.astro';
+import ProcurementCharts from './ProcurementCharts.astro';
 interface Props { copy: ProcurementCopy; locale: ProcLocale }
 const { copy, locale } = Astro.props;
 ---
@@ -39,6 +40,8 @@ const { copy, locale } = Astro.props;
     ))}
   </div>
 </section></div></div>
+
+<ProcurementCharts {...copy.figures} />
 
 <section class="section" id="coverage">
   <div class="eyebrow">{copy.coverage.heading}</div>

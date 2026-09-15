@@ -1,5 +1,5 @@
 /* Opsight components — the whole list, deliberately short.
- * Requires tokens.css. Version 0.16.0.
+ * Requires tokens.css. Version 0.17.0.
  *
  *   nav · hero · stat tile · product card · evidence table · severity badge
  *   citation chip · callout (live / synthetic) · form · footer
@@ -185,3 +185,17 @@
 .art-mfg .stop { fill: var(--sev-critical); }
 .art-mfg .playhead { stroke: var(--line, #8fb0d9); stroke-width: 1.5; }
 @media (prefers-reduced-motion: reduce) { .art animate { display: none; } .art .playhead { display: none; } }
+
+/* ── v0.17.0: live charts ───────────────────────────────────────────────── */
+.chart { margin-top: var(--s-3); }
+.chart:empty::before { content: "—"; color: var(--ink-muted); }
+.viz { width: 100%; height: auto; display: block; font-family: var(--font-sans); }
+.viz-grid { stroke: var(--border); stroke-width: 1; }
+.viz-ref { stroke: var(--ink-muted); stroke-width: 1; stroke-dasharray: 3 4; }
+.viz-axis { fill: var(--ink-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.viz-label { fill: var(--ink-secondary); font-size: 12px; font-weight: 600; }
+.viz-value { fill: var(--ink); font-size: 12px; font-variant-numeric: tabular-nums; }
+.viz-range { fill: var(--line, var(--brand)); opacity: 0.35; }
+.viz-median { fill: var(--line, var(--brand)); stroke: var(--surface-1); stroke-width: 2; }
+.viz-bar { fill: var(--line, var(--brand)); }
+.viz-bar:hover, .viz-range:hover { opacity: 0.85; }

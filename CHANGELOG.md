@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.17.0] - 2026-09-15
+
+### Added
+- **The first live charts**, on the procurement page: the clearing rate
+  (낙찰률) by category as a p25–p75 range with the median marked, and the
+  last 30 days of notices posted and awards opened as two small multiples.
+  Drawn client-side from `procurement-figures.json` (maritime v0.50.0,
+  shipped by fraud v1.6.0, refreshed nightly by pipelines v0.20.0), read
+  from the repo's raw URL like the counts. Marks in the line accent, text in
+  ink, native tooltips, a table view under each chart; empty until the
+  first nightly writes the file, never invented. The Pages workflow ignores
+  the new file so its nightly push costs no build.
+
 ## [0.16.0] - 2026-09-15
 
 ### Added
