@@ -8,6 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.9.1] - 2026-09-15
+
+### Removed
+- **The fraud page's pricing section** (Early Warning "from ₩1,000,000",
+  wallet feed "from ₩2,000,000"). Operator decision 2026-09-15: no priced
+  tiers in public until a price has been tested on a real buyer; pricing is
+  quoted on request. The CSS block went with it.
+- **"Trusted by a Korean government security agency"** on the fraud page,
+  replaced (EN/KR/TR) with a statement about the numbers themselves:
+  collected every night, every figure from the live store, dated. A client
+  reference stays out of public copy unless the client has agreed to it.
+
+### Added
+- The fraud page's "By The Numbers" block now shows the date `stats.json`
+  was written (`last written 2026-09-15`), read from the file's `updated`
+  field — the first page-level application of the "every number is live or
+  labelled" rule.
+
 ## [0.9.0] - 2026-09-15
 
 ### Added

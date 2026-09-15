@@ -206,58 +206,6 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
 }
 
 /* --- Contact --- */
-/* --- Pricing --- */
-/* A floor, not a ceiling. "From" filters out buyers who were never going to
-   pay, without anchoring a number that has never been tested on a real one. */
-.pricing-section{background:var(--card-bg);border-top:1px solid var(--border)}
-.price-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:24px;
-  max-width:860px;margin:0 auto;
-  align-items:stretch;
-}
-.price-card{
-  display:flex;flex-direction:column;
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-left:3px solid var(--accent);
-  border-radius:8px;
-  padding:32px 28px;
-  text-align:center;
-}
-.price-figure{
-  font-size:2.1rem;font-weight:700;color:var(--primary);
-  line-height:1.2;
-}
-.price-unit{font-size:.95rem;font-weight:500;color:var(--text-secondary)}
-.price-name{
-  font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:14px;
-}
-.price-detail{
-  font-size:.9rem;color:var(--text-secondary);line-height:1.6;margin-top:14px;
-}
-.price-note{
-  max-width:860px;margin:20px auto 0;
-  font-size:.82rem;color:#888;line-height:1.6;text-align:center;
-}
-@media(max-width:700px){
-  .price-grid{grid-template-columns:1fr}
-}
-.contact-section{text-align:center}
-.contact-email{
-  display:inline-block;
-  margin-top:16px;
-  background:var(--primary);
-  color:#fff;
-  padding:12px 32px;
-  border-radius:6px;
-  font-size:1rem;
-  font-weight:500;
-  transition:background .2s;
-}
-.contact-email:hover{background:var(--primary-light);text-decoration:none}
-
 /* --- Footer --- */
 .footer{
   text-align:center;
@@ -314,13 +262,13 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
       Finans kuruluşları, düzenleyiciler ve uyum ekipleri için Telegram istihbarat platformu.
     </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="en">
-      Trusted by a Korean government security agency for active threat monitoring.
+      Collected every night. Every figure on this page comes from the live store, dated — not from a brochure.
     </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="kr">
-      한국 정부 보안 기관의 활성 위협 모니터링에 활용 중.
+      매일 밤 수집합니다. 이 페이지의 모든 수치는 실제 저장소에서 가져오며, 작성일이 함께 표시됩니다.
     </p>
     <p class="tagline" style="opacity:.72;font-size:.95rem;margin-top:-16px" data-lang="tr">
-      Aktif tehdit izleme kapsaminda bir Kore devlet guvenlik kurumu tarafindan kullanilmaktadir.
+      Her gece toplanır. Bu sayfadaki her rakam canlı depodan gelir ve tarihlidir — broşürden değil.
     </p>
   </div>
 </section>
@@ -575,7 +523,7 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
     </h2>
     <div class="accent-bar"></div>
     <p class="section-subtitle">
-      <span data-lang="en">Continuously updated from live intelligence collection</span>
+      <span data-lang="en">Continuously updated from live intelligence collection<span id="stat-updated"></span></span>
       <span data-lang="kr">실시간 인텔리전스 수집으로 지속 업데이트</span>
       <span data-lang="tr">Canlı istihbarat toplamasından sürekli güncellenir</span>
     </p>
@@ -624,78 +572,6 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
   </div>
 </section>
 
-<!-- Pricing -->
-<section class="section pricing-section">
-  <div class="section-inner">
-    <h2 class="section-title">
-      <span data-lang="en">Pricing</span>
-      <span data-lang="kr">가격</span>
-      <span data-lang="tr">Fiyatlandırma</span>
-    </h2>
-    <div class="accent-bar"></div>
-    <p class="section-subtitle">
-      <span data-lang="en">Published, so you know before you write.</span>
-      <span data-lang="kr">문의 전에 확인하실 수 있도록 공개합니다.</span>
-      <span data-lang="tr">Yazmadan önce bilmeniz için açıkça yayınlanmıştır.</span>
-    </p>
-
-    <div class="price-grid">
-
-    <div class="price-card">
-      <div class="price-name">
-        <span data-lang="en">Early Warning &mdash; alert subscription</span>
-        <span data-lang="kr">Early Warning &mdash; 조기경보 구독</span>
-        <span data-lang="tr">Early Warning &mdash; erken uyarı aboneliği</span>
-      </div>
-      <div class="price-figure">
-        <span data-lang="en">from &#8361;1,000,000</span>
-        <span data-lang="kr">₩1,000,000부터</span>
-        <span data-lang="tr">&#8361;1.000.000'dan başlayan</span>
-      </div>
-      <div class="price-unit">
-        <span data-lang="en">per month</span>
-        <span data-lang="kr">월</span>
-        <span data-lang="tr">aylık</span>
-      </div>
-      <div class="price-detail">
-        <span data-lang="en">Nightly email or webhook. New entities, escalations, and networks that have gone quiet &mdash; scored, deduplicated, and delivered against your own watchlist. Final price depends on markets in scope and delivery channel.</span>
-        <span data-lang="kr">매일 밤 이메일 또는 웹훅으로 전송됩니다. 신규 엔티티, 위험도 상승, 활동이 중단된 네트워크를 점수화·중복제거하여 고객 관심 대상 기준으로 전달합니다. 최종 가격은 대상 시장과 전달 방식에 따라 결정됩니다.</span>
-        <span data-lang="tr">Her gece e-posta veya webhook ile. Yeni varlıklar, yükselen riskler ve sessizleşen ağlar &mdash; puanlanmış, yinelenenlerden arındırılmış ve kendi izleme listenize göre iletilir. Nihai fiyat kapsamdaki pazarlara ve teslim kanalına göre belirlenir.</span>
-      </div>
-    </div>
-
-    <div class="price-card">
-      <div class="price-name">
-        <span data-lang="en">Curated wallet feed</span>
-        <span data-lang="kr">선별 지갑 피드</span>
-        <span data-lang="tr">Seçilmiş cüzdan akışı</span>
-      </div>
-      <div class="price-figure">
-        <span data-lang="en">from &#8361;2,000,000</span>
-        <span data-lang="kr">₩2,000,000부터</span>
-        <span data-lang="tr">&#8361;2.000.000'dan başlayan</span>
-      </div>
-      <div class="price-unit">
-        <span data-lang="en">per month, per market</span>
-        <span data-lang="kr">월, 시장별</span>
-        <span data-lang="tr">aylık, pazar başına</span>
-      </div>
-      <div class="price-detail">
-        <span data-lang="en">A maintained watchlist, not a one-off list. Addresses observed in closed Telegram markets, corroborated across markets before they ship, delivered as JSON plus a blocklist CSV in your own format. Curated rather than bulk &mdash; every address is one we would defend individually.</span>
-        <span data-lang="kr">일회성 목록이 아닌 지속 관리되는 워치리스트입니다. 폐쇄형 텔레그램 시장에서 관측된 주소를 시장 간 교차 검증한 후 제공하며, JSON과 고객 포맷에 맞춘 차단 목록 CSV로 전달합니다. 대량 수집이 아닌 선별 방식으로, 모든 주소는 개별적으로 근거를 제시할 수 있습니다.</span>
-        <span data-lang="tr">Tek seferlik bir liste değil, sürekli güncellenen bir izleme listesi. Kapalı Telegram pazarlarında gözlemlenen adresler, yayınlanmadan önce pazarlar arası doğrulanır; JSON ve kendi formatınızda bir engelleme listesi CSV'si olarak teslim edilir. Toplu değil seçilmiş &mdash; her adresi tek tek savunabiliriz.</span>
-      </div>
-    </div>
-
-    </div>
-
-    <p class="price-note">
-      <span data-lang="en">Both are monthly subscriptions and both scale with the markets in scope. Sanitized bank risk briefs and the managed intelligence package are scoped per buyer &mdash; ask and you will get a number, not a discovery call.</span>
-      <span data-lang="kr">두 제품 모두 월 구독이며, 대상 시장 범위에 따라 가격이 조정됩니다. 비식별화된 은행 리스크 브리프와 매니지드 인텔리전스 패키지는 고객별로 범위를 정합니다 &mdash; 문의하시면 사전 상담 절차 없이 견적을 바로 드립니다.</span>
-      <span data-lang="tr">Her ikisi de aylık aboneliktir ve kapsamdaki pazar sayısına göre ölçeklenir. Anonimleştirilmiş banka risk brifingleri ve yönetilen istihbarat paketi alıcıya göre kapsamlandırılır &mdash; sorun, keşif görüşmesi değil, doğrudan bir fiyat alın.</span>
-    </p>
-  </div>
-</section>
 
 <!-- Contact -->
 <section class="section contact-section">
@@ -751,6 +627,8 @@ html[lang="tr"] span[data-lang="kr"]{display:none}
         var el=document.getElementById("stat-"+f);
         if(el&&d[f])el.textContent=d[f];
       });
+      var up=document.getElementById("stat-updated");
+      if(up&&d.updated)up.textContent=" \u00b7 last written "+d.updated;
     })
     .catch(function(){});
 })();
