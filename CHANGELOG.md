@@ -8,6 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.19.0] - 2026-09-15
+
+### Added
+- **Open Graph images, one per page** (`public/og/<page>.png`, 1200×630),
+  rendered from an SVG card on the design tokens by `scripts/og.mjs`
+  (`@resvg/resvg-js`, dev dependency; run it after changing a title). Every
+  page's head now carries `og:image`, its size, `og:site_name` and a
+  `summary_large_image` Twitter card, so links preview properly on
+  LinkedIn, Slack and KakaoTalk.
+
+### Changed
+- **The six manufacturing demo dashboards are on the design tokens.** The
+  generated pages keep their markup and Plotly figures; a shared
+  `demodashboard/dashboard.css` maps their classes onto the tokens, the
+  site nav sits on top with a link back to the manufacturing demos, every
+  page opens with the Synthetic badge and sentence, tables scroll on
+  phones, and a runtime relayout brings the Plotly figures onto the page's
+  ink and surfaces in both themes (trace colours untouched). `noindex`.
+
 ## [0.18.0] - 2026-09-15
 
 ### Added
