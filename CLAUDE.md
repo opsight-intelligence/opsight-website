@@ -14,7 +14,15 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
 ## Architecture
 
 - **No build system, no framework** — plain HTML/CSS/JS served directly via GitHub Pages
-- All styling is inline `<style>` blocks within each HTML file (no external CSS)
+- Page styling is still inline `<style>` blocks within each HTML file. The exception,
+  from v0.9.0, is the shared design layer under `design/`: `tokens.css` (brand, line
+  accents, severity/status, surfaces, type, space — light and dark) and
+  `components.css` (nav, hero, stat tile, product card, badges, citation chip, callout,
+  evidence table, form, footer). `design/index.html` renders all of it at `/design/`
+  with a theme toggle; it is `noindex`, unlisted in the nav and sitemap on purpose.
+  Pages migrate onto the layer in Phase 2 of `opsight-company/strategy/product/
+  website-and-app-ux.md`; until then only `/design/` uses it. The copilot and console
+  repos COPY these two files (never link at runtime) and carry the same version string.
 - `stats.json` — live stats (entities, clusters, members, markets) fetched by `intelligence.html` to display dynamic counters
 - `demodashboard/` — standalone demo dashboard pages (capacity, cycle time efficiency, run rate) for the manufacturing vertical
 - `CNAME` — points to `opsightintel.com`
