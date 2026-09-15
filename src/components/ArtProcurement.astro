@@ -1,0 +1,36 @@
+---
+// Procurement: one tender's bidding field against the published estimate.
+// Every bid is a mark on the axis of "percent of estimate"; the winner is
+// lit in the line accent; the band is the 예비가격 randomisation range.
+// Values are invented and unlabelled -- a shape, not a statistic.
+const bids = [86.2, 87.9, 88.4, 88.9, 89.3, 89.7, 90.1, 90.6, 91.4, 92.0, 93.3, 95.1, 97.8];
+const winner = 89.7;
+const x = (v: number) => 40 + ((v - 84) / (102 - 84)) * 480;
+---
+<svg class="art art-proc" viewBox="0 0 560 280" role="img" aria-label="Bids plotted against the published estimate, the winner marked" xmlns="http://www.w3.org/2000/svg">
+  <rect class="band" x={x(88)} y="70" width={x(92) - x(88)} height="120" rx="4" />
+  <line class="axis" x1="40" y1="190" x2="520" y2="190" />
+  <line class="estimate" x1={x(100)} y1="60" x2={x(100)} y2="200" />
+  <text class="label" x={x(100)} y="52" text-anchor="middle">estimate · 100%</text>
+  <text class="label label--faint" x={x(90)} y="212" text-anchor="middle">90%</text>
+  <text class="label label--faint" x={x(85)} y="212" text-anchor="middle">85%</text>
+  <text class="label label--faint" x={x(95)} y="212" text-anchor="middle">95%</text>
+  {bids.map((b, i) => (
+    <g>
+      <line class={b === winner ? 'stem stem--win' : 'stem'} x1={x(b)} y1="190" x2={x(b)} y2={190 - 40 - (i % 4) * 22} />
+      <circle class={b === winner ? 'bid bid--win' : 'bid'} cx={x(b)} cy={190 - 40 - (i % 4) * 22} r={b === winner ? 7 : 5}>
+        <animate attributeName="opacity" values="0;1" dur="0.6s" begin={`${0.15 * i}s`} fill="freeze" />
+      </circle>
+    </g>
+  ))}
+  <g>
+    <line class="winline" x1={x(winner)} y1="82" x2={x(winner)} y2="190">
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="2.4s" fill="freeze" />
+    </line>
+    <text class="label label--win" x={x(winner)} y="74" text-anchor="middle">
+      winner · 낙찰률
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="2.4s" fill="freeze" />
+    </text>
+  </g>
+  <text class="caption" x="12" y="268">every bid, against the estimate — who won, and how far off the rest sat</text>
+</svg>

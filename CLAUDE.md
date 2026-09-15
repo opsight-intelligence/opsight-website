@@ -47,8 +47,9 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
   component (`src/components/<Page>.astro`) inside `src/layouts/Base.astro`
   (head, hreflang for every locale the page has, nav with a language switch,
   footer). English at `/…`, Korean at `/ko/…`, Turkish at `/tr/…` where a page
-  has it (fraud). `HeroBand.astro` (navy band + `Lifecycle.astro` SVG, or a
-  per-line figure via the `art` slot) opens every page; `LiveStats.astro` is
+  has it (fraud). `HeroBand.astro` (navy band + `Lifecycle.astro` SVG, or the
+  per-line figure `ArtFraud` / `ArtProcurement` / `ArtManufacturing` via the
+  `art` slot — invented shapes, never data) opens every page; `LiveStats.astro` is
   the one runtime fetch for stat tiles and counts the numbers up. Korean written by the agent needs a native read
   before the professional launch — correct it in the copy object.
 - `CNAME`, `favicon.svg`, `robots.txt`, `sitemap.xml` live in `public/` and

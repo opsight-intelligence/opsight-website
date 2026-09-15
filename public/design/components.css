@@ -1,5 +1,5 @@
 /* Opsight components — the whole list, deliberately short.
- * Requires tokens.css. Version 0.15.0.
+ * Requires tokens.css. Version 0.16.0.
  *
  *   nav · hero · stat tile · product card · evidence table · severity badge
  *   citation chip · callout (live / synthetic) · form · footer
@@ -155,3 +155,33 @@
   .hero-band .hero { grid-template-columns: 1fr; }
   .hero__art { order: -1; max-width: 420px; }
 }
+
+/* ── v0.16.0: per-line illustrations (inside the hero band) ─────────────── */
+.art { width: 100%; height: auto; display: block; }
+.art .caption { fill: rgba(255,255,255,0.6); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; }
+.art .label { fill: rgba(255,255,255,0.85); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; }
+.art .label--faint { fill: rgba(255,255,255,0.5); }
+.art .label--win { fill: var(--line, #8fb0d9); font-weight: 600; }
+/* fraud */
+.art-fraud .edge { stroke: rgba(255,255,255,0.28); stroke-width: 1; }
+.art-fraud .edge--faint { stroke: rgba(255,255,255,0.12); }
+.art-fraud .node { fill: rgba(255,255,255,0.75); }
+.art-fraud .hub { fill: var(--line, #8fb0d9); }
+.art-fraud .halo { fill: var(--line, #8fb0d9); opacity: 0; }
+.art-fraud .link { stroke: var(--line, #8fb0d9); stroke-width: 1.5; stroke-dasharray: 3 4; }
+.art-fraud .shared { fill: #ffffff; stroke: var(--line, #8fb0d9); stroke-width: 1.5; }
+/* procurement */
+.art-proc .band { fill: rgba(255,255,255,0.07); }
+.art-proc .axis { stroke: rgba(255,255,255,0.45); stroke-width: 1.5; }
+.art-proc .estimate { stroke: rgba(255,255,255,0.7); stroke-width: 1.5; stroke-dasharray: 5 5; }
+.art-proc .stem { stroke: rgba(255,255,255,0.28); stroke-width: 1; }
+.art-proc .stem--win { stroke: var(--line, #8fb0d9); stroke-width: 1.5; }
+.art-proc .bid { fill: rgba(255,255,255,0.8); }
+.art-proc .bid--win { fill: var(--line, #8fb0d9); filter: drop-shadow(0 0 6px var(--line, #8fb0d9)); }
+.art-proc .winline { stroke: var(--line, #8fb0d9); stroke-width: 1; stroke-dasharray: 2 3; }
+/* manufacturing */
+.art-mfg .run { fill: rgba(255,255,255,0.12); }
+.art-mfg .tick { stroke: rgba(255,255,255,0.7); stroke-width: 1.5; }
+.art-mfg .stop { fill: var(--sev-critical); }
+.art-mfg .playhead { stroke: var(--line, #8fb0d9); stroke-width: 1.5; }
+@media (prefers-reduced-motion: reduce) { .art animate { display: none; } .art .playhead { display: none; } }

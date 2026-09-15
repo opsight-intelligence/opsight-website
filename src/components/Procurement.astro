@@ -1,5 +1,6 @@
 ---
 import HeroBand from './HeroBand.astro';
+import ArtProcurement from './ArtProcurement.astro';
 import type { ProcurementCopy, ProcLocale } from '../i18n/procurement';
 import StatTile from './StatTile.astro';
 import LiveStats from './LiveStats.astro';
@@ -8,6 +9,7 @@ const { copy, locale } = Astro.props;
 ---
 <HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} live={copy.hero.live} line="procurement">
   <Fragment slot="actions"><a class="btn btn--primary" href="#contact">{copy.hero.primary}</a></Fragment>
+  <Fragment slot="art"><ArtProcurement /></Fragment>
 </HeroBand>
 
 <section class="section" id="numbers">

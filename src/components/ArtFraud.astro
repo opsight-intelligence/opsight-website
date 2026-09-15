@@ -1,0 +1,44 @@
+---
+// Fraud: a network of channels resolving into clusters, with shared
+// infrastructure (wallets, accounts) linking clusters that look separate.
+// Abstract by construction -- no real handle, shape or count.
+const clusters = [
+  { cx: 120, cy: 100, r: 62, n: 7, delay: 0 },
+  { cx: 300, cy: 180, r: 74, n: 9, delay: 1.2 },
+  { cx: 450, cy: 80, r: 54, n: 6, delay: 2.4 },
+];
+function ring(c: typeof clusters[number]) {
+  return Array.from({ length: c.n }, (_, i) => {
+    const a = (i / c.n) * Math.PI * 2 + c.cx * 0.01;
+    const rr = c.r * (0.55 + ((i * 7) % 5) / 10);
+    return { x: c.cx + Math.cos(a) * rr, y: c.cy + Math.sin(a) * rr };
+  });
+}
+const nodes = clusters.map(ring);
+const shared = [ { x: 210, y: 150 }, { x: 380, y: 118 } ];
+---
+<svg class="art art-fraud" viewBox="0 0 560 280" role="img" aria-label="Channels resolving into clusters linked by shared infrastructure" xmlns="http://www.w3.org/2000/svg">
+  {clusters.map((c, k) => (
+    <g>
+      {nodes[k].map((p) => <line class="edge" x1={c.cx} y1={c.cy} x2={p.x} y2={p.y} />)}
+      {nodes[k].slice(0, -1).map((p, i) => <line class="edge edge--faint" x1={p.x} y1={p.y} x2={nodes[k][i + 1].x} y2={nodes[k][i + 1].y} />)}
+      <circle class="halo" cx={c.cx} cy={c.cy} r={c.r + 6}>
+        <animate attributeName="opacity" values="0;0.35;0" dur="6s" begin={`${c.delay}s`} repeatCount="indefinite" />
+      </circle>
+      {nodes[k].map((p) => <circle class="node" cx={p.x} cy={p.y} r="4" />)}
+      <circle class="hub" cx={c.cx} cy={c.cy} r="8">
+        <animate attributeName="r" values="8;10;8" dur="6s" begin={`${c.delay}s`} repeatCount="indefinite" />
+      </circle>
+    </g>
+  ))}
+  {shared.map((s, i) => (
+    <g>
+      <line class="link" x1={clusters[i].cx} y1={clusters[i].cy} x2={s.x} y2={s.y} />
+      <line class="link" x1={s.x} y1={s.y} x2={clusters[i + 1].cx} y2={clusters[i + 1].cy} />
+      <rect class="shared" x={s.x - 7} y={s.y - 7} width="14" height="14" rx="3">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" begin={`${i * 1.5}s`} repeatCount="indefinite" />
+      </rect>
+    </g>
+  ))}
+  <text class="caption" x="12" y="268">channels → clusters → shared wallets and accounts</text>
+</svg>

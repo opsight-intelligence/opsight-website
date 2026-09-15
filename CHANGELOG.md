@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.16.0] - 2026-09-15
+
+### Added
+- **One illustration per line in the hero**, inline SVG on the design
+  tokens, animated with SMIL and hidden under `prefers-reduced-motion`:
+  fraud — channels resolving into clusters with shared wallets and accounts
+  linking clusters that looked separate; procurement — one tender's bids
+  plotted against the published estimate with the winner lit and the
+  예비가격 band drawn; manufacturing — the same shift as a "99%" cycle-time
+  row versus the downtime row that shows the stops. All shapes are invented
+  and unlabelled: nothing on them is a statistic, a handle or a client.
+  Home and OpSentry keep the lifecycle diagram.
+
 ## [0.15.0] - 2026-09-15
 
 ### Added
