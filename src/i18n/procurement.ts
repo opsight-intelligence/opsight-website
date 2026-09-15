@@ -21,6 +21,7 @@ export interface ProcurementCopy {
   collect: { heading: string; lead: string; liveBadge: string; blocks: Block[] };
   coverage: { heading: string; blocks: Block[] };
   how: { heading: string; body: string; platform: string };
+  figures: { heading: string; lead: string; rateTitle: string; rateNote: string; dailyTitle: string; noticesLabel: string; awardsLabel: string; tableLabel: string; awardsCol: string; medianCol: string; rangeCol: string; dateCol: string };
   contact: { heading: string; lead: string; button: string; mailto: string; disclaimer: string };
 }
 
@@ -63,6 +64,17 @@ export const procurement: Record<ProcLocale, ProcurementCopy> = {
         { title: 'Nationwide, not sampled', body: 'The whole country, every category, collected nightly — not a sector slice. A firm\'s record is complete rather than whatever happened to be sampled.' },
         { title: '용역 bidder detail', body: 'Service tenders are enriched with the full bidding field. 공사 is deliberately excluded: with thousands of bidders against a randomised estimate, win-rate analysis there is close to worthless.' },
       ],
+    },
+    figures: {
+      heading: 'The shape of the market',
+      lead: 'Two aggregates, refreshed nightly from the store. No firm, agency or lot is named.',
+      rateTitle: 'Clearing rate by category',
+      rateNote: 'The middle half of winning bids (p25–p75) as a percentage of the estimate, median marked. Categories with fewer than 50 rated awards are left out.',
+      dailyTitle: 'Last 30 days',
+      noticesLabel: 'Notices posted',
+      awardsLabel: 'Awards opened',
+      tableLabel: 'Show as a table',
+      awardsCol: 'Awards', medianCol: 'Median', rangeCol: 'p25–p75', dateCol: 'Date',
     },
     how: {
       heading: 'How it is built',
@@ -112,6 +124,17 @@ export const procurement: Record<ProcLocale, ProcurementCopy> = {
         { title: '전국, 표본 아님', body: '전국, 전 업종, 매일 밤 — 일부 업종 조각이 아닙니다. 업체의 기록은 표본이 아니라 완전한 기록입니다.' },
         { title: '용역 입찰자 상세', body: '용역 입찰은 전체 입찰 참여 현황으로 보강합니다. 공사는 의도적으로 제외합니다: 무작위 예비가격에 수천 개 업체가 몰리는 곳에서 낙찰률 분석은 거의 의미가 없습니다.' },
       ],
+    },
+    figures: {
+      heading: '시장의 형태',
+      lead: '매일 밤 저장소에서 갱신되는 두 가지 집계. 업체, 기관, 건은 어디에도 나오지 않습니다.',
+      rateTitle: '업종별 낙찰률',
+      rateNote: '낙찰가의 중간 절반(p25–p75)을 기초금액 대비 비율로, 중앙값 표시. 평가된 낙찰이 50건 미만인 업종은 제외.',
+      dailyTitle: '최근 30일',
+      noticesLabel: '게시된 공고',
+      awardsLabel: '개찰된 낙찰',
+      tableLabel: '표로 보기',
+      awardsCol: '낙찰', medianCol: '중앙값', rangeCol: 'p25–p75', dateCol: '날짜',
     },
     how: {
       heading: '어떻게 만드는가',
