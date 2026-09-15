@@ -1,5 +1,8 @@
 // Manufacturing page copy — /manufacturing, /ko/manufacturing.
 //
+// Lens names are Opsight's own (throughput, cycle-time efficiency,
+// utilisation, ROI). "Run rate" and "capacity" are product names on the
+// operator's employer's roadmap and must not appear here (2026-09-16).
 // Carried over from the 2026 manufacturing.html per the copy inventory: the
 // unsourced "$2 billion" market statistic dropped from the hero; the six
 // "Insights, not dashboards" blocks, the industries, the three worked
@@ -41,9 +44,9 @@ export interface ManufacturingCopy {
 const CONTACT = 'utku@opsightintel.com'; // becomes contact@ once the alias is confirmed
 
 const DEMOS: Demo[] = [
-  { label: 'Production capacity', href: '/demodashboard/capacity_dashboard.html' },
+  { label: 'Utilisation & losses', href: '/demodashboard/utilisation_dashboard.html' },
   { label: 'Cycle-time performance', href: '/demodashboard/ct_efficiency_dashboard.html' },
-  { label: 'Production throughput', href: '/demodashboard/runrate_dashboard.html' },
+  { label: 'Throughput', href: '/demodashboard/throughput_dashboard.html' },
   { label: 'Supplier delivery (OTIF)', href: '/demodashboard/supplier_otif_dashboard.html' },
   { label: 'Scrap & rework rate', href: '/demodashboard/scrap_rework_dashboard.html' },
   { label: 'Downtime analysis', href: '/demodashboard/downtime_pareto_dashboard.html' },
@@ -51,14 +54,14 @@ const DEMOS: Demo[] = [
 
 const EXAMPLES_EN: Insight[] = [
   {
-    lens: 'Run rate · Die casting', title: 'DCM-401 underperforms — elevated MTTR and poor MTBF',
+    lens: 'Throughput · Die casting', title: 'DCM-401 underperforms — elevated MTTR and poor MTBF',
     severity: 'high', severityLabel: 'Severity: High', confidence: 'Confidence: 85%', causality: 'Correlational',
     body: 'Cycle-time dashboards scored this die ~99%. The downtime lens found the truth: MTBF of 15 min and MTTR of 19 min drove a Red status — 516 stops caused 121 hours of downtime, capping utilization at 49%.',
     impactLabel: 'Impact', impact: '~12–15% of annual output, ≈$2,100–$2,520/yr at $0.50 margin/part',
     actions: ['Investigate tooling wear causing mid-shift abnormal cycles', 'Verify material consistency across lots', 'Design review for frequent stops'],
   },
   {
-    lens: 'Capacity · Injection molding', title: 'PRESS-201 capacity loss is downtime-dominated',
+    lens: 'Utilisation · Injection molding', title: 'PRESS-201 output loss is downtime-dominated',
     severity: 'critical', severityLabel: 'Severity: Critical', confidence: 'Confidence: 85%', causality: 'Correlational',
     body: 'PRESS-201 reached only 28% of theoretical max output, with 99% of an 18,618-part loss attributed to downtime. OEE availability of 34% and MTBF of 11 min point to a systemic availability problem, not isolated events.',
     impactLabel: 'Target', impact: 'lift availability to 50% of theoretical max (12,943 parts) within 14 days',
@@ -98,7 +101,7 @@ export const manufacturing: Record<MfgLocale, ManufacturingCopy> = {
         { title: 'Prioritized actions', body: 'Each insight ships with ranked actions — impact × confidence ÷ effort — tagged quick-win, procedural, or capex, so the next step is never ambiguous.' },
         { title: 'Causal honesty', body: 'Every insight states whether it is causal or correlational and lists the disconfirming evidence we checked. No confident hand-waving — judgments you can trust or challenge.' },
         { title: 'Success criteria', body: 'Each finding defines what "fixed" looks like — "MTTR below 15 min and MTBF above 30 min for two consecutive weeks" — so you can verify the result, not just hope for it.' },
-        { title: 'Four analysis lenses', body: 'Run rate, cycle-time efficiency, capacity, and ROI — each reads sub-second cycle data most dashboards cannot ingest, and each emits the same structured insight.' },
+        { title: 'Four analysis lenses', body: 'Throughput, cycle-time efficiency, utilisation, and ROI — each reads sub-second cycle data most dashboards cannot ingest, and each emits the same structured insight.' },
       ],
     },
     industries: {
@@ -151,7 +154,7 @@ export const manufacturing: Record<MfgLocale, ManufacturingCopy> = {
         { title: '우선순위가 매겨진 조치', body: '각 인사이트에는 순위가 매겨진 조치가 따릅니다 — 영향 × 신뢰도 ÷ 노력 — 즉시 개선, 절차, 설비투자로 분류되어 다음 단계가 모호하지 않습니다.' },
         { title: '인과관계의 정직성', body: '모든 인사이트는 인과인지 상관인지 명시하고, 검토한 반증 근거를 나열합니다. 자신감 있는 얼버무림은 없습니다 — 신뢰하거나 반박할 수 있는 판단입니다.' },
         { title: '성공 기준', body: '각 발견은 "해결됨"의 모습을 정의합니다 — "2주 연속 MTTR 15분 미만, MTBF 30분 초과" — 결과를 바라는 게 아니라 검증할 수 있습니다.' },
-        { title: '네 가지 분석 렌즈', body: '가동률, 사이클 타임 효율, 생산능력, ROI — 각각 대부분의 대시보드가 다루지 못하는 1초 미만 사이클 데이터를 읽고, 같은 구조의 인사이트를 냅니다.' },
+        { title: '네 가지 분석 렌즈', body: '처리량, 사이클 타임 효율, 설비 활용도, ROI — 각각 대부분의 대시보드가 다루지 못하는 1초 미만 사이클 데이터를 읽고, 같은 구조의 인사이트를 냅니다.' },
       ],
     },
     industries: {

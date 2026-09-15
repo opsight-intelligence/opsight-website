@@ -68,12 +68,12 @@
 <!-- AI Insight -->
 <h2>AI-Generated Insights</h2>
 <div class="summary-box">
-    <strong style="color:#1565c0;">Critical Alert &mdash; Kumho Precision</strong><br>
-    Kumho Precision OTIF dropped 12% in March due to raw material shortage affecting chromium-alloy steel supply. Their brake mounting bracket line (Part #BM-4420, #BM-4421) missed 23 of 31 scheduled deliveries. Recommend activating secondary sourcing agreement with Daesung Metal for brake mounting brackets to mitigate Q2 production risk.
+    <strong style="color:#1565c0;">Critical Alert &mdash; Delta Components</strong><br>
+    Delta Components OTIF dropped 12% in March due to raw material shortage affecting chromium-alloy steel supply. Their brake mounting bracket line (Part #BM-4420, #BM-4421) missed 23 of 31 scheduled deliveries. Recommend activating secondary sourcing agreement with Sigma Metal for brake mounting brackets to mitigate Q2 production risk.
 </div>
 <div class="summary-box">
-    <strong style="color:#1565c0;">Trend Watch &mdash; Sejin Industrial</strong><br>
-    Sejin Industrial has shown a steady decline over the past 3 months (94.1% &rarr; 89.7% &rarr; 83.2%). Root cause analysis indicates capacity constraints at their Ulsan stamping facility. Engagement with Sejin leadership recommended before Q2 volume ramp.
+    <strong style="color:#1565c0;">Trend Watch &mdash; Zeta Tooling</strong><br>
+    Zeta Tooling has shown a steady decline over the past 3 months (94.1% &rarr; 89.7% &rarr; 83.2%). Root cause analysis indicates utilisation constraints at their stamping facility. Engagement with Zeta leadership recommended before Q2 volume ramp.
 </div>
 
 <!-- Supplier Detail Table -->
@@ -93,7 +93,7 @@
     </thead>
     <tbody>
         <tr>
-            <td><strong>Hanwha Parts</strong></td>
+            <td><strong>Lambda Parts</strong></td>
             <td>214</td>
             <td>97.2%</td>
             <td>98.1%</td>
@@ -102,7 +102,7 @@
             <td><span class="badge badge-green">On Track</span></td>
         </tr>
         <tr>
-            <td><strong>Daesung Metal</strong></td>
+            <td><strong>Sigma Metal</strong></td>
             <td>198</td>
             <td>96.5%</td>
             <td>97.0%</td>
@@ -111,7 +111,7 @@
             <td><span class="badge badge-green">On Track</span></td>
         </tr>
         <tr>
-            <td><strong>Hyosung Tech</strong></td>
+            <td><strong>Epsilon Plastics</strong></td>
             <td>187</td>
             <td>95.7%</td>
             <td>96.8%</td>
@@ -120,7 +120,7 @@
             <td><span class="badge badge-green">On Track</span></td>
         </tr>
         <tr>
-            <td><strong>Mando Components</strong></td>
+            <td><strong>Kappa Components</strong></td>
             <td>176</td>
             <td>92.6%</td>
             <td>94.3%</td>
@@ -129,7 +129,7 @@
             <td><span class="badge badge-amber">At Risk</span></td>
         </tr>
         <tr>
-            <td><strong>Sungwoo Hitech</strong></td>
+            <td><strong>Iota Metals</strong></td>
             <td>162</td>
             <td>91.4%</td>
             <td>93.2%</td>
@@ -138,7 +138,7 @@
             <td><span class="badge badge-amber">At Risk</span></td>
         </tr>
         <tr>
-            <td><strong>Donghee Auto</strong></td>
+            <td><strong>Theta Automotive</strong></td>
             <td>153</td>
             <td>89.5%</td>
             <td>91.5%</td>
@@ -147,7 +147,7 @@
             <td><span class="badge badge-amber">At Risk</span></td>
         </tr>
         <tr>
-            <td><strong>Sejin Industrial</strong></td>
+            <td><strong>Zeta Tooling</strong></td>
             <td>144</td>
             <td>85.4%</td>
             <td>89.6%</td>
@@ -156,7 +156,7 @@
             <td><span class="badge badge-red">Critical</span></td>
         </tr>
         <tr>
-            <td><strong>Kumho Precision</strong></td>
+            <td><strong>Delta Components</strong></td>
             <td>134</td>
             <td>82.1%</td>
             <td>86.6%</td>
@@ -174,8 +174,8 @@
 // --- OTIF by Supplier Bar Chart ---
 (function() {
     var suppliers = [
-        'Kumho Precision', 'Sejin Industrial', 'Donghee Auto', 'Sungwoo Hitech',
-        'Mando Components', 'Hyosung Tech', 'Daesung Metal', 'Hanwha Parts'
+        'Delta Components', 'Zeta Tooling', 'Theta Automotive', 'Iota Metals',
+        'Kappa Components', 'Epsilon Plastics', 'Sigma Metal', 'Lambda Parts'
     ];
     var otif = [78.4, 83.2, 85.6, 88.9, 90.3, 95.2, 95.9, 96.3];
     var colors = otif.map(function(v) {
@@ -238,25 +238,25 @@
         marker: { size: 7 }
     };
 
-    var kumho = {
+    var delta = {
         x: months, y: [88.5, 86.2, 84.1, 82.7, 81.0, 78.4],
-        name: 'Kumho Precision',
+        name: 'Delta Components',
         type: 'scatter', mode: 'lines+markers',
         line: { color: '#c62828', width: 2, dash: 'dot' },
         marker: { size: 6 }
     };
 
-    var sejin = {
+    var zeta = {
         x: months, y: [91.3, 90.8, 89.2, 94.1, 89.7, 83.2],
-        name: 'Sejin Industrial',
+        name: 'Zeta Tooling',
         type: 'scatter', mode: 'lines+markers',
         line: { color: '#e65100', width: 2, dash: 'dot' },
         marker: { size: 6 }
     };
 
-    var donghee = {
+    var theta = {
         x: months, y: [89.4, 88.1, 87.5, 86.8, 86.2, 85.6],
-        name: 'Donghee Auto',
+        name: 'Theta Automotive',
         type: 'scatter', mode: 'lines+markers',
         line: { color: '#ef6c00', width: 2, dash: 'dot' },
         marker: { size: 6 }
@@ -297,7 +297,7 @@
         plot_bgcolor: 'rgba(0,0,0,0)'
     };
 
-    Plotly.newPlot('chart-otif-trend', [overall, kumho, sejin, donghee], layout, { responsive: true, displayModeBar: false });
+    Plotly.newPlot('chart-otif-trend', [overall, delta, zeta, theta], layout, { responsive: true, displayModeBar: false });
 })();
 </script>
 
