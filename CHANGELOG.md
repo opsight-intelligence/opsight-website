@@ -8,6 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.21.1] - 2026-09-16
+
+### Changed
+- **Manufacturing lenses renamed to Opsight's own vocabulary:** throughput,
+  cycle-time efficiency, utilisation, ROI. "Run rate" and "capacity" are
+  product names on the operator's employer's roadmap and no longer appear
+  anywhere on the site — copy, worked insights, dashboard titles, or URLs
+  (`capacity_dashboard.html` → `utilisation_dashboard.html`,
+  `runrate_dashboard.html` → `throughput_dashboard.html`).
+
+### Fixed
+- **The supplier-delivery demo named real Korean companies** (Kumho,
+  Hyosung, Sejin, Donghee, Sungwoo, Mando, Hanwha, Daesung) — and said
+  their delivery was declining. All eight are now plainly fictional
+  (Delta Components, Epsilon Plastics, Zeta Tooling, Theta Automotive, Iota
+  Metals, Kappa Components, Lambda Parts, Sigma Metal); a real city was
+  removed from the narrative. Synthetic data must not carry real names.
+
 ## [0.21.0] - 2026-09-15
 
 ### Added
