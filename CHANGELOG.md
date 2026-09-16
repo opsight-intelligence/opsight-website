@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.23.2] - 2026-09-16
+
+### Changed
+- Dependencies: bump astro from 5.18.2 to 7.3.2 in the node group across 1 directory (Dependabot).
+
 ## [0.23.1] - 2026-09-16
 
 ### Changed
