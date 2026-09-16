@@ -38,6 +38,7 @@ export interface ManufacturingCopy {
   honesty: { badge: string; title: string; body: string };
   examples: { heading: string; lead: string; items: Insight[] };
   demos: { heading: string; lead: string; items: Demo[]; more: string };
+  agent: { heading: string; lead: string; statement: string; colMachine: string; colVerdict: string; colDrift: string; colStability: string; colStops: string; actionsLabel: string; plantedLabel: string; normalLabel: string; chartTitle: string; chartNote: string; runLabel: string; emptyNote: string };
   contact: { heading: string; lead: string; button: string; mailto: string; sample: string };
 }
 
@@ -121,6 +122,16 @@ export const manufacturing: Record<MfgLocale, ManufacturingCopy> = {
       body: 'The equipment below (DCM-401, PRESS-201, STAMP-503) is fictitious, and the production data is generated — 14 days of shot-level output with a known fault written into each machine. What is real is the reasoning: the analysis, the quantified impact and the ranked actions are exactly what the engine produces, unedited. We can rerun it in front of you.',
     },
     examples: { heading: 'Insight examples', lead: 'Unedited engine output, regenerated in two clicks — run on our synthetic demo dataset by the same pipeline that would run on yours.', items: EXAMPLES_EN },
+    agent: {
+      heading: 'The agent, live',
+      lead: 'Every night an autonomous agent sweeps a fleet: it senses drift, stability and stops, reasons across the signals the way an engineer does, dispatches follow-up analyses and work orders, and records every decision. This is last night\'s run.',
+      statement: 'Synthetic fleet with known faults written in. The signals, verdicts and actions are exactly what the agent produced, unedited.',
+      colMachine: 'Machine', colVerdict: 'Verdict', colDrift: 'Deviation W1 → W6', colStability: 'Stability', colStops: 'Stops W1 → W6',
+      actionsLabel: 'What the agent did', plantedLabel: 'Planted:', normalLabel: 'normal',
+      chartTitle: 'Cycle deviation vs the approved cycle, by week',
+      chartNote: 'One line per machine. The one that climbs steadily while its stability stays near 97% is the case a single-metric threshold never catches.',
+      runLabel: 'Run:', emptyNote: 'Loading last night\'s run…',
+    },
     demos: { heading: 'Interactive demos', lead: 'Explore the underlying analyses, running on the same synthetic demo dataset.', items: DEMOS, more: 'Additional analyses available: energy per unit, shift handover, OEM order fulfillment.' },
     contact: {
       heading: 'See your data come alive',
@@ -174,6 +185,16 @@ export const manufacturing: Record<MfgLocale, ManufacturingCopy> = {
       body: '아래 설비(DCM-401, PRESS-201, STAMP-503)는 가상이며, 생산 데이터는 생성된 것입니다 — 설비마다 알려진 결함을 심어 둔 14일치 샷 단위 출력. 실제인 것은 추론입니다: 분석, 정량화된 영향, 순위가 매겨진 조치는 엔진이 만든 그대로, 편집하지 않았습니다. 눈앞에서 다시 실행해 드릴 수 있습니다.',
     },
     examples: { heading: '인사이트 예시', lead: '편집하지 않은 엔진 출력, 두 번의 클릭으로 재생성 — 귀사 데이터에 돌아갈 같은 파이프라인을 합성 데모 데이터셋에 돌린 결과입니다.', items: EXAMPLES_EN },
+    agent: {
+      heading: '에이전트, 실시간',
+      lead: '매일 밤 자율 에이전트가 설비군을 훑습니다: 드리프트·안정성·정지를 감지하고, 엔지니어처럼 신호를 교차 추론하고, 후속 분석과 작업 지시를 실행하고, 모든 결정을 기록합니다. 아래는 어젯밤의 실행 결과입니다.',
+      statement: '결함을 심어 둔 합성 설비군입니다. 신호, 판정, 조치는 에이전트가 만든 그대로이며 편집하지 않았습니다.',
+      colMachine: '설비', colVerdict: '판정', colDrift: '편차 1주 → 6주', colStability: '안정성', colStops: '정지 1주 → 6주',
+      actionsLabel: '에이전트가 한 일', plantedLabel: '심어 둔 결함:', normalLabel: '정상',
+      chartTitle: '주별 승인 사이클 대비 편차',
+      chartNote: '설비당 한 줄. 안정성이 97% 근처를 유지하면서 꾸준히 올라가는 한 줄이, 단일 지표 임계값으로는 절대 잡히지 않는 사례입니다.',
+      runLabel: '실행:', emptyNote: '어젯밤 실행 결과를 불러오는 중…',
+    },
     demos: { heading: '인터랙티브 데모', lead: '같은 합성 데모 데이터셋에서 돌아가는 기반 분석을 살펴보세요.', items: DEMOS, more: '추가 분석 가능: 단위당 에너지, 교대 인수인계, OEM 주문 이행.' },
     contact: {
       heading: '귀사 데이터가 살아나는 것을 보세요',

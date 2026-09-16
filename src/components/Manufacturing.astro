@@ -1,5 +1,6 @@
 ---
 import ContactPanel from './ContactPanel.astro';
+import AgentDemo from './AgentDemo.astro';
 import HeroBand from './HeroBand.astro';
 import ArtManufacturing from './ArtManufacturing.astro';
 import type { ManufacturingCopy, MfgLocale } from '../i18n/manufacturing';
@@ -50,6 +51,8 @@ const { copy, locale } = Astro.props;
   </div>
   <p class="muted" style="margin-top:var(--s-5)">{copy.compliance.body} <a href={copy.compliance.href}>{copy.compliance.link}</a></p>
 </section>
+
+<AgentDemo {...copy.agent} />
 
 <div class="band section--tint"><div class="container"><section class="section" id="examples">
   <div class="eyebrow">{copy.examples.heading}</div>
