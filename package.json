@@ -4,8 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/sitemap.mjs",
     "build": "astro build",
-    "preview": "astro preview"
+    "postbuild": "node scripts/check-dist.mjs",
+    "preview": "astro preview",
+    "check": "npm run build"
   },
   "dependencies": {
     "astro": "^5.13.0"

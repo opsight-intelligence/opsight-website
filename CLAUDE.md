@@ -62,9 +62,13 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
 - `src/config.ts` holds public site configuration: `FORMSPREE_ID` (the contact
   form's Formspree id; empty = compose-a-mail fallback). Change it there, bump,
   release — no env, no secret.
-- `CNAME`, `favicon.svg`, `robots.txt`, `sitemap.xml` live in `public/` and
-  ship unchanged. `sitemap.xml` is hand-kept and lists extensionless URLs plus
-  `/ko/`. `website.md` is the Cloudflare/SEO checklist; not published.
+- `CNAME`, `favicon.svg`, `robots.txt` live in `public/` and ship unchanged.
+  `public/sitemap.xml` is **generated** by `scripts/sitemap.mjs` before every
+  build (one URL per `src/pages/**/*.astro`, lastmod from git) and is not
+  tracked. `scripts/check-dist.mjs` runs after every build and fails it when an
+  internal link is broken or an indexed page lacks a title, description or
+  canonical; `.github/workflows/checks.yml` runs the build on every PR.
+  `website.md` is the Cloudflare/SEO checklist; not published.
 
 ## Development
 
@@ -75,8 +79,9 @@ npm run build     # writes dist/ — what Pages serves
 npm run preview   # serve dist/ locally
 ```
 
-No lint or test commands yet. The one check that matters before a PR is
-`npm run build` succeeding and the two home pages rendering in both themes.
+`npm run build` is the check: it generates the sitemap, builds, and runs
+`check-dist` (links, title, description, canonical on every indexed page).
+Then look at the two home pages in both themes.
 
 ## Multi-language Support
 
@@ -97,8 +102,8 @@ Branching, versioning, changelog, and documentation rules are in
   Pages build; stats-only pushes do not (see `pages.yml`)
 - Every commit bumps `VERSION`, adds a `CHANGELOG.md` entry, and updates affected docs
 - New pages are `src/pages/<name>.astro` + `src/pages/ko/<name>.astro` with a copy object
-  in `src/i18n/`, added to `public/sitemap.xml`, given a nav entry in `Base.astro`, and
-  described in the Project Overview above
+  in `src/i18n/`, given a nav entry in `Base.astro`, and described in the Project
+  Overview above (the sitemap picks them up on its own)
 - Routine `stats.json` refreshes still take a PATCH bump, but are grouped in the
   changelog rather than listed one per refresh
 - `main` and `develop` are guarded by a client-side `pre-push` hook that is **not**

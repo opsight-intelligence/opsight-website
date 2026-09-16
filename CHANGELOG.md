@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.23.0] - 2026-09-16
+
+### Added
+- `scripts/sitemap.mjs`: `public/sitemap.xml` is generated before every build from `src/pages/` (lastmod from git); the hand-kept file is gone.
+- `scripts/check-dist.mjs` after every build: every internal link must resolve and every indexed page must carry a title, description and canonical. `.github/workflows/checks.yml` builds on every PR (stats pushes excluded). (Audit E19.)
+
 ## [0.22.2] - 2026-09-16
 
 ### Added
