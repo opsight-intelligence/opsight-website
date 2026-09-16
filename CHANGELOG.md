@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.22.2] - 2026-09-16
+
+### Added
+- `.github/dependabot.yml`: monthly dependency updates, grouped into one PR per ecosystem (org audit E17).
+
 ## [0.22.0] - 2026-09-16
 
 ### Added
