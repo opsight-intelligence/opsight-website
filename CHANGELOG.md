@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.22.0] - 2026-09-16
+
+### Added
+- **The manufacturing page shows the autonomous agent's last nightly run**
+  ("The agent, live", EN/KO): weekly cycle-deviation curves with the
+  flagged machines lit, a verdict table, and one card per flagged machine
+  with the hypothesis and the actions taken. Drawn client-side from
+  `agent-demo.json` (opsight-manufacturing v0.33.0, synthetic only; shipped
+  by fraud v1.7.0); the Pages build ignores it. Labelled Synthetic.
+
 ## [0.21.1] - 2026-09-16
 
 ### Changed

@@ -1,5 +1,5 @@
 /* Opsight components — the whole list, deliberately short.
- * Requires tokens.css. Version 0.17.0.
+ * Requires tokens.css. Version 0.22.0.
  *
  *   nav · hero · stat tile · product card · evidence table · severity badge
  *   citation chip · callout (live / synthetic) · form · footer
@@ -208,3 +208,9 @@
 .contact-panel__alt a:hover { text-decoration-color: var(--brand); }
 .contact-panel__copied { margin-left: var(--s-2); font-size: var(--text-xs); color: var(--status-good); }
 .form__hint:empty { display: none; }
+
+/* ── v0.22.0: the agent demo ─────────────────────────────────────────────── */
+.agent-line { fill: none; stroke: var(--ink-muted); stroke-width: 1.5; opacity: 0.55; }
+.agent-line--abnormal { stroke: var(--line, var(--brand)); stroke-width: 2.5; opacity: 1; }
+.agent-dot { fill: var(--line, var(--brand)); stroke: var(--surface-1); stroke-width: 2; }
+.agent-legend { margin-top: var(--s-2); font-size: var(--text-xs); color: var(--ink-muted); }

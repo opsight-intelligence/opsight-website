@@ -15,6 +15,7 @@ on:
       - 'stats.json'
       - 'procurement-stats.json'
       - 'procurement-figures.json'
+      - 'agent-demo.json'
       - 'VERSION'
       - 'CHANGELOG.md'
       - 'website.md'

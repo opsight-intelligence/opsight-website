@@ -34,8 +34,10 @@ Static website for **OpSight Intelligence** (opsightintel.com), hosted on GitHub
   `/design/` read the same bytes. Other repos COPY the two files (never link
   at runtime) and carry the same version string.
 - **Live numbers never need a build.** `stats.json`, `procurement-stats.json`
-  and `procurement-figures.json` (the aggregate shapes the procurement page
-  charts, via `ProcurementCharts.astro`) sit at the repo root and are rewritten nightly by
+  `procurement-figures.json` (the aggregate shapes the procurement page
+  charts, via `ProcurementCharts.astro`) and `agent-demo.json` (the
+  manufacturing agent's last synthetic run, via `AgentDemo.astro`) sit at the
+  repo root and are rewritten nightly by
   `opsight-fraud/scripts/deploy_website_stats.py` (pushed to `develop` and
   `main`). Pages fetch them from the repo's raw URL
   (`raw.githubusercontent.com/opsight-intelligence/opsight-website/main/…`),
