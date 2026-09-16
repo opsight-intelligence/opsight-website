@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.23.1] - 2026-09-16
+
+### Changed
+- Dependencies: bump the actions group across 1 directory with 4 updates (Dependabot).
+
 ## [0.23.0] - 2026-09-16
 
 ### Added
