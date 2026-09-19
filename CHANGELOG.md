@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.23.10] - 2026-09-20
+
+### Added
+- PR checks gain a `security` job: Trivy over `package-lock.json` (fixable CRITICAL/HIGH fail), closing the `opsight-status` CI-hygiene line for this repo. Versions 0.23.3–0.23.9 were nightly stats refreshes with no changelog entry.
+
 ## [0.23.2] - 2026-09-16
 
 ### Changed
