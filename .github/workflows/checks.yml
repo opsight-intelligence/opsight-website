@@ -25,3 +25,21 @@ jobs:
           cache: npm
       - run: npm ci --no-fund --no-audit
       - run: npm run build   # prebuild: sitemap; postbuild: check-dist
+
+  security:
+    # The org's dependency gate: Trivy over package-lock.json, failing only on
+    # fixable CRITICAL/HIGH. Same parameters as python-ci-reusable.yml uses
+    # for the engines; here the lockfile is the frozen install.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Trivy (fail on fixable CRITICAL/HIGH)
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: package-lock.json
+          scanners: vuln
+          format: table
+          exit-code: "1"
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
