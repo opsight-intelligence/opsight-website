@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.24.0] - 2026-09-21
+
+### Added
+- **Should-price calculator** on /procurement and /ko/procurement: category + published estimate (+ optional demanding agency) → what comparable tenders cleared at, from `procurement-cells.json` (maritime v0.54.0, refreshed nightly from `analytics.should_price_cell`; same-origin fallback). Honours the thin-cell rule in the UI: agency without a cell falls back to the category-wide figure and says so; `low` cells show the range and withhold the single number; sample size and confidence grade on every result. One ask at the end — the full cell set for that category — posts to Formspree with the cell in the message.
+
 ## [0.23.10] - 2026-09-20
 
 ### Added

@@ -6,6 +6,8 @@ import type { ProcurementCopy, ProcLocale } from '../i18n/procurement';
 import StatTile from './StatTile.astro';
 import LiveStats from './LiveStats.astro';
 import ProcurementCharts from './ProcurementCharts.astro';
+import ShouldPriceCalculator from './ShouldPriceCalculator.astro';
+import { FORMSPREE_ENDPOINT } from '../config';
 interface Props { copy: ProcurementCopy; locale: ProcLocale }
 const { copy, locale } = Astro.props;
 ---
@@ -43,6 +45,8 @@ const { copy, locale } = Astro.props;
 </section></div></div>
 
 <ProcurementCharts {...copy.figures} />
+
+<ShouldPriceCalculator {...copy.calculator} formspree={FORMSPREE_ENDPOINT} page={locale === 'ko' ? '/ko/procurement' : '/procurement'} />
 
 <section class="section" id="coverage">
   <div class="eyebrow">{copy.coverage.heading}</div>
