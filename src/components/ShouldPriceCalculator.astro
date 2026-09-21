@@ -1,0 +1,184 @@
+---
+// The public should-price calculator: type a tender's category, published
+// estimate (기초금액) and, optionally, the demanding agency, and read what
+// comparable tenders actually cleared at. Client-side over
+// procurement-cells.json (written nightly by maritime from the governed view
+// analytics.should_price_cell -- the same definition the customer package and
+// the chart use). Aggregate only: a cell is a category, a public body and a
+// size band; no firm, bidder or winner exists in the data.
+//
+// The thin-cell rule is honoured in the UI: an agency with no cell of its own
+// falls back to the category-wide cell and says so; a `low` cell (12-24
+// awards) shows the range and withholds the single number. Every result
+// carries the sample size and the confidence grade, because those are the
+// claim's own limits. The one ask at the end -- the full cell set for that
+// category -- is the lead.
+interface Props {
+  heading: string; lead: string;
+  categoryLabel: string; categories: { value: string; label: string }[];
+  amountLabel: string; amountHint: string; agencyLabel: string; agencyHint: string; button: string;
+  resultHeading: string; estimateLabel: string; shouldLabel: string; rangeLabel: string; basisLabel: string;
+  cellLabel: string; biddersLabel: string; confLabel: string; conf: { high: string; medium: string; low: string };
+  fellBack: string; lowOnly: string; noCell: string; loading: string; unavailable: string;
+  askHeading: string; askLead: string; askEmail: string; askButton: string; askSending: string; askSent: string; askFailed: string;
+  method: string; disclaimer: string;
+  formspree: string; page: string;
+}
+const p = Astro.props;
+---
+<section class="section" id="calculator">
+  <div class="eyebrow">{p.heading}</div>
+  <p class="muted">{p.lead} <span class="badge badge--live">Live</span> <span class="muted" data-updated-for="procurement-cells.json"></span></p>
+  <div class="card line-procurement" data-calculator data-formspree={p.formspree} data-page={p.page}
+       data-fellback={p.fellBack} data-lowonly={p.lowOnly} data-nocell={p.noCell} data-unavailable={p.unavailable}
+       data-conf-high={p.conf.high} data-conf-medium={p.conf.medium} data-conf-low={p.conf.low}
+       data-sending={p.askSending} data-sent={p.askSent} data-failed={p.askFailed}>
+    <div class="card__line"></div>
+    <form class="form calc__form" data-calc-form>
+      <div class="calc__row">
+        <div>
+          <label for="calc-cat">{p.categoryLabel}</label>
+          <select id="calc-cat" name="cat" required>
+            {p.categories.map((c) => <option value={c.value}>{c.label}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="calc-amount">{p.amountLabel}</label>
+          <input id="calc-amount" name="amount" type="text" inputmode="numeric" placeholder="120,000,000" required>
+          <div class="form__hint">{p.amountHint}</div>
+        </div>
+        <div>
+          <label for="calc-agency">{p.agencyLabel}</label>
+          <input id="calc-agency" name="agency" type="text" list="calc-agencies" autocomplete="off">
+          <datalist id="calc-agencies"></datalist>
+          <div class="form__hint">{p.agencyHint}</div>
+        </div>
+      </div>
+      <div><button class="btn btn--primary" type="submit">{p.button}</button> <span class="form__hint" data-calc-status>{p.loading}</span></div>
+    </form>
+
+    <div class="calc__result" data-calc-result hidden>
+      <h3>{p.resultHeading}</h3>
+      <dl class="calc__dl">
+        <div><dt>{p.estimateLabel}</dt><dd data-r-estimate></dd></div>
+        <div class="calc__should"><dt>{p.shouldLabel}</dt><dd data-r-should></dd></div>
+        <div><dt>{p.rangeLabel}</dt><dd data-r-range></dd></div>
+        <div><dt>{p.cellLabel}</dt><dd data-r-cell></dd></div>
+        <div><dt>{p.basisLabel}</dt><dd data-r-basis></dd></div>
+        <div><dt>{p.biddersLabel}</dt><dd data-r-bidders></dd></div>
+        <div><dt>{p.confLabel}</dt><dd data-r-conf></dd></div>
+      </dl>
+      <p class="form__hint" data-r-note></p>
+      <div class="chart" data-r-chart role="img"></div>
+
+      <div class="calc__ask">
+        <h4>{p.askHeading}</h4>
+        <p class="muted">{p.askLead}</p>
+        <form class="form" data-ask-form>
+          <label for="calc-email">{p.askEmail}</label>
+          <input id="calc-email" name="email" type="email" autocomplete="email" required>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="sr-only" aria-hidden="true">
+          <div><button class="btn btn--primary" type="submit">{p.askButton}</button> <span class="form__hint" data-ask-status role="status" aria-live="polite"></span></div>
+        </form>
+      </div>
+    </div>
+    <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-4)">{p.method}</p>
+    <p class="muted" style="font-size:var(--text-sm)">{p.disclaimer}</p>
+  </div>
+</section>
+
+<style>
+  .calc__row { display: grid; gap: var(--s-4); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .calc__dl { display: grid; gap: var(--s-3) var(--s-5); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin: var(--s-4) 0; }
+  .calc__dl dt { font-size: var(--text-sm); color: var(--muted); }
+  .calc__dl dd { margin: 0; font-weight: 600; }
+  .calc__should dd { font-size: var(--text-xl); }
+  .calc__ask { margin-top: var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--border); }
+</style>
+
+<script is:inline>
+(function () {
+  var RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/procurement-cells.json';
+  var NS = 'http://www.w3.org/2000/svg';
+  var root = document.querySelector('[data-calculator]'); if (!root) return;
+  var form = root.querySelector('[data-calc-form]'), status = root.querySelector('[data-calc-status]');
+  var result = root.querySelector('[data-calc-result]'), ask = root.querySelector('[data-ask-form]');
+  var data = null, last = null;
+  var fmtKRW = function (n) { return Math.round(n).toLocaleString() + ' KRW'; };
+  var el = function (tag, attrs, text) { var e = document.createElementNS(NS, tag); Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); }); if (text !== undefined) e.textContent = text; return e; };
+
+  function bandOf(amount, edges, bands) { for (var i = 0; i < edges.length; i++) { if (amount < edges[i]) return bands[i]; } return bands[bands.length - 1]; }
+  function findCell(cat, band, agency) { return data.cells.filter(function (c) { return c.cat === cat && c.band === band && c.agency === agency; })[0] || null; }
+
+  function draw(cell, estimate) {
+    var host = root.querySelector('[data-r-chart]'); host.innerHTML = '';
+    var W = 520, H = 70, left = 16, right = 16;
+    var lo = Math.floor(Math.min(cell.p25, 80) - 2), hi = Math.ceil(Math.max(cell.p75, 100) + 2);
+    var x = function (v) { return left + ((v - lo) / (hi - lo)) * (W - left - right); };
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'viz' });
+    [lo, 100, hi].forEach(function (v) { if (v < lo || v > hi) return; svg.appendChild(el('line', { x1: x(v), y1: 14, x2: x(v), y2: 44, class: v === 100 ? 'viz-ref' : 'viz-grid' })); svg.appendChild(el('text', { x: x(v), y: 62, 'text-anchor': 'middle', class: 'viz-axis' }, v + '%')); });
+    var bar = el('rect', { x: x(cell.p25), y: 24, width: Math.max(2, x(cell.p75) - x(cell.p25)), height: 10, rx: 4, class: 'viz-range' });
+    bar.appendChild(el('title', {}, 'p25 ' + cell.p25 + '% · median ' + cell.median + '% · p75 ' + cell.p75 + '% · n=' + cell.n));
+    svg.appendChild(bar);
+    if (cell.conf !== 'low') svg.appendChild(el('circle', { cx: x(cell.median), cy: 29, r: 5, class: 'viz-median' }));
+    host.appendChild(svg);
+  }
+
+  function show(cell, estimate, agency, fellBack) {
+    var set = function (sel, v) { root.querySelector(sel).textContent = v; };
+    var low = cell.conf === 'low';
+    set('[data-r-estimate]', fmtKRW(estimate));
+    set('[data-r-should]', low ? '—' : fmtKRW(estimate * cell.median / 100) + '  (' + cell.median.toFixed(2) + '%)');
+    set('[data-r-range]', fmtKRW(estimate * cell.p25 / 100) + ' – ' + fmtKRW(estimate * cell.p75 / 100) + '  (p25 ' + cell.p25.toFixed(2) + '% – p75 ' + cell.p75.toFixed(2) + '%)');
+    set('[data-r-cell]', cell.cat + ' · ' + cell.band + ' · ' + (cell.agency || '—'));
+    set('[data-r-basis]', cell.n.toLocaleString());
+    set('[data-r-bidders]', cell.bidders == null ? '—' : String(cell.bidders));
+    set('[data-r-conf]', root.getAttribute('data-conf-' + cell.conf));
+    var notes = [];
+    if (fellBack) notes.push(root.getAttribute('data-fellback').replace('{agency}', agency));
+    if (low) notes.push(root.getAttribute('data-lowonly'));
+    set('[data-r-note]', notes.join(' '));
+    draw(cell, estimate);
+    result.hidden = false;
+    last = { cell: cell, estimate: estimate, agency: agency };
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (!data) { status.textContent = root.getAttribute('data-unavailable'); return; }
+    var cat = form.cat.value, agency = (form.agency.value || '').trim();
+    var amount = Number(String(form.amount.value).replace(/[^0-9]/g, ''));
+    if (!amount) { form.amount.focus(); return; }
+    var band = bandOf(amount, data.band_edges_krw, data.bands);
+    var cell = agency ? findCell(cat, band, agency) : null, fellBack = false;
+    if (!cell) { cell = findCell(cat, band, ''); fellBack = !!agency; }
+    if (!cell) { status.textContent = root.getAttribute('data-nocell'); result.hidden = true; return; }
+    status.textContent = '';
+    show(cell, amount, agency, fellBack);
+  });
+
+  ask.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var endpoint = root.getAttribute('data-formspree'), st = ask.querySelector('[data-ask-status]'), btn = ask.querySelector('button');
+    if (!endpoint || !last) { st.textContent = root.getAttribute('data-failed'); return; }
+    var c = last.cell;
+    var message = 'Should-price calculator: full cell set requested. Category ' + c.cat + ', band ' + c.band + ', agency ' + (last.agency || '(category-wide)') + ', estimate ' + last.estimate + ' KRW, cell n=' + c.n + ' conf=' + c.conf + '.';
+    btn.disabled = true; st.textContent = root.getAttribute('data-sending');
+    fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email: ask.email.value, message: message, _subject: 'Should-price cells request (' + c.cat + ')', page: root.getAttribute('data-page'), _gotcha: ask._gotcha.value }) })
+      .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); st.textContent = root.getAttribute('data-sent'); ask.reset(); })
+      .catch(function () { st.textContent = root.getAttribute('data-failed'); btn.disabled = false; });
+  });
+
+  // The raw URL refreshes nightly without a build; a same-origin copy is the
+  // fallback (local checks, a raw-host outage).
+  function load(url) { return fetch(url, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); }); }
+  load(RAW).catch(function () { return load('/procurement-cells.json'); }).then(function (d) {
+    data = d; status.textContent = '';
+    var list = root.querySelector('#calc-agencies');
+    d.agencies.forEach(function (a) { var o = document.createElement('option'); o.value = a; list.appendChild(o); });
+    var stamp = document.querySelector('[data-updated-for="procurement-cells.json"]'); if (stamp) stamp.textContent = '· ' + d.as_of;
+  }).catch(function () { status.textContent = root.getAttribute('data-unavailable'); });
+})();
+</script>

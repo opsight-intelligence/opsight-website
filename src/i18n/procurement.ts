@@ -22,6 +22,16 @@ export interface ProcurementCopy {
   coverage: { heading: string; blocks: Block[] };
   how: { heading: string; body: string; platform: string };
   figures: { heading: string; lead: string; rateTitle: string; rateNote: string; dailyTitle: string; noticesLabel: string; awardsLabel: string; tableLabel: string; awardsCol: string; medianCol: string; rangeCol: string; dateCol: string };
+  calculator: {
+    heading: string; lead: string;
+    categoryLabel: string; categories: { value: string; label: string }[];
+    amountLabel: string; amountHint: string; agencyLabel: string; agencyHint: string; button: string;
+    resultHeading: string; estimateLabel: string; shouldLabel: string; rangeLabel: string; basisLabel: string;
+    cellLabel: string; biddersLabel: string; confLabel: string; conf: { high: string; medium: string; low: string };
+    fellBack: string; lowOnly: string; noCell: string; loading: string; unavailable: string;
+    askHeading: string; askLead: string; askEmail: string; askButton: string; askSending: string; askSent: string; askFailed: string;
+    method: string; disclaimer: string;
+  };
   contact: { heading: string; lead: string; button: string; mailto: string; disclaimer: string };
 }
 
@@ -80,6 +90,44 @@ export const procurement: Record<ProcLocale, ProcurementCopy> = {
       heading: 'How it is built',
       body: 'A deterministic pipeline: collect the public procurement record nightly, normalize it, key it per lot and per company, flag implausible figures, and report — every output traceable to the published record it came from. Built on public and free-tier sources.',
       platform: 'Part of the Opsight Intelligence Platform: every domain emits the same standardized intelligence object, so signals stay comparable and auditable across markets.',
+    },
+    calculator: {
+      heading: 'Should-price calculator',
+      lead: 'Type a tender\'s category and published estimate and read what comparable tenders actually cleared at. Aggregate only: a cell is a category, a public body and a size band.',
+      categoryLabel: 'Category',
+      categories: [
+        { value: 'servc', label: '용역 — services' },
+        { value: 'cnstwk', label: '공사 — construction' },
+        { value: 'thng', label: '물품 — goods' },
+      ],
+      amountLabel: 'Published estimate (기초금액), KRW',
+      amountHint: 'Sets the size band: <10M · 10M–50M · 50M–200M · 200M–1B · ≥1B.',
+      agencyLabel: 'Demanding agency (optional)',
+      agencyHint: 'As published by 조달청. Leave empty for the category-wide figure.',
+      button: 'Compute',
+      resultHeading: 'What comparable tenders cleared at',
+      estimateLabel: 'Published estimate',
+      shouldLabel: 'Should-price (median clearing rate)',
+      rangeLabel: 'Expected range (middle half)',
+      basisLabel: 'Comparable awards',
+      cellLabel: 'Cell',
+      biddersLabel: 'Median bidders per tender',
+      confLabel: 'Confidence',
+      conf: { high: 'high (60+ awards)', medium: 'medium (25–59 awards)', low: 'low (12–24 awards) — read the range, not a single number' },
+      fellBack: 'No cell of its own for {agency} in this band — showing the category-wide figure.',
+      lowOnly: 'This cell rests on fewer than 25 awards, so only the range is shown.',
+      noCell: 'No cell with at least 12 comparable awards for that category and band.',
+      loading: 'Loading the cells…',
+      unavailable: 'The cell data is not reachable right now.',
+      askHeading: 'Want every cell for this category?',
+      askLead: 'The full set — every agency and band at or above 12 awards, with the low-confidence cells the calculator withholds — as a dated CSV with its method note. Leave an address and it comes by mail.',
+      askEmail: 'Your email',
+      askButton: 'Request the cell set',
+      askSending: 'Sending…',
+      askSent: 'Requested — it will come from a person, not a robot.',
+      askFailed: 'Could not send; write to the address at the bottom of the page.',
+      method: 'Method: the 낙찰률 is the winning price as a percentage of the published 기초금액, as 조달청 publishes it. Awards the collector flagged as implausible and rates that are missing or non-positive are excluded. Percentiles over the awards in the cell; no smoothing, no model. One SQL definition (analytics.should_price_cell) serves this calculator, the chart above and the customer file.',
+      disclaimer: 'A measurement of past clearing rates, not advice on what to bid or what a tender should cost. No firm is identified and none can be inferred.',
     },
     contact: {
       heading: 'Early access',
@@ -140,6 +188,44 @@ export const procurement: Record<ProcLocale, ProcurementCopy> = {
       heading: '어떻게 만드는가',
       body: '결정론적 파이프라인: 매일 밤 공공조달 기록을 수집하고, 정규화하고, 건별·업체별로 키를 부여하고, 비정상 수치를 표시하고, 보고합니다 — 모든 출력은 그것이 나온 공개 기록으로 추적됩니다. 공개 및 무료 데이터 소스로 구축했습니다.',
       platform: 'Opsight 인텔리전스 플랫폼의 일부입니다: 모든 도메인이 같은 표준 인텔리전스 객체를 발행하므로, 시장이 달라도 신호를 비교하고 감사할 수 있습니다.',
+    },
+    calculator: {
+      heading: '낙찰가 참고 계산기',
+      lead: '공종과 기초금액을 입력하면 비교 가능한 실제 낙찰 결과의 분포를 보여 드립니다. 집계 자료입니다 — 하나의 구간은 공종·수요기관·규모 구간이며 개별 업체 정보는 없습니다.',
+      categoryLabel: '공종',
+      categories: [
+        { value: 'servc', label: '용역' },
+        { value: 'cnstwk', label: '공사' },
+        { value: 'thng', label: '물품' },
+      ],
+      amountLabel: '기초금액 (원)',
+      amountHint: '규모 구간이 정해집니다: 1천만 미만 · 1천만~5천만 · 5천만~2억 · 2억~10억 · 10억 이상.',
+      agencyLabel: '수요기관 (선택)',
+      agencyHint: '조달청 공고의 기관명 그대로. 비워 두면 공종 전체 수치를 보여 드립니다.',
+      button: '계산',
+      resultHeading: '비교 가능한 낙찰 결과',
+      estimateLabel: '기초금액',
+      shouldLabel: '참고 낙찰가 (낙찰률 중앙값)',
+      rangeLabel: '예상 범위 (사분위)',
+      basisLabel: '비교 낙찰 건수',
+      cellLabel: '구간',
+      biddersLabel: '투찰업체 수 중앙값',
+      confLabel: '신뢰 등급',
+      conf: { high: '높음 (60건 이상)', medium: '보통 (25~59건)', low: '낮음 (12~24건) — 단일 수치 대신 범위를 참고하십시오' },
+      fellBack: '{agency}은(는) 이 규모 구간에 자체 표본이 부족하여 공종 전체 수치를 보여 드립니다.',
+      lowOnly: '표본이 25건 미만인 구간이므로 범위만 표시합니다.',
+      noCell: '해당 공종·규모 구간에 12건 이상의 비교 낙찰 사례가 없습니다.',
+      loading: '구간 자료를 불러오는 중…',
+      unavailable: '구간 자료를 불러올 수 없습니다.',
+      askHeading: '이 공종의 전체 구간 자료가 필요하십니까?',
+      askLead: '12건 이상인 모든 기관·규모 구간(계산기가 보여 드리지 않는 낮은 신뢰 구간 포함)을 산출 방법 설명과 함께 CSV로 보내 드립니다. 이메일을 남겨 주시면 담당자가 직접 보내 드립니다.',
+      askEmail: '이메일',
+      askButton: '구간 자료 요청',
+      askSending: '전송 중…',
+      askSent: '요청되었습니다. 자동 발송이 아니라 담당자가 직접 보내 드립니다.',
+      askFailed: '전송할 수 없습니다. 페이지 하단의 주소로 메일 주십시오.',
+      method: '산출 방법: 낙찰률은 조달청이 공개한 기초금액 대비 낙찰가의 비율을 그대로 사용합니다. 수집 과정에서 비정상으로 표시된 건과 낙찰률이 없거나 0 이하인 건은 제외합니다. 구간 내 낙찰 건의 백분위수이며, 보정이나 모델은 없습니다. 이 계산기, 위 도표, 고객용 파일이 하나의 정의(analytics.should_price_cell)를 공유합니다.',
+      disclaimer: '과거 낙찰률의 측정값이며, 투찰가나 적정 원가에 대한 조언이 아닙니다. 개별 업체는 식별되지 않으며 추정할 수도 없습니다.',
     },
     contact: {
       heading: '얼리 액세스',
