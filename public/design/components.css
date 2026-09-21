@@ -101,6 +101,7 @@
 .line-procurement   { --line: var(--line-procurement); }
 .line-manufacturing { --line: var(--line-manufacturing); }
 .line-opsentry      { --line: var(--line-opsentry); }
+.line-platform      { --line: var(--line-platform); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 @media (max-width: 640px) {

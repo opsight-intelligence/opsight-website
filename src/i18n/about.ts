@@ -28,7 +28,7 @@ export const about: Record<AboutLocale, AboutCopy> = {
       heading: 'Who',
       body: [
         'Opsight Intelligence is built and run from Korea by a small team with a background in OSINT entity classification, procurement data and manufacturing analytics. The platform is one codebase per line on one shared bus, collecting nightly on a single schedule.',
-        'Three lines are live — fraud, procurement, manufacturing — and one product, OpSentry, is open source. The platform runs where the data lives; nothing is hosted for a client that the client has not asked for.',
+        'Three lines are live — fraud, procurement, manufacturing — one product, OpSentry, is open source, and above the lines sits a platform layer: one entity across them, nightly sanctions screening, the corporate registry, and a consortium exchange that shares hashes and bands. The platform runs where the data lives; nothing is hosted for a client that the client has not asked for.',
       ],
     },
     where: {
@@ -74,7 +74,7 @@ export const about: Record<AboutLocale, AboutCopy> = {
       heading: '누가',
       body: [
         'Opsight Intelligence는 OSINT 엔티티 분류, 조달 데이터, 제조 분석 배경을 가진 소규모 팀이 한국에서 만들고 운영합니다. 플랫폼은 라인별 하나의 코드베이스가 하나의 공유 버스 위에서, 하나의 일정으로 매일 밤 수집합니다.',
-        '세 개의 라인 — 사기, 공공조달, 제조 — 이 운영 중이고, OpSentry 하나는 오픈소스 제품입니다. 플랫폼은 데이터가 있는 곳에서 돌아가며, 고객이 요청하지 않은 것을 고객 대신 호스팅하지 않습니다.',
+        '세 개의 라인 — 사기, 공공조달, 제조 — 이 운영 중이고, OpSentry 하나는 오픈소스 제품이며, 라인 위에는 플랫폼 계층이 있습니다: 라인을 가로지르는 하나의 엔터티, 매일 밤의 제재 스크리닝, 기업 등기, 해시와 구간만 교환하는 컨소시엄. 플랫폼은 데이터가 있는 곳에서 돌아가며, 고객이 요청하지 않은 것을 고객 대신 호스팅하지 않습니다.',
       ],
     },
     where: {
