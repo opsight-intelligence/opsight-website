@@ -44,7 +44,7 @@ const { copy, locale } = Astro.props;
   </div>
 </section></div></div>
 
-<ProcurementCharts {...copy.figures} />
+<ProcurementCharts {...copy.figures} moreHref={locale === 'ko' ? '/ko/procurement/numbers/' : '/procurement/numbers/'} />
 
 <ShouldPriceCalculator {...copy.calculator} formspree={FORMSPREE_ENDPOINT} page={locale === 'ko' ? '/ko/procurement' : '/procurement'} />
 

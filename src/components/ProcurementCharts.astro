@@ -9,7 +9,7 @@
 // Marks in the line accent only; text in ink tokens; a table view is always
 // present for screen readers and for anyone who wants the numbers.
 interface Props {
-  heading: string; lead: string;
+  heading: string; lead: string; more?: string; moreLink?: string; moreHref?: string;
   rateTitle: string; rateNote: string;
   dailyTitle: string; noticesLabel: string; awardsLabel: string;
   tableLabel: string; awardsCol: string; medianCol: string; rangeCol: string; dateCol: string;
@@ -39,6 +39,7 @@ const p = Astro.props;
       </details>
     </div>
   </div>
+  {p.more && <p class="muted" style="margin-top:var(--s-4)">{p.more} <a href={p.moreHref}>{p.moreLink}</a></p>}
 </section>
 
 <script is:inline define:vars={{ noticesLabel: p.noticesLabel, awardsLabel: p.awardsLabel }}>

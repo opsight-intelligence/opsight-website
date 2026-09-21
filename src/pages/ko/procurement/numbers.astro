@@ -1,0 +1,9 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ProcurementNumbers from '../../../components/ProcurementNumbers.astro';
+import { procurementNumbers } from '../../../i18n/procurementNumbers';
+const copy = procurementNumbers.ko;
+---
+<Base locale="ko" title={copy.title} description={copy.description} path="/procurement/numbers" locales={['en', 'ko']} current="procurement">
+  <ProcurementNumbers copy={copy} locale="ko" />
+</Base>
