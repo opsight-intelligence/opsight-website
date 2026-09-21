@@ -1,0 +1,53 @@
+---
+import type { PlatformCopy } from '../i18n/platform';
+import HeroBand from './HeroBand.astro';
+import ContactPanel from './ContactPanel.astro';
+interface Props { copy: PlatformCopy; locale: 'en' | 'ko' }
+const { copy, locale } = Astro.props;
+---
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} />
+
+<section class="section" id="question">
+  <div class="eyebrow">{copy.question.heading}</div>
+  <p class="muted">{copy.question.lead}</p>
+  <div class="grid">
+    <article class="card"><div class="card__line"></div><p>{copy.question.before}</p></article>
+    <article class="card"><div class="card__line"></div><p>{copy.question.after}</p></article>
+  </div>
+</section>
+
+<div class="band section--tint"><div class="container"><section class="section" id="layers">
+  <div class="eyebrow">{copy.layers.heading}</div>
+  <p class="muted">{copy.layers.lead}</p>
+  <div class="grid">
+    {copy.layers.items.map((l, i) => (
+      <article class="card"><div class="card__line"></div><span class="badge badge--line">{String(i + 1).padStart(2, '0')}</span><h3>{l.title}</h3><p>{l.body}</p><p class="muted" style="font-size:.9em">{l.state}</p></article>
+    ))}
+  </div>
+</section></div></div>
+
+<section class="section" id="exchange">
+  <div class="eyebrow">{copy.exchange.heading}</div>
+  <p class="muted">{copy.exchange.lead}</p>
+  <div class="grid">
+    {copy.exchange.steps.map((s, i) => (
+      <article class="card"><div class="card__line"></div><span class="badge badge--line">{String(i + 1).padStart(2, '0')}</span><h3>{s.title}</h3><p>{s.body}</p></article>
+    ))}
+  </div>
+  <ul style="padding-left:1.2em;max-width:var(--measure);margin-top:var(--s-5)">
+    {copy.exchange.never.map((n) => <li style="margin-bottom:var(--s-3)">{n}</li>)}
+  </ul>
+</section>
+
+<section class="section" id="honesty">
+  <div class="eyebrow">{copy.honesty.heading}</div>
+  <ul style="padding-left:1.2em;max-width:var(--measure)">
+    {copy.honesty.items.map((i) => <li style="margin-bottom:var(--s-3)">{i}</li>)}
+  </ul>
+</section>
+
+<section class="section" id="ask">
+  <div class="eyebrow">{copy.ask.heading}</div>
+  <p class="muted">{copy.ask.body}</p>
+  <ContactPanel locale={locale} subject={copy.ask.heading} />
+</section>

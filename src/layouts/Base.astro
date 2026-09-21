@@ -10,7 +10,7 @@ interface Props {
   description: string;
   path: string;                 // locale-less path of this page, e.g. '/' or '/fraud'
   locales: Locale[];            // locales this page exists in (drives hreflang + switch)
-  current: 'home' | 'fraud' | 'procurement' | 'manufacturing' | 'opsentry' | 'method' | 'about';
+  current: 'home' | 'fraud' | 'procurement' | 'manufacturing' | 'opsentry' | 'platform' | 'method' | 'about';
 }
 const { locale, title, description, path, locales, current } = Astro.props;
 const c = common[locale];
@@ -57,6 +57,7 @@ const ogImage = `${site}/og/${current}.png`;
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/procurement')} aria-current={current === 'procurement' ? 'page' : undefined}>{c.nav.procurement}</a></li>
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/manufacturing')} aria-current={current === 'manufacturing' ? 'page' : undefined}>{c.nav.manufacturing}</a></li>
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/opsentry')} aria-current={current === 'opsentry' ? 'page' : undefined}>{c.nav.opsentry}</a></li>
+      <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/platform')} aria-current={current === 'platform' ? 'page' : undefined}>{c.nav.platform}</a></li>
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/method')} aria-current={current === 'method' ? 'page' : undefined}>{c.nav.method}</a></li>
       <li><a href={localePath(locale === 'tr' ? 'en' : locale, '/about')} aria-current={current === 'about' ? 'page' : undefined}>{c.nav.about}</a></li>
       {others.map((l) => (

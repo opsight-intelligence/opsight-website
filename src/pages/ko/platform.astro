@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import Platform from '../../components/Platform.astro';
+import { platform } from '../../i18n/platform';
+const copy = platform.ko;
+---
+<Base locale="ko" title={copy.title} description={copy.description} path="/platform" locales={['en', 'ko']} current="platform">
+  <Platform copy={copy} locale="ko" />
+</Base>

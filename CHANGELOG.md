@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.26.0] - 2026-09-21
+
+### Added
+- `/platform` and `/ko/platform`: the layer above the three lines — the entity layer (11,953 entities, measured 2026-09-21), sanctions screening, the corporate registry and the consortium exchange, with the four-step hash-and-band protocol and a *What is true today* list that says which parts are live, built or waiting on a member. Nav entry in all three locales; sitemap. Written against `opsight-company/roadmaps/platform-direction.md`; Korean by the agent, needs a read.
+
 ## [0.25.0] - 2026-09-21
 
 ### Added
