@@ -1,0 +1,116 @@
+---
+// "Korean public procurement in numbers": every figure comes from
+// procurement-numbers.json at load (maritime, nightly, governed views). The
+// page names public bodies and never a firm; the league tables carry the
+// floor and the exclusions in their own caption so the ranking cannot be
+// read as more than it is.
+import HeroBand from './HeroBand.astro';
+import type { NumbersCopy } from '../i18n/procurementNumbers';
+interface Props { copy: NumbersCopy; locale: 'en' | 'ko' }
+const { copy, locale } = Astro.props;
+const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement/#calculator';
+---
+<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="procurement" />
+
+<div data-numbers data-unavailable={copy.unavailable} data-span={copy.span} data-labels={JSON.stringify(copy.labels)} data-floor={copy.league.floor}>
+<section class="section" id="headline">
+  <p class="muted" data-n-span>…</p>
+  <div class="grid">
+    <div class="stat stat--line line-procurement"><div class="stat__value" data-n-share>—</div><div class="stat__label">{copy.headline.uncontested}</div><div class="stat__meta">{copy.headline.uncontestedNote}</div></div>
+    <div class="stat stat--line line-procurement"><div class="stat__value" data-n-awards>—</div><div class="stat__label">{copy.headline.awards}</div></div>
+    <div class="stat stat--line line-procurement"><div class="stat__value" data-n-agencies>—</div><div class="stat__label">{copy.headline.agencies}</div></div>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="eyebrow">{copy.categories.heading}</div>
+  <p class="muted">{copy.categories.lead}</p>
+  <div class="chart" data-n-catchart role="img" aria-describedby="table-cats"></div>
+  <div class="table-wrap"><table class="table" id="table-cats"><thead><tr><th>{copy.categories.cat}</th><th class="num">{copy.categories.awards}</th><th class="num">{copy.categories.median}</th><th class="num">{copy.categories.range}</th><th class="num">{copy.categories.iqr}</th><th class="num">{copy.categories.bidders}</th></tr></thead><tbody data-n-cats></tbody></table></div>
+  <p class="muted" style="font-size:var(--text-sm)">{copy.categories.note}</p>
+</section>
+
+<div class="band section--tint"><div class="container"><section class="section" id="depth">
+  <div class="eyebrow">{copy.depth.heading}</div>
+  <p class="muted">{copy.depth.lead}</p>
+  <div class="table-wrap"><table class="table"><thead><tr><th>{copy.categories.cat}</th><th>{copy.depth.band}</th><th class="num">{copy.depth.awards}</th><th class="num">{copy.depth.bidders}</th><th class="num">{copy.depth.solo}</th></tr></thead><tbody data-n-depth></tbody></table></div>
+</section></div></div>
+
+<section class="section" id="agencies">
+  <div class="eyebrow">{copy.league.heading}</div>
+  <p class="muted">{copy.league.lead}</p>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr))">
+    <div class="card line-procurement"><div class="card__line"></div><h3>{copy.league.most}</h3>
+      <div class="table-wrap"><table class="table"><thead><tr><th>{copy.league.agency}</th><th class="num">{copy.league.awards}</th><th class="num">{copy.league.solo}</th><th class="num">{copy.league.share}</th><th class="num">{copy.league.rate}</th></tr></thead><tbody data-n-most></tbody></table></div></div>
+    <div class="card line-procurement"><div class="card__line"></div><h3>{copy.league.least}</h3>
+      <div class="table-wrap"><table class="table"><thead><tr><th>{copy.league.agency}</th><th class="num">{copy.league.awards}</th><th class="num">{copy.league.solo}</th><th class="num">{copy.league.share}</th><th class="num">{copy.league.rate}</th></tr></thead><tbody data-n-least></tbody></table></div></div>
+  </div>
+  <p class="muted" style="font-size:var(--text-sm)" data-n-floor></p>
+</section>
+
+<section class="section" id="next">
+  <div class="card line-procurement"><div class="card__line"></div>
+    <p style="font-size:var(--text-lg);margin:0">{copy.calculator.text} <a href={calcHref}>{copy.calculator.link}</a></p>
+  </div>
+  <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-5)">{copy.method}</p>
+</section>
+</div>
+
+<script is:inline>
+(function () {
+  var RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/procurement-numbers.json';
+  var NS = 'http://www.w3.org/2000/svg';
+  var root = document.querySelector('[data-numbers]'); if (!root) return;
+  var labels = JSON.parse(root.getAttribute('data-labels') || '{}');
+  var fmt = function (n) { return Number(n).toLocaleString(); };
+  var pct = function (v, d) { return v == null ? '—' : (Number(v) * 100).toFixed(d == null ? 1 : d) + '%'; };
+  var td = function (tr, text, num) { var c = document.createElement('td'); if (num) c.className = 'num'; c.textContent = text; tr.appendChild(c); };
+  var el = function (tag, attrs, text) { var e = document.createElementNS(NS, tag); Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); }); if (text !== undefined) e.textContent = text; return e; };
+  var label = function (cat) { return labels[cat] || cat; };
+
+  function catChart(rows) {
+    var host = root.querySelector('[data-n-catchart]'); host.innerHTML = '';
+    var W = 560, rowH = 34, top = 24, left = 150, right = 24, H = top + rows.length * rowH + 30;
+    var lo = 80, hi = 102;
+    rows.forEach(function (r) { lo = Math.min(lo, Math.floor(r.p25 - 2)); hi = Math.max(hi, Math.ceil(r.p75 + 2)); });
+    var x = function (v) { return left + ((v - lo) / (hi - lo)) * (W - left - right); };
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'viz' });
+    [lo, 100, hi].forEach(function (v) { svg.appendChild(el('line', { x1: x(v), y1: top - 8, x2: x(v), y2: H - 26, class: v === 100 ? 'viz-ref' : 'viz-grid' })); svg.appendChild(el('text', { x: x(v), y: H - 10, 'text-anchor': 'middle', class: 'viz-axis' }, v + '%')); });
+    rows.forEach(function (r, i) {
+      var y = top + i * rowH + rowH / 2;
+      svg.appendChild(el('text', { x: left - 10, y: y + 4, 'text-anchor': 'end', class: 'viz-label' }, label(r.cat)));
+      var bar = el('rect', { x: x(r.p25), y: y - 5, width: Math.max(2, x(r.p75) - x(r.p25)), height: 10, rx: 4, class: 'viz-range' });
+      bar.appendChild(el('title', {}, label(r.cat) + ' · p25 ' + r.p25 + '% · median ' + r.median + '% · p75 ' + r.p75 + '% · ' + fmt(r.awards)));
+      svg.appendChild(bar);
+      svg.appendChild(el('circle', { cx: x(r.median), cy: y, r: 5, class: 'viz-median' }));
+      svg.appendChild(el('text', { x: x(r.p75) + 8, y: y + 4, class: 'viz-value' }, r.median.toFixed(1) + '%'));
+    });
+    host.appendChild(svg);
+  }
+
+  function league(sel, rows) {
+    var tb = root.querySelector(sel); tb.innerHTML = '';
+    rows.forEach(function (r) { var tr = document.createElement('tr'); td(tr, r.agency); td(tr, fmt(r.awards), true); td(tr, fmt(r.solo), true); td(tr, pct(r.share, 0), true); td(tr, r.solo_rate == null ? '—' : r.solo_rate.toFixed(1) + '%', true); tb.appendChild(tr); });
+  }
+
+  function render(d) {
+    var span = root.getAttribute('data-span').replace('{from}', d.span.from).replace('{to}', d.span.to).replace('{awards}', fmt(d.span.awards)).replace('{as_of}', d.as_of);
+    root.querySelector('[data-n-span]').textContent = span;
+    root.querySelector('[data-n-share]').textContent = pct(d.uncontested.share, 1);
+    root.querySelector('[data-n-awards]').textContent = fmt(d.uncontested.awards);
+    root.querySelector('[data-n-agencies]').textContent = fmt(d.most_uncontested.length + d.most_contested.length);
+    catChart(d.categories);
+    var tb = root.querySelector('[data-n-cats]'); tb.innerHTML = '';
+    d.categories.forEach(function (c) { var tr = document.createElement('tr'); td(tr, label(c.cat)); td(tr, fmt(c.awards), true); td(tr, c.median.toFixed(2) + '%', true); td(tr, c.p25.toFixed(2) + '–' + c.p75.toFixed(2) + '%', true); td(tr, c.iqr.toFixed(2), true); td(tr, c.bidders == null ? '—' : String(c.bidders), true); tb.appendChild(tr); });
+    var dp = root.querySelector('[data-n-depth]'); dp.innerHTML = '';
+    var order = ['<10M', '10M-50M', '50M-200M', '200M-1B', '>=1B'];
+    d.depth.slice().sort(function (a, b) { return (a.cat < b.cat ? -1 : a.cat > b.cat ? 1 : 0) || order.indexOf(a.band) - order.indexOf(b.band); }).forEach(function (r) { var tr = document.createElement('tr'); td(tr, label(r.cat)); td(tr, r.band); td(tr, fmt(r.awards), true); td(tr, r.bidders == null ? '—' : String(r.bidders), true); td(tr, pct(r.solo_share, 1), true); dp.appendChild(tr); });
+    league('[data-n-most]', d.most_uncontested);
+    league('[data-n-least]', d.most_contested);
+    root.querySelector('[data-n-floor]').textContent = root.getAttribute('data-floor').replace('{n}', d.min_agency_awards);
+  }
+
+  function load(url) { return fetch(url, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); }); }
+  load(RAW).catch(function () { return load('/procurement-numbers.json'); }).then(render).catch(function () { root.querySelector('[data-n-span]').textContent = root.getAttribute('data-unavailable'); });
+})();
+</script>

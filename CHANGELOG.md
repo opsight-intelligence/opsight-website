@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.25.0] - 2026-09-21
+
+### Added
+- **/procurement/numbers** and **/ko/procurement/numbers** — "Korean public procurement in numbers": uncontested share, per-category 낙찰률 median / middle half / IQR / median bidders (with the range chart), competition depth per size band, and two agency league tables (most / least uncontested, ≥30 awards, framework contracts and 조달청-as-buyer excluded). Every figure from `procurement-numbers.json` (maritime v0.55.0, nightly, governed views); public bodies named, no firm anywhere; links to the calculator. Linked from the procurement page's figures section.
+
 ## [0.24.0] - 2026-09-21
 
 ### Added

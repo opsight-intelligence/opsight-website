@@ -21,7 +21,7 @@ export interface ProcurementCopy {
   collect: { heading: string; lead: string; liveBadge: string; blocks: Block[] };
   coverage: { heading: string; blocks: Block[] };
   how: { heading: string; body: string; platform: string };
-  figures: { heading: string; lead: string; rateTitle: string; rateNote: string; dailyTitle: string; noticesLabel: string; awardsLabel: string; tableLabel: string; awardsCol: string; medianCol: string; rangeCol: string; dateCol: string };
+  figures: { heading: string; lead: string; more: string; moreLink: string; rateTitle: string; rateNote: string; dailyTitle: string; noticesLabel: string; awardsLabel: string; tableLabel: string; awardsCol: string; medianCol: string; rangeCol: string; dateCol: string };
   calculator: {
     heading: string; lead: string;
     categoryLabel: string; categories: { value: string; label: string }[];
@@ -78,6 +78,8 @@ export const procurement: Record<ProcLocale, ProcurementCopy> = {
     figures: {
       heading: 'The shape of the market',
       lead: 'Two aggregates, refreshed nightly from the store. No firm, agency or lot is named.',
+      more: 'The full picture — uncontested share, competition by size, and the agencies that award without competition:',
+      moreLink: 'Korean public procurement in numbers →',
       rateTitle: 'Clearing rate by category',
       rateNote: 'The middle half of winning bids (p25–p75) as a percentage of the estimate, median marked. Categories with fewer than 50 rated awards are left out.',
       dailyTitle: 'Last 30 days',
@@ -175,6 +177,8 @@ export const procurement: Record<ProcLocale, ProcurementCopy> = {
     },
     figures: {
       heading: '시장의 형태',
+      more: '전체 그림 — 단독 입찰 비율, 규모별 경쟁 강도, 경쟁 없이 낙찰하는 기관:',
+      moreLink: '숫자로 보는 한국 공공조달 →',
       lead: '매일 밤 저장소에서 갱신되는 두 가지 집계. 업체, 기관, 건은 어디에도 나오지 않습니다.',
       rateTitle: '업종별 낙찰률',
       rateNote: '낙찰가의 중간 절반(p25–p75)을 기초금액 대비 비율로, 중앙값 표시. 평가된 낙찰이 50건 미만인 업종은 제외.',
