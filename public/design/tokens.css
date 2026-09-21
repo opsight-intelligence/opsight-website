@@ -33,6 +33,7 @@
   --line-procurement:   #1baf7a;
   --line-manufacturing: #eb6834;
   --line-opsentry:      var(--brand);
+  --line-platform:      var(--ink-2, #4b5563);
 
   /* status / severity — fixed, never themed, never a series */
   --sev-critical:     #d03b3b;
@@ -106,6 +107,7 @@
     --line-procurement:   #199e70;
     --line-manufacturing: #d95926;
     --line-opsentry:      var(--brand);
+    --line-platform:      var(--ink-2, #9ca3af);
     --sev-low:          #9ca3af;
     --surface-0:        #121417;
     --surface-1:        #1a1d21;

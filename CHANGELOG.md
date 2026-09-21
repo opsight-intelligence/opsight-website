@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.26.1] - 2026-09-21
+
+### Changed
+- Home gains a fifth card, *The layer above the lines*, linking to `/platform`; About's "who" paragraph names the platform layer (en + ko); a neutral `--line-platform` accent.
+
 ## [0.26.0] - 2026-09-21
 
 ### Added

@@ -15,7 +15,7 @@ export interface HomeCopy {
   description: string;
   hero: { eyebrow: string; title: string; lead: string; lifecycle: string; primary: string; primaryHref: string; secondary: string; secondaryHref: string };
   numbers: { heading: string; lead: string; entities: string; clusters: string; notices: string; awards: string };
-  lines: { heading: string; lead: string; fraud: LineCard; procurement: LineCard; manufacturing: LineCard; opsentry: LineCard };
+  lines: { heading: string; lead: string; fraud: LineCard; procurement: LineCard; manufacturing: LineCard; opsentry: LineCard; platform: LineCard };
   honesty: { badge: string; title: string; body: string };
   contact: { heading: string; lead: string; emailLabel: string; lineLabel: string; linePlaceholder: string; hint: string; button: string; mailto: string };
 }
@@ -49,7 +49,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
       awards: 'Awards with winning price',
     },
     lines: {
-      heading: 'Three intelligence lines, one platform',
+      heading: 'Three intelligence lines, one platform above them',
       lead: 'Specialized engines that publish to the same bus, so signals stay comparable and auditable across markets.',
       fraud: {
         badge: 'Fraud',
@@ -78,6 +78,13 @@ export const home: Record<HomeLocale, HomeCopy> = {
         body: 'Live today as OpSentry — deterministic security guardrails for AI coding assistants, with compliance mapping for ISO 27001, the EU AI Act and the Korean AI Basic Act.',
         action: 'Install free →',
         href: '/opsentry',
+      },
+      platform: {
+        badge: 'Platform',
+        title: 'The layer above the lines',
+        body: 'One entity per firm, account or wallet across every line, screened nightly against the sanctions lists, enriched from the corporate registry, and a consortium exchange where institutions corroborate a mule signal by hash and band — never a customer.',
+        action: 'See the four layers →',
+        href: '/platform',
       },
     },
     honesty: {
@@ -149,6 +156,13 @@ export const home: Record<HomeLocale, HomeCopy> = {
         body: 'OpSentry로 지금 사용할 수 있습니다 — AI 코딩 어시스턴트를 위한 결정론적 보안 가드레일. ISO 27001, EU AI법, 한국 AI 기본법 대응 매핑 포함.',
         action: '무료 설치 →',
         href: '/ko/opsentry',
+      },
+      platform: {
+        badge: '플랫폼',
+        title: '라인 위의 계층',
+        body: '모든 라인에 걸쳐 회사·계정·지갑마다 하나의 엔터티, 매일 밤 제재 명단 대조, 기업 등기 정보 보강, 그리고 기관들이 고객 정보 대신 해시와 구간으로 자금세탁 신호를 교차 확인하는 컨소시엄 교환.',
+        action: '네 개의 계층 보기 →',
+        href: '/ko/platform',
       },
     },
     honesty: {

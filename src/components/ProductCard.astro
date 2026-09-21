@@ -1,6 +1,6 @@
 ---
 import type { LineCard } from '../i18n/home';
-interface Props { card: LineCard; line: 'fraud' | 'procurement' | 'manufacturing' | 'opsentry' }
+interface Props { card: LineCard; line: 'fraud' | 'procurement' | 'manufacturing' | 'opsentry' | 'platform' }
 const { card, line } = Astro.props;
 ---
 <article class={`card line-${line}`}>
