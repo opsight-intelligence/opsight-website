@@ -7,7 +7,7 @@ export type Locale = 'en' | 'ko' | 'tr';
 export interface CommonCopy {
   htmlLang: string;
   ogLocale: string;
-  nav: { brand: string; fraud: string; procurement: string; manufacturing: string; opsentry: string; method: string; about: string };
+  nav: { brand: string; fraud: string; procurement: string; manufacturing: string; opsentry: string; platform: string; method: string; about: string };
   langNames: Record<Locale, string>;
   footer: { rights: string; method: string };
   live: { badge: string; lastWritten: string; source: string };
@@ -18,7 +18,7 @@ export const common: Record<Locale, CommonCopy> = {
   en: {
     htmlLang: 'en',
     ogLocale: 'en_US',
-    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: 'Fraud', procurement: 'Procurement', manufacturing: 'Manufacturing', opsentry: 'OpSentry', method: 'Method', about: 'About' },
+    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: 'Fraud', procurement: 'Procurement', manufacturing: 'Manufacturing', opsentry: 'OpSentry', platform: 'Platform', method: 'Method', about: 'About' },
     langNames: { en: 'English', ko: '한국어', tr: 'Türkçe' },
     footer: { rights: '© 2026 Opsight Intelligence. All rights reserved.', method: 'Built on public and free-tier sources.' },
     live: { badge: 'Live', lastWritten: 'last written', source: 'source' },
@@ -27,7 +27,7 @@ export const common: Record<Locale, CommonCopy> = {
   ko: {
     htmlLang: 'ko',
     ogLocale: 'ko_KR',
-    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: '사기 인텔리전스', procurement: '공공조달', manufacturing: '제조', opsentry: 'OpSentry', method: '방법론', about: '소개' },
+    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: '사기 인텔리전스', procurement: '공공조달', manufacturing: '제조', opsentry: 'OpSentry', platform: '플랫폼', method: '방법론', about: '소개' },
     langNames: { en: 'English', ko: '한국어', tr: 'Türkçe' },
     footer: { rights: '© 2026 Opsight Intelligence. All rights reserved.', method: '공개 및 무료 데이터 소스로 구축했습니다.' },
     live: { badge: '실시간', lastWritten: '작성일', source: '출처' },
@@ -36,7 +36,7 @@ export const common: Record<Locale, CommonCopy> = {
   tr: {
     htmlLang: 'tr',
     ogLocale: 'tr_TR',
-    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: 'Dolandırıcılık', procurement: 'Kamu İhaleleri', manufacturing: 'Üretim', opsentry: 'OpSentry', method: 'Yöntem', about: 'Hakkında' },
+    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: 'Dolandırıcılık', procurement: 'Kamu İhaleleri', manufacturing: 'Üretim', opsentry: 'OpSentry', platform: 'Platform', method: 'Yöntem', about: 'Hakkında' },
     langNames: { en: 'English', ko: '한국어', tr: 'Türkçe' },
     footer: { rights: '© 2026 Opsight Intelligence. Tüm hakları saklıdır.', method: 'Açık ve ücretsiz kaynaklar üzerine kuruludur.' },
     live: { badge: 'Canlı', lastWritten: 'yazıldı', source: 'kaynak' },
