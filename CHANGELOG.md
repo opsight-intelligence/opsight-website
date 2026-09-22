@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.27.0] - 2026-09-22
+
+### Added
+- About gains *Who builds it*: four credits stated as résumé lines — senior solution engineer in manufacturing who worked directly with Fortune 500 OEMs and tier-1 suppliers (no employer named), 2nd place in the 2026 APJ data-platform hackathon for an automated manufacturing workflow, the Korean procurement line, OSINT entity classification. En + ko.
+
 ## [0.26.1] - 2026-09-21
 
 ### Changed
