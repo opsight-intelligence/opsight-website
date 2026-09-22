@@ -7,6 +7,7 @@ export interface AboutCopy {
   title: string; description: string;
   hero: { eyebrow: string; title: string; lead: string };
   who: { heading: string; body: string[] };
+  credentials: { heading: string; lead: string; items: { title: string; body: string }[] };
   where: { heading: string; body: string };
   how: { heading: string; items: { title: string; body: string }[] };
   contact: { heading: string; lead: string; email: string; button: string; mailto: string; hint: string };
@@ -29,6 +30,16 @@ export const about: Record<AboutLocale, AboutCopy> = {
       body: [
         'Opsight Intelligence is built and run from Korea by a small team with a background in OSINT entity classification, procurement data and manufacturing analytics. The platform is one codebase per line on one shared bus, collecting nightly on a single schedule.',
         'Three lines are live — fraud, procurement, manufacturing — one product, OpSentry, is open source, and above the lines sits a platform layer: one entity across them, nightly sanctions screening, the corporate registry, and a consortium exchange that shares hashes and bands. The platform runs where the data lives; nothing is hosted for a client that the client has not asked for.',
+      ],
+    },
+    credentials: {
+      heading: 'Who builds it',
+      lead: 'One engineer, stated plainly. These are the credits the platform rests on; none of them is a client of Opsight.',
+      items: [
+        { title: 'Senior solution engineer, manufacturing', body: 'Worked directly with Fortune 500 OEMs and their tier-1 suppliers on production-analytics solutions — the methods the manufacturing line runs are the ones proven there.' },
+        { title: '2nd place, 2026 APJ data-platform hackathon', body: 'For an automated manufacturing workflow: sense, reason, act and record over a fleet, the same shape as the agent that runs here nightly.' },
+        { title: 'Public procurement, Korea', body: 'The KONEPS collection, the governed analytics views and the should-price and uncontested-tender products were built and are run from Seoul, nightly, since 2026.' },
+        { title: 'OSINT entity classification', body: 'The fraud line’s typed-identifier extraction, cross-market correlation and the entity layer above it — every link cited to the record that justified it.' },
       ],
     },
     where: {
@@ -75,6 +86,16 @@ export const about: Record<AboutLocale, AboutCopy> = {
       body: [
         'Opsight Intelligence는 OSINT 엔티티 분류, 조달 데이터, 제조 분석 배경을 가진 소규모 팀이 한국에서 만들고 운영합니다. 플랫폼은 라인별 하나의 코드베이스가 하나의 공유 버스 위에서, 하나의 일정으로 매일 밤 수집합니다.',
         '세 개의 라인 — 사기, 공공조달, 제조 — 이 운영 중이고, OpSentry 하나는 오픈소스 제품이며, 라인 위에는 플랫폼 계층이 있습니다: 라인을 가로지르는 하나의 엔터티, 매일 밤의 제재 스크리닝, 기업 등기, 해시와 구간만 교환하는 컨소시엄. 플랫폼은 데이터가 있는 곳에서 돌아가며, 고객이 요청하지 않은 것을 고객 대신 호스팅하지 않습니다.',
+      ],
+    },
+    credentials: {
+      heading: '누가 만드는가',
+      lead: '엔지니어 한 사람, 있는 그대로. 플랫폼이 기대는 경력이며, 어느 것도 Opsight의 고객이 아닙니다.',
+      items: [
+        { title: '제조 도메인 시니어 솔루션 엔지니어', body: 'Fortune 500 OEM과 1차 협력사를 직접 상대하며 생산 분석 솔루션을 구축했습니다. 제조 라인이 돌리는 방법론은 그곳에서 검증된 것입니다.' },
+        { title: '2026 APJ 데이터 플랫폼 해커톤 2위', body: '자동화된 제조 워크플로 — 감지·추론·실행·기록을 설비 전체에 걸쳐 수행하는 구조로, 여기서 매일 밤 도는 에이전트와 같은 형태입니다.' },
+        { title: '한국 공공조달', body: '나라장터 수집, 거버넌스가 적용된 분석 뷰, 적정가·무경쟁 입찰 제품을 2026년부터 서울에서 매일 밤 구축·운영하고 있습니다.' },
+        { title: 'OSINT 엔터티 분류', body: '사기 라인의 유형화된 식별자 추출, 시장 간 상관관계, 그리고 그 위의 엔터티 계층 — 모든 연결은 근거가 된 기록을 인용합니다.' },
       ],
     },
     where: {

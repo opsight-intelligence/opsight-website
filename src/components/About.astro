@@ -10,6 +10,19 @@ const { copy, locale } = Astro.props;
 <section class="section" id="who">
   <div class="eyebrow">{copy.who.heading}</div>
   {copy.who.body.map((p) => <p>{p}</p>)}
+</section>
+
+<section class="section" id="credentials">
+  <div class="eyebrow">{copy.credentials.heading}</div>
+  <p class="muted">{copy.credentials.lead}</p>
+  <div class="grid">
+    {copy.credentials.items.map((c) => (
+      <article class="card"><div class="card__line"></div><h3>{c.title}</h3><p>{c.body}</p></article>
+    ))}
+  </div>
+</section>
+
+<section class="section">
   <div class="eyebrow" style="margin-top:var(--s-5)">{copy.where.heading}</div>
   <p>{copy.where.body}</p>
 </section>
