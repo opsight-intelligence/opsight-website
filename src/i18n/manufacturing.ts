@@ -31,6 +31,7 @@ export interface ManufacturingCopy {
   title: string;
   description: string;
   hero: { eyebrow: string; title: string; lead: string; primary: string };
+  pulse: { heading: string; lead: string; tiles: { machines: string; abnormal: string; workOrders: string; weeks: string }; chart: { title: string; yLabel: string; refLabel: string; tableCaption: string; colMachine: string; colDeviation: string; colVerdict: string }; updated: string };
   tiles: { value: string; label: string }[];
   insights: { heading: string; lead: string; blocks: Block[] };
   industries: { heading: string; lead: string; blocks: Block[] };
@@ -86,6 +87,13 @@ export const manufacturing: Record<MfgLocale, ManufacturingCopy> = {
       title: 'Forensic insights with the dollar impact and the fix attached — not another dashboard.',
       lead: 'Built from data you already export. No IT project. Each finding tells you the cause, the cost, and what to do on Monday.',
       primary: 'Send one Excel file',
+    },
+    pulse: {
+      heading: 'Last night, on the fleet',
+      lead: 'One agent cycle a night: sense every machine, reason over six weeks of cycle data, act with a root cause and a work order, record the trail.',
+      tiles: { machines: 'Machines watched', abnormal: 'Flagged abnormal', workOrders: 'Work orders raised', weeks: 'Weeks of cycle data' },
+      chart: { title: 'Cycle deviation from the approved cycle, by machine', yLabel: 'deviation vs approved cycle', refLabel: 'approved', tableCaption: 'Table view', colMachine: 'Machine', colDeviation: 'Last week', colVerdict: 'Verdict' },
+      updated: 'cycle of',
     },
     tiles: [
       { value: '48 hrs', label: 'First insights delivered' },
@@ -149,6 +157,13 @@ export const manufacturing: Record<MfgLocale, ManufacturingCopy> = {
       title: '금액 영향과 해결책이 붙어 있는 포렌식 인사이트 — 또 하나의 대시보드가 아닙니다.',
       lead: '이미 내보내고 있는 데이터로 만듭니다. IT 프로젝트가 필요 없습니다. 모든 발견은 원인, 비용, 그리고 월요일에 할 일을 말해줍니다.',
       primary: '엑셀 파일 하나 보내기',
+    },
+    pulse: {
+      heading: '지난밤, 설비 전체에서',
+      lead: '하룻밤 한 사이클: 모든 설비를 감지하고, 6주치 사이클 데이터를 추론하고, 근본 원인과 작업지시로 실행하고, 이력을 기록합니다.',
+      tiles: { machines: '감시 설비', abnormal: '이상 판정', workOrders: '발행된 작업지시', weeks: '사이클 데이터 주수' },
+      chart: { title: '설비별 승인 사이클 대비 편차', yLabel: '승인 사이클 대비 편차', refLabel: '승인', tableCaption: '표로 보기', colMachine: '설비', colDeviation: '최근 주', colVerdict: '판정' },
+      updated: '사이클 일자',
     },
     tiles: [
       { value: '48시간', label: '첫 인사이트 전달' },

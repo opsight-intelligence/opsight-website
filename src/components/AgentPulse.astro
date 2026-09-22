@@ -1,0 +1,105 @@
+---
+// Last night's agent cycle as numbers and one chart, drawn client-side from
+// agent-demo.json (the same file AgentDemo reads). Replaces the four static
+// marketing tiles: what the reader sees moved last night, and says when.
+// One axis, one hue; abnormal machines carry the line colour and a direct
+// label, the rest are muted; hover any line for the machine and its verdict.
+interface Props {
+  heading: string; lead: string;
+  tiles: { machines: string; abnormal: string; workOrders: string; weeks: string };
+  chart: { title: string; yLabel: string; refLabel: string; tableCaption: string; colMachine: string; colDeviation: string; colVerdict: string };
+  updated: string;
+}
+const { heading, lead, tiles, chart, updated } = Astro.props;
+---
+<section class="section" id="pulse">
+  <div class="eyebrow">{heading}</div>
+  <p class="muted">{lead} <span class="muted" data-pulse-updated></span></p>
+  <div class="grid" id="pulse-tiles">
+    <div class="stat stat--line line-manufacturing"><div class="stat__value" data-count="machines">—</div><div class="stat__label">{tiles.machines}</div></div>
+    <div class="stat stat--line line-manufacturing"><div class="stat__value" data-count="abnormal">—</div><div class="stat__label">{tiles.abnormal}</div></div>
+    <div class="stat stat--line line-manufacturing"><div class="stat__value" data-count="work_orders">—</div><div class="stat__label">{tiles.workOrders}</div></div>
+    <div class="stat stat--line line-manufacturing"><div class="stat__value" data-count="weeks">—</div><div class="stat__label">{tiles.weeks}</div></div>
+  </div>
+  <div class="card line-manufacturing" style="margin-top:var(--s-5)">
+    <div class="card__line"></div>
+    <h3>{chart.title}</h3>
+    <div class="chart" id="chart-deviation" role="img" aria-describedby="table-deviation"></div>
+    <details style="margin-top:var(--s-3)"><summary class="muted">{chart.tableCaption}</summary>
+      <div class="table-wrap"><table class="table" id="table-deviation"><thead><tr><th>{chart.colMachine}</th><th class="num">{chart.colDeviation}</th><th>{chart.colVerdict}</th></tr></thead><tbody></tbody></table></div>
+    </details>
+  </div>
+</section>
+
+<script is:inline define:vars={{ yLabel: chart.yLabel, refLabel: chart.refLabel, updatedPrefix: updated }}>
+(function () {
+  var RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/agent-demo.json';
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function countUp(node, target) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { node.textContent = String(target); return; }
+    var start = performance.now(), dur = 700;
+    function step(ts) {
+      var p = Math.min(1, (ts - start) / dur), eased = 1 - Math.pow(1 - p, 3);
+      node.textContent = String(Math.round(target * eased));
+      if (p < 1) window.requestAnimationFrame(step); else node.textContent = String(target);
+    }
+    window.requestAnimationFrame(step);
+  }
+  function deviationChart(machines, weeks) {
+    var host = document.getElementById('chart-deviation'); if (!host) return;
+    var W = 640, H = 220, left = 48, right = 92, top = 18, bottom = 28;
+    var lo = 0, hi = 5;
+    machines.forEach(function (m) { (m.weekly_deviation_pct || []).forEach(function (v) { lo = Math.min(lo, Math.floor(v)); hi = Math.max(hi, Math.ceil(v)); }); });
+    hi = Math.ceil((hi + 2) / 5) * 5; lo = Math.floor((lo - 1) / 5) * 5;
+    var x = function (i) { return left + (i / Math.max(1, weeks - 1)) * (W - left - right); };
+    var y = function (v) { return top + (1 - (v - lo) / (hi - lo)) * (H - top - bottom); };
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'viz' });
+    [lo, 0, hi].filter(function (v, i, a) { return a.indexOf(v) === i && v >= lo && v <= hi; }).forEach(function (v) {
+      svg.appendChild(el('line', { x1: left, y1: y(v), x2: W - right, y2: y(v), class: v === 0 ? 'viz-ref' : 'viz-grid' }));
+      svg.appendChild(el('text', { x: left - 6, y: y(v) + 4, 'text-anchor': 'end', class: 'viz-axis' }, v + '%'));
+    });
+    svg.appendChild(el('text', { x: left, y: 12, class: 'viz-label' }, yLabel));
+    for (var i = 0; i < weeks; i++) svg.appendChild(el('text', { x: x(i), y: H - 8, 'text-anchor': 'middle', class: 'viz-axis' }, 'W' + (i + 1)));
+    var tbody = document.querySelector('#table-deviation tbody');
+    var labels = [];
+    var sorted = machines.slice().sort(function (a, b) { return (a.verdict && a.verdict.abnormal ? 1 : 0) - (b.verdict && b.verdict.abnormal ? 1 : 0); });
+    sorted.forEach(function (m) {
+      var pts = (m.weekly_deviation_pct || []).map(function (v, i) { return x(i) + ',' + y(v); }).join(' ');
+      var abnormal = !!(m.verdict && m.verdict.abnormal);
+      var line = el('polyline', { points: pts, fill: 'none', 'stroke-width': abnormal ? 2.5 : 1.5, class: abnormal ? 'viz-line viz-line--flag' : 'viz-line' });
+      var last = (m.weekly_deviation_pct || []).slice(-1)[0];
+      line.appendChild(el('title', {}, m.machine_id + ' · ' + (last === undefined ? '' : last.toFixed(1) + '% · ') + (m.verdict ? (m.verdict.pattern || '') + (m.verdict.severity ? ' (' + m.verdict.severity + ')' : '') : 'normal')));
+      svg.appendChild(line);
+      if (abnormal && last !== undefined) labels.push({ y: y(last), text: m.machine_id });
+      if (tbody) { var tr = document.createElement('tr'); ['machine_id'].forEach(function () {}); var c1 = document.createElement('td'); c1.textContent = m.machine_id; var c2 = document.createElement('td'); c2.className = 'num'; c2.textContent = last === undefined ? '' : last.toFixed(1) + '%'; var c3 = document.createElement('td'); c3.textContent = m.verdict ? (m.verdict.pattern || (m.verdict.abnormal ? 'abnormal' : 'normal')) : 'normal'; tr.appendChild(c1); tr.appendChild(c2); tr.appendChild(c3); tbody.appendChild(tr); }
+    });
+    // Direct labels, pushed apart so none overlaps another or the reference.
+    labels.push({ y: y(0), text: refLabel, ref: true });
+    labels.sort(function (a, b) { return a.y - b.y; });
+    for (var k = 1; k < labels.length; k++) if (labels[k].y - labels[k - 1].y < 16) labels[k].y = labels[k - 1].y + 16;
+    labels.forEach(function (l) { svg.appendChild(el('text', { x: W - right + 6, y: l.y + 4, class: l.ref ? 'viz-axis' : 'viz-value' }, l.text)); });
+    host.appendChild(svg);
+  }
+  fetch(RAW, { cache: 'no-cache' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || !d.machines) return;
+      var machines = d.machines;
+      var abnormal = machines.filter(function (m) { return m.verdict && m.verdict.abnormal; }).length;
+      var wo = 0; machines.forEach(function (m) { (m.actions || []).forEach(function (a) { if (a.tool === 'work_order' && a.ok) wo++; }); });
+      var counts = { machines: machines.length, abnormal: abnormal, work_orders: wo, weeks: d.weeks || (machines[0] && machines[0].weekly_deviation_pct ? machines[0].weekly_deviation_pct.length : 0) };
+      document.querySelectorAll('[data-count]').forEach(function (n) { countUp(n, counts[n.getAttribute('data-count')] || 0); });
+      var u = document.querySelector('[data-pulse-updated]');
+      if (u && d.generated_at) u.textContent = '· ' + updatedPrefix + ' ' + d.generated_at.slice(0, 10);
+      deviationChart(machines, counts.weeks);
+    })
+    .catch(function () { /* the strip stays at dashes; nothing is invented */ });
+})();
+</script>
