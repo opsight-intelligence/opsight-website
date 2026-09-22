@@ -37,7 +37,7 @@ export const about: Record<AboutLocale, AboutCopy> = {
       lead: 'One engineer, stated plainly. These are the credits the platform rests on; none of them is a client of Opsight.',
       items: [
         { title: 'Senior solution engineer, manufacturing', body: 'Worked directly with Fortune 500 OEMs and their tier-1 suppliers on production-analytics solutions — the methods the manufacturing line runs are the ones proven there.' },
-        { title: '2nd place, 2026 APJ data-platform hackathon', body: 'For an automated manufacturing workflow: sense, reason, act and record over a fleet, the same shape as the agent that runs here nightly.' },
+        { title: '2nd place, Snowflake APJ Hackathon 2026', body: 'For an automated manufacturing workflow: sense, reason, act and record over a fleet, the same shape as the agent that runs here nightly.' },
         { title: 'Public procurement, Korea', body: 'The KONEPS collection, the governed analytics views and the should-price and uncontested-tender products were built and are run from Seoul, nightly, since 2026.' },
         { title: 'OSINT entity classification', body: 'The fraud line’s typed-identifier extraction, cross-market correlation and the entity layer above it — every link cited to the record that justified it.' },
       ],
@@ -93,7 +93,7 @@ export const about: Record<AboutLocale, AboutCopy> = {
       lead: '엔지니어 한 사람, 있는 그대로. 플랫폼이 기대는 경력이며, 어느 것도 Opsight의 고객이 아닙니다.',
       items: [
         { title: '제조 도메인 시니어 솔루션 엔지니어', body: 'Fortune 500 OEM과 1차 협력사를 직접 상대하며 생산 분석 솔루션을 구축했습니다. 제조 라인이 돌리는 방법론은 그곳에서 검증된 것입니다.' },
-        { title: '2026 APJ 데이터 플랫폼 해커톤 2위', body: '자동화된 제조 워크플로 — 감지·추론·실행·기록을 설비 전체에 걸쳐 수행하는 구조로, 여기서 매일 밤 도는 에이전트와 같은 형태입니다.' },
+        { title: 'Snowflake APJ 해커톤 2026 2위', body: '자동화된 제조 워크플로 — 감지·추론·실행·기록을 설비 전체에 걸쳐 수행하는 구조로, 여기서 매일 밤 도는 에이전트와 같은 형태입니다.' },
         { title: '한국 공공조달', body: '나라장터 수집, 거버넌스가 적용된 분석 뷰, 적정가·무경쟁 입찰 제품을 2026년부터 서울에서 매일 밤 구축·운영하고 있습니다.' },
         { title: 'OSINT 엔터티 분류', body: '사기 라인의 유형화된 식별자 추출, 시장 간 상관관계, 그리고 그 위의 엔터티 계층 — 모든 연결은 근거가 된 기록을 인용합니다.' },
       ],

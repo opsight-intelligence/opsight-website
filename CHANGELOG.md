@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.28.2] - 2026-09-22
+
+### Changed
+- The hackathon credit names the event: Snowflake APJ Hackathon 2026, 2nd place (en + ko).
+
 ## [0.28.1] - 2026-09-22
 
 ### Added
