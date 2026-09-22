@@ -12,7 +12,7 @@ const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement
 ---
 <HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="procurement" />
 
-<div data-numbers data-unavailable={copy.unavailable} data-span={copy.span} data-labels={JSON.stringify(copy.labels)} data-floor={copy.league.floor}>
+<div data-numbers data-unavailable={copy.unavailable} data-span={copy.span} data-labels={JSON.stringify(copy.labels)} data-floor={copy.league.floor} data-solo-label={copy.depth.solo}>
 <section class="section" id="headline">
   <p class="muted" data-n-span>…</p>
   <div class="grid">
@@ -33,7 +33,8 @@ const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement
 <div class="band section--tint"><div class="container"><section class="section" id="depth">
   <div class="eyebrow">{copy.depth.heading}</div>
   <p class="muted">{copy.depth.lead}</p>
-  <div class="table-wrap"><table class="table"><thead><tr><th>{copy.categories.cat}</th><th>{copy.depth.band}</th><th class="num">{copy.depth.awards}</th><th class="num">{copy.depth.bidders}</th><th class="num">{copy.depth.solo}</th></tr></thead><tbody data-n-depth></tbody></table></div>
+  <div class="chart" data-n-depthchart role="img" aria-describedby="table-depth"></div>
+  <div class="table-wrap"><table class="table" id="table-depth"><thead><tr><th>{copy.categories.cat}</th><th>{copy.depth.band}</th><th class="num">{copy.depth.awards}</th><th class="num">{copy.depth.bidders}</th><th class="num">{copy.depth.solo}</th></tr></thead><tbody data-n-depth></tbody></table></div>
 </section></div></div>
 
 <section class="section" id="agencies">
@@ -41,7 +42,7 @@ const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement
   <p class="muted">{copy.league.lead}</p>
   <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(360px,1fr))">
     <div class="card line-procurement"><div class="card__line"></div><h3>{copy.league.most}</h3>
-      <div class="table-wrap"><table class="table"><thead><tr><th>{copy.league.agency}</th><th class="num">{copy.league.awards}</th><th class="num">{copy.league.solo}</th><th class="num">{copy.league.share}</th><th class="num">{copy.league.rate}</th></tr></thead><tbody data-n-most></tbody></table></div></div>
+      <div class="table-wrap"><table class="table" id="table-most"><thead><tr><th>{copy.league.agency}</th><th class="num">{copy.league.awards}</th><th class="num">{copy.league.solo}</th><th class="num">{copy.league.share}</th><th class="num">{copy.league.rate}</th></tr></thead><tbody data-n-most></tbody></table></div></div>
     <div class="card line-procurement"><div class="card__line"></div><h3>{copy.league.least}</h3>
       <div class="table-wrap"><table class="table"><thead><tr><th>{copy.league.agency}</th><th class="num">{copy.league.awards}</th><th class="num">{copy.league.solo}</th><th class="num">{copy.league.share}</th><th class="num">{copy.league.rate}</th></tr></thead><tbody data-n-least></tbody></table></div></div>
   </div>
@@ -93,6 +94,40 @@ const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement
     rows.forEach(function (r) { var tr = document.createElement('tr'); td(tr, r.agency); td(tr, fmt(r.awards), true); td(tr, fmt(r.solo), true); td(tr, pct(r.share, 0), true); td(tr, r.solo_rate == null ? '—' : r.solo_rate.toFixed(1) + '%', true); tb.appendChild(tr); });
   }
 
+  // Solo-award share by tender size: one small multiple per category, one
+  // hue, the same y axis, so the "smaller tender, less competition" slope
+  // reads without a legend. Bands are ordered by size, not by the data.
+  function depthChart(rows) {
+    var host = root.querySelector('[data-n-depthchart]'); if (!host) return; host.innerHTML = '';
+    var order = ['<10M', '10M-50M', '50M-200M', '200M-1B', '>=1B'];
+    var cats = []; rows.forEach(function (r) { if (cats.indexOf(r.cat) < 0) cats.push(r.cat); }); cats.sort();
+    var panelW = 210, gap = 28, left = 44, W = left + cats.length * (panelW + gap), H = 196, top = 44, bottom = 40;
+    var short = { '<10M': '<10M', '10M-50M': '10–50M', '50M-200M': '50–200M', '200M-1B': '200M–1B', '>=1B': '≥1B' };
+    var y = function (v) { return top + (1 - v) * (H - top - bottom); };
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, class: 'viz' });
+    svg.appendChild(el('text', { x: 0, y: 12, class: 'viz-axis' }, root.getAttribute('data-solo-label') || ''));
+    [0, 0.5, 1].forEach(function (v) {
+      svg.appendChild(el('text', { x: left - 6, y: y(v) + 4, 'text-anchor': 'end', class: 'viz-axis' }, Math.round(v * 100) + '%'));
+    });
+    cats.forEach(function (cat, ci) {
+      var x0 = left + ci * (panelW + gap), slot = panelW / order.length, bw = Math.max(4, slot - 8);
+      svg.appendChild(el('text', { x: x0, y: 30, class: 'viz-label' }, label(cat)));
+      [0, 0.5, 1].forEach(function (v) { svg.appendChild(el('line', { x1: x0, y1: y(v), x2: x0 + panelW, y2: y(v), class: 'viz-grid' })); });
+      order.forEach(function (band, bi) {
+        var r = rows.filter(function (q) { return q.cat === cat && q.band === band; })[0];
+        var bx = x0 + bi * slot + (slot - bw) / 2;
+        if (r && r.solo_share != null) {
+          var by = y(r.solo_share);
+          var bar = el('rect', { x: bx, y: by, width: bw, height: Math.max(0, H - bottom - by), rx: 3, class: 'viz-bar' });
+          bar.appendChild(el('title', {}, label(cat) + ' · ' + band + ' · ' + pct(r.solo_share, 1) + ' uncontested · ' + fmt(r.awards) + ' awards'));
+          svg.appendChild(bar);
+          if (bi === 0 || bi === order.length - 1) svg.appendChild(el('text', { x: bx + bw / 2, y: by - 4, 'text-anchor': 'middle', class: 'viz-value' }, pct(r.solo_share, 0)));
+        }
+        svg.appendChild(el('text', { x: bx + bw / 2, y: H - (bi % 2 ? 8 : 20), 'text-anchor': 'middle', class: 'viz-axis', 'font-size': '10' }, short[band] || band));
+      });
+    });
+    host.appendChild(svg);
+  }
   function render(d) {
     var span = root.getAttribute('data-span').replace('{from}', d.span.from).replace('{to}', d.span.to).replace('{awards}', fmt(d.span.awards)).replace('{as_of}', d.as_of);
     root.querySelector('[data-n-span]').textContent = span;
@@ -105,6 +140,7 @@ const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement
     var dp = root.querySelector('[data-n-depth]'); dp.innerHTML = '';
     var order = ['<10M', '10M-50M', '50M-200M', '200M-1B', '>=1B'];
     d.depth.slice().sort(function (a, b) { return (a.cat < b.cat ? -1 : a.cat > b.cat ? 1 : 0) || order.indexOf(a.band) - order.indexOf(b.band); }).forEach(function (r) { var tr = document.createElement('tr'); td(tr, label(r.cat)); td(tr, r.band); td(tr, fmt(r.awards), true); td(tr, r.bidders == null ? '—' : String(r.bidders), true); td(tr, pct(r.solo_share, 1), true); dp.appendChild(tr); });
+    depthChart(d.depth);
     league('[data-n-most]', d.most_uncontested);
     league('[data-n-least]', d.most_contested);
     root.querySelector('[data-n-floor]').textContent = root.getAttribute('data-floor').replace('{n}', d.min_agency_awards);

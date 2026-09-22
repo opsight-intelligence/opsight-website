@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.28.1] - 2026-09-22
+
+### Added
+- Numbers page: the tender-size chart — single-bidder share per size band as three small multiples (construction, services, goods), one axis, one hue, direct labels on the ends, hover for awards. The "smaller tender, less competition" slope now reads at a glance; the table stays below it. The agency league stays a table on purpose: its shares are all 90–100% and the names are the content.
+
 ## [0.28.0] - 2026-09-22
 
 ### Changed
