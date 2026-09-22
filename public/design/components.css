@@ -200,6 +200,9 @@
 .viz-median { fill: var(--line, var(--brand)); stroke: var(--surface-1); stroke-width: 2; }
 .viz-bar { fill: var(--line, var(--brand)); }
 .viz-bar:hover, .viz-range:hover { opacity: 0.85; }
+.viz-line { stroke: var(--ink-muted); opacity: 0.45; stroke-linejoin: round; stroke-linecap: round; }
+.viz-line--flag { stroke: var(--line, var(--brand)); opacity: 1; }
+.viz-line:hover { opacity: 1; }
 
 /* ── v0.20.1: contact panel — one form, one quiet address line ─────────── */
 .contact-panel { display: grid; gap: var(--s-4); max-width: 520px; }

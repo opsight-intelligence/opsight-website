@@ -3,6 +3,7 @@ import ContactPanel from './ContactPanel.astro';
 import AgentDemo from './AgentDemo.astro';
 import HeroBand from './HeroBand.astro';
 import ArtManufacturing from './ArtManufacturing.astro';
+import AgentPulse from './AgentPulse.astro';
 import type { ManufacturingCopy, MfgLocale } from '../i18n/manufacturing';
 interface Props { copy: ManufacturingCopy; locale: MfgLocale }
 const { copy, locale } = Astro.props;
@@ -12,16 +13,7 @@ const { copy, locale } = Astro.props;
   <Fragment slot="art"><ArtManufacturing /></Fragment>
 </HeroBand>
 
-<section class="section">
-  <div class="grid">
-    {copy.tiles.map((t) => (
-      <div class="stat stat--line line-manufacturing">
-        <div class="stat__value">{t.value}</div>
-        <div class="stat__label">{t.label}</div>
-      </div>
-    ))}
-  </div>
-</section>
+<AgentPulse {...copy.pulse} />
 
 <section class="section" id="insights">
   <div class="eyebrow">{copy.insights.heading}</div>

@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.28.0] - 2026-09-22
+
+### Changed
+- Manufacturing leads with *Last night, on the fleet*: four live counters (machines watched, flagged abnormal, work orders raised, weeks of data) from `agent-demo.json`, and one chart — six weeks of cycle deviation per machine, flagged machines in the line colour with direct labels, the rest muted, an "approved" reference, hover for the verdict, a table view. Replaces the four static marketing tiles. Counters animate unless the reader prefers reduced motion.
+
 ## [0.27.0] - 2026-09-22
 
 ### Added
