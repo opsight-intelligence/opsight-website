@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-09-24",
+  "as_of": "2026-09-25",
   "rate_by_category": [
     {
       "category": "cnstwk",
       "label": "공사",
-      "awards": 20115,
+      "awards": 20120,
       "p25": 90.1,
       "median": 90.3,
       "p75": 90.45
@@ -12,7 +12,7 @@
     {
       "category": "thng",
       "label": "물품",
-      "awards": 15198,
+      "awards": 15199,
       "p25": 88.07,
       "median": 92.77,
       "p75": 98.64
@@ -20,18 +20,13 @@
     {
       "category": "servc",
       "label": "용역",
-      "awards": 14337,
+      "awards": 14339,
       "p25": 88.02,
       "median": 88.71,
       "p75": 94.03
     }
   ],
   "daily": [
-    {
-      "date": "2026-08-24",
-      "notices": 1659,
-      "awards": 822
-    },
     {
       "date": "2026-08-25",
       "notices": 1627,
@@ -65,7 +60,7 @@
     {
       "date": "2026-08-31",
       "notices": 1765,
-      "awards": 788
+      "awards": 790
     },
     {
       "date": "2026-09-01",
@@ -140,12 +135,12 @@
     {
       "date": "2026-09-15",
       "notices": 1782,
-      "awards": 812
+      "awards": 813
     },
     {
       "date": "2026-09-16",
       "notices": 1754,
-      "awards": 756
+      "awards": 759
     },
     {
       "date": "2026-09-17",
@@ -155,7 +150,7 @@
     {
       "date": "2026-09-18",
       "notices": 1157,
-      "awards": 738
+      "awards": 739
     },
     {
       "date": "2026-09-19",
@@ -175,12 +170,17 @@
     {
       "date": "2026-09-22",
       "notices": 1849,
-      "awards": 735
+      "awards": 738
     },
     {
       "date": "2026-09-23",
-      "notices": 1579,
+      "notices": 1580,
       "awards": 374
+    },
+    {
+      "date": "2026-09-24",
+      "notices": 21,
+      "awards": 0
     }
   ]
 }
