@@ -18,6 +18,9 @@ export interface FraudCopy {
   description: string;
   hero: { eyebrow: string; title: string; lead: string; live: string; primary: string };
   what: { heading: string; lead: string; blocks: Block[] };
+  // Optional: the watchlist subscription (2026-09-25). Rendered only where a
+  // locale carries it; Turkish does not, because the TR market is not sold.
+  watch?: { heading: string; lead: string; blocks: Block[]; note: string };
   coverage: { heading: string; lead: string; blocks: Block[] };
   numbers: { heading: string; lead: string; entities: string; bank: string; phone: string; crypto: string; clusters: string };
   delivery: { heading: string; body: string };
@@ -48,6 +51,17 @@ export const fraud: Record<Locale, FraudCopy> = {
         { title: 'Deliver', body: 'Machine-readable watchlists (CSV, MISP IOC), bank-specific alert feeds, STIX bundles, an authenticated REST API and webhooks for SIEM/SOAR, and evidence-grade reports with confidence scoring, audit trails and legal reference mappings for every finding.' },
       ],
     },
+    watch: {
+      heading: 'Watchlist monitoring',
+      lead: 'Hand over the identifiers you care about — accounts, phone numbers, wallets, channels. Every night they are checked against everything the platform collects, and you are told when something new appears.',
+      blocks: [
+        { title: 'Your list, checked nightly', body: 'Paste a list once. Each identifier is read the way it was written — a number that could be a phone or a bank account is watched as both — and checked against the whole collection every night.' },
+        { title: 'Baseline, then news', body: 'What the platform already knew when you added an identifier is shown as the baseline. Only what arrives afterwards counts as new, so an alert means something changed.' },
+        { title: 'Counts by mail, detail behind your sign-in', body: 'The nightly mail says how many new records appeared — never which identifier. The detail, with the record behind every link, is on the console behind your own sign-in.' },
+        { title: 'One page a month', body: 'A monthly one-page summary per list: what was watched, what the platform knows, what changed and of what kind — ready to print or file.' },
+      ],
+      note: '"Not seen" means the platform has not observed an identifier in what it collects. It does not mean the identifier is clean.',
+    },
     coverage: {
       heading: 'Coverage',
       lead: 'Active collection across the markets below; Turkish-language ecosystems are monitored and can be scoped into a subscription.',
@@ -71,7 +85,7 @@ export const fraud: Record<Locale, FraudCopy> = {
     },
     delivery: {
       heading: 'How it arrives',
-      body: 'Nightly. A subscription is scoped to your market and your watchlist and arrives by email or webhook: new entities, escalations and networks that have gone quiet — scored, deduplicated, evidence attached. Curated feeds, bank risk briefs and the managed intelligence package are scoped per buyer. Pricing on request.',
+      body: 'Nightly. A subscription is scoped to your market and your watchlist and arrives by email or webhook: new entities, escalations and networks that have gone quiet — scored, deduplicated, evidence attached. A watchlist subscription adds your own identifiers to the nightly check. Curated feeds, bank risk briefs and the managed intelligence package are scoped per buyer. Pricing on request.',
     },
     contact: {
       heading: 'Get in touch',
@@ -102,6 +116,17 @@ export const fraud: Record<Locale, FraudCopy> = {
         { title: '경보', body: '수집 주기 간 변화 탐지 — 신규 엔티티, 신뢰도 변동, 활동 급증, 역할 변화 — 그리고 운영자가 언제, 어디서 활동하는지 보여주는 채널별 활동 패턴.' },
         { title: '전달', body: '기계 판독 가능한 감시 목록(CSV, MISP IOC), 은행별 알림 피드, STIX 번들, 인증된 REST API와 SIEM/SOAR용 웹훅, 그리고 모든 발견 사항에 신뢰도 점수·감사 추적·법적 참조를 담은 증거 수준 보고서.' },
       ],
+    },
+    watch: {
+      heading: '워치리스트 모니터링',
+      lead: '관심 있는 계좌, 전화번호, 지갑 주소, 채널을 알려주시면 매일 밤 플랫폼이 수집한 전체 데이터와 대조하고, 새로운 기록이 생기면 알려드립니다.',
+      blocks: [
+        { title: '매일 밤 확인하는 목록', body: '목록은 한 번만 등록하면 됩니다. 각 식별자는 입력된 형태 그대로 읽으며, 전화번호와 계좌번호 둘 다로 해석될 수 있는 번호는 두 가지 모두로 감시하고, 매일 밤 전체 수집 데이터와 대조합니다.' },
+        { title: '기준선, 그리고 새 기록', body: '등록 시점에 플랫폼이 이미 알고 있던 내용은 기준선으로 표시하고, 그 이후에 들어온 것만 새 기록으로 셉니다. 알림이 왔다면 실제로 무언가 바뀌었다는 뜻입니다.' },
+        { title: '메일은 건수만, 상세는 로그인 후', body: '매일 밤 메일에는 새 기록의 건수만 담기며, 어떤 식별자인지는 적지 않습니다. 각 연결의 근거 기록을 포함한 상세 내용은 본인 로그인 후 콘솔에서 확인합니다.' },
+        { title: '월 1페이지 요약', body: '목록별 월간 1페이지 요약: 감시 대상, 플랫폼이 파악한 대상, 변화의 건수와 종류를 정리해 출력하거나 보관할 수 있습니다.' },
+      ],
+      note: '"미확인"은 플랫폼이 수집 범위에서 해당 식별자를 관측하지 못했다는 뜻이며, 문제가 없다는 뜻은 아닙니다.',
     },
     coverage: {
       heading: '커버리지',

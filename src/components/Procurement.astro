@@ -61,6 +61,23 @@ const { copy, locale } = Astro.props;
   </div>
 </section>
 
+{copy.integrity && (
+  <section class="section" id="integrity">
+    <div class="eyebrow">{copy.integrity.heading}</div>
+    <p class="muted">{copy.integrity.lead}</p>
+    <div class="grid">
+      {copy.integrity.blocks.map((b) => (
+        <article class="card line-procurement">
+          <div class="card__line"></div>
+          <h3>{b.title}</h3>
+          <p>{b.body}</p>
+        </article>
+      ))}
+    </div>
+    <p class="muted">{copy.integrity.note}</p>
+  </section>
+)}
+
 <section class="section" id="how">
   <div class="eyebrow">{copy.how.heading}</div>
   <p>{copy.how.body}</p>

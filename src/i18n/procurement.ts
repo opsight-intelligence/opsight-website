@@ -20,6 +20,9 @@ export interface ProcurementCopy {
   problem: { heading: string; body: string };
   collect: { heading: string; lead: string; liveBadge: string; blocks: Block[] };
   coverage: { heading: string; blocks: Block[] };
+  // Optional: the integrity checks (2026-09-25) -- methods only, no firm is
+  // ever named on the site.
+  integrity?: { heading: string; lead: string; blocks: Block[]; note: string };
   how: { heading: string; body: string; platform: string };
   figures: { heading: string; lead: string; more: string; moreLink: string; rateTitle: string; rateNote: string; dailyTitle: string; noticesLabel: string; awardsLabel: string; tableLabel: string; awardsCol: string; medianCol: string; rangeCol: string; dateCol: string };
   calculator: {
@@ -87,6 +90,17 @@ export const procurement: Record<ProcLocale, ProcurementCopy> = {
       awardsLabel: 'Awards opened',
       tableLabel: 'Show as a table',
       awardsCol: 'Awards', medianCol: 'Median', rangeCol: 'p25–p75', dateCol: 'Date',
+    },
+    integrity: {
+      heading: 'Integrity checks',
+      lead: 'The same record, read for the questions an auditor asks. Each check runs nightly across every corporate bidder and winner, and every result shows the public records it rests on.',
+      blocks: [
+        { title: 'Related bidders who meet in tenders', body: 'Two firms the corporate registry links — the same 대표이사 or the same registered address — that keep bidding on the same notices. A competition question for the buying agency, not a finding of wrongdoing; whether a shared name is one person is settled only by 법인등기.' },
+        { title: 'Closed companies still bidding', body: 'A firm the National Tax Service (국세청) holds as closed that bid on, or won, a tender after its closing date — or a dormant firm still bidding. A status fact from the state set beside the tender record, not an inference.' },
+        { title: 'Only what is published by name', body: 'A check counts priced bids and awards — the entries an agency publishes by name. Where an agency lists unplaced entrants anonymously, as in design competitions, they are left out, even when the open data carries them.' },
+        { title: 'Companies only', body: 'Checks run on corporate (법인) records. Sole proprietors (개인사업자) are withheld: their records identify a person.' },
+      ],
+      note: 'Every result is a question for the agency that holds the documents. None is an accusation.',
     },
     how: {
       heading: 'How it is built',
@@ -187,6 +201,17 @@ export const procurement: Record<ProcLocale, ProcurementCopy> = {
       awardsLabel: '개찰된 낙찰',
       tableLabel: '표로 보기',
       awardsCol: '낙찰', medianCol: '중앙값', rangeCol: 'p25–p75', dateCol: '날짜',
+    },
+    integrity: {
+      heading: '청렴성 점검',
+      lead: '같은 기록을 감사의 관점에서 읽습니다. 모든 점검은 매일 밤 전체 법인 입찰·낙찰 업체를 대상으로 실행되며, 각 결과에는 근거가 된 공개 기록이 함께 표시됩니다.',
+      blocks: [
+        { title: '같은 공고에서 반복해 만나는 관계 업체', body: '공시(DART) 정보상 대표이사 또는 등록 주소가 같은 두 업체가 같은 공고에 반복해서 투찰하는 경우입니다. 발주기관이 확인할 경쟁성의 문제이며 위법 판단이 아닙니다. 같은 이름이 동일인인지는 법인등기부로만 확정됩니다.' },
+        { title: '폐업 후에도 입찰하는 업체', body: '국세청이 폐업으로 관리하는 업체가 폐업일 이후 입찰에 참여하거나 낙찰받은 경우, 또는 휴업 중인 업체가 입찰한 경우입니다. 추정이 아니라 국세청 상태 정보와 입찰 기록을 나란히 놓은 사실입니다.' },
+        { title: '이름이 공개된 참여만', body: '가격을 제출한 투찰과 낙찰만 셉니다. 설계공모처럼 발주기관이 미입상 참가자를 익명으로 공개하는 경우에는, 공개 데이터에 이름이 남아 있더라도 제외합니다.' },
+        { title: '법인만', body: '점검은 법인 기록에만 적용합니다. 개인사업자 정보는 개인을 식별할 수 있어 제외합니다.' },
+      ],
+      note: '모든 결과는 관련 문서를 보유한 발주기관이 확인할 질문이며, 어떤 결과도 고발이 아닙니다.',
     },
     how: {
       heading: '어떻게 만드는가',
