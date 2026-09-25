@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.29.1] - 2026-09-25
+
+### Fixed
+
+- The closing note under *Watchlist monitoring* and *Integrity checks* sat
+  flush against the last card; it now has the section's spacing.
+
 ## [0.29.0] - 2026-09-25
 
 ### Added
