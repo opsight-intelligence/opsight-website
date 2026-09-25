@@ -54,14 +54,14 @@ export const home: Record<HomeLocale, HomeCopy> = {
       fraud: {
         badge: 'Fraud',
         title: 'Fraud Intelligence',
-        body: 'Telegram and OSINT monitoring of criminal and grey-market ecosystems — financial crime, illegal betting, drug trafficking and laundering — delivered as feeds, alerts and evidence-grade reports.',
+        body: 'Telegram and OSINT monitoring of criminal and grey-market ecosystems — financial crime, illegal betting, drug trafficking and laundering — delivered as feeds, alerts, evidence-grade reports and a nightly watchlist of your own identifiers.',
         action: 'Request a sample report →',
         href: '/fraud',
       },
       procurement: {
         badge: 'Procurement',
         title: 'Procurement Intelligence',
-        body: 'Every Korean public tender, bidder and winning price — against the published estimate. Collected nightly, nationwide, not sampled.',
+        body: 'Every Korean public tender, bidder and winning price — against the published estimate. Collected nightly, nationwide, not sampled — and read for integrity: related bidders, and closed companies still bidding.',
         action: 'See what we collect →',
         href: '/procurement',
       },
@@ -132,14 +132,14 @@ export const home: Record<HomeLocale, HomeCopy> = {
       fraud: {
         badge: '사기',
         title: '사기 인텔리전스',
-        body: '텔레그램과 OSINT로 범죄·회색시장 생태계를 모니터링합니다 — 금융범죄, 불법도박, 마약, 자금세탁 — 피드, 알림, 증거 수준 보고서로 전달합니다.',
+        body: '텔레그램과 OSINT로 범죄·회색시장 생태계를 모니터링합니다 — 금융범죄, 불법도박, 마약, 자금세탁 — 피드, 알림, 증거 수준 보고서, 그리고 고객이 지정한 식별자를 매일 밤 확인하는 워치리스트로 전달합니다.',
         action: '샘플 보고서 요청 →',
         href: '/ko/fraud',
       },
       procurement: {
         badge: '공공조달',
         title: '공공조달 인텔리전스',
-        body: '한국 공공입찰의 모든 공고, 입찰자, 낙찰가를 기초금액과 비교합니다. 매일 밤 전국 단위로 수집하며, 표본이 아닙니다.',
+        body: '한국 공공입찰의 모든 공고, 입찰자, 낙찰가를 기초금액과 비교합니다. 매일 밤 전국 단위로 수집하며, 표본이 아닙니다. 관계 업체의 반복 동반 투찰, 폐업 후 입찰 같은 청렴성 점검도 함께 실행합니다.',
         action: '수집 항목 보기 →',
         href: '/ko/procurement',
       },

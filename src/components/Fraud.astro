@@ -30,6 +30,23 @@ const n = copy.numbers;
   </div>
 </section>
 
+{copy.watch && (
+  <section class="section" id="watchlist">
+    <div class="eyebrow">{copy.watch.heading}</div>
+    <p class="muted">{copy.watch.lead}</p>
+    <div class="grid">
+      {copy.watch.blocks.map((b) => (
+        <article class="card line-fraud">
+          <div class="card__line"></div>
+          <h3>{b.title}</h3>
+          <p>{b.body}</p>
+        </article>
+      ))}
+    </div>
+    <p class="muted" style="margin-top: var(--s-4)">{copy.watch.note}</p>
+  </section>
+)}
+
 <section class="section" id="coverage">
   <div class="eyebrow">{copy.coverage.heading}</div>
   <p class="muted">{copy.coverage.lead}</p>

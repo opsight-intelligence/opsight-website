@@ -8,6 +8,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.29.1] - 2026-09-25
+
+### Fixed
+
+- The closing note under *Watchlist monitoring* and *Integrity checks* sat
+  flush against the last card; it now has the section's spacing.
+
+## [0.29.0] - 2026-09-25
+
+### Added
+
+- **Fraud page: *Watchlist monitoring*** (EN, KO) — identifiers the buyer
+  hands over, checked nightly against the whole collection; baseline versus
+  new; a count-only mail with the detail behind the buyer's own sign-in; a
+  monthly one-page summary; and what "not seen" does not mean. Turkish
+  carries no section: that market is not sold.
+- **Procurement page: *Integrity checks*** (EN, KO) — related bidders who
+  meet in tenders, closed companies still bidding (국세청 status), priced
+  bids and awards only (anonymised entrants left out), 법인 only. Methods
+  only; no firm is named.
+- Home cards for fraud and procurement mention the two.
+
+### Note
+
+- The Korean copy was written by the agent and needs a native read before
+  it is merged.
+
 ## [0.28.2] - 2026-09-22
 
 ### Changed
