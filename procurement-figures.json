@@ -1,42 +1,32 @@
 {
-  "as_of": "2026-09-26",
+  "as_of": "2026-09-27",
   "rate_by_category": [
     {
       "category": "cnstwk",
       "label": "공사",
-      "awards": 89092,
-      "p25": 90.08,
-      "median": 90.3,
+      "awards": 122387,
+      "p25": 90.11,
+      "median": 90.31,
       "p75": 90.44
     },
     {
       "category": "servc",
       "label": "용역",
-      "awards": 71785,
+      "awards": 93694,
       "p25": 88.01,
-      "median": 88.35,
-      "p75": 92.02
+      "median": 88.37,
+      "p75": 92.79
     },
     {
       "category": "thng",
       "label": "물품",
-      "awards": 54037,
-      "p25": 88.03,
-      "median": 90.37,
-      "p75": 98.06
+      "awards": 72537,
+      "p25": 88.04,
+      "median": 90.41,
+      "p75": 98.13
     }
   ],
   "daily": [
-    {
-      "date": "2026-08-26",
-      "notices": 1612,
-      "awards": 991
-    },
-    {
-      "date": "2026-08-27",
-      "notices": 1625,
-      "awards": 1501
-    },
     {
       "date": "2026-08-28",
       "notices": 1250,
@@ -65,7 +55,7 @@
     {
       "date": "2026-09-02",
       "notices": 1645,
-      "awards": 836
+      "awards": 839
     },
     {
       "date": "2026-09-03",
@@ -90,12 +80,12 @@
     {
       "date": "2026-09-07",
       "notices": 1840,
-      "awards": 695
+      "awards": 696
     },
     {
       "date": "2026-09-08",
       "notices": 1698,
-      "awards": 1039
+      "awards": 1041
     },
     {
       "date": "2026-09-09",
@@ -125,22 +115,22 @@
     {
       "date": "2026-09-14",
       "notices": 1925,
-      "awards": 582
+      "awards": 584
     },
     {
       "date": "2026-09-15",
       "notices": 1782,
-      "awards": 813
+      "awards": 815
     },
     {
       "date": "2026-09-16",
       "notices": 1754,
-      "awards": 759
+      "awards": 760
     },
     {
       "date": "2026-09-17",
       "notices": 1667,
-      "awards": 695
+      "awards": 697
     },
     {
       "date": "2026-09-18",
@@ -160,21 +150,31 @@
     {
       "date": "2026-09-21",
       "notices": 1832,
-      "awards": 623
+      "awards": 625
     },
     {
       "date": "2026-09-22",
       "notices": 1849,
-      "awards": 738
+      "awards": 739
     },
     {
       "date": "2026-09-23",
       "notices": 1580,
-      "awards": 374
+      "awards": 376
     },
     {
       "date": "2026-09-24",
       "notices": 21,
+      "awards": 0
+    },
+    {
+      "date": "2026-09-25",
+      "notices": 1,
+      "awards": 0
+    },
+    {
+      "date": "2026-09-26",
+      "notices": 6,
       "awards": 0
     }
   ]
