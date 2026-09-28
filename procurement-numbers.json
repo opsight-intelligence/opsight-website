@@ -1,14 +1,14 @@
 {
- "as_of": "2026-09-27",
+ "as_of": "2026-09-28",
  "source": "analytics.award_rate / competition_depth / uncontested_by_agency",
  "span": {
   "from": "2025-09-25",
-  "to": "2026-09-26",
-  "awards": 288617
+  "to": "2026-09-27",
+  "awards": 288628
  },
  "uncontested": {
-  "awards": 288617,
-  "solo": 51964,
+  "awards": 288628,
+  "solo": 51965,
   "share": 0.18
  },
  "categories": [
@@ -23,16 +23,16 @@
   },
   {
    "cat": "servc",
-   "awards": 93693,
+   "awards": 93697,
    "median": 88.37,
    "p25": 88.01,
    "p75": 92.79,
-   "iqr": 4.79,
+   "iqr": 4.78,
    "bidders": 5.0
   },
   {
    "cat": "thng",
-   "awards": 72537,
+   "awards": 72544,
    "median": 90.41,
    "p25": 88.04,
    "p75": 98.13,
@@ -93,7 +93,7 @@
   {
    "cat": "servc",
    "band": "10M-50M",
-   "awards": 35216,
+   "awards": 35218,
    "bidders": 4.0,
    "solo_share": 0.285
   },
@@ -107,14 +107,14 @@
   {
    "cat": "servc",
    "band": "50M-200M",
-   "awards": 33714,
+   "awards": 33716,
    "bidders": 7.0,
    "solo_share": 0.141
   },
   {
    "cat": "thng",
    "band": "<10M",
-   "awards": 16641,
+   "awards": 16642,
    "bidders": 4.0,
    "solo_share": 0.157
   },
@@ -128,7 +128,7 @@
   {
    "cat": "thng",
    "band": "10M-50M",
-   "awards": 21202,
+   "awards": 21204,
    "bidders": 3.0,
    "solo_share": 0.304
   },
@@ -142,7 +142,7 @@
   {
    "cat": "thng",
    "band": "50M-200M",
-   "awards": 22079,
+   "awards": 22083,
    "bidders": 4.0,
    "solo_share": 0.233
   }
