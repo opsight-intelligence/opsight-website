@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.29.11] - 2026-09-30
+
+### Fixed
+
+- Sharing `/platform` showed no preview image: its Open Graph card
+  (`/og/platform.png`) was never generated. `scripts/og.mjs` now draws it
+  and the PNG is committed.
+- A nightly refresh of `procurement-numbers.json` or `procurement-cells.json`
+  no longer triggers a full Pages build; both are now ignored by the Pages
+  workflow like the other live-data files.
+
 ## [0.29.1] - 2026-09-25
 
 ### Fixed
