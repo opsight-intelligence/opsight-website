@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [Unreleased]
+
+## [0.29.12] - 2026-09-30
+
+### Changed
+
+- The docs describe the site as it is: the About, Method, Platform and
+  Procurement numbers pages are in `CLAUDE.md`, every live-data file is
+  listed, the README says how to develop and build, and CONTRIBUTING no
+  longer asks for a hand-edited sitemap (the build generates it).
+
 ## [0.29.11] - 2026-09-30
 
 ### Fixed
@@ -18,6 +29,13 @@ listed individually.
 - A nightly refresh of `procurement-numbers.json` or `procurement-cells.json`
   no longer triggers a full Pages build; both are now ignored by the Pages
   workflow like the other live-data files.
+
+## [0.29.2] - [0.29.10] - 2026-09-25 to 2026-09-30
+
+### Changed
+
+- Nightly refreshes of the live numbers (`stats.json` and the procurement
+  and manufacturing data files). No page or code change.
 
 ## [0.29.1] - 2026-09-25
 
