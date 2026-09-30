@@ -1,6 +1,21 @@
 # opsight-website
 
-The public marketing website for OpSight Intelligence.
+The public marketing website for OpSight Intelligence: an Astro site built by
+GitHub Actions and served from GitHub Pages. `CLAUDE.md` describes the pages
+and architecture; `CONTRIBUTING.md` the branch, version and changelog rules.
+
+## Develop and build
+
+```sh
+npm ci            # once; Node 22+
+npm run dev       # http://localhost:4321, live reload
+npm run build     # sitemap + build + check-dist (links, titles, canonicals)
+npm run preview   # serve dist/ exactly as Pages will
+```
+
+Live numbers (`stats.json` and the `procurement-*.json` / `agent-demo.json`
+files at the repo root) are rewritten nightly by other repos and fetched at
+runtime, so they never need a build.
 
 ## Branch guard (pre-push hook)
 
