@@ -6,13 +6,14 @@
 import { Resvg } from '@resvg/resvg-js';
 import { writeFileSync, mkdirSync } from 'node:fs';
 
-const LINES = { fraud: '#9085e9', procurement: '#199e70', manufacturing: '#d95926', opsentry: '#8fb0d9', home: '#8fb0d9', method: '#8fb0d9', about: '#8fb0d9' };
+const LINES = { fraud: '#9085e9', procurement: '#199e70', manufacturing: '#d95926', opsentry: '#8fb0d9', home: '#8fb0d9', platform: '#8fb0d9', method: '#8fb0d9', about: '#8fb0d9' };
 const PAGES = [
   { id: 'home', title: 'Raw signals in.\nIntelligence products out.', sub: 'Fraud · Procurement · Manufacturing · AI governance' },
   { id: 'fraud', title: 'Telegram intelligence for financial\ninstitutions and compliance teams.', sub: 'Fraud Intelligence' },
   { id: 'procurement', title: 'Korean public procurement,\ncollected nightly and made comparable.', sub: 'Procurement Intelligence' },
   { id: 'manufacturing', title: 'Forensic insights with the dollar\nimpact and the fix attached.', sub: 'Manufacturing Intelligence' },
   { id: 'opsentry', title: 'Three layers of defense\nfor AI coding agents.', sub: 'OpSentry · open source' },
+  { id: 'platform', title: 'The same firm, seen from\nevery line at once.', sub: 'Platform' },
   { id: 'method', title: 'Different data,\none common language.', sub: 'Method' },
   { id: 'about', title: 'A small platform that says\nexactly what it knows.', sub: 'About' },
 ];
