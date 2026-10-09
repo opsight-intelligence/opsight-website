@@ -1,20 +1,20 @@
 {
- "as_of": "2026-10-09",
+ "as_of": "2026-10-10",
  "source": "analytics.award_rate / competition_depth / uncontested_by_agency",
  "span": {
   "from": "2025-09-25",
-  "to": "2026-10-08",
-  "awards": 296125
+  "to": "2026-10-09",
+  "awards": 296144
  },
  "uncontested": {
-  "awards": 296125,
+  "awards": 296144,
   "solo": 53384,
   "share": 0.1803
  },
  "categories": [
   {
    "cat": "cnstwk",
-   "awards": 125497,
+   "awards": 125510,
    "median": 90.31,
    "p25": 90.11,
    "p75": 90.44,
@@ -23,7 +23,7 @@
   },
   {
    "cat": "servc",
-   "awards": 95851,
+   "awards": 95853,
    "median": 88.37,
    "p25": 88.01,
    "p75": 92.74,
@@ -32,7 +32,7 @@
   },
   {
    "cat": "thng",
-   "awards": 74777,
+   "awards": 74781,
    "median": 90.47,
    "p25": 88.04,
    "p75": 98.15,
@@ -51,7 +51,7 @@
   {
    "cat": "cnstwk",
    "band": ">=1B",
-   "awards": 6095,
+   "awards": 6096,
    "bidders": 429.0,
    "solo_share": 0.011
   },
@@ -65,14 +65,14 @@
   {
    "cat": "cnstwk",
    "band": "200M-1B",
-   "awards": 24680,
+   "awards": 24683,
    "bidders": 340.0,
    "solo_share": 0.014
   },
   {
    "cat": "cnstwk",
    "band": "50M-200M",
-   "awards": 56719,
+   "awards": 56728,
    "bidders": 58.0,
    "solo_share": 0.024
   },
@@ -93,7 +93,7 @@
   {
    "cat": "servc",
    "band": "10M-50M",
-   "awards": 36198,
+   "awards": 36199,
    "bidders": 4.0,
    "solo_share": 0.286
   },
@@ -107,14 +107,14 @@
   {
    "cat": "servc",
    "band": "50M-200M",
-   "awards": 34465,
+   "awards": 34466,
    "bidders": 7.0,
    "solo_share": 0.14
   },
   {
    "cat": "thng",
    "band": "<10M",
-   "awards": 17190,
+   "awards": 17191,
    "bidders": 4.0,
    "solo_share": 0.156
   },
@@ -128,7 +128,7 @@
   {
    "cat": "thng",
    "band": "10M-50M",
-   "awards": 21802,
+   "awards": 21803,
    "bidders": 3.0,
    "solo_share": 0.306
   },
@@ -142,7 +142,7 @@
   {
    "cat": "thng",
    "band": "50M-200M",
-   "awards": 22813,
+   "awards": 22815,
    "bidders": 3.0,
    "solo_share": 0.235
   }
