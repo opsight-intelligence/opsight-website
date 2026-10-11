@@ -10,6 +10,16 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.29.37] - 2026-10-11
+
+### Changed
+
+- Dependency updates from Dependabot #57: bump astro to 7.3.5.
+
+### Security
+
+- Lockfile refresh to patched devalue 5.9.4, sharp 0.35.5, source-map-js 1.2.2 and http-cache-semantics (HIGH advisories flagged by the CI security scan).
+
 ## [0.29.12] - 2026-09-30
 
 ### Changed
