@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-10-17",
+  "as_of": "2026-10-18",
   "rate_by_category": [
     {
       "category": "cnstwk",
       "label": "공사",
-      "awards": 127643,
+      "awards": 127655,
       "p25": 90.11,
       "median": 90.31,
       "p75": 90.45
@@ -12,7 +12,7 @@
     {
       "category": "servc",
       "label": "용역",
-      "awards": 97191,
+      "awards": 97200,
       "p25": 88.01,
       "median": 88.37,
       "p75": 92.73
@@ -20,7 +20,7 @@
     {
       "category": "thng",
       "label": "물품",
-      "awards": 76149,
+      "awards": 76159,
       "p25": 88.04,
       "median": 90.5,
       "p75": 98.16
@@ -30,7 +30,7 @@
     {
       "date": "2026-09-17",
       "notices": 1667,
-      "awards": 931
+      "awards": 932
     },
     {
       "date": "2026-09-18",
@@ -105,7 +105,7 @@
     {
       "date": "2026-10-02",
       "notices": 1345,
-      "awards": 906
+      "awards": 907
     },
     {
       "date": "2026-10-03",
@@ -125,22 +125,22 @@
     {
       "date": "2026-10-06",
       "notices": 2046,
-      "awards": 820
+      "awards": 821
     },
     {
       "date": "2026-10-07",
       "notices": 1946,
-      "awards": 1177
+      "awards": 1181
     },
     {
       "date": "2026-10-08",
       "notices": 1896,
-      "awards": 881
+      "awards": 884
     },
     {
       "date": "2026-10-09",
       "notices": 23,
-      "awards": 7
+      "awards": 8
     },
     {
       "date": "2026-10-10",
@@ -155,17 +155,17 @@
     {
       "date": "2026-10-12",
       "notices": 2085,
-      "awards": 618
+      "awards": 621
     },
     {
       "date": "2026-10-13",
       "notices": 1873,
-      "awards": 838
+      "awards": 841
     },
     {
       "date": "2026-10-14",
       "notices": 2047,
-      "awards": 754
+      "awards": 756
     },
     {
       "date": "2026-10-15",
@@ -175,12 +175,12 @@
     {
       "date": "2026-10-16",
       "notices": 1670,
-      "awards": 438
+      "awards": 440
     },
     {
       "date": "2026-10-17",
-      "notices": 1,
-      "awards": 0
+      "notices": 31,
+      "awards": 12
     }
   ]
 }

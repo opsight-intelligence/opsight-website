@@ -1,20 +1,20 @@
 {
- "as_of": "2026-10-17",
+ "as_of": "2026-10-18",
  "source": "analytics.award_rate / competition_depth / uncontested_by_agency",
  "span": {
   "from": "2025-09-25",
-  "to": "2026-10-16",
-  "awards": 300981
+  "to": "2026-10-17",
+  "awards": 301012
  },
  "uncontested": {
-  "awards": 300981,
-  "solo": 54365,
+  "awards": 301012,
+  "solo": 54375,
   "share": 0.1806
  },
  "categories": [
   {
    "cat": "cnstwk",
-   "awards": 127643,
+   "awards": 127655,
    "median": 90.31,
    "p25": 90.11,
    "p75": 90.45,
@@ -23,20 +23,20 @@
   },
   {
    "cat": "servc",
-   "awards": 97189,
+   "awards": 97198,
    "median": 88.37,
    "p25": 88.01,
    "p75": 92.73,
-   "iqr": 4.73,
+   "iqr": 4.72,
    "bidders": 5.0
   },
   {
    "cat": "thng",
-   "awards": 76149,
+   "awards": 76159,
    "median": 90.5,
    "p25": 88.04,
    "p75": 98.16,
-   "iqr": 10.11,
+   "iqr": 10.12,
    "bidders": 3.0
   }
  ],
@@ -58,28 +58,28 @@
   {
    "cat": "cnstwk",
    "band": "10M-50M",
-   "awards": 36316,
+   "awards": 36319,
    "bidders": 38.0,
-   "solo_share": 0.225
+   "solo_share": 0.226
   },
   {
    "cat": "cnstwk",
    "band": "200M-1B",
-   "awards": 25060,
+   "awards": 25061,
    "bidders": 341.0,
    "solo_share": 0.014
   },
   {
    "cat": "cnstwk",
    "band": "50M-200M",
-   "awards": 57724,
+   "awards": 57732,
    "bidders": 57.0,
    "solo_share": 0.024
   },
   {
    "cat": "servc",
    "band": "<10M",
-   "awards": 9582,
+   "awards": 9584,
    "bidders": 3.5,
    "solo_share": 0.373
   },
@@ -93,7 +93,7 @@
   {
    "cat": "servc",
    "band": "10M-50M",
-   "awards": 36830,
+   "awards": 36836,
    "bidders": 4.0,
    "solo_share": 0.287
   },
@@ -107,14 +107,14 @@
   {
    "cat": "servc",
    "band": "50M-200M",
-   "awards": 34892,
+   "awards": 34893,
    "bidders": 7.0,
    "solo_share": 0.141
   },
   {
    "cat": "thng",
    "band": "<10M",
-   "awards": 17576,
+   "awards": 17579,
    "bidders": 4.0,
    "solo_share": 0.155
   },
@@ -128,21 +128,21 @@
   {
    "cat": "thng",
    "band": "10M-50M",
-   "awards": 22188,
+   "awards": 22189,
    "bidders": 3.0,
    "solo_share": 0.308
   },
   {
    "cat": "thng",
    "band": "200M-1B",
-   "awards": 11101,
+   "awards": 11102,
    "bidders": 2.0,
    "solo_share": 0.365
   },
   {
    "cat": "thng",
    "band": "50M-200M",
-   "awards": 23201,
+   "awards": 23206,
    "bidders": 3.0,
    "solo_share": 0.236
   }
@@ -341,7 +341,7 @@
   },
   {
    "agency": "인천광역시교육청 인천광역시남부교육지원청",
-   "awards": 279,
+   "awards": 280,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
