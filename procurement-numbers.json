@@ -1,20 +1,20 @@
 {
- "as_of": "2026-10-18",
+ "as_of": "2026-10-19",
  "source": "analytics.award_rate / competition_depth / uncontested_by_agency",
  "span": {
   "from": "2025-09-25",
-  "to": "2026-10-17",
-  "awards": 301012
+  "to": "2026-10-18",
+  "awards": 301034
  },
  "uncontested": {
-  "awards": 301012,
-  "solo": 54375,
+  "awards": 301034,
+  "solo": 54377,
   "share": 0.1806
  },
  "categories": [
   {
    "cat": "cnstwk",
-   "awards": 127655,
+   "awards": 127668,
    "median": 90.31,
    "p25": 90.11,
    "p75": 90.45,
@@ -23,7 +23,7 @@
   },
   {
    "cat": "servc",
-   "awards": 97198,
+   "awards": 97204,
    "median": 88.37,
    "p25": 88.01,
    "p75": 92.73,
@@ -32,11 +32,11 @@
   },
   {
    "cat": "thng",
-   "awards": 76159,
+   "awards": 76162,
    "median": 90.5,
    "p25": 88.04,
    "p75": 98.16,
-   "iqr": 10.12,
+   "iqr": 10.11,
    "bidders": 3.0
   }
  ],
@@ -51,28 +51,28 @@
   {
    "cat": "cnstwk",
    "band": ">=1B",
-   "awards": 6212,
+   "awards": 6216,
    "bidders": 429.0,
    "solo_share": 0.011
   },
   {
    "cat": "cnstwk",
    "band": "10M-50M",
-   "awards": 36319,
+   "awards": 36320,
    "bidders": 38.0,
-   "solo_share": 0.226
+   "solo_share": 0.225
   },
   {
    "cat": "cnstwk",
    "band": "200M-1B",
-   "awards": 25061,
+   "awards": 25062,
    "bidders": 341.0,
    "solo_share": 0.014
   },
   {
    "cat": "cnstwk",
    "band": "50M-200M",
-   "awards": 57732,
+   "awards": 57739,
    "bidders": 57.0,
    "solo_share": 0.024
   },
@@ -93,7 +93,7 @@
   {
    "cat": "servc",
    "band": "10M-50M",
-   "awards": 36836,
+   "awards": 36838,
    "bidders": 4.0,
    "solo_share": 0.287
   },
@@ -107,7 +107,7 @@
   {
    "cat": "servc",
    "band": "50M-200M",
-   "awards": 34893,
+   "awards": 34897,
    "bidders": 7.0,
    "solo_share": 0.141
   },
@@ -128,7 +128,7 @@
   {
    "cat": "thng",
    "band": "10M-50M",
-   "awards": 22189,
+   "awards": 22190,
    "bidders": 3.0,
    "solo_share": 0.308
   },
@@ -142,7 +142,7 @@
   {
    "cat": "thng",
    "band": "50M-200M",
-   "awards": 23206,
+   "awards": 23208,
    "bidders": 3.0,
    "solo_share": 0.236
   }
