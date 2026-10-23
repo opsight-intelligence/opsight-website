@@ -1,20 +1,20 @@
 {
- "as_of": "2026-10-22",
+ "as_of": "2026-10-23",
  "source": "analytics.award_rate / competition_depth / uncontested_by_agency",
  "span": {
   "from": "2025-09-25",
-  "to": "2026-10-21",
-  "awards": 304279
+  "to": "2026-10-22",
+  "awards": 305398
  },
  "uncontested": {
-  "awards": 304279,
-  "solo": 54991,
-  "share": 0.1807
+  "awards": 305398,
+  "solo": 55215,
+  "share": 0.1808
  },
  "categories": [
   {
    "cat": "cnstwk",
-   "awards": 128953,
+   "awards": 129403,
    "median": 90.31,
    "p25": 90.11,
    "p75": 90.45,
@@ -23,20 +23,20 @@
   },
   {
    "cat": "servc",
-   "awards": 98043,
+   "awards": 98333,
    "median": 88.37,
    "p25": 88.01,
-   "p75": 92.69,
-   "iqr": 4.69,
+   "p75": 92.66,
+   "iqr": 4.66,
    "bidders": 5.0
   },
   {
    "cat": "thng",
-   "awards": 77283,
+   "awards": 77662,
    "median": 90.51,
    "p25": 88.04,
-   "p75": 98.16,
-   "iqr": 10.12,
+   "p75": 98.15,
+   "iqr": 10.11,
    "bidders": 3.0
   }
  ],
@@ -44,105 +44,105 @@
   {
    "cat": "cnstwk",
    "band": "<10M",
-   "awards": 2339,
+   "awards": 2345,
    "bidders": 1.0,
    "solo_share": 0.534
   },
   {
    "cat": "cnstwk",
    "band": ">=1B",
-   "awards": 6293,
-   "bidders": 428.0,
+   "awards": 6311,
+   "bidders": 429.0,
    "solo_share": 0.011
   },
   {
    "cat": "cnstwk",
    "band": "10M-50M",
-   "awards": 36696,
+   "awards": 36843,
    "bidders": 38.0,
-   "solo_share": 0.225
+   "solo_share": 0.226
   },
   {
    "cat": "cnstwk",
    "band": "200M-1B",
-   "awards": 25277,
-   "bidders": 341.0,
+   "awards": 25339,
+   "bidders": 340.0,
    "solo_share": 0.014
   },
   {
    "cat": "cnstwk",
    "band": "50M-200M",
-   "awards": 58348,
+   "awards": 58565,
    "bidders": 57.0,
    "solo_share": 0.025
   },
   {
    "cat": "servc",
    "band": "<10M",
-   "awards": 9664,
-   "bidders": 4.0,
+   "awards": 9682,
+   "bidders": 3.0,
    "solo_share": 0.373
   },
   {
    "cat": "servc",
    "band": ">=1B",
-   "awards": 4118,
+   "awards": 4127,
    "bidders": 6.0,
-   "solo_share": 0.276
+   "solo_share": 0.275
   },
   {
    "cat": "servc",
    "band": "10M-50M",
-   "awards": 37219,
+   "awards": 37362,
    "bidders": 4.0,
    "solo_share": 0.289
   },
   {
    "cat": "servc",
    "band": "200M-1B",
-   "awards": 11853,
+   "awards": 11878,
    "bidders": 7.0,
    "solo_share": 0.24
   },
   {
    "cat": "servc",
    "band": "50M-200M",
-   "awards": 35189,
+   "awards": 35284,
    "bidders": 7.0,
    "solo_share": 0.14
   },
   {
    "cat": "thng",
    "band": "<10M",
-   "awards": 17851,
+   "awards": 17942,
    "bidders": 4.0,
    "solo_share": 0.154
   },
   {
    "cat": "thng",
    "band": ">=1B",
-   "awards": 2102,
+   "awards": 2103,
    "bidders": 2.0,
-   "solo_share": 0.473
+   "solo_share": 0.474
   },
   {
    "cat": "thng",
    "band": "10M-50M",
-   "awards": 22565,
+   "awards": 22710,
    "bidders": 3.0,
-   "solo_share": 0.307
+   "solo_share": 0.306
   },
   {
    "cat": "thng",
    "band": "200M-1B",
-   "awards": 11226,
+   "awards": 11260,
    "bidders": 2.0,
-   "solo_share": 0.366
+   "solo_share": 0.367
   },
   {
    "cat": "thng",
    "band": "50M-200M",
-   "awards": 23539,
+   "awards": 23647,
    "bidders": 3.0,
    "solo_share": 0.237
   }
@@ -234,8 +234,8 @@
   },
   {
    "agency": "국가유산청 국립무형유산원",
-   "awards": 93,
-   "solo": 92,
+   "awards": 94,
+   "solo": 93,
    "share": 0.989,
    "solo_rate": 95.0
   },
@@ -257,28 +257,28 @@
  "most_contested": [
   {
    "agency": "전북특별자치도 정읍시",
-   "awards": 817,
+   "awards": 820,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
   },
   {
    "agency": "서울특별시",
-   "awards": 495,
+   "awards": 497,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
   },
   {
    "agency": "중소기업은행",
-   "awards": 468,
+   "awards": 469,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
   },
   {
    "agency": "경기도 경기도건설본부",
-   "awards": 392,
+   "awards": 394,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
@@ -348,14 +348,14 @@
   },
   {
    "agency": "부산광역시교육청 부산광역시동래교육지원청",
-   "awards": 278,
+   "awards": 279,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
   },
   {
    "agency": "재단법인 한국엘피지사업관리원",
-   "awards": 276,
+   "awards": 277,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
