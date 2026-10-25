@@ -1,21 +1,21 @@
 {
- "as_of": "2026-10-24",
+ "as_of": "2026-10-26",
  "source": "analytics.award_rate / competition_depth / uncontested_by_agency",
  "span": {
   "from": "2025-09-25",
-  "to": "2026-10-23",
-  "awards": 306466
+  "to": "2026-10-25",
+  "awards": 306540
  },
  "uncontested": {
-  "awards": 306466,
-  "solo": 55402,
-  "share": 0.1808
+  "awards": 306540,
+  "solo": 55406,
+  "share": 0.1807
  },
  "categories": [
   {
    "cat": "cnstwk",
-   "awards": 129850,
-   "median": 90.3,
+   "awards": 129901,
+   "median": 90.31,
    "p25": 90.11,
    "p75": 90.45,
    "iqr": 0.34,
@@ -23,7 +23,7 @@
   },
   {
    "cat": "servc",
-   "awards": 98568,
+   "awards": 98576,
    "median": 88.37,
    "p25": 88.01,
    "p75": 92.65,
@@ -32,7 +32,7 @@
   },
   {
    "cat": "thng",
-   "awards": 78048,
+   "awards": 78063,
    "median": 90.51,
    "p25": 88.04,
    "p75": 98.15,
@@ -58,28 +58,28 @@
   {
    "cat": "cnstwk",
    "band": "10M-50M",
-   "awards": 36968,
+   "awards": 36985,
    "bidders": 38.0,
    "solo_share": 0.226
   },
   {
    "cat": "cnstwk",
    "band": "200M-1B",
-   "awards": 25400,
+   "awards": 25410,
    "bidders": 340.0,
    "solo_share": 0.014
   },
   {
    "cat": "cnstwk",
    "band": "50M-200M",
-   "awards": 58807,
+   "awards": 58831,
    "bidders": 57.0,
    "solo_share": 0.025
   },
   {
    "cat": "servc",
    "band": "<10M",
-   "awards": 9704,
+   "awards": 9707,
    "bidders": 3.0,
    "solo_share": 0.374
   },
@@ -93,7 +93,7 @@
   {
    "cat": "servc",
    "band": "10M-50M",
-   "awards": 37467,
+   "awards": 37471,
    "bidders": 4.0,
    "solo_share": 0.289
   },
@@ -107,28 +107,28 @@
   {
    "cat": "servc",
    "band": "50M-200M",
-   "awards": 35367,
+   "awards": 35368,
    "bidders": 7.0,
    "solo_share": 0.14
   },
   {
    "cat": "thng",
    "band": "<10M",
-   "awards": 18040,
+   "awards": 18046,
    "bidders": 4.0,
    "solo_share": 0.154
   },
   {
    "cat": "thng",
    "band": ">=1B",
-   "awards": 2109,
+   "awards": 2110,
    "bidders": 2.0,
    "solo_share": 0.473
   },
   {
    "cat": "thng",
    "band": "10M-50M",
-   "awards": 22842,
+   "awards": 22843,
    "bidders": 3.0,
    "solo_share": 0.306
   },
@@ -142,7 +142,7 @@
   {
    "cat": "thng",
    "band": "50M-200M",
-   "awards": 23761,
+   "awards": 23768,
    "bidders": 3.0,
    "solo_share": 0.237
   }
