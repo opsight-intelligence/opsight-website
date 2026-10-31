@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-30",
+  "as_of": "2026-10-31",
   "rate_by_category": [
     {
       "category": "cnstwk",
@@ -27,16 +27,6 @@
     }
   ],
   "daily": [
-    {
-      "date": "2026-09-29",
-      "notices": 1923,
-      "awards": 966
-    },
-    {
-      "date": "2026-09-30",
-      "notices": 1801,
-      "awards": 961
-    },
     {
       "date": "2026-10-01",
       "notices": 1619,
