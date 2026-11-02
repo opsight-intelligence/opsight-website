@@ -1,130 +1,104 @@
 ---
-import HeroBand from './HeroBand.astro';
+// The OpSentry page body in the editorial look, rendered once per locale: hero
+// with an illustrative terminal session (labelled as such), the product facts,
+// why deterministic, the problem, the three layers as a step flow, red-team and
+// production evidence, install commands, governance, what gets blocked as
+// chips, plans, other tools and the closing actions.
 import type { OpsentryCopy, Block } from '../i18n/opsentry';
+import Band from './editorial/Band.astro';
+import ChipTabs from './editorial/ChipTabs.astro';
+import PageHero from './editorial/PageHero.astro';
+import StepFlow from './editorial/StepFlow.astro';
+import Terminal from './editorial/Terminal.astro';
 interface Props { copy: OpsentryCopy }
 const { copy } = Astro.props;
 const cards = (blocks: Block[]) => blocks;
 ---
-<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={`${copy.hero.lead} ${copy.hero.sub}`} line="opsentry" lifecycleLabels={['TOOL CALL', 'DETECT', 'PREVENT', 'SANDBOX', 'EXECUTE']}>
-  <Fragment slot="actions">
-    <a class="btn btn--primary" href={copy.hero.primaryHref}>{copy.hero.primary}</a>
-    <a class="btn btn--quiet" href={copy.hero.secondaryHref} target="_blank" rel="noopener">{copy.hero.secondary}</a>
-  </Fragment>
-</HeroBand>
+<PageHero
+  eyebrow={copy.hero.eyebrow}
+  title={copy.hero.title}
+  lead={`${copy.hero.lead} ${copy.hero.sub}`}
+  action={{ label: copy.hero.primary, href: copy.hero.primaryHref }}
+  secondary={{ label: copy.hero.secondary, href: copy.hero.secondaryHref, external: true }}
+  line="opsentry"
+>
+  <Fragment slot="art"><Terminal {...copy.demo} /></Fragment>
+</PageHero>
 
-<section class="section">
-  <div class="grid">
-    {copy.tiles.map((t) => (
-      <div class="stat stat--line line-opsentry">
-        <div class="stat__value">{t.value}</div>
-        <div class="stat__label">{t.label}</div>
-      </div>
-    ))}
-  </div>
-  <div class="callout" style="margin-top:var(--s-5)">
-    {copy.facts.map((f) => <p>{f}</p>)}
-  </div>
-</section>
-
-<section class="section" id="deterministic">
-  <div class="eyebrow">{copy.deterministic.heading}</div>
-  <p>{copy.deterministic.p1}</p>
-  <p>{copy.deterministic.p2}</p>
-  <p><strong>{copy.deterministic.p3}</strong></p>
-</section>
-
-{[
-  ['problem', copy.problem.heading, copy.problem.lead, copy.problem.blocks],
-  ['layers', copy.layers.heading, copy.layers.lead, copy.layers.blocks],
-].map(([id, heading, lead, blocks]) => (
-  <section class="section" id={id as string}>
-    <div class="eyebrow">{heading}</div>
-    <p class="muted">{lead}</p>
-    <div class="grid">
-      {cards(blocks as Block[]).map((b) => (
-        <article class="card line-opsentry"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
-      ))}
-    </div>
-  </section>
-))}
-
-<section class="section" id="redteam">
-  <div class="eyebrow">{copy.redteam.heading}</div>
-  <p class="muted">{copy.redteam.lead} <a href={copy.redteam.href} target="_blank" rel="noopener">{copy.redteam.link} →</a></p>
-  <div class="grid">
-    {copy.redteam.blocks.map((b) => (
-      <article class="card line-opsentry"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
-    ))}
-  </div>
-</section>
-
-<section class="section" id="production">
-  <div class="eyebrow">{copy.production.heading}</div>
-  <div class="grid">
-    {copy.production.blocks.map((b) => (
-      <article class="card line-opsentry"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
-    ))}
-  </div>
-</section>
-
-<section class="section" id="install">
-  <div class="eyebrow">{copy.install.heading}</div>
-  <p class="muted">{copy.install.lead}</p>
-  <div class="table-wrap">
-    <table class="table">
-      <tbody>
-        {copy.install.items.map((i) => (
-          <tr><th scope="row" style="white-space:nowrap">{i.label}</th><td><code>{i.cmd}</code></td></tr>
+<div class="line-opsentry">
+  <section class="ed-band ed-band--raised">
+    <div class="ed-inner">
+      <div class="ed-figures" data-reveal style={`--ed-figures:${copy.tiles.length}`}>
+        {copy.tiles.map((t) => (
+          <div class="ed-figure line-opsentry"><div class="stat__value">{t.value}</div><div class="stat__label">{t.label}</div></div>
         ))}
-      </tbody>
-    </table>
-  </div>
-</section>
-
-{[
-  ['governance', copy.governance.heading, copy.governance.lead, copy.governance.blocks],
-  ['blocked', copy.blocked.heading, '', copy.blocked.blocks],
-].map(([id, heading, lead, blocks]) => (
-  <section class="section" id={id as string}>
-    <div class="eyebrow">{heading}</div>
-    {lead && <p class="muted">{lead}</p>}
-    <div class="grid">
-      {cards(blocks as Block[]).map((b) => (
-        <article class="card line-opsentry"><div class="card__line"></div><h3>{b.title}</h3><p>{b.body}</p></article>
-      ))}
+      </div>
+      <div class="callout" style="margin-top:2.5rem" data-reveal>{copy.facts.map((f) => <p>{f}</p>)}</div>
     </div>
   </section>
-))}
 
-<div class="band section--tint"><div class="container"><section class="section" id="plans">
-  <div class="eyebrow">{copy.plans.heading}</div>
-  <p class="muted">{copy.plans.lead}</p>
-  <div class="grid">
-    {copy.plans.items.map((p) => (
-      <article class="card line-opsentry">
-        <div class="card__line"></div>
-        <h3>{p.name}</h3>
-        <div class="stat__value" style="font-size:var(--text-2xl)">{p.price}<small class="muted" style="font-size:var(--text-sm)">{p.per}</small></div>
-        <ul style="margin:0;padding-left:1.2em;color:var(--ink-secondary)">{p.items.map((i) => <li>{i}</li>)}</ul>
-        <a class={`btn ${p.primary ? 'btn--primary' : 'btn--quiet'} card__action`} href={p.href}>{p.cta}</a>
-      </article>
-    ))}
-  </div>
-</section></div></div>
+  <Band eyebrow={copy.deterministic.heading} id="deterministic">
+    <div class="ed-prose" data-reveal>
+      <p>{copy.deterministic.p1}</p>
+      <p>{copy.deterministic.p2}</p>
+      <p class="ed-statement">{copy.deterministic.p3}</p>
+    </div>
+  </Band>
 
-<section class="section" id="other">
-  <div class="callout">
-    <div class="callout__title">{copy.other.heading}</div>
-    <p>{copy.other.p1}</p>
-    <p>{copy.other.p2}</p>
-  </div>
-</section>
+  <Band eyebrow={copy.problem.heading} lede={copy.problem.lead} tone="raised" id="problem">
+    <div class="ed-cards" data-reveal>{cards(copy.problem.blocks).map((b) => (<article class="ed-card"><h3>{b.title}</h3><p>{b.body}</p></article>))}</div>
+  </Band>
 
-<section class="section" id="cta">
-  <div class="eyebrow">{copy.cta.heading}</div>
-  <p>{copy.cta.lead}</p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href={copy.cta.primaryHref} target="_blank" rel="noopener">{copy.cta.primary}</a>
-    <a class="btn btn--quiet" href={copy.cta.secondaryHref}>{copy.cta.secondary}</a>
-  </div>
-</section>
+  <Band eyebrow={copy.layers.heading} lede={copy.layers.lead} id="layers">
+    <StepFlow steps={copy.layers.blocks} />
+  </Band>
+
+  <Band eyebrow={copy.redteam.heading} tone="raised" id="redteam">
+    <p class="ed-lede" style="margin-bottom:2rem">{copy.redteam.lead} <a href={copy.redteam.href} target="_blank" rel="noopener">{copy.redteam.link} →</a></p>
+    <div class="ed-cards" data-reveal>{copy.redteam.blocks.map((b) => (<article class="ed-card"><h3>{b.title}</h3><p>{b.body}</p></article>))}</div>
+  </Band>
+
+  <Band eyebrow={copy.production.heading} id="production">
+    <div class="ed-cards" data-reveal>{copy.production.blocks.map((b) => (<article class="ed-card"><h3>{b.title}</h3><p>{b.body}</p></article>))}</div>
+  </Band>
+
+  <Band eyebrow={copy.install.heading} lede={copy.install.lead} tone="raised" id="install">
+    <div class="table-wrap" data-reveal>
+      <table class="table"><tbody>
+        {copy.install.items.map((i) => (<tr><th scope="row" style="white-space:nowrap">{i.label}</th><td><code>{i.cmd}</code></td></tr>))}
+      </tbody></table>
+    </div>
+  </Band>
+
+  <Band eyebrow={copy.governance.heading} lede={copy.governance.lead} id="governance">
+    <div class="ed-cards" data-reveal>{cards(copy.governance.blocks).map((b) => (<article class="ed-card"><h3>{b.title}</h3><p>{b.body}</p></article>))}</div>
+  </Band>
+
+  <Band eyebrow={copy.blocked.heading} tone="raised" id="blocked">
+    <ChipTabs id="blocked-tabs" blocks={copy.blocked.blocks} />
+  </Band>
+
+  <Band eyebrow={copy.plans.heading} lede={copy.plans.lead} id="plans">
+    <div class="ed-cards" data-reveal>
+      {copy.plans.items.map((p) => (
+        <article class="ed-card ed-plan">
+          <h3>{p.name}</h3>
+          <div class="ed-plan__price">{p.price}<small>{p.per}</small></div>
+          <ul class="ed-list">{p.items.map((i) => <li>{i}</li>)}</ul>
+          <a class={`ed-btn ${p.primary ? 'ed-btn--primary' : ''}`} href={p.href}>{p.cta}</a>
+        </article>
+      ))}
+    </div>
+  </Band>
+
+  <Band eyebrow={copy.other.heading} tone="raised" id="other">
+    <div class="ed-prose" data-reveal><p>{copy.other.p1}</p><p>{copy.other.p2}</p></div>
+  </Band>
+
+  <Band eyebrow={copy.cta.heading} lede={copy.cta.lead} id="cta">
+    <div class="ed-hero__actions" data-reveal>
+      <a class="ed-btn ed-btn--primary" href={copy.cta.primaryHref} target="_blank" rel="noopener">{copy.cta.primary}</a>
+      <a class="ed-btn" href={copy.cta.secondaryHref}>{copy.cta.secondary}</a>
+    </div>
+  </Band>
+</div>

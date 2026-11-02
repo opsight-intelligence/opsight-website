@@ -12,6 +12,12 @@ listed individually.
 
 ### Changed
 
+- OpSentry page (English and Korean) moves to the editorial look: hero with an illustrative terminal session that types
+  an AI agent's commands and shows the risky ones blocked (labelled "an illustrative session, not recorded output";
+  new `demo` copy in both locales), the product facts, why deterministic, the problem, the three layers as a step
+  flow, red-team and production evidence, install commands, governance, what gets blocked as chips, plans, other tools
+  and the closing actions. Other copy unchanged.
+
 - Manufacturing page (English and Korean) moves to the editorial look: hero with the animated cycle figure, last
   night's pulse, the insight principles, industries as chips with the compliance note, the live agent run (deviation
   chart draws in on scroll), the labelled synthetic examples, demos and contact. Copy unchanged.
