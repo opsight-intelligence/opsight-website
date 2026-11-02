@@ -4,6 +4,6 @@ import Procurement from '../components/Procurement.astro';
 import { procurement } from '../i18n/procurement';
 const copy = procurement.en;
 ---
-<Base locale="en" title={copy.title} description={copy.description} path="/procurement" locales={['en', 'ko']} current="procurement">
+<Base locale="en" title={copy.title} description={copy.description} path="/procurement" locales={['en', 'ko']} current="procurement" look="editorial">
   <Procurement copy={copy} locale="en" />
 </Base>

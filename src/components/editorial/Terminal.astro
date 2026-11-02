@@ -1,0 +1,17 @@
+---
+// A small terminal that prints a session line by line once it scrolls into
+// view (Reveal adds .is-in; each line has its own delay). The session is
+// illustrative and says so in its note; without script, or with reduced
+// motion, every line simply shows.
+interface Props { title: string; note: string; lines: { kind: 'cmd' | 'block' | 'ok'; text: string }[] }
+const { title, note, lines } = Astro.props;
+const LINE_DELAY_MS = 650;
+const FIRST_DELAY_MS = 300;
+---
+<figure class="ed-term" data-reveal>
+  <div class="ed-term__bar" aria-hidden="true"><span></span><span></span><span></span><em>{title}</em></div>
+  <pre class="ed-term__body">{lines.map((line, i) => (
+    <span class={`ed-term__line ed-term__line--${line.kind}`} style={`--ed-line-delay:${FIRST_DELAY_MS + i * LINE_DELAY_MS}ms`}>{line.text}</span>
+  ))}</pre>
+  <figcaption class="ed-note" style="margin:0;padding:0 1.25rem 1rem">{note}</figcaption>
+</figure>

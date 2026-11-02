@@ -15,7 +15,7 @@ const PAGES = [
   { id: 'opsentry', title: 'Three layers of defense\nfor AI coding agents.', sub: 'OpSentry · open source' },
   { id: 'platform', title: 'The same firm, seen from\nevery line at once.', sub: 'Platform' },
   { id: 'method', title: 'Different data,\none common language.', sub: 'Method' },
-  { id: 'about', title: 'A small platform that says\nexactly what it knows.', sub: 'About' },
+  { id: 'about', title: 'A platform that says\nexactly what it knows.', sub: 'About' },
 ];
 
 function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }

@@ -1,0 +1,50 @@
+---
+// A row of chips that switches between panels, one panel per block: the chips
+// are buttons in a tablist, the panels are tabpanels. Without script every
+// panel shows in a list, so nothing is hidden from readers or crawlers; the
+// script turns the list into tabs and supports the arrow keys.
+interface Props { id: string; blocks: { title: string; body: string }[] }
+const { id, blocks } = Astro.props;
+---
+<div class="ed-tabs" data-tabs id={id}>
+  <div class="ed-tabs__chips" role="tablist" hidden>
+    {blocks.map((b, i) => (
+      <button type="button" role="tab" id={`${id}-tab-${i}`} aria-controls={`${id}-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{b.title}</button>
+    ))}
+  </div>
+  <div class="ed-tabs__panels">
+    {blocks.map((b, i) => (
+      <section class="ed-tabs__panel" role="tabpanel" id={`${id}-panel-${i}`} aria-labelledby={`${id}-tab-${i}`}>
+        <h3>{b.title}</h3>
+        <p>{b.body}</p>
+      </section>
+    ))}
+  </div>
+</div>
+<script is:inline>
+(function () {
+  document.querySelectorAll('[data-tabs]:not([data-tabs-ready])').forEach(function (root) {
+    root.setAttribute('data-tabs-ready', '');
+    var list = root.querySelector('[role="tablist"]');
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    var panels = Array.prototype.slice.call(root.querySelectorAll('[role="tabpanel"]'));
+    list.hidden = false;
+    root.classList.add('is-tabbed');
+    function select(i) {
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); t.tabIndex = k === i ? 0 : -1; });
+      panels.forEach(function (p, k) { p.hidden = k !== i; });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(i); });
+      t.addEventListener('keydown', function (e) {
+        var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        var next = (i + step + tabs.length) % tabs.length;
+        select(next); tabs[next].focus();
+      });
+    });
+    select(0);
+  });
+})();
+</script>

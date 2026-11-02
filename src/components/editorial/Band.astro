@@ -7,7 +7,7 @@ const { eyebrow, title, lede, tone = 'plain', id } = Astro.props;
 ---
 <section class={`ed-band ${tone === 'raised' ? 'ed-band--raised' : ''}`} id={id}>
   <div class="ed-inner">
-    <header class="ed-head">
+    <header class="ed-head" data-reveal>
       <p class="ed-eyebrow">{eyebrow}</p>
       {title && <h2 class="ed-title">{title}</h2>}
       {lede && <p class="ed-lede">{lede}</p>}

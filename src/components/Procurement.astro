@@ -1,94 +1,90 @@
 ---
-import ContactPanel from './ContactPanel.astro';
-import HeroBand from './HeroBand.astro';
-import ArtProcurement from './ArtProcurement.astro';
+// The procurement page body in the editorial look, rendered once per locale:
+// hero with the animated bid figure, the three live figures, the problem, what
+// is collected, the live charts and the should-price calculator (their own
+// components, dark through the editorial token remap, drawing in as they
+// scroll into view), coverage, integrity checks, how it runs and contact.
 import type { ProcurementCopy, ProcLocale } from '../i18n/procurement';
-import StatTile from './StatTile.astro';
+import { common } from '../i18n/common';
+import { FORMSPREE_ENDPOINT } from '../config';
+import ArtProcurement from './ArtProcurement.astro';
+import ContactPanel from './ContactPanel.astro';
 import LiveStats from './LiveStats.astro';
 import ProcurementCharts from './ProcurementCharts.astro';
 import ShouldPriceCalculator from './ShouldPriceCalculator.astro';
-import { FORMSPREE_ENDPOINT } from '../config';
+import Band from './editorial/Band.astro';
+import LiveFigures from './editorial/LiveFigures.astro';
+import PageHero from './editorial/PageHero.astro';
 interface Props { copy: ProcurementCopy; locale: ProcLocale }
 const { copy, locale } = Astro.props;
+const SOURCE = 'procurement-stats.json';
+const figures = [
+  { id: 'stat-notices', label: copy.numbers.notices, line: 'procurement' as const, source: SOURCE },
+  { id: 'stat-awards', label: copy.numbers.awards, line: 'procurement' as const, source: SOURCE },
+  { id: 'stat-bids', label: copy.numbers.bids, line: 'procurement' as const, source: SOURCE },
+];
+const ko = locale === 'ko';
 ---
-<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} live={copy.hero.live} line="procurement">
-  <Fragment slot="actions"><a class="btn btn--primary" href="#contact">{copy.hero.primary}</a></Fragment>
+<PageHero
+  eyebrow={copy.hero.eyebrow}
+  title={copy.hero.title}
+  lead={copy.hero.lead}
+  live={{ badge: common[locale].live.badge, text: copy.hero.live }}
+  action={{ label: copy.hero.primary, href: '#contact' }}
+  line="procurement"
+>
   <Fragment slot="art"><ArtProcurement /></Fragment>
-</HeroBand>
+</PageHero>
 
-<section class="section" id="numbers">
-  <div class="grid">
-    <StatTile id="stat-notices" label={copy.numbers.notices} line="procurement" source="procurement-stats.json" locale={locale} />
-    <StatTile id="stat-awards" label={copy.numbers.awards} line="procurement" source="procurement-stats.json" locale={locale} />
-    <StatTile id="stat-bids" label={copy.numbers.bids} line="procurement" source="procurement-stats.json" locale={locale} />
-  </div>
-</section>
+<div class="line-procurement">
+  <section class="ed-band ed-band--raised" id="numbers">
+    <div class="ed-inner"><LiveFigures locale={locale} figures={figures} /></div>
+  </section>
 
-<section class="section" id="problem">
-  <div class="eyebrow">{copy.problem.heading}</div>
-  <p style="font-size:var(--text-lg)">{copy.problem.body}</p>
-</section>
+  <Band eyebrow={copy.problem.heading} id="problem">
+    <p class="ed-statement" data-reveal>{copy.problem.body}</p>
+  </Band>
 
-<div class="band section--tint"><div class="container"><section class="section" id="collect">
-  <div class="eyebrow">{copy.collect.heading}</div>
-  <p class="muted">{copy.collect.lead}</p>
-  <div class="grid">
-    {copy.collect.blocks.map((b) => (
-      <article class="card line-procurement">
-        <div class="card__line"></div>
-        <span class="badge badge--live">{copy.collect.liveBadge}</span>
-        <h3>{b.title}</h3>
-        <p>{b.body}</p>
-      </article>
-    ))}
-  </div>
-</section></div></div>
-
-<ProcurementCharts {...copy.figures} moreHref={locale === 'ko' ? '/ko/procurement/numbers/' : '/procurement/numbers/'} />
-
-<ShouldPriceCalculator {...copy.calculator} formspree={FORMSPREE_ENDPOINT} page={locale === 'ko' ? '/ko/procurement' : '/procurement'} />
-
-<section class="section" id="coverage">
-  <div class="eyebrow">{copy.coverage.heading}</div>
-  <div class="grid">
-    {copy.coverage.blocks.map((b) => (
-      <article class="card line-procurement">
-        <div class="card__line"></div>
-        <h3>{b.title}</h3>
-        <p>{b.body}</p>
-      </article>
-    ))}
-  </div>
-</section>
-
-{copy.integrity && (
-  <section class="section" id="integrity">
-    <div class="eyebrow">{copy.integrity.heading}</div>
-    <p class="muted">{copy.integrity.lead}</p>
-    <div class="grid">
-      {copy.integrity.blocks.map((b) => (
-        <article class="card line-procurement">
-          <div class="card__line"></div>
-          <h3>{b.title}</h3>
-          <p>{b.body}</p>
-        </article>
+  <Band eyebrow={copy.collect.heading} lede={copy.collect.lead} tone="raised" id="collect">
+    <div class="ed-cards" data-reveal>
+      {copy.collect.blocks.map((b) => (
+        <article class="ed-card"><span class="badge badge--live">{copy.collect.liveBadge}</span><h3 style="margin-top:0.75rem">{b.title}</h3><p>{b.body}</p></article>
       ))}
     </div>
-    <p class="muted" style="margin-top: var(--s-4)">{copy.integrity.note}</p>
-  </section>
-)}
+  </Band>
 
-<section class="section" id="how">
-  <div class="eyebrow">{copy.how.heading}</div>
-  <p>{copy.how.body}</p>
-  <div class="callout"><p>{copy.how.platform}</p></div>
-</section>
+  <div class="ed-classic" data-reveal>
+    <ProcurementCharts {...copy.figures} moreHref={ko ? '/ko/procurement/numbers/' : '/procurement/numbers/'} />
+  </div>
+  <div class="ed-band--raised">
+    <div class="ed-classic" data-reveal>
+      <ShouldPriceCalculator {...copy.calculator} formspree={FORMSPREE_ENDPOINT} page={ko ? '/ko/procurement' : '/procurement'} />
+    </div>
+  </div>
 
-<section class="section" id="contact">
-  <div class="eyebrow">{copy.contact.heading}</div>
-  <p>{copy.contact.lead}</p>
-  <ContactPanel locale={locale} subject={copy.contact.button} />
-  <p class="muted" style="font-size:var(--text-xs);margin-top:var(--s-5)">{copy.contact.disclaimer}</p>
-</section>
+  <Band eyebrow={copy.coverage.heading} id="coverage">
+    <div class="ed-cards" data-reveal>
+      {copy.coverage.blocks.map((b) => (<article class="ed-card"><h3>{b.title}</h3><p>{b.body}</p></article>))}
+    </div>
+  </Band>
+
+  {copy.integrity && (
+    <Band eyebrow={copy.integrity.heading} lede={copy.integrity.lead} tone="raised" id="integrity">
+      <div class="ed-cards" data-reveal>
+        {copy.integrity.blocks.map((b) => (<article class="ed-card"><h3>{b.title}</h3><p>{b.body}</p></article>))}
+      </div>
+      <p class="ed-note">{copy.integrity.note}</p>
+    </Band>
+  )}
+
+  <Band eyebrow={copy.how.heading} lede={copy.how.body} id="how">
+    <div class="callout" data-reveal><p>{copy.how.platform}</p></div>
+  </Band>
+
+  <Band eyebrow={copy.contact.heading} lede={copy.contact.lead} tone="raised" id="contact">
+    <ContactPanel locale={locale} subject={copy.contact.button} />
+    <p class="ed-note">{copy.contact.disclaimer}</p>
+  </Band>
+</div>
 
 <LiveStats files={{ 'procurement-stats.json': { notices: 'stat-notices', awards: 'stat-awards', bids: 'stat-bids' } }} />

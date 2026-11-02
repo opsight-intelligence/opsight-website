@@ -19,22 +19,22 @@ const CONTACT = 'utku@opsightintel.com'; // becomes contact@ once the alias is c
 export const about: Record<AboutLocale, AboutCopy> = {
   en: {
     title: 'About — Opsight Intelligence',
-    description: 'Opsight Intelligence is a small intelligence platform built in Korea: fraud ecosystems on Telegram, Korean public procurement, manufacturing forensics, and AI governance — one lifecycle, public sources, numbers that are live or labelled.',
+    description: 'Opsight Intelligence is an intelligence platform built in Korea: fraud ecosystems on Telegram, Korean public procurement, manufacturing forensics, and AI governance — one lifecycle, public sources, numbers that are live or labelled.',
     hero: {
       eyebrow: 'About',
-      title: 'A small platform that says exactly what it knows.',
+      title: 'A platform that says exactly what it knows.',
       lead: 'Opsight turns public signals into intelligence products for people who have to act on them — compliance teams, procurement offices, plant managers, engineering leads — and states plainly what is measured, what is inferred, and what is synthetic.',
     },
     who: {
       heading: 'Who',
       body: [
-        'Opsight Intelligence is built and run from Korea by a small team with a background in OSINT entity classification, procurement data and manufacturing analytics. The platform is one codebase per line on one shared bus, collecting nightly on a single schedule.',
+        'Opsight Intelligence is built and run from Korea, with a background in OSINT entity classification, procurement data and manufacturing analytics. The platform is one codebase per line on one shared bus, collecting nightly on a single schedule.',
         'Three lines are live — fraud, procurement, manufacturing — one product, OpSentry, is open source, and above the lines sits a platform layer: one entity across them, nightly sanctions screening, the corporate registry, and a consortium exchange that shares hashes and bands. The platform runs where the data lives; nothing is hosted for a client that the client has not asked for.',
       ],
     },
     credentials: {
       heading: 'Who builds it',
-      lead: 'One engineer, stated plainly. These are the credits the platform rests on; none of them is a client of Opsight.',
+      lead: 'The experience the platform rests on. None of these is a client of Opsight.',
       items: [
         { title: 'Senior solution engineer, manufacturing', body: 'Worked directly with Fortune 500 OEMs and their tier-1 suppliers on production-analytics solutions — the methods the manufacturing line runs are the ones proven there.' },
         { title: '2nd place, Snowflake APJ Hackathon 2026', body: 'For an automated manufacturing workflow: sense, reason, act and record over a fleet, the same shape as the agent that runs here nightly.' },
@@ -52,7 +52,7 @@ export const about: Record<AboutLocale, AboutCopy> = {
         { title: 'Public sources only', body: 'Open channels, open APIs, and data a customer exports from its own systems. The method page lists what that excludes.' },
         { title: 'Nightly, on a schedule', body: 'Every line collects and publishes every night. A figure on this site carries the date it was written.' },
         { title: 'Evidence before opinion', body: 'An alert names its evidence and its legal basis or it is not sent. A demo says whether it is synthetic.' },
-        { title: 'Small by design', body: 'One conversation, one sample, one decision. No account to create, no call unless you want one.' },
+        { title: 'Simple to start', body: 'One conversation, one sample, one decision. No account to create, no call unless you want one.' },
       ],
     },
     contact: {
@@ -75,22 +75,22 @@ export const about: Record<AboutLocale, AboutCopy> = {
   },
   ko: {
     title: '소개 — Opsight Intelligence',
-    description: 'Opsight Intelligence는 한국에서 만든 작은 인텔리전스 플랫폼입니다: 텔레그램 사기 생태계, 한국 공공조달, 제조 포렌식, AI 거버넌스 — 하나의 생명주기, 공개 소스, 실시간이거나 표시된 숫자.',
+    description: 'Opsight Intelligence는 한국에서 만든 인텔리전스 플랫폼입니다: 텔레그램 사기 생태계, 한국 공공조달, 제조 포렌식, AI 거버넌스 — 하나의 생명주기, 공개 소스, 실시간이거나 표시된 숫자.',
     hero: {
       eyebrow: '소개',
-      title: '아는 것을 정확히 말하는 작은 플랫폼.',
+      title: '아는 것을 정확히 말하는 플랫폼.',
       lead: 'Opsight는 공개 신호를 행동해야 하는 사람들을 위한 인텔리전스 제품으로 바꿉니다 — 준법감시팀, 조달 담당 부서, 공장 관리자, 엔지니어링 리드 — 그리고 무엇이 측정이고, 무엇이 추론이며, 무엇이 합성인지 분명히 말합니다.',
     },
     who: {
       heading: '누가',
       body: [
-        'Opsight Intelligence는 OSINT 엔티티 분류, 조달 데이터, 제조 분석 배경을 가진 소규모 팀이 한국에서 만들고 운영합니다. 플랫폼은 라인별 하나의 코드베이스가 하나의 공유 버스 위에서, 하나의 일정으로 매일 밤 수집합니다.',
+        'Opsight Intelligence는 OSINT 엔티티 분류, 조달 데이터, 제조 분석 경험을 바탕으로 한국에서 만들고 운영합니다. 플랫폼은 라인별 하나의 코드베이스가 하나의 공유 버스 위에서, 하나의 일정으로 매일 밤 수집합니다.',
         '세 개의 라인 — 사기, 공공조달, 제조 — 이 운영 중이고, OpSentry 하나는 오픈소스 제품이며, 라인 위에는 플랫폼 계층이 있습니다: 라인을 가로지르는 하나의 엔터티, 매일 밤의 제재 스크리닝, 기업 등기, 해시와 구간만 교환하는 컨소시엄. 플랫폼은 데이터가 있는 곳에서 돌아가며, 고객이 요청하지 않은 것을 고객 대신 호스팅하지 않습니다.',
       ],
     },
     credentials: {
       heading: '누가 만드는가',
-      lead: '엔지니어 한 사람, 있는 그대로. 플랫폼이 기대는 경력이며, 어느 것도 Opsight의 고객이 아닙니다.',
+      lead: '플랫폼이 기대는 경험입니다. 어느 것도 Opsight의 고객이 아닙니다.',
       items: [
         { title: '제조 도메인 시니어 솔루션 엔지니어', body: 'Fortune 500 OEM과 1차 협력사를 직접 상대하며 생산 분석 솔루션을 구축했습니다. 제조 라인이 돌리는 방법론은 그곳에서 검증된 것입니다.' },
         { title: 'Snowflake APJ 해커톤 2026 2위', body: '자동화된 제조 워크플로 — 감지·추론·실행·기록을 설비 전체에 걸쳐 수행하는 구조로, 여기서 매일 밤 도는 에이전트와 같은 형태입니다.' },
@@ -108,7 +108,7 @@ export const about: Record<AboutLocale, AboutCopy> = {
         { title: '공개 소스만', body: '공개 채널, 공개 API, 고객이 자기 시스템에서 내보낸 데이터. 제외되는 것은 방법론 페이지에 있습니다.' },
         { title: '매일 밤, 일정대로', body: '모든 라인이 매일 밤 수집하고 발행합니다. 이 사이트의 수치에는 작성일이 붙습니다.' },
         { title: '의견보다 근거 먼저', body: '알림은 근거와 법적 근거를 명시하거나 보내지 않습니다. 데모는 합성 여부를 밝힙니다.' },
-        { title: '의도적으로 작게', body: '한 번의 대화, 하나의 샘플, 하나의 결정. 만들 계정도, 원치 않는 통화도 없습니다.' },
+        { title: '시작은 간단하게', body: '한 번의 대화, 하나의 샘플, 하나의 결정. 만들 계정도, 원치 않는 통화도 없습니다.' },
       ],
     },
     contact: {
