@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-11-01",
+  "as_of": "2026-11-02",
   "rate_by_category": [
     {
       "category": "cnstwk",
       "label": "공사",
-      "awards": 131815,
+      "awards": 132208,
       "p25": 90.11,
       "median": 90.3,
       "p75": 90.45
@@ -12,31 +12,21 @@
     {
       "category": "servc",
       "label": "용역",
-      "awards": 99610,
+      "awards": 99916,
       "p25": 88.01,
       "median": 88.37,
-      "p75": 92.61
+      "p75": 92.6
     },
     {
       "category": "thng",
       "label": "물품",
-      "awards": 79458,
+      "awards": 79704,
       "p25": 88.04,
       "median": 90.53,
       "p75": 98.15
     }
   ],
   "daily": [
-    {
-      "date": "2026-10-01",
-      "notices": 1619,
-      "awards": 855
-    },
-    {
-      "date": "2026-10-02",
-      "notices": 1345,
-      "awards": 952
-    },
     {
       "date": "2026-10-03",
       "notices": 17,
@@ -55,17 +45,17 @@
     {
       "date": "2026-10-06",
       "notices": 2046,
-      "awards": 905
+      "awards": 906
     },
     {
       "date": "2026-10-07",
       "notices": 1946,
-      "awards": 1363
+      "awards": 1369
     },
     {
       "date": "2026-10-08",
       "notices": 1896,
-      "awards": 1110
+      "awards": 1120
     },
     {
       "date": "2026-10-09",
@@ -85,27 +75,27 @@
     {
       "date": "2026-10-12",
       "notices": 2085,
-      "awards": 798
+      "awards": 811
     },
     {
       "date": "2026-10-13",
       "notices": 1873,
-      "awards": 1164
+      "awards": 1183
     },
     {
       "date": "2026-10-14",
       "notices": 2047,
-      "awards": 1135
+      "awards": 1148
     },
     {
       "date": "2026-10-15",
       "notices": 1895,
-      "awards": 954
+      "awards": 962
     },
     {
       "date": "2026-10-16",
       "notices": 1670,
-      "awards": 987
+      "awards": 1000
     },
     {
       "date": "2026-10-17",
@@ -120,27 +110,27 @@
     {
       "date": "2026-10-19",
       "notices": 2100,
-      "awards": 836
+      "awards": 848
     },
     {
       "date": "2026-10-20",
       "notices": 2052,
-      "awards": 1247
+      "awards": 1282
     },
     {
       "date": "2026-10-21",
       "notices": 1997,
-      "awards": 1039
+      "awards": 1073
     },
     {
       "date": "2026-10-22",
       "notices": 1953,
-      "awards": 968
+      "awards": 1012
     },
     {
       "date": "2026-10-23",
       "notices": 1596,
-      "awards": 969
+      "awards": 1010
     },
     {
       "date": "2026-10-24",
@@ -155,22 +145,37 @@
     {
       "date": "2026-10-26",
       "notices": 2105,
-      "awards": 731
+      "awards": 758
     },
     {
       "date": "2026-10-27",
       "notices": 1924,
-      "awards": 885
+      "awards": 987
     },
     {
       "date": "2026-10-28",
       "notices": 2168,
-      "awards": 1681
+      "awards": 1747
     },
     {
       "date": "2026-10-29",
       "notices": 1989,
-      "awards": 465
+      "awards": 591
+    },
+    {
+      "date": "2026-10-30",
+      "notices": 0,
+      "awards": 411
+    },
+    {
+      "date": "2026-11-01",
+      "notices": 32,
+      "awards": 6
+    },
+    {
+      "date": "2026-11-02",
+      "notices": 2,
+      "awards": 0
     }
   ]
 }
