@@ -10,6 +10,8 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.35.3] - 2026-11-02
+
 ### Fixed
 
 - After a release, returning visitors could get the new pages with stylesheets their browser had cached for hours
