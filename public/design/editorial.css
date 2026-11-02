@@ -304,6 +304,7 @@
 .ed-plan .ed-btn { margin-top: auto; align-self: flex-start; }
 .look-editorial code { background: var(--ed-surface); border: 1px solid var(--ed-line); border-radius: 6px; padding: 0.1rem 0.4rem; color: var(--ed-ink); }
 
+
 @media (prefers-reduced-motion: reduce) {
   .ed-hero__lit,
   .ed-blueprint img,

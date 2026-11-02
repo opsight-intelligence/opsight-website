@@ -10,7 +10,18 @@ listed individually.
 
 ## [Unreleased]
 
+### Added
+
+- `LayerStack` (an isometric stack drawn from the copy, so it always has as many plates as layers; hovering, focusing
+  or clicking a plate or a list item lights both and opens its text) and `Terminal` (an illustrative session that
+  prints line by line on scroll) in `src/components/editorial/`.
+
 ### Changed
+
+- Platform, method and about pages (English and Korean) move to the editorial look: platform with the question as
+  before and after, the layers as an interactive stack, the exchange as a step flow; method with the lifecycle as a
+  step flow, the object fields, the severity scale and the live / synthetic promise; about with the statement bands.
+  Every public page now uses the editorial look; only the unlisted `/design/` reference stays classic. Copy unchanged.
 
 - OpSentry page (English and Korean) moves to the editorial look: hero with an illustrative terminal session that types
   an AI agent's commands and shows the risky ones blocked (labelled "an illustrative session, not recorded output";

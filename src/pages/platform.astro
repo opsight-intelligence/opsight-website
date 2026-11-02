@@ -4,6 +4,6 @@ import Platform from '../components/Platform.astro';
 import { platform } from '../i18n/platform';
 const copy = platform.en;
 ---
-<Base locale="en" title={copy.title} description={copy.description} path="/platform" locales={['en', 'ko']} current="platform">
+<Base locale="en" title={copy.title} description={copy.description} path="/platform" locales={['en', 'ko']} current="platform" look="editorial">
   <Platform copy={copy} locale="en" />
 </Base>

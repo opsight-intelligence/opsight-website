@@ -1,53 +1,44 @@
 ---
+// The platform page body in the editorial look, rendered once per locale: hero
+// with the lifecycle figure, the question before and after, the layers as an
+// interactive stack (exactly as many plates as the copy has layers), the
+// exchange as a step flow with what it never does, the honesty list and the ask.
 import type { PlatformCopy } from '../i18n/platform';
-import HeroBand from './HeroBand.astro';
 import ContactPanel from './ContactPanel.astro';
+import Lifecycle from './Lifecycle.astro';
+import Band from './editorial/Band.astro';
+import LayerStack from './editorial/LayerStack.astro';
+import PageHero from './editorial/PageHero.astro';
+import StepFlow from './editorial/StepFlow.astro';
 interface Props { copy: PlatformCopy; locale: 'en' | 'ko' }
 const { copy, locale } = Astro.props;
 ---
-<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} />
+<PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="platform">
+  <Fragment slot="art"><Lifecycle /></Fragment>
+</PageHero>
 
-<section class="section" id="question">
-  <div class="eyebrow">{copy.question.heading}</div>
-  <p class="muted">{copy.question.lead}</p>
-  <div class="grid">
-    <article class="card"><div class="card__line"></div><p>{copy.question.before}</p></article>
-    <article class="card"><div class="card__line"></div><p>{copy.question.after}</p></article>
-  </div>
-</section>
+<div class="line-platform">
+  <Band eyebrow={copy.question.heading} lede={copy.question.lead} id="question">
+    <div class="ed-compare" data-reveal>
+      <div class="ed-compare__side ed-compare__side--before"><p>{copy.question.before}</p></div>
+      <div class="ed-compare__side ed-compare__side--after"><p>{copy.question.after}</p></div>
+    </div>
+  </Band>
 
-<div class="band section--tint"><div class="container"><section class="section" id="layers">
-  <div class="eyebrow">{copy.layers.heading}</div>
-  <p class="muted">{copy.layers.lead}</p>
-  <div class="grid">
-    {copy.layers.items.map((l, i) => (
-      <article class="card"><div class="card__line"></div><span class="badge badge--line">{String(i + 1).padStart(2, '0')}</span><h3>{l.title}</h3><p>{l.body}</p><p class="muted" style="font-size:.9em">{l.state}</p></article>
-    ))}
-  </div>
-</section></div></div>
+  <Band eyebrow={copy.layers.heading} lede={copy.layers.lead} tone="raised" id="layers">
+    <LayerStack id="platform-layers" layers={copy.layers.items.map((l) => ({ title: l.title, body: l.body, state: l.state }))} />
+  </Band>
 
-<section class="section" id="exchange">
-  <div class="eyebrow">{copy.exchange.heading}</div>
-  <p class="muted">{copy.exchange.lead}</p>
-  <div class="grid">
-    {copy.exchange.steps.map((s, i) => (
-      <article class="card"><div class="card__line"></div><span class="badge badge--line">{String(i + 1).padStart(2, '0')}</span><h3>{s.title}</h3><p>{s.body}</p></article>
-    ))}
-  </div>
-  <ul style="padding-left:1.2em;max-width:var(--measure);margin-top:var(--s-5)">
-    {copy.exchange.never.map((n) => <li style="margin-bottom:var(--s-3)">{n}</li>)}
-  </ul>
-</section>
+  <Band eyebrow={copy.exchange.heading} lede={copy.exchange.lead} id="exchange">
+    <StepFlow steps={copy.exchange.steps} />
+    <ul class="ed-list" style="margin-top:2.5rem" data-reveal>{copy.exchange.never.map((n) => <li>{n}</li>)}</ul>
+  </Band>
 
-<section class="section" id="honesty">
-  <div class="eyebrow">{copy.honesty.heading}</div>
-  <ul style="padding-left:1.2em;max-width:var(--measure)">
-    {copy.honesty.items.map((i) => <li style="margin-bottom:var(--s-3)">{i}</li>)}
-  </ul>
-</section>
+  <Band eyebrow={copy.honesty.heading} tone="raised" id="honesty">
+    <ul class="ed-list" data-reveal>{copy.honesty.items.map((i) => <li>{i}</li>)}</ul>
+  </Band>
 
-<section class="section" id="ask">
-  <div class="eyebrow">{copy.ask.heading}</div>
-  <p class="muted">{copy.ask.body}</p>
-  <ContactPanel locale={locale} subject={copy.ask.heading} />
-</section>
+  <Band eyebrow={copy.ask.heading} lede={copy.ask.body} id="ask">
+    <ContactPanel locale={locale} subject={copy.ask.heading} />
+  </Band>
+</div>

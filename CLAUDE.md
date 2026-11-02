@@ -45,9 +45,12 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
   (`SignalHero` with the seeded field from `src/lib/signalField.ts`, `Band`,
   `LineCard`); headings use Montserrat, self-hosted from `public/fonts/`.
   The kit (from v0.31.0) adds `PageHero`, `StepFlow`, `ChipTabs`,
-  `LiveFigures` and `Reveal` (scroll fade-in, included by `Base`). Using it:
-  home (`/`, `/ko/`) and fraud (`/fraud`, `/ko/fraud`, `/tr/fraud`); move a
-  page by passing the prop and building its body from these parts.
+  `LiveFigures`, `Reveal` (scroll fade-in, included by `Base`),
+  `LayerStack` and `Terminal`. From v0.35.0 every public page uses the
+  editorial look; only the unlisted `/design/` reference stays classic.
+  Classic blocks (charts, calculator, agent demo, tables) sit inside
+  `.ed-classic` and render dark because `.look-editorial` remaps the shared
+  tokens; their own code is unchanged.
 - **Blueprint drawings** in `public/visuals/` come from `visuals/manifest.json`
   (prompt and seed per drawing), rendered locally with the mlx-toolkit's
   `zimage-gen` (`visuals/render.sh`) and converted to WebP
