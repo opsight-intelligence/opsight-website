@@ -36,6 +36,10 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
   `<name>/index.html` directory, which is how the page-by-page migration
   worked. `public/index-legacy.html` is the pre-Astro home page, kept until
   the new one has been read in both languages, then deleted.
+- **Stylesheet links are versioned** (from v0.35.3): `Base.astro` appends
+  `?v=<VERSION>` to `/design/*.css`, read from `VERSION` at build, because
+  Cloudflare lets browsers cache them for hours. Bumping `VERSION` is what
+  makes a release's CSS reach returning visitors.
 - **The editorial look** (from v0.30.0) is an opt-in layer over the design layer:
   `<Base look="editorial">` links `public/design/editorial.css`, puts
   `.look-editorial` on `<body>` and drops the contained `<main>` so the page
