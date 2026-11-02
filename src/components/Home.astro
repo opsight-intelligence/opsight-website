@@ -5,22 +5,21 @@
 // Live figures keep their pipeline ids, badge and date: LiveStats fills them
 // at runtime from the repo's raw JSON, and a figure it cannot fill keeps its dash.
 import type { HomeCopy, HomeLocale } from '../i18n/home';
-import { common } from '../i18n/common';
 import ContactPanel from './ContactPanel.astro';
 import LiveStats from './LiveStats.astro';
 import SignalHero from './editorial/SignalHero.astro';
 import Band from './editorial/Band.astro';
 import LineCard from './editorial/LineCard.astro';
+import LiveFigures from './editorial/LiveFigures.astro';
 interface Props { copy: HomeCopy; locale: HomeLocale }
 const { copy, locale } = Astro.props;
 const n = copy.numbers;
-const live = common[locale].live;
 const LIFECYCLE_SEPARATOR = ' → ';
 const figures = [
-  { id: 'stat-entities', label: n.entities, line: 'fraud', source: 'stats.json' },
-  { id: 'stat-clusters', label: n.clusters, line: 'fraud', source: 'stats.json' },
-  { id: 'stat-notices', label: n.notices, line: 'procurement', source: 'procurement-stats.json' },
-  { id: 'stat-awards', label: n.awards, line: 'procurement', source: 'procurement-stats.json' },
+  { id: 'stat-entities', label: n.entities, line: 'fraud' as const, source: 'stats.json' },
+  { id: 'stat-clusters', label: n.clusters, line: 'fraud' as const, source: 'stats.json' },
+  { id: 'stat-notices', label: n.notices, line: 'procurement' as const, source: 'procurement-stats.json' },
+  { id: 'stat-awards', label: n.awards, line: 'procurement' as const, source: 'procurement-stats.json' },
 ];
 const lines = ['fraud', 'procurement', 'manufacturing', 'opsentry', 'platform'] as const;
 ---
@@ -35,28 +34,17 @@ const lines = ['fraud', 'procurement', 'manufacturing', 'opsentry', 'platform'] 
 />
 
 <Band eyebrow={n.heading} lede={n.lead} tone="raised" id="numbers">
-  <div class="ed-figures">
-    {figures.map((f) => (
-      <div class={`ed-figure line-${f.line}`}>
-        <div class="stat__value" id={f.id} aria-live="polite">—</div>
-        <div class="stat__label">{f.label}</div>
-        <div class="stat__meta">
-          <span class="badge badge--live">{live.badge}</span>
-          <span>{live.lastWritten} <span data-updated-for={f.source}>…</span> · {live.source} {f.source}</span>
-        </div>
-      </div>
-    ))}
-  </div>
+  <LiveFigures locale={locale} figures={figures} />
 </Band>
 
 <Band eyebrow={copy.lines.heading} lede={copy.lines.lead} id="lines">
-  <div class="ed-lines">
+  <div class="ed-lines" data-reveal>
     {lines.map((line) => <LineCard card={copy.lines[line]} line={line} />)}
   </div>
 </Band>
 
 <Band eyebrow={copy.honesty.badge} tone="raised">
-  <div class="callout callout--live">
+  <div class="callout callout--live" data-reveal>
     <div class="callout__title"><span class="badge badge--live">{copy.honesty.badge}</span> {copy.honesty.title}</div>
     <p>{copy.honesty.body}</p>
   </div>

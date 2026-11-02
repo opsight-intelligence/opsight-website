@@ -4,6 +4,6 @@ import Fraud from '../components/Fraud.astro';
 import { fraud } from '../i18n/fraud';
 const copy = fraud.en;
 ---
-<Base locale="en" title={copy.title} description={copy.description} path="/fraud" locales={['en', 'ko', 'tr']} current="fraud">
+<Base locale="en" title={copy.title} description={copy.description} path="/fraud" locales={['en', 'ko', 'tr']} current="fraud" look="editorial">
   <Fraud copy={copy} locale="en" />
 </Base>

@@ -1,0 +1,24 @@
+---
+// Live figures in large type, each with its line colour, the Live badge, the
+// date it was last written and the file it came from. The values are filled
+// at runtime by LiveStats from the repo's raw JSON; a figure it cannot read
+// keeps its dash, so nothing stale or invented is ever shown.
+import type { Locale } from '../../i18n/common';
+import { common } from '../../i18n/common';
+type Line = 'fraud' | 'procurement' | 'manufacturing';
+interface Props { locale: Locale; figures: { id: string; label: string; line: Line; source: string }[] }
+const { locale, figures } = Astro.props;
+const live = common[locale].live;
+---
+<div class="ed-figures" data-reveal style={`--ed-figures:${Math.min(figures.length, 5)}`}>
+  {figures.map((f) => (
+    <div class={`ed-figure line-${f.line}`}>
+      <div class="stat__value" id={f.id} aria-live="polite">—</div>
+      <div class="stat__label">{f.label}</div>
+      <div class="stat__meta">
+        <span class="badge badge--live">{live.badge}</span>
+        <span>{live.lastWritten} <span data-updated-for={f.source}>…</span> · {live.source} {f.source}</span>
+      </div>
+    </div>
+  ))}
+</div>

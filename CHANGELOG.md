@@ -12,6 +12,20 @@ listed individually.
 
 ### Added
 
+- Editorial kit, shared by every page that moves to the editorial look: `PageHero` (copy left, the page's animated
+  figure right, a faint signal field behind), `StepFlow` (numbered steps that light up in turn as they scroll in),
+  `ChipTabs` (chips switching panels, with arrow keys; without script every panel shows as a list), `LiveFigures`
+  (the live, dated, sourced figures; home now uses it too) and `Reveal` (sections fade in on scroll). All motion waits
+  for the script and stands still under reduced motion.
+
+### Changed
+
+- Fraud page (English, Korean and Turkish) moves to the editorial look: hero with the animated cluster figure,
+  collect / connect / warn / deliver as a step flow, the watchlist cards where the locale sells them, coverage as
+  market chips, the five live figures, delivery and contact. Copy unchanged.
+
+### Added
+
 - Editorial look, opt-in per page with `<Base look="editorial">`: `public/design/editorial.css` (dark ground, Montserrat
   headings, wide bands, pill buttons), self-hosted Montserrat in `public/fonts/` (SIL OFL, licence beside it), and
   editorial components in `src/components/editorial/` (signal-field hero, band, line card with a blueprint).

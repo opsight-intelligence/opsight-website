@@ -1,0 +1,41 @@
+---
+// The editorial hero for an inner page: copy on the left (eyebrow, heading,
+// lead, an optional live line with its badge, one action) and the page's own
+// animated figure on the right through the "art" slot. A faint signal field
+// sits behind both so inner pages share the home page's ground.
+import { DEFAULT_FIELD, buildSignalField } from '../../lib/signalField';
+type Line = 'fraud' | 'procurement' | 'manufacturing' | 'opsentry' | 'platform';
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  live?: { badge: string; text: string };
+  action?: { label: string; href: string };
+  line?: Line;
+}
+const { eyebrow, title, lead, live, action, line } = Astro.props;
+const FIELD_SEED = 11;
+const field = buildSignalField({ ...DEFAULT_FIELD, seed: FIELD_SEED });
+const byId = new Map(field.nodes.map((node) => [node.id, node]));
+---
+<section class={`ed-pagehero ${line ? `line-${line}` : ''}`}>
+  <svg class="ed-hero__field ed-pagehero__field" viewBox={`0 0 ${DEFAULT_FIELD.width} ${DEFAULT_FIELD.height}`} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="ed-hero__links">
+      {field.links.map((link) => {
+        const a = byId.get(link.from)!;
+        const b = byId.get(link.to)!;
+        return <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} />;
+      })}
+    </g>
+  </svg>
+  <div class="ed-pagehero__inner">
+    <div class="ed-pagehero__copy">
+      <p class="ed-eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      {lead && <p class="ed-hero__lede">{lead}</p>}
+      {live && <p class="ed-pagehero__live"><span class="badge badge--live">{live.badge}</span> {live.text}</p>}
+      {action && <div class="ed-hero__actions"><a class="ed-btn ed-btn--primary" href={action.href}>{action.label}</a></div>}
+    </div>
+    <div class="ed-pagehero__art"><slot name="art" /></div>
+  </div>
+</section>

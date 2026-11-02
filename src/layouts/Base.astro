@@ -5,6 +5,7 @@
 // The design CSS is linked from /design/ (served verbatim from public/) rather
 // than bundled, so /design/ and every page read the exact same bytes.
 import { common, localePath, type Locale } from '../i18n/common';
+import Reveal from '../components/editorial/Reveal.astro';
 
 interface Props {
   locale: Locale;
@@ -75,6 +76,7 @@ const ogImage = `${site}/og/${current}.png`;
 <main class={editorial ? 'ed-main' : 'container'}>
   <slot />
 </main>
+{editorial && <Reveal />}
 <footer class="footer">
   <div class="container footer__inner">
     <span>{c.footer.rights}</span>

@@ -44,8 +44,10 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
   both OS themes. Components live in `src/components/editorial/`
   (`SignalHero` with the seeded field from `src/lib/signalField.ts`, `Band`,
   `LineCard`); headings use Montserrat, self-hosted from `public/fonts/`.
-  Today only the home pages (`/`, `/ko/`) use it; move a page by passing the
-  prop and building its body from these parts.
+  The kit (from v0.31.0) adds `PageHero`, `StepFlow`, `ChipTabs`,
+  `LiveFigures` and `Reveal` (scroll fade-in, included by `Base`). Using it:
+  home (`/`, `/ko/`) and fraud (`/fraud`, `/ko/fraud`, `/tr/fraud`); move a
+  page by passing the prop and building its body from these parts.
 - **Blueprint drawings** in `public/visuals/` come from `visuals/manifest.json`
   (prompt and seed per drawing), rendered locally with the mlx-toolkit's
   `zimage-gen` (`visuals/render.sh`) and converted to WebP

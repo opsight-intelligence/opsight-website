@@ -1,0 +1,19 @@
+---
+// Numbered steps in a row joined by a progress line. When the row scrolls into
+// view the steps light up one after another and the line fills (Reveal.astro
+// adds .is-in); hovering or focusing a step lights it on its own. Without
+// script, or with reduced motion, every step simply shows lit.
+interface Props { steps: { title: string; body: string }[] }
+const { steps } = Astro.props;
+const INDEX_WIDTH = 2;
+const STEP_DELAY_MS = 260;
+---
+<ol class="ed-steps" data-reveal style={`--ed-steps:${steps.length}`}>
+  {steps.map((step, i) => (
+    <li class="ed-step" tabindex="0" style={`--ed-step-delay:${i * STEP_DELAY_MS}ms`}>
+      <span class="ed-step__index">{String(i + 1).padStart(INDEX_WIDTH, '0')}</span>
+      <h3>{step.title}</h3>
+      <p>{step.body}</p>
+    </li>
+  ))}
+</ol>
