@@ -10,6 +10,14 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.35.3] - 2026-11-02
+
+### Fixed
+
+- After a release, returning visitors could get the new pages with stylesheets their browser had cached for hours
+  (Cloudflare allows four), so the 0.35.2 sideways-scroll fix reached them late. The stylesheet links in `Base.astro`
+  now carry the site version (`?v=0.35.3`, read from `VERSION` at build), so every release fetches fresh CSS.
+
 ## [0.35.2] - 2026-11-02
 
 ### Changed
