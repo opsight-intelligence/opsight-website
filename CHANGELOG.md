@@ -10,6 +10,14 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.29.82] - 2026-11-02
+
+### Changed
+
+- Astro 7.3.5 to 7.4.4, the monthly Dependabot update (#59) regenerated on top of 0.29.80: shiki 4.6, devalue 6,
+  unifont 1.0 and related patch updates. Astro no longer installs esbuild, js-yaml or ohash, so their lockfile
+  entries are gone; the Linux-only @emnapi entries stay, so npm ci keeps working in CI.
+
 ## [0.29.80] - 2026-11-02
 
 ### Changed
