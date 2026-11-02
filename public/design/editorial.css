@@ -165,11 +165,19 @@
 .ed-pagehero { position: relative; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--ed-line); }
 .ed-pagehero__field { opacity: 0.6; }
 .ed-pagehero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(5, 7, 10, 0.96) 0%, rgba(5, 7, 10, 0.75) 55%, rgba(5, 7, 10, 0.45) 100%); }
-.ed-pagehero__inner { max-width: var(--ed-page); margin: 0 auto; padding: 6rem var(--ed-gutter) 5rem; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 3rem; align-items: center; }
+.ed-pagehero__inner { max-width: var(--ed-page); margin: 0 auto; padding: 6rem var(--ed-gutter) 5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
 @media (max-width: 960px) { .ed-pagehero__inner { grid-template-columns: minmax(0, 1fr); padding-top: 4rem; } }
 .ed-pagehero h1 { font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.08; margin: 0 0 1.25rem; }
 .ed-pagehero__live { display: flex; align-items: baseline; gap: 0.5rem; color: var(--ed-ink-faint); font-size: 0.875rem; margin: 0 0 2rem; max-width: 34rem; }
-.ed-pagehero__art .art { filter: drop-shadow(0 0 24px rgba(90, 180, 240, 0.12)); }
+.ed-pagehero__art .art,
+.ed-pagehero__art .lifecycle { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 24px rgba(90, 180, 240, 0.12)); }
+/* the line drawings are wide and flat; on desktop let them run into the right margin so they hold their own beside the copy */
+@media (min-width: 961px) {
+  .ed-pagehero__art .art { width: 128%; max-width: none; }
+  .ed-pagehero__art .lifecycle { width: 112%; max-width: none; }
+}
+/* the lifecycle's last label sits past its viewBox edge; let it show */
+.ed-pagehero__art .lifecycle { overflow: visible; }
 
 /* step flow: numbered steps that light up in turn */
 .ed-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--ed-steps, 4), minmax(0, 1fr)); gap: 1.5rem; position: relative; }

@@ -10,6 +10,14 @@ listed individually.
 
 ## [Unreleased]
 
+### Changed
+
+- About page (English and Korean) no longer describes Opsight by its size: "A small platform" is now "A platform that
+  says exactly what it knows", "a small team" and "One engineer, stated plainly" are gone, "Small by design" is "Simple
+  to start" (작은 / 소규모 팀 / 엔지니어 한 사람 / 의도적으로 작게 likewise). The about Open Graph card is regenerated.
+- Inner-page hero art is larger: the art column is as wide as the copy and the line drawings run into the right margin
+  on desktop; the lifecycle's last label is no longer clipped.
+
 ### Fixed
 
 - Builds could fail before they started: a GitHub runner once served a cached Node 22.23.3, below the 22.23.4 Astro 7.4
