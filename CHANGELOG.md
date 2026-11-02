@@ -10,6 +10,8 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.35.2] - 2026-11-02
+
 ### Changed
 
 - About page (English and Korean) no longer describes Opsight by its size: "A small platform" is now "A platform that
