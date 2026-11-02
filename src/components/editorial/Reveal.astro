@@ -1,0 +1,24 @@
+---
+// Scroll reveal for the editorial look: anything marked data-reveal fades and
+// rises in the first time it enters the viewport (it gets .is-in). The page is
+// only prepared for this once the script runs (.ed-js on <html>), so without
+// script, or with reduced motion, everything is simply visible. Include once,
+// from Base, on editorial pages.
+const REVEAL_MARGIN = '0px 0px -12% 0px';
+---
+<script is:inline define:vars={{ REVEAL_MARGIN }}>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('ed-js');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: REVEAL_MARGIN });
+  function watch() { document.querySelectorAll('[data-reveal]:not(.is-in)').forEach(function (el) { io.observe(el); }); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
+})();
+</script>

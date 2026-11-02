@@ -4,6 +4,6 @@ import Manufacturing from '../components/Manufacturing.astro';
 import { manufacturing } from '../i18n/manufacturing';
 const copy = manufacturing.en;
 ---
-<Base locale="en" title={copy.title} description={copy.description} path="/manufacturing" locales={['en', 'ko']} current="manufacturing">
+<Base locale="en" title={copy.title} description={copy.description} path="/manufacturing" locales={['en', 'ko']} current="manufacturing" look="editorial">
   <Manufacturing copy={copy} locale="en" />
 </Base>

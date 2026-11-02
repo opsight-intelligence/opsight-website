@@ -1,0 +1,54 @@
+---
+// The editorial hero: a full-screen band with the headline, the lifecycle as
+// a quiet step line, two actions and a drawn field of linked signals behind
+// it. The field is SVG from the seeded geometry in lib/signalField, so it is
+// the same on every build; lit points pulse in CSS and stop for reduced motion.
+import { DEFAULT_FIELD, buildSignalField } from '../../lib/signalField';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  steps: string[];
+  primary: { label: string; href: string };
+  secondary: { label: string; href: string };
+  scrollLabel: string;
+}
+const { eyebrow, title, lead, steps, primary, secondary, scrollLabel } = Astro.props;
+const field = buildSignalField(DEFAULT_FIELD);
+const byId = new Map(field.nodes.map((node) => [node.id, node]));
+const PULSE_STAGGER_S = 0.6;
+const PULSE_GROUPS = 7;
+const LIT_GROWTH = 1.5;
+---
+<section class="ed-hero">
+  <svg class="ed-hero__field" viewBox={`0 0 ${DEFAULT_FIELD.width} ${DEFAULT_FIELD.height}`} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="ed-hero__links">
+      {field.links.map((link) => {
+        const a = byId.get(link.from)!;
+        const b = byId.get(link.to)!;
+        return <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} />;
+      })}
+    </g>
+    {field.nodes.map((node) => (
+      <circle
+        cx={node.x}
+        cy={node.y}
+        r={node.lit ? node.r + LIT_GROWTH : node.r}
+        class={node.lit ? 'ed-hero__lit' : 'ed-hero__node'}
+        style={`animation-delay:${(node.id % PULSE_GROUPS) * PULSE_STAGGER_S}s`}
+      />
+    ))}
+  </svg>
+  <div class="ed-hero__copy">
+    <p class="ed-eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="ed-hero__lede">{lead}</p>
+    <ol class="ed-hero__steps">{steps.map((step) => <li>{step}</li>)}</ol>
+    <div class="ed-hero__actions">
+      <a class="ed-btn ed-btn--primary" href={primary.href}>{primary.label}</a>
+      <a class="ed-btn" href={secondary.href}>{secondary.label}</a>
+    </div>
+  </div>
+  <p class="ed-hero__scroll" aria-hidden="true">{scrollLabel}</p>
+</section>

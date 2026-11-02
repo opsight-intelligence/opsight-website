@@ -1,0 +1,33 @@
+{
+  "note": "Blueprint drawings for Opsight's editorial pages, rendered locally with Z-Image Turbo (q8, 9 steps) through the mlx-toolkit's zimage-gen. Each entry is reproducible from its prompt and seed. Invented shapes, never data.",
+  "width": 1536,
+  "height": 864,
+  "style": "",
+  "blueprint_style": "white and pale cyan fine line art on deep midnight navy blueprint paper, faint square grid, light construction lines, clean engineering illustration, no text, no letters, no numbers, no labels, no measurements, centered composition with wide empty dark margins, high detail",
+  "stills": [
+    {
+      "name": "line-fraud",
+      "seed": 6101,
+      "kind": "blueprint",
+      "subject": "a web of chat message bubbles connected by thin lines to stacked coins, a crypto wallet and a padlock, drawn as an isometric network"
+    },
+    {
+      "name": "line-procurement",
+      "seed": 6102,
+      "kind": "blueprint",
+      "subject": "an isometric government building with columns beside a balance scale weighing two stacks of sealed tender envelopes"
+    },
+    {
+      "name": "line-manufacturing",
+      "seed": 6103,
+      "kind": "blueprint",
+      "subject": "an isometric production line with a stamping press, a conveyor belt and gears, with a magnifying glass over one machine"
+    },
+    {
+      "name": "line-opsentry",
+      "seed": 6104,
+      "kind": "blueprint",
+      "subject": "an open laptop guarded by a large shield, a small robotic arm reaching toward the keyboard and stopped by a barrier"
+    }
+  ]
+}

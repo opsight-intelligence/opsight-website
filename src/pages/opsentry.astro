@@ -4,6 +4,6 @@ import Opsentry from '../components/Opsentry.astro';
 import { opsentry } from '../i18n/opsentry';
 const copy = opsentry.en;
 ---
-<Base locale="en" title={copy.title} description={copy.description} path="/opsentry" locales={['en', 'ko']} current="opsentry">
+<Base locale="en" title={copy.title} description={copy.description} path="/opsentry" locales={['en', 'ko']} current="opsentry" look="editorial">
   <Opsentry copy={copy} />
 </Base>

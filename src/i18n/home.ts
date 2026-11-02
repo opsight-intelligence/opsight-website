@@ -13,7 +13,7 @@ export type HomeLocale = Extract<Locale, 'en' | 'ko'>;
 export interface HomeCopy {
   title: string;
   description: string;
-  hero: { eyebrow: string; title: string; lead: string; lifecycle: string; primary: string; primaryHref: string; secondary: string; secondaryHref: string };
+  hero: { eyebrow: string; title: string; lead: string; lifecycle: string; primary: string; primaryHref: string; secondary: string; secondaryHref: string; scroll: string };
   numbers: { heading: string; lead: string; entities: string; clusters: string; notices: string; awards: string };
   lines: { heading: string; lead: string; fraud: LineCard; procurement: LineCard; manufacturing: LineCard; opsentry: LineCard; platform: LineCard };
   honesty: { badge: string; title: string; body: string };
@@ -39,6 +39,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
       primaryHref: '#contact',
       secondary: 'How it is built',
       secondaryHref: '/method',
+      scroll: 'Scroll',
     },
     numbers: {
       heading: 'By the numbers',
@@ -117,6 +118,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
       primaryHref: '#contact',
       secondary: '어떻게 만드는지 보기',
       secondaryHref: '/ko/method',
+      scroll: '스크롤',
     },
     numbers: {
       heading: '주요 수치',

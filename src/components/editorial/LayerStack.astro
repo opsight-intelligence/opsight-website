@@ -1,0 +1,62 @@
+---
+// The platform's layers as a stacked isometric drawing beside a list: hovering,
+// focusing or clicking a plate or a list item lights both and opens that
+// layer's text. The drawing is built from the number of layers in the copy, so
+// it always shows exactly as many plates as the page describes. Without script
+// every layer's text shows and nothing is hidden.
+interface Props { id: string; layers: { title: string; body: string; state?: string }[] }
+const { id, layers } = Astro.props;
+const WIDTH = 420;
+const PLATE_HALF_W = 150;
+const PLATE_HALF_H = 60;
+const GAP = 58;
+const TOP = 70;
+const CX = WIDTH / 2;
+const height = TOP + PLATE_HALF_H * 2 + GAP * (layers.length - 1) + 30;
+const INDEX_WIDTH = 2;
+const plates = layers.map((_, i) => {
+  const cy = TOP + PLATE_HALF_H + GAP * (layers.length - 1 - i);
+  return { i, cy, points: `${CX},${cy - PLATE_HALF_H} ${CX + PLATE_HALF_W},${cy} ${CX},${cy + PLATE_HALF_H} ${CX - PLATE_HALF_W},${cy}` };
+});
+---
+<div class="ed-stack" data-stack id={id} data-reveal>
+  <div class="ed-stack__art">
+    <svg viewBox={`0 0 ${WIDTH} ${height}`} role="img" aria-label={layers.map((l) => l.title).join(', ')}>
+      {[-PLATE_HALF_W, 0, PLATE_HALF_W].map((dx) => (
+        <line class="ed-stack__beam" x1={CX + dx} y1={plates[plates.length - 1].cy} x2={CX + dx} y2={plates[0].cy} />
+      ))}
+      {plates.map((p) => (
+        <g>
+          <polygon class={`ed-stack__plate ${p.i === 0 ? 'is-active' : ''}`} points={p.points} data-layer={p.i} />
+          <text class="ed-stack__num" x={CX + PLATE_HALF_W + 14} y={p.cy + 5}>{String(p.i + 1).padStart(INDEX_WIDTH, '0')}</text>
+        </g>
+      ))}
+    </svg>
+  </div>
+  <ol class="ed-stack__items">
+    {layers.map((l, i) => (
+      <li class={`ed-stack__item ${i === 0 ? 'is-active' : ''}`} data-layer={i} tabindex="0">
+        <h3>{String(i + 1).padStart(INDEX_WIDTH, '0')} · {l.title}</h3>
+        <p>{l.body}</p>
+        {l.state && <p class="ed-stack__state">{l.state}</p>}
+      </li>
+    ))}
+  </ol>
+</div>
+<script is:inline>
+(function () {
+  document.querySelectorAll('[data-stack]:not([data-stack-ready])').forEach(function (root) {
+    root.setAttribute('data-stack-ready', '');
+    var parts = root.querySelectorAll('[data-layer]');
+    function pick(n) {
+      parts.forEach(function (el) { el.classList.toggle('is-active', el.getAttribute('data-layer') === n); });
+    }
+    parts.forEach(function (el) {
+      var n = el.getAttribute('data-layer');
+      el.addEventListener('mouseenter', function () { pick(n); });
+      el.addEventListener('focus', function () { pick(n); });
+      el.addEventListener('click', function () { pick(n); });
+    });
+  });
+})();
+</script>

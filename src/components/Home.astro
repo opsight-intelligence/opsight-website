@@ -1,58 +1,57 @@
 ---
-import ContactPanel from './ContactPanel.astro';
-import HeroBand from './HeroBand.astro';
-// The home page body, rendered once per locale from the copy object.
+// The home page body in the editorial look, rendered once per locale from the
+// copy object: signal-field hero, the live numbers, the five lines with their
+// blueprints, the live/synthetic promise and the contact panel.
+// Live figures keep their pipeline ids, badge and date: LiveStats fills them
+// at runtime from the repo's raw JSON, and a figure it cannot fill keeps its dash.
 import type { HomeCopy, HomeLocale } from '../i18n/home';
-import StatTile from './StatTile.astro';
-import ProductCard from './ProductCard.astro';
+import ContactPanel from './ContactPanel.astro';
 import LiveStats from './LiveStats.astro';
+import SignalHero from './editorial/SignalHero.astro';
+import Band from './editorial/Band.astro';
+import LineCard from './editorial/LineCard.astro';
+import LiveFigures from './editorial/LiveFigures.astro';
 interface Props { copy: HomeCopy; locale: HomeLocale }
 const { copy, locale } = Astro.props;
 const n = copy.numbers;
+const LIFECYCLE_SEPARATOR = ' → ';
+const figures = [
+  { id: 'stat-entities', label: n.entities, line: 'fraud' as const, source: 'stats.json' },
+  { id: 'stat-clusters', label: n.clusters, line: 'fraud' as const, source: 'stats.json' },
+  { id: 'stat-notices', label: n.notices, line: 'procurement' as const, source: 'procurement-stats.json' },
+  { id: 'stat-awards', label: n.awards, line: 'procurement' as const, source: 'procurement-stats.json' },
+];
+const lines = ['fraud', 'procurement', 'manufacturing', 'opsentry', 'platform'] as const;
 ---
-<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} lifecycleLabels={copy.hero.lifecycle.split(' → ')}>
-  <Fragment slot="actions">
-    <a class="btn btn--primary" href={copy.hero.primaryHref}>{copy.hero.primary}</a>
-    <a class="btn btn--quiet" href={copy.hero.secondaryHref}>{copy.hero.secondary}</a>
-  </Fragment>
-</HeroBand>
+<SignalHero
+  eyebrow={copy.hero.eyebrow}
+  title={copy.hero.title}
+  lead={copy.hero.lead}
+  steps={copy.hero.lifecycle.split(LIFECYCLE_SEPARATOR)}
+  primary={{ label: copy.hero.primary, href: copy.hero.primaryHref }}
+  secondary={{ label: copy.hero.secondary, href: copy.hero.secondaryHref }}
+  scrollLabel={copy.hero.scroll}
+/>
 
-<div class="band section--tint"><div class="container"><section class="section" id="numbers">
-  <div class="eyebrow">{n.heading}</div>
-  <p class="muted">{n.lead}</p>
-  <div class="grid">
-    <StatTile id="stat-entities" label={n.entities} line="fraud" source="stats.json" locale={locale} />
-    <StatTile id="stat-clusters" label={n.clusters} line="fraud" source="stats.json" locale={locale} />
-    <StatTile id="stat-notices" label={n.notices} line="procurement" source="procurement-stats.json" locale={locale} />
-    <StatTile id="stat-awards" label={n.awards} line="procurement" source="procurement-stats.json" locale={locale} />
+<Band eyebrow={n.heading} lede={n.lead} tone="raised" id="numbers">
+  <LiveFigures locale={locale} figures={figures} />
+</Band>
+
+<Band eyebrow={copy.lines.heading} lede={copy.lines.lead} id="lines">
+  <div class="ed-lines" data-reveal>
+    {lines.map((line) => <LineCard card={copy.lines[line]} line={line} />)}
   </div>
-</section></div></div>
+</Band>
 
-<section class="section" id="lines">
-  <div class="eyebrow">{copy.lines.heading}</div>
-  <p class="muted">{copy.lines.lead}</p>
-  <div class="grid">
-    <ProductCard card={copy.lines.fraud} line="fraud" />
-    <ProductCard card={copy.lines.procurement} line="procurement" />
-    <ProductCard card={copy.lines.manufacturing} line="manufacturing" />
-    <ProductCard card={copy.lines.opsentry} line="opsentry" />
-    <ProductCard card={copy.lines.platform} line="platform" />
-  </div>
-</section>
-
-<section class="section">
-  <div class="callout callout--live">
+<Band eyebrow={copy.honesty.badge} tone="raised">
+  <div class="callout callout--live" data-reveal>
     <div class="callout__title"><span class="badge badge--live">{copy.honesty.badge}</span> {copy.honesty.title}</div>
     <p>{copy.honesty.body}</p>
   </div>
-</section>
+</Band>
 
-<section class="section" id="contact">
-  <div class="eyebrow">{copy.contact.heading}</div>
-  <p>{copy.contact.lead}</p>
+<Band eyebrow={copy.contact.heading} lede={copy.contact.lead} id="contact">
   <ContactPanel locale={locale} subject={copy.contact.button} />
-</section>
+</Band>
 
 <LiveStats files={{ 'stats.json': { entities: 'stat-entities', clusters: 'stat-clusters' }, 'procurement-stats.json': { notices: 'stat-notices', awards: 'stat-awards' } }} />
-
-

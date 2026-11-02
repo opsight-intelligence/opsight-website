@@ -36,6 +36,25 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
   `<name>/index.html` directory, which is how the page-by-page migration
   worked. `public/index-legacy.html` is the pre-Astro home page, kept until
   the new one has been read in both languages, then deleted.
+- **The editorial look** (from v0.30.0) is an opt-in layer over the design layer:
+  `<Base look="editorial">` links `public/design/editorial.css`, puts
+  `.look-editorial` on `<body>` and drops the contained `<main>` so the page
+  runs full-width bands. Every editorial rule is scoped to that class, so
+  classic pages and the tokens other repos copy are untouched. It is dark in
+  both OS themes. Components live in `src/components/editorial/`
+  (`SignalHero` with the seeded field from `src/lib/signalField.ts`, `Band`,
+  `LineCard`); headings use Montserrat, self-hosted from `public/fonts/`.
+  The kit (from v0.31.0) adds `PageHero`, `StepFlow`, `ChipTabs`,
+  `LiveFigures`, `Reveal` (scroll fade-in, included by `Base`),
+  `LayerStack` and `Terminal`. From v0.35.0 every public page uses the
+  editorial look; only the unlisted `/design/` reference stays classic.
+  Classic blocks (charts, calculator, agent demo, tables) sit inside
+  `.ed-classic` and render dark because `.look-editorial` remaps the shared
+  tokens; their own code is unchanged.
+- **Blueprint drawings** in `public/visuals/` come from `visuals/manifest.json`
+  (prompt and seed per drawing), rendered locally with the mlx-toolkit's
+  `zimage-gen` (`visuals/render.sh`) and converted to WebP
+  (`visuals/publish.sh`). They are invented shapes, never data.
 - **The design layer** is `public/design/`: `tokens.css` (brand, line accents,
   severity/status, surfaces, type, space — light and dark) and
   `components.css` (nav, hero, stat tile, product card, badges, citation chip,

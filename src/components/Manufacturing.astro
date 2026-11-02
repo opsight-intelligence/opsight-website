@@ -1,52 +1,45 @@
 ---
+// The manufacturing page body in the editorial look, rendered once per locale:
+// hero with the animated cycle figure, last night's pulse (four numbers and a
+// link to the run), the insight principles, industries as chips, the live
+// agent run (its own component; the deviation chart draws in on scroll), the
+// labelled synthetic examples, the demos and the contact panel.
 import ContactPanel from './ContactPanel.astro';
 import AgentDemo from './AgentDemo.astro';
-import HeroBand from './HeroBand.astro';
 import ArtManufacturing from './ArtManufacturing.astro';
 import AgentPulse from './AgentPulse.astro';
+import Band from './editorial/Band.astro';
+import ChipTabs from './editorial/ChipTabs.astro';
+import PageHero from './editorial/PageHero.astro';
 import type { ManufacturingCopy, MfgLocale } from '../i18n/manufacturing';
 interface Props { copy: ManufacturingCopy; locale: MfgLocale }
 const { copy, locale } = Astro.props;
 ---
-<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="manufacturing">
-  <Fragment slot="actions"><a class="btn btn--primary" href="#contact">{copy.hero.primary}</a></Fragment>
+<PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} action={{ label: copy.hero.primary, href: '#contact' }} line="manufacturing">
   <Fragment slot="art"><ArtManufacturing /></Fragment>
-</HeroBand>
+</PageHero>
 
-<AgentPulse {...copy.pulse} />
-
-<section class="section" id="insights">
-  <div class="eyebrow">{copy.insights.heading}</div>
-  <p class="muted">{copy.insights.lead}</p>
-  <div class="grid">
-    {copy.insights.blocks.map((b) => (
-      <article class="card line-manufacturing">
-        <div class="card__line"></div>
-        <h3>{b.title}</h3>
-        <p>{b.body}</p>
-      </article>
-    ))}
+<div class="line-manufacturing">
+  <div class="ed-band--raised">
+    <div class="ed-classic" data-reveal><AgentPulse {...copy.pulse} /></div>
   </div>
-</section>
 
-<section class="section" id="industries">
-  <div class="eyebrow">{copy.industries.heading}</div>
-  <p class="muted">{copy.industries.lead}</p>
-  <div class="grid">
-    {copy.industries.blocks.map((b) => (
-      <article class="card line-manufacturing">
-        <div class="card__line"></div>
-        <h3>{b.title}</h3>
-        <p>{b.body}</p>
-      </article>
-    ))}
-  </div>
-  <p class="muted" style="margin-top:var(--s-5)">{copy.compliance.body} <a href={copy.compliance.href}>{copy.compliance.link}</a></p>
-</section>
+  <Band eyebrow={copy.insights.heading} lede={copy.insights.lead} id="insights">
+    <div class="ed-cards" data-reveal>
+      {copy.insights.blocks.map((b) => (<article class="ed-card"><h3>{b.title}</h3><p>{b.body}</p></article>))}
+    </div>
+  </Band>
 
-<AgentDemo {...copy.agent} />
+  <Band eyebrow={copy.industries.heading} lede={copy.industries.lead} tone="raised" id="industries">
+    <ChipTabs id="industry-tabs" blocks={copy.industries.blocks} />
+    <p class="ed-note">{copy.compliance.body} <a href={copy.compliance.href}>{copy.compliance.link}</a></p>
+  </Band>
 
-<div class="band section--tint"><div class="container"><section class="section" id="examples">
+  <div class="ed-classic" data-reveal><AgentDemo {...copy.agent} /></div>
+
+  <div class="ed-band--raised">
+    <div class="ed-classic" data-reveal>
+<section class="section" id="examples">
   <div class="eyebrow">{copy.examples.heading}</div>
   <p class="muted">{copy.examples.lead}</p>
   <div class="callout callout--synthetic">
@@ -72,20 +65,20 @@ const { copy, locale } = Astro.props;
       </article>
     ))}
   </div>
-</section></div></div>
-
-<section class="section" id="demos">
-  <div class="eyebrow">{copy.demos.heading}</div>
-  <p class="muted">{copy.demos.lead} <span class="badge badge--synthetic">{copy.honesty.badge}</span></p>
-  <div class="hero__actions">
-    {copy.demos.items.map((d) => <a class="btn btn--quiet" href={d.href} target="_blank" rel="noopener">{d.label}</a>)}
+</section>
+    </div>
   </div>
-  <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-4)">{copy.demos.more}</p>
-</section>
 
-<section class="section" id="contact">
-  <div class="eyebrow">{copy.contact.heading}</div>
-  <p>{copy.contact.lead}</p>
-  <ContactPanel locale={locale} subject={copy.contact.button} />
-  <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-4)">{copy.contact.sample}</p>
-</section>
+  <Band eyebrow={copy.demos.heading} lede={copy.demos.lead} id="demos">
+    <div class="ed-hero__actions" data-reveal>
+      <span class="badge badge--synthetic">{copy.honesty.badge}</span>
+      {copy.demos.items.map((d) => <a class="ed-btn" href={d.href} target="_blank" rel="noopener">{d.label}</a>)}
+    </div>
+    <p class="ed-note">{copy.demos.more}</p>
+  </Band>
+
+  <Band eyebrow={copy.contact.heading} lede={copy.contact.lead} tone="raised" id="contact">
+    <ContactPanel locale={locale} subject={copy.contact.button} />
+    <p class="ed-note">{copy.contact.sample}</p>
+  </Band>
+</div>

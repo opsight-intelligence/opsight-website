@@ -1,0 +1,30 @@
+---
+// One intelligence line as an editorial card: its blueprint drawing on top
+// (slow drift and a scanning light line, still for reduced motion), then the
+// line badge, title, body and action. The drawings are invented shapes from
+// visuals/manifest.json, never data, so they carry an empty alt; the platform's
+// is drawn in code (PlateDrawing) so it shows exactly its four layers.
+import type { LineCard as LineCardCopy } from '../../i18n/home';
+import PlateDrawing from './PlateDrawing.astro';
+type Line = 'fraud' | 'procurement' | 'manufacturing' | 'opsentry' | 'platform';
+interface Props { card: LineCardCopy; line: Line }
+const { card, line } = Astro.props;
+const IMAGE_WIDTH = 1536;
+const IMAGE_HEIGHT = 864;
+/** The platform's layers (entity, sanctions, registry, exchange); its card is drawn in code so the count is exact. */
+const PLATFORM_LAYERS = 4;
+---
+<article class={`ed-line line-${line}`}>
+  <div class="ed-line__art ed-blueprint">
+    {line === 'platform'
+      ? <PlateDrawing count={PLATFORM_LAYERS} />
+      : <img src={`/visuals/line-${line}.webp`} alt="" width={IMAGE_WIDTH} height={IMAGE_HEIGHT} loading="lazy" decoding="async" />}
+    <span class="ed-blueprint__scan" aria-hidden="true"></span>
+  </div>
+  <div class="ed-line__body">
+    <span class="badge badge--line">{card.badge}</span>
+    <h3>{card.title}</h3>
+    <p>{card.body}</p>
+    <a class="ed-line__action" href={card.href}>{card.action}</a>
+  </div>
+</article>

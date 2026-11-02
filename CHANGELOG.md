@@ -10,6 +10,93 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.35.2] - 2026-11-02
+
+### Changed
+
+- About page (English and Korean) no longer describes Opsight by its size: "A small platform" is now "A platform that
+  says exactly what it knows", "a small team" and "One engineer, stated plainly" are gone, "Small by design" is "Simple
+  to start" (작은 / 소규모 팀 / 엔지니어 한 사람 / 의도적으로 작게 likewise). The about Open Graph card is regenerated.
+- Inner-page hero art is larger: the art column is as wide as the copy and the line drawings run into the right margin
+  on desktop; the lifecycle's last label is no longer clipped.
+
+### Fixed
+
+- Builds could fail before they started: a GitHub runner once served a cached Node 22.23.3, below the 22.23.4 Astro 7.4
+  requires. Both workflows (`checks.yml`, `pages.yml`) now set `check-latest: true`, so every run fetches the newest
+  22.x, the live deploy included.
+- The platform card on the home page showed five layers while the platform has four. It is now drawn in code
+  (`PlateDrawing`) with exactly four plates; `line-platform.webp` and its manifest entry are gone (three more renders
+  of the same prompt all drew five).
+
+### Added
+
+- `LayerStack` (an isometric stack drawn from the copy, so it always has as many plates as layers; hovering, focusing
+  or clicking a plate or a list item lights both and opens its text) and `Terminal` (an illustrative session that
+  prints line by line on scroll) in `src/components/editorial/`.
+
+### Changed
+
+- Platform, method and about pages (English and Korean) move to the editorial look: platform with the question as
+  before and after, the layers as an interactive stack, the exchange as a step flow; method with the lifecycle as a
+  step flow, the object fields, the severity scale and the live / synthetic promise; about with the statement bands.
+  Every public page now uses the editorial look; only the unlisted `/design/` reference stays classic. Copy unchanged.
+
+- OpSentry page (English and Korean) moves to the editorial look: hero with an illustrative terminal session that types
+  an AI agent's commands and shows the risky ones blocked (labelled "an illustrative session, not recorded output";
+  new `demo` copy in both locales), the product facts, why deterministic, the problem, the three layers as a step
+  flow, red-team and production evidence, install commands, governance, what gets blocked as chips, plans, other tools
+  and the closing actions. Other copy unchanged.
+
+- Manufacturing page (English and Korean) moves to the editorial look: hero with the animated cycle figure, last
+  night's pulse, the insight principles, industries as chips with the compliance note, the live agent run (deviation
+  chart draws in on scroll), the labelled synthetic examples, demos and contact. Copy unchanged.
+
+- Procurement page and its numbers page (English and Korean) move to the editorial look: hero with the animated bid
+  figure, the three live figures, the problem as one large statement, what is collected, the live charts (which now draw
+  in as they scroll into view), the should-price calculator, coverage, integrity checks, how it runs and contact. The
+  shared tokens are remapped inside `.look-editorial`, so the charts, tables, calculator and agent demo render dark with
+  no change to their own code. Copy unchanged.
+
+### Added
+
+- Editorial kit, shared by every page that moves to the editorial look: `PageHero` (copy left, the page's animated
+  figure right, a faint signal field behind), `StepFlow` (numbered steps that light up in turn as they scroll in),
+  `ChipTabs` (chips switching panels, with arrow keys; without script every panel shows as a list), `LiveFigures`
+  (the live, dated, sourced figures; home now uses it too) and `Reveal` (sections fade in on scroll). All motion waits
+  for the script and stands still under reduced motion.
+
+### Changed
+
+- Fraud page (English, Korean and Turkish) moves to the editorial look: hero with the animated cluster figure,
+  collect / connect / warn / deliver as a step flow, the watchlist cards where the locale sells them, coverage as
+  market chips, the five live figures, delivery and contact. Copy unchanged.
+
+### Added
+
+- Editorial look, opt-in per page with `<Base look="editorial">`: `public/design/editorial.css` (dark ground, Montserrat
+  headings, wide bands, pill buttons), self-hosted Montserrat in `public/fonts/` (SIL OFL, licence beside it), and
+  editorial components in `src/components/editorial/` (signal-field hero, band, line card with a blueprint).
+- Blueprint drawings for the five lines in `public/visuals/`, rendered locally with Z-Image from `visuals/manifest.json`
+  (`visuals/render.sh`, `visuals/publish.sh`). Invented shapes, never data; they drift slowly under a scanning light
+  line, and the motion stops for reduced motion.
+
+### Changed
+
+- Home page (English and Korean) moves to the editorial look: full-screen hero over a seeded field of linked signals
+  with the lifecycle as a step line, the four live figures in large type (still live, dated and sourced, dash when
+  unread), the five lines as cards with their blueprints, the live/synthetic promise and the contact panel. Copy is
+  unchanged apart from a "Scroll" label in each language. Other pages keep the classic look until moved.
+
+### Fixed
+
+- Manufacturing (English and Korean) drew the same machines' cycle deviation twice, once under "Last night, on the
+  fleet" and again in "The agent, live", both from `agent-demo.json`. The top section keeps its four numbers and links
+  down to the run; the chart lives once, in the agent section with its explanation and verdict table.
+- Pages scrolled sideways: `.form input { width: 100% }` outranked `.sr-only`, so the contact form's hidden honeypot
+  field was full-width and ran off the right edge. Hidden form fields stay 1px now, and the root hides the scrollbar-wide
+  sliver that `.band`'s 100vw adds.
+
 ## [0.29.82] - 2026-11-02
 
 ### Changed

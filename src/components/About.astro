@@ -1,50 +1,39 @@
 ---
+// The about page body in the editorial look: hero with the lifecycle figure,
+// who Opsight is, credentials, where it works as one statement, how it works,
+// the contact panel and the closing statement.
 import ContactPanel from './ContactPanel.astro';
 import type { AboutCopy } from '../i18n/about';
-import HeroBand from './HeroBand.astro';
+import Lifecycle from './Lifecycle.astro';
+import Band from './editorial/Band.astro';
+import PageHero from './editorial/PageHero.astro';
 interface Props { copy: AboutCopy; locale: 'en' | 'ko' }
 const { copy, locale } = Astro.props;
 ---
-<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} />
+<PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead}>
+  <Fragment slot="art"><Lifecycle /></Fragment>
+</PageHero>
 
-<section class="section" id="who">
-  <div class="eyebrow">{copy.who.heading}</div>
-  {copy.who.body.map((p) => <p>{p}</p>)}
-</section>
+<Band eyebrow={copy.who.heading} id="who">
+  <div class="ed-prose" data-reveal>{copy.who.body.map((p) => <p>{p}</p>)}</div>
+</Band>
 
-<section class="section" id="credentials">
-  <div class="eyebrow">{copy.credentials.heading}</div>
-  <p class="muted">{copy.credentials.lead}</p>
-  <div class="grid">
-    {copy.credentials.items.map((c) => (
-      <article class="card"><div class="card__line"></div><h3>{c.title}</h3><p>{c.body}</p></article>
-    ))}
-  </div>
-</section>
+<Band eyebrow={copy.credentials.heading} lede={copy.credentials.lead} tone="raised" id="credentials">
+  <div class="ed-cards" data-reveal>{copy.credentials.items.map((c) => (<article class="ed-card"><h3>{c.title}</h3><p>{c.body}</p></article>))}</div>
+</Band>
 
-<section class="section">
-  <div class="eyebrow" style="margin-top:var(--s-5)">{copy.where.heading}</div>
-  <p>{copy.where.body}</p>
-</section>
+<Band eyebrow={copy.where.heading} id="where">
+  <p class="ed-statement" data-reveal>{copy.where.body}</p>
+</Band>
 
-<div class="band section--tint"><div class="container"><section class="section" id="how">
-  <div class="eyebrow">{copy.how.heading}</div>
-  <div class="grid">
-    {copy.how.items.map((i) => (
-      <article class="card"><div class="card__line"></div><h3>{i.title}</h3><p>{i.body}</p></article>
-    ))}
-  </div>
-</section></div></div>
+<Band eyebrow={copy.how.heading} tone="raised" id="how">
+  <div class="ed-cards" data-reveal>{copy.how.items.map((i) => (<article class="ed-card"><h3>{i.title}</h3><p>{i.body}</p></article>))}</div>
+</Band>
 
-<section class="section" id="contact">
-  <div class="eyebrow">{copy.contact.heading}</div>
-  <p>{copy.contact.lead}</p>
+<Band eyebrow={copy.contact.heading} lede={copy.contact.lead} id="contact">
   <ContactPanel locale={locale} />
-</section>
+</Band>
 
-<section class="section" id="statement">
-  <div class="eyebrow">{copy.statement.heading}</div>
-  <div class="callout">
-    {copy.statement.body.map((p) => <p>{p}</p>)}
-  </div>
-</section>
+<Band eyebrow={copy.statement.heading} tone="raised" id="statement">
+  <div class="ed-prose" data-reveal>{copy.statement.body.map((p) => <p>{p}</p>)}</div>
+</Band>
