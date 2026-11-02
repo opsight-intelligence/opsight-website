@@ -92,7 +92,7 @@ export const manufacturing: Record<MfgLocale, ManufacturingCopy> = {
       heading: 'Last night, on the fleet',
       lead: 'One agent cycle a night: sense every machine, reason over six weeks of cycle data, act with a root cause and a work order, record the trail.',
       tiles: { machines: 'Machines watched', abnormal: 'Flagged abnormal', workOrders: 'Work orders raised', weeks: 'Weeks of cycle data' },
-      chart: { title: 'Cycle deviation from the approved cycle, by machine', yLabel: 'deviation vs approved cycle', refLabel: 'approved', tableCaption: 'Table view', colMachine: 'Machine', colDeviation: 'Last week', colVerdict: 'Verdict' },
+      chart: { title: 'Cycle deviation from the approved cycle, by machine', yLabel: '% vs approved', refLabel: 'approved', tableCaption: 'Table view', colMachine: 'Machine', colDeviation: 'Last week', colVerdict: 'Verdict' },
       updated: 'cycle of',
     },
     tiles: [
@@ -162,7 +162,7 @@ export const manufacturing: Record<MfgLocale, ManufacturingCopy> = {
       heading: '지난밤, 설비 전체에서',
       lead: '하룻밤 한 사이클: 모든 설비를 감지하고, 6주치 사이클 데이터를 추론하고, 근본 원인과 작업지시로 실행하고, 이력을 기록합니다.',
       tiles: { machines: '감시 설비', abnormal: '이상 판정', workOrders: '발행된 작업지시', weeks: '사이클 데이터 주수' },
-      chart: { title: '설비별 승인 사이클 대비 편차', yLabel: '승인 사이클 대비 편차', refLabel: '승인', tableCaption: '표로 보기', colMachine: '설비', colDeviation: '최근 주', colVerdict: '판정' },
+      chart: { title: '설비별 승인 사이클 대비 편차', yLabel: '승인 대비 %', refLabel: '승인', tableCaption: '표로 보기', colMachine: '설비', colDeviation: '최근 주', colVerdict: '판정' },
       updated: '사이클 일자',
     },
     tiles: [

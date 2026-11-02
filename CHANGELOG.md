@@ -28,6 +28,8 @@ listed individually.
 
 ### Fixed
 
+- Manufacturing (English and Korean): the cycle chart's axis label repeated its heading right under it ("deviation vs
+  approved cycle" under "Cycle deviation from the approved cycle"); the axis now carries only its unit, "% vs approved".
 - Pages scrolled sideways: `.form input { width: 100% }` outranked `.sr-only`, so the contact form's hidden honeypot
   field was full-width and ran off the right edge. Hidden form fields stay 1px now, and the root hides the scrollbar-wide
   sliver that `.band`'s 100vw adds.
