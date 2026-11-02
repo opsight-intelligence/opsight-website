@@ -305,9 +305,20 @@
 .look-editorial code { background: var(--ed-surface); border: 1px solid var(--ed-line); border-radius: 6px; padding: 0.1rem 0.4rem; color: var(--ed-ink); }
 
 
+/* the platform's plates, drawn in code */
+.ed-plates { display: block; width: 100%; height: 100%; }
+.ed-blueprint .ed-plates { animation: ed-drift 24s ease-in-out infinite alternate; transform-origin: 50% 50%; }
+.ed-plates__grid { stroke: rgba(143, 176, 217, 0.08); stroke-width: 1; }
+.ed-plates__plate { fill: rgba(200, 240, 255, 0.10); stroke: rgba(235, 248, 255, 0.85); stroke-width: 3; }
+.ed-plates__beam { stroke: rgba(160, 230, 250, 0.45); stroke-width: 2; stroke-dasharray: 6 8; }
+.ed-plates__link { stroke: rgba(120, 230, 230, 0.6); stroke-width: 2; }
+.ed-plates__node { fill: #0c1a3a; stroke: rgba(120, 230, 230, 0.9); stroke-width: 2; }
+.ed-plates__hub { fill: rgba(120, 230, 230, 0.95); }
+
 @media (prefers-reduced-motion: reduce) {
   .ed-hero__lit,
   .ed-blueprint img,
+  .ed-blueprint .ed-plates,
   .ed-blueprint__scan { animation: none; }
   .ed-blueprint__scan { display: none; }
   .look-editorial .viz-bar,

@@ -1,0 +1,37 @@
+---
+// A blueprint-style drawing of stacked plates, drawn in SVG so the count is
+// exact: the platform card shows as many plates as the platform has layers.
+// Line art in the blueprint palette on a navy grid; the card's scan line and
+// drift apply to it like to the rendered drawings.
+interface Props { count: number }
+const { count } = Astro.props;
+const WIDTH = 1536;
+const HEIGHT = 864;
+const CX = WIDTH / 2;
+const HALF_W = 330;
+const HALF_H = 135;
+const GAP = 120;
+const TOP = (HEIGHT - (HALF_H * 2 + GAP * (count - 1))) / 2 + HALF_H;
+const GRID = 48;
+const plates = Array.from({ length: count }, (_, i) => TOP + GAP * i);
+const NODE_COUNT = 9;
+const NODE_SPREAD = 0.55;
+const nodes = Array.from({ length: NODE_COUNT }, (_, i) => {
+  const a = (i / NODE_COUNT) * Math.PI * 2;
+  return { x: CX + Math.cos(a) * HALF_W * NODE_SPREAD * 0.6, y: TOP + Math.sin(a) * HALF_H * NODE_SPREAD * 0.6 };
+});
+---
+<svg class="ed-plates" viewBox={`0 0 ${WIDTH} ${HEIGHT}`} aria-hidden="true">
+  <rect width={WIDTH} height={HEIGHT} fill="#0c1a3a" />
+  {Array.from({ length: Math.ceil(WIDTH / GRID) }, (_, i) => <line class="ed-plates__grid" x1={i * GRID} y1="0" x2={i * GRID} y2={HEIGHT} />)}
+  {Array.from({ length: Math.ceil(HEIGHT / GRID) }, (_, i) => <line class="ed-plates__grid" x1="0" y1={i * GRID} x2={WIDTH} y2={i * GRID} />)}
+  {[-HALF_W, 0, HALF_W].map((dx) => (
+    <line class="ed-plates__beam" x1={CX + dx} y1={plates[0] + (dx === 0 ? HALF_H : 0)} x2={CX + dx} y2={plates[count - 1] + (dx === 0 ? HALF_H : 0)} />
+  ))}
+  {plates.slice().reverse().map((cy) => (
+    <polygon class="ed-plates__plate" points={`${CX},${cy - HALF_H} ${CX + HALF_W},${cy} ${CX},${cy + HALF_H} ${CX - HALF_W},${cy}`} />
+  ))}
+  {nodes.map((n) => <line class="ed-plates__link" x1={CX} y1={TOP} x2={n.x} y2={n.y} />)}
+  {nodes.map((n) => <circle class="ed-plates__node" cx={n.x} cy={n.y} r="6" />)}
+  <circle class="ed-plates__hub" cx={CX} cy={TOP} r="10" />
+</svg>

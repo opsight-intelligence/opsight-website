@@ -10,6 +10,15 @@ listed individually.
 
 ## [Unreleased]
 
+### Fixed
+
+- Builds could fail before they started: a GitHub runner once served a cached Node 22.23.3, below the 22.23.4 Astro 7.4
+  requires. Both workflows (`checks.yml`, `pages.yml`) now set `check-latest: true`, so every run fetches the newest
+  22.x, the live deploy included.
+- The platform card on the home page showed five layers while the platform has four. It is now drawn in code
+  (`PlateDrawing`) with exactly four plates; `line-platform.webp` and its manifest entry are gone (three more renders
+  of the same prompt all drew five).
+
 ### Added
 
 - `LayerStack` (an isometric stack drawn from the copy, so it always has as many plates as layers; hovering, focusing

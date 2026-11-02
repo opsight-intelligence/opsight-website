@@ -28,12 +28,6 @@
       "seed": 6104,
       "kind": "blueprint",
       "subject": "an open laptop guarded by a large shield, a small robotic arm reaching toward the keyboard and stopped by a barrier"
-    },
-    {
-      "name": "line-platform",
-      "seed": 6105,
-      "kind": "blueprint",
-      "subject": "four stacked translucent platform layers in isometric view, connected by vertical light beams and a network of nodes on the top layer"
     }
   ]
 }
