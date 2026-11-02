@@ -10,6 +10,31 @@ listed individually.
 
 ## [Unreleased]
 
+### Added
+
+- Editorial look, opt-in per page with `<Base look="editorial">`: `public/design/editorial.css` (dark ground, Montserrat
+  headings, wide bands, pill buttons), self-hosted Montserrat in `public/fonts/` (SIL OFL, licence beside it), and
+  editorial components in `src/components/editorial/` (signal-field hero, band, line card with a blueprint).
+- Blueprint drawings for the five lines in `public/visuals/`, rendered locally with Z-Image from `visuals/manifest.json`
+  (`visuals/render.sh`, `visuals/publish.sh`). Invented shapes, never data; they drift slowly under a scanning light
+  line, and the motion stops for reduced motion.
+
+### Changed
+
+- Home page (English and Korean) moves to the editorial look: full-screen hero over a seeded field of linked signals
+  with the lifecycle as a step line, the four live figures in large type (still live, dated and sourced, dash when
+  unread), the five lines as cards with their blueprints, the live/synthetic promise and the contact panel. Copy is
+  unchanged apart from a "Scroll" label in each language. Other pages keep the classic look until moved.
+
+### Fixed
+
+- Manufacturing (English and Korean) drew the same machines' cycle deviation twice, once under "Last night, on the
+  fleet" and again in "The agent, live", both from `agent-demo.json`. The top section keeps its four numbers and links
+  down to the run; the chart lives once, in the agent section with its explanation and verdict table.
+- Pages scrolled sideways: `.form input { width: 100% }` outranked `.sr-only`, so the contact form's hidden honeypot
+  field was full-width and ran off the right edge. Hidden form fields stay 1px now, and the root hides the scrollbar-wide
+  sliver that `.band`'s 100vw adds.
+
 ## [0.29.82] - 2026-11-02
 
 ### Changed
