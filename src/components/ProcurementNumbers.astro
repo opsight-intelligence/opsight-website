@@ -4,13 +4,18 @@
 // page names public bodies and never a firm; the league tables carry the
 // floor and the exclusions in their own caption so the ranking cannot be
 // read as more than it is.
-import HeroBand from './HeroBand.astro';
+import PageHero from './editorial/PageHero.astro';
+import ArtProcurement from './ArtProcurement.astro';
 import type { NumbersCopy } from '../i18n/procurementNumbers';
 interface Props { copy: NumbersCopy; locale: 'en' | 'ko' }
 const { copy, locale } = Astro.props;
 const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement/#calculator';
 ---
-<HeroBand eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="procurement" />
+<PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="procurement">
+  <Fragment slot="art"><ArtProcurement /></Fragment>
+</PageHero>
+
+<div class="ed-classic line-procurement" data-reveal>
 
 <div data-numbers data-unavailable={copy.unavailable} data-span={copy.span} data-labels={JSON.stringify(copy.labels)} data-floor={copy.league.floor} data-solo-label={copy.depth.solo}>
 <section class="section" id="headline">
@@ -55,6 +60,7 @@ const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement
   </div>
   <p class="muted" style="font-size:var(--text-sm);margin-top:var(--s-5)">{copy.method}</p>
 </section>
+</div>
 </div>
 
 <script is:inline>

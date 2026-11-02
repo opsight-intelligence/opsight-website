@@ -10,6 +10,14 @@ listed individually.
 
 ## [Unreleased]
 
+### Changed
+
+- Procurement page and its numbers page (English and Korean) move to the editorial look: hero with the animated bid
+  figure, the three live figures, the problem as one large statement, what is collected, the live charts (which now draw
+  in as they scroll into view), the should-price calculator, coverage, integrity checks, how it runs and contact. The
+  shared tokens are remapped inside `.look-editorial`, so the charts, tables, calculator and agent demo render dark with
+  no change to their own code. Copy unchanged.
+
 ### Added
 
 - Editorial kit, shared by every page that moves to the editorial look: `PageHero` (copy left, the page's animated
