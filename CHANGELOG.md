@@ -10,6 +10,20 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.29.80] - 2026-11-02
+
+### Changed
+
+- OpSentry plans (English and Korean): the GitHub Action's CI scans, auto-fix on PR and LLM-assisted review move
+  from Team to Community, since opsentry-action 1.1.0 ships them free under Apache 2.0. Team keeps the sandbox
+  profile generator, cross-file exfiltration detection, compliance mapping, vertical packs and support.
+
+### Security
+
+- Lockfile refresh to patched undici 8.12.3 (four HIGH advisories, including a certificate validation bypass) and
+  vite 8.3.5 (HIGH command injection in launch-editor), with vite's rolldown, postcss and nanoid patch updates.
+  The CI security scan flagged both on this release's pull request.
+
 ## [0.29.37] - 2026-10-11
 
 ### Changed

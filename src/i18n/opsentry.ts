@@ -132,10 +132,10 @@ export const opsentryEn: OpsentryCopy = {
   },
   plans: {
     heading: 'Plans',
-    lead: 'Start free, upgrade when you need CI/CD enforcement and compliance.',
+    lead: 'Start free with guardrails and CI scans on every PR; upgrade for sandbox profiles, cross-file analysis and compliance.',
     items: [
-      { name: 'Community', price: 'Free', per: '', items: ['8 hook scripts', '18 behavioral rules', '70+ deny patterns', '3 slash commands', 'Local incident logging', '168 automated tests', 'Apache 2.0 license'], cta: 'Install now', href: '#install' },
-      { name: 'Team', price: '$15', per: '/dev/mo', items: ['Everything in Community', 'CI/CD agents — blocks the PR before it merges, not after', 'Sandbox profile generator (macOS, Linux, Docker)', 'Cross-file exfiltration detection (AST)', 'LLM-powered code review (bring your own key)', 'Auto-fix on PR', 'Compliance mapping (ISO 27001, EU AI Act, Korean AI Basic Act)', 'Vertical config packs (fintech, healthcare, manufacturing)', '48-hour email support', 'Up to 50 developers'], cta: 'Ask about Team', href: `mailto:${CONTACT}?subject=OpSentry%20Team`, primary: true },
+      { name: 'Community', price: 'Free', per: '', items: ['8 hook scripts', '18 behavioral rules', '70+ deny patterns', '3 slash commands', 'Local incident logging', '168 automated tests', 'GitHub Action: CI scans that block the PR before it merges', 'Auto-fix on PR', 'LLM-assisted review in CI (bring your own key)', 'Apache 2.0 license'], cta: 'Install now', href: '#install' },
+      { name: 'Team', price: '$15', per: '/dev/mo', items: ['Everything in Community', 'Sandbox profile generator (macOS, Linux, Docker)', 'Cross-file exfiltration detection (AST)', 'Compliance mapping (ISO 27001, EU AI Act, Korean AI Basic Act)', 'Vertical config packs (fintech, healthcare, manufacturing)', '48-hour email support', 'Up to 50 developers'], cta: 'Ask about Team', href: `mailto:${CONTACT}?subject=OpSentry%20Team`, primary: true },
       { name: 'Business', price: '$25', per: '/dev/mo', items: ['Everything in Team', 'Sandbox profiles + centralized policy push', 'Centralized incident dashboard across teams', 'Team compliance view & rule analytics', 'Compliance reports (PDF/CSV) — evidence packages for auditors', 'SSO/SAML & admin policy push', 'Custom rule development', 'SLA support (24h response, 4h critical)'], cta: 'Contact sales', href: `mailto:${CONTACT}?subject=OpSentry%20Business` },
     ],
   },
@@ -254,10 +254,10 @@ export const opsentryKo: OpsentryCopy = {
   },
   plans: {
     heading: '플랜',
-    lead: '무료로 시작하고, CI/CD 강제와 컴플라이언스가 필요할 때 업그레이드하세요.',
+    lead: '가드레일과 PR CI 스캔은 무료로 시작하고, 샌드박스 프로필·파일 간 분석·컴플라이언스가 필요할 때 업그레이드하세요.',
     items: [
-      { name: 'Community', price: '무료', per: '', items: ['훅 스크립트 8개', '행동 규칙 18개', '거부 패턴 70개 이상', '슬래시 명령 3개', '로컬 사고 로깅', '자동화 테스트 168개', 'Apache 2.0 라이선스'], cta: '지금 설치', href: '#install' },
-      { name: 'Team', price: '$15', per: '/개발자/월', items: ['Community의 모든 것', 'CI/CD 에이전트 — 병합 후가 아니라 병합 전에 PR 차단', '샌드박스 프로필 생성기(macOS, Linux, Docker)', '파일 간 유출 탐지(AST)', 'LLM 코드 리뷰(자체 키 사용)', 'PR 자동 수정', '컴플라이언스 매핑(ISO 27001, EU AI법, 한국 AI 기본법)', '업종별 설정 팩(핀테크, 헬스케어, 제조)', '48시간 이메일 지원', '개발자 50명까지'], cta: 'Team 문의', href: `mailto:${CONTACT}?subject=OpSentry%20Team`, primary: true },
+      { name: 'Community', price: '무료', per: '', items: ['훅 스크립트 8개', '행동 규칙 18개', '거부 패턴 70개 이상', '슬래시 명령 3개', '로컬 사고 로깅', '자동화 테스트 168개', 'GitHub Action: 병합 전에 PR을 차단하는 CI 스캔', 'PR 자동 수정', 'CI의 LLM 보조 리뷰(자체 키 사용)', 'Apache 2.0 라이선스'], cta: '지금 설치', href: '#install' },
+      { name: 'Team', price: '$15', per: '/개발자/월', items: ['Community의 모든 것', '샌드박스 프로필 생성기(macOS, Linux, Docker)', '파일 간 유출 탐지(AST)', '컴플라이언스 매핑(ISO 27001, EU AI법, 한국 AI 기본법)', '업종별 설정 팩(핀테크, 헬스케어, 제조)', '48시간 이메일 지원', '개발자 50명까지'], cta: 'Team 문의', href: `mailto:${CONTACT}?subject=OpSentry%20Team`, primary: true },
       { name: 'Business', price: '$25', per: '/개발자/월', items: ['Team의 모든 것', '샌드박스 프로필 + 중앙 정책 배포', '팀 전체 중앙 사고 대시보드', '팀 컴플라이언스 뷰 & 규칙 분석', '컴플라이언스 보고서(PDF/CSV) — 심사관용 증빙 패키지', 'SSO/SAML & 관리자 정책 배포', '맞춤 규칙 개발', 'SLA 지원(24시간 응답, 긴급 4시간)'], cta: '영업 문의', href: `mailto:${CONTACT}?subject=OpSentry%20Business` },
     ],
   },
