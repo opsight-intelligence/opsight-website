@@ -1,0 +1,24 @@
+---
+// One intelligence line as an editorial card: its blueprint drawing on top
+// (slow drift and a scanning light line, still for reduced motion), then the
+// line badge, title, body and action. The drawing is an invented shape from
+// visuals/manifest.json, never data, so it carries an empty alt.
+import type { LineCard as LineCardCopy } from '../../i18n/home';
+type Line = 'fraud' | 'procurement' | 'manufacturing' | 'opsentry' | 'platform';
+interface Props { card: LineCardCopy; line: Line }
+const { card, line } = Astro.props;
+const IMAGE_WIDTH = 1536;
+const IMAGE_HEIGHT = 864;
+---
+<article class={`ed-line line-${line}`}>
+  <div class="ed-line__art ed-blueprint">
+    <img src={`/visuals/line-${line}.webp`} alt="" width={IMAGE_WIDTH} height={IMAGE_HEIGHT} loading="lazy" decoding="async" />
+    <span class="ed-blueprint__scan" aria-hidden="true"></span>
+  </div>
+  <div class="ed-line__body">
+    <span class="badge badge--line">{card.badge}</span>
+    <h3>{card.title}</h3>
+    <p>{card.body}</p>
+    <a class="ed-line__action" href={card.href}>{card.action}</a>
+  </div>
+</article>

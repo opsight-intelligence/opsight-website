@@ -103,6 +103,11 @@
 .line-opsentry      { --line: var(--line-opsentry); }
 .line-platform      { --line: var(--line-platform); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+/* .form input sets width:100%, which outranks .sr-only and left the contact form's hidden honeypot
+   field full-width and off the right edge: the page scrolled sideways. Keep hidden fields 1px. */
+.form input.sr-only { width: 1px; padding: 0; border: 0; }
+/* .band is 100vw wide, which counts the vertical scrollbar; hide the sliver instead of scrolling (clip does not reach the viewport). */
+html { overflow-x: hidden; }
 
 @media (max-width: 640px) {
   .nav__inner { flex-wrap: wrap; padding-block: var(--s-2); }
