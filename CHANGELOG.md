@@ -12,6 +12,10 @@ listed individually.
 
 ### Changed
 
+- Manufacturing page (English and Korean) moves to the editorial look: hero with the animated cycle figure, last
+  night's pulse, the insight principles, industries as chips with the compliance note, the live agent run (deviation
+  chart draws in on scroll), the labelled synthetic examples, demos and contact. Copy unchanged.
+
 - Procurement page and its numbers page (English and Korean) move to the editorial look: hero with the animated bid
   figure, the three live figures, the problem as one large statement, what is collected, the live charts (which now draw
   in as they scroll into view), the should-price calculator, coverage, integrity checks, how it runs and contact. The
