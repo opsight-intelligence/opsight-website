@@ -44,13 +44,13 @@ export const about: Record<AboutLocale, AboutCopy> = {
     },
     where: {
       heading: 'Where',
-      body: 'Seoul, Korea. Korean and English are working languages; Turkish-language ecosystems are monitored on the fraud line.',
+      body: 'Seoul, Korea. Korean and English are working languages.',
     },
     how: {
       heading: 'How we work',
       items: [
         { title: 'Public sources only', body: 'Open channels, open APIs, and data a customer exports from its own systems. The method page lists what that excludes.' },
-        { title: 'Nightly, on a schedule', body: 'Every line collects and publishes every night. A figure on this site carries the date it was written.' },
+        { title: 'Nightly, on a schedule', body: 'Every line runs on a nightly schedule. A figure on this site carries the date it was written.' },
         { title: 'Evidence before opinion', body: 'An alert names its evidence and its legal basis or it is not sent. A demo says whether it is synthetic.' },
         { title: 'Simple to start', body: 'One conversation, one sample, one decision. No account to create, no call unless you want one.' },
       ],
@@ -100,13 +100,13 @@ export const about: Record<AboutLocale, AboutCopy> = {
     },
     where: {
       heading: '어디서',
-      body: '대한민국 서울. 한국어와 영어가 업무 언어이며, 사기 라인에서는 터키어 생태계도 모니터링합니다.',
+      body: '대한민국 서울. 한국어와 영어가 업무 언어입니다.',
     },
     how: {
       heading: '일하는 방식',
       items: [
         { title: '공개 소스만', body: '공개 채널, 공개 API, 고객이 자기 시스템에서 내보낸 데이터. 제외되는 것은 방법론 페이지에 있습니다.' },
-        { title: '매일 밤, 일정대로', body: '모든 라인이 매일 밤 수집하고 발행합니다. 이 사이트의 수치에는 작성일이 붙습니다.' },
+        { title: '매일 밤, 일정대로', body: '모든 라인이 밤마다 일정에 따라 돌아갑니다. 이 사이트의 수치에는 작성일이 붙습니다.' },
         { title: '의견보다 근거 먼저', body: '알림은 근거와 법적 근거를 명시하거나 보내지 않습니다. 데모는 합성 여부를 밝힙니다.' },
         { title: '시작은 간단하게', body: '한 번의 대화, 하나의 샘플, 하나의 결정. 만들 계정도, 원치 않는 통화도 없습니다.' },
       ],

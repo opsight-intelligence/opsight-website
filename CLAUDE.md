@@ -87,8 +87,8 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
   shared nav/footer/live labels in `src/i18n/common.ts`; each page is one
   component (`src/components/<Page>.astro`) inside `src/layouts/Base.astro`
   (head, hreflang for every locale the page has, nav with a language switch,
-  footer). English at `/…`, Korean at `/ko/…`, Turkish at `/tr/…` where a page
-  has it (fraud). `HeroBand.astro` (navy band + `Lifecycle.astro` SVG, or the
+  footer). English at `/…`, Korean at `/ko/…`. `/tr/fraud` is a redirect stub
+  since 2026-11-05. `HeroBand.astro` (navy band + `Lifecycle.astro` SVG, or the
   per-line figure `ArtFraud` / `ArtProcurement` / `ArtManufacturing` via the
   `art` slot — invented shapes, never data) opens every page; `LiveStats.astro` is
   the runtime fetch for stat tiles and counts the numbers up; `AgentDemo`,
@@ -130,8 +130,8 @@ The migrated pages are bilingual by construction: `/` (English) and `/ko/`
 (Korean) come from the same component and copy object, with `hreflang`
 alternates in the head and a language switch in the nav.
 
-The fraud page additionally has Turkish (`/tr/fraud`), because its buyers
-include Turkish firms.
+The Turkish page was removed on 2026-11-05: the direction is Korea only. Keep
+`public/tr/fraud/index.html`, so links already shared still land on `/fraud`.
 
 ## Conventions
 

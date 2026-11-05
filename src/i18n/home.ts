@@ -43,7 +43,7 @@ export const home: Record<HomeLocale, HomeCopy> = {
     },
     numbers: {
       heading: 'By the numbers',
-      lead: 'Collected every night. Every figure here comes from the live store, dated — not from a brochure.',
+      lead: 'Collected on a nightly schedule. Every figure here comes from the live store, dated — not from a brochure.',
       entities: 'Entities tracked',
       clusters: 'Clusters mapped',
       notices: 'Tender notices collected',
