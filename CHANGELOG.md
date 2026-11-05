@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.36.0] - 2026-11-05
+
+### Changed
+
+- Korea only, with room to expand: the Turkish page and every Turkey claim are
+  gone. `/tr/fraud` now redirects to `/fraud`, so shared links still work.
+- Claims that did not match what runs are corrected: real-time tracking is now
+  nightly, "every line collects every night" is now a nightly schedule, and
+  darknet migration tracking is now channel rebrand and disappearance tracking.
+  The Korean live badge no longer says 실시간.
+
 ## [Unreleased]
 
 ## [0.35.3] - 2026-11-02

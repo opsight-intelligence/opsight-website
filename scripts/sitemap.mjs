@@ -37,7 +37,7 @@ function lastmod(file) {
 function priority(url) {
   const path = url.slice(SITE.length);
   if (path === '/' || path === '/ko/') return '1.0';
-  return /\/(ko\/|tr\/)?(fraud|procurement|manufacturing|opsentry)$/.test(path) ? '0.9' : '0.7';
+  return /\/(ko\/)?(fraud|procurement|manufacturing|opsentry)$/.test(path) ? '0.9' : '0.7';
 }
 
 const entries = walk(PAGES)
