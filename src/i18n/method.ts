@@ -67,7 +67,6 @@ export const method: Record<MethodLocale, MethodCopy> = {
     sources: {
       heading: 'Sources',
       blocks: [
-        { title: 'Public and free-tier only', body: 'Open Telegram channels, the 조달청 / 나라장터 open APIs, data a customer exports from its own systems. No purchased datasets, no scraping behind logins.' },
         { title: 'Collected nightly', body: 'Every line collects on a schedule and publishes what changed. Windows overlap on purpose so a record that arrives late is still caught.' },
         { title: 'Quality stated, not hidden', body: 'Implausible values are flagged and excluded from headline figures, never silently dropped or rewritten. The raw value is kept with the reason.' },
       ],
@@ -131,7 +130,6 @@ export const method: Record<MethodLocale, MethodCopy> = {
     sources: {
       heading: '소스',
       blocks: [
-        { title: '공개 및 무료 소스만', body: '공개 텔레그램 채널, 조달청·나라장터 공개 API, 고객이 자기 시스템에서 내보낸 데이터. 구매한 데이터셋도, 로그인 뒤 수집도 없습니다.' },
         { title: '매일 밤 수집', body: '모든 라인은 일정에 따라 수집하고 바뀐 것을 발행합니다. 늦게 도착한 기록도 잡히도록 수집 구간을 의도적으로 겹칩니다.' },
         { title: '품질을 숨기지 않고 명시', body: '비정상 값은 표시하고 헤드라인 수치에서 제외하되, 조용히 버리거나 고쳐 쓰지 않습니다. 원본 값은 사유와 함께 보관합니다.' },
       ],

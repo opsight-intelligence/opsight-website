@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.36.1] - 2026-11-05
+
+### Changed
+
+- Removed the "public sources only" claims from the About and Method pages, and the
+  footer now reads "Built on data collected by Opsight." The procurement pages keep
+  theirs, since that data is public.
+
 ## [0.36.0] - 2026-11-05
 
 ### Changed

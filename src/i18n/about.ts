@@ -19,7 +19,7 @@ const CONTACT = 'utku@opsightintel.com'; // becomes contact@ once the alias is c
 export const about: Record<AboutLocale, AboutCopy> = {
   en: {
     title: 'About — Opsight Intelligence',
-    description: 'Opsight Intelligence is an intelligence platform built in Korea: fraud ecosystems on Telegram, Korean public procurement, manufacturing forensics, and AI governance — one lifecycle, public sources, numbers that are live or labelled.',
+    description: 'Opsight Intelligence is an intelligence platform built in Korea: fraud ecosystems on Telegram, Korean public procurement, manufacturing forensics, and AI governance — one lifecycle, numbers that are live or labelled.',
     hero: {
       eyebrow: 'About',
       title: 'A platform that says exactly what it knows.',
@@ -49,7 +49,6 @@ export const about: Record<AboutLocale, AboutCopy> = {
     how: {
       heading: 'How we work',
       items: [
-        { title: 'Public sources only', body: 'Open channels, open APIs, and data a customer exports from its own systems. The method page lists what that excludes.' },
         { title: 'Nightly, on a schedule', body: 'Every line runs on a nightly schedule. A figure on this site carries the date it was written.' },
         { title: 'Evidence before opinion', body: 'An alert names its evidence and its legal basis or it is not sent. A demo says whether it is synthetic.' },
         { title: 'Simple to start', body: 'One conversation, one sample, one decision. No account to create, no call unless you want one.' },
@@ -75,7 +74,7 @@ export const about: Record<AboutLocale, AboutCopy> = {
   },
   ko: {
     title: '소개 — Opsight Intelligence',
-    description: 'Opsight Intelligence는 한국에서 만든 인텔리전스 플랫폼입니다: 텔레그램 사기 생태계, 한국 공공조달, 제조 포렌식, AI 거버넌스 — 하나의 생명주기, 공개 소스, 실시간이거나 표시된 숫자.',
+    description: 'Opsight Intelligence는 한국에서 만든 인텔리전스 플랫폼입니다: 텔레그램 사기 생태계, 한국 공공조달, 제조 포렌식, AI 거버넌스 — 하나의 생명주기, 실시간이거나 표시된 숫자.',
     hero: {
       eyebrow: '소개',
       title: '아는 것을 정확히 말하는 플랫폼.',
@@ -105,7 +104,6 @@ export const about: Record<AboutLocale, AboutCopy> = {
     how: {
       heading: '일하는 방식',
       items: [
-        { title: '공개 소스만', body: '공개 채널, 공개 API, 고객이 자기 시스템에서 내보낸 데이터. 제외되는 것은 방법론 페이지에 있습니다.' },
         { title: '매일 밤, 일정대로', body: '모든 라인이 밤마다 일정에 따라 돌아갑니다. 이 사이트의 수치에는 작성일이 붙습니다.' },
         { title: '의견보다 근거 먼저', body: '알림은 근거와 법적 근거를 명시하거나 보내지 않습니다. 데모는 합성 여부를 밝힙니다.' },
         { title: '시작은 간단하게', body: '한 번의 대화, 하나의 샘플, 하나의 결정. 만들 계정도, 원치 않는 통화도 없습니다.' },
