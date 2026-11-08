@@ -1,20 +1,20 @@
 {
- "as_of": "2026-11-07",
+ "as_of": "2026-11-08",
  "source": "analytics.award_rate / competition_depth / uncontested_by_agency",
  "span": {
   "from": "2025-09-25",
-  "to": "2026-11-06",
-  "awards": 316768
+  "to": "2026-11-07",
+  "awards": 316796
  },
  "uncontested": {
-  "awards": 316768,
-  "solo": 57413,
+  "awards": 316796,
+  "solo": 57417,
   "share": 0.1812
  },
  "categories": [
   {
    "cat": "cnstwk",
-   "awards": 134517,
+   "awards": 134534,
    "median": 90.3,
    "p25": 90.11,
    "p75": 90.45,
@@ -23,16 +23,16 @@
   },
   {
    "cat": "servc",
-   "awards": 101211,
+   "awards": 101216,
    "median": 88.37,
    "p25": 88.01,
-   "p75": 92.53,
+   "p75": 92.52,
    "iqr": 4.52,
    "bidders": 5.0
   },
   {
    "cat": "thng",
-   "awards": 81040,
+   "awards": 81046,
    "median": 90.58,
    "p25": 88.04,
    "p75": 98.17,
@@ -58,21 +58,21 @@
   {
    "cat": "cnstwk",
    "band": "10M-50M",
-   "awards": 38499,
+   "awards": 38503,
    "bidders": 38.0,
    "solo_share": 0.226
   },
   {
    "cat": "cnstwk",
    "band": "200M-1B",
-   "awards": 26171,
+   "awards": 26174,
    "bidders": 341.0,
    "solo_share": 0.014
   },
   {
    "cat": "cnstwk",
    "band": "50M-200M",
-   "awards": 60916,
+   "awards": 60926,
    "bidders": 57.0,
    "solo_share": 0.025
   },
@@ -93,7 +93,7 @@
   {
    "cat": "servc",
    "band": "10M-50M",
-   "awards": 38682,
+   "awards": 38687,
    "bidders": 4.0,
    "solo_share": 0.289
   },
@@ -128,21 +128,21 @@
   {
    "cat": "thng",
    "band": "10M-50M",
-   "awards": 23682,
+   "awards": 23684,
    "bidders": 3.0,
    "solo_share": 0.31
   },
   {
    "cat": "thng",
    "band": "200M-1B",
-   "awards": 11698,
+   "awards": 11699,
    "bidders": 2.0,
    "solo_share": 0.368
   },
   {
    "cat": "thng",
    "band": "50M-200M",
-   "awards": 24677,
+   "awards": 24680,
    "bidders": 3.0,
    "solo_share": 0.238
   }
@@ -313,7 +313,7 @@
   },
   {
    "agency": "경상북도교육청 경상북도포항교육지원청",
-   "awards": 306,
+   "awards": 307,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
