@@ -8,6 +8,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.37.1] - 2026-11-10
+
+### Changed
+- The Platform and Console pages link to each other from their heroes: how the
+  data is built, and what a customer sees.
+
+## [0.37.0] - 2026-11-10
+
+### Added
+- A Console page (`/console`, `/ko/console`) and a Console link in the nav: one
+  analyst console over every line, where a customer's role decides what they
+  see; what each kind of customer gets (narcotics and fraud intelligence,
+  financial crime, procurement, manufacturing, and defence and new domains as
+  planned), the tools inside, how access works, and what is true today.
+
+### Changed
+- The Platform page covers every line, not only fraud and procurement: the
+  narcotics and open-source investigation data, domain and IP entities, the
+  drug-wallet example, and a pointer to the console.
+
 ## [0.36.1] - 2026-11-05
 
 ### Changed

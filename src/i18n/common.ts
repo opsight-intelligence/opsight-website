@@ -7,7 +7,7 @@ export type Locale = 'en' | 'ko';
 export interface CommonCopy {
   htmlLang: string;
   ogLocale: string;
-  nav: { brand: string; fraud: string; procurement: string; manufacturing: string; opsentry: string; platform: string; method: string; about: string };
+  nav: { brand: string; fraud: string; procurement: string; manufacturing: string; opsentry: string; platform: string; console: string; method: string; about: string };
   langNames: Record<Locale, string>;
   footer: { rights: string; method: string };
   live: { badge: string; lastWritten: string; source: string };
@@ -18,7 +18,7 @@ export const common: Record<Locale, CommonCopy> = {
   en: {
     htmlLang: 'en',
     ogLocale: 'en_US',
-    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: 'Fraud', procurement: 'Procurement', manufacturing: 'Manufacturing', opsentry: 'OpSentry', platform: 'Platform', method: 'Method', about: 'About' },
+    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: 'Fraud', procurement: 'Procurement', manufacturing: 'Manufacturing', opsentry: 'OpSentry', platform: 'Platform', console: 'Console', method: 'Method', about: 'About' },
     langNames: { en: 'English', ko: '한국어' },
     footer: { rights: '© 2026 Opsight Intelligence. All rights reserved.', method: 'Built on data collected by Opsight.' },
     live: { badge: 'Live', lastWritten: 'last written', source: 'source' },
@@ -27,7 +27,7 @@ export const common: Record<Locale, CommonCopy> = {
   ko: {
     htmlLang: 'ko',
     ogLocale: 'ko_KR',
-    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: '사기 인텔리전스', procurement: '공공조달', manufacturing: '제조', opsentry: 'OpSentry', platform: '플랫폼', method: '방법론', about: '소개' },
+    nav: { brand: 'OPSIGHT INTELLIGENCE', fraud: '사기 인텔리전스', procurement: '공공조달', manufacturing: '제조', opsentry: 'OpSentry', platform: '플랫폼', console: '콘솔', method: '방법론', about: '소개' },
     langNames: { en: 'English', ko: '한국어' },
     footer: { rights: '© 2026 Opsight Intelligence. All rights reserved.', method: 'Opsight가 수집한 데이터로 구축했습니다.' },
     live: { badge: '라이브', lastWritten: '작성일', source: '출처' },

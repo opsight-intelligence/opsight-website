@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import Console from '../components/Console.astro';
+import { consoleCopy } from '../i18n/console';
+const copy = consoleCopy.en;
+---
+<Base locale="en" title={copy.title} description={copy.description} path="/console" locales={['en', 'ko']} current="console" look="editorial">
+  <Console copy={copy} locale="en" />
+</Base>
