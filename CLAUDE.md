@@ -17,9 +17,14 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
   paragraph each.
 - **Method** (`/method`, `method.ts`): how intelligence is collected, scored
   and published, and the rule for what is live and what is synthetic.
-- **Platform** (`/platform`, `platform.ts`): one entity across fraud and
-  procurement, the nightly sanctions screen, registry enrichment, and the
-  consortium exchange (hashes and bands, never an account number).
+- **Platform** (`/platform`, `platform.ts`): one entity across every line
+  (narcotics and fraud, procurement, manufacturing, open-source investigation),
+  the nightly sanctions screen, registry enrichment, and the consortium
+  exchange (hashes and bands, never an account number).
+- **Console** (`/console`, `console.ts`, `Console.astro`): the one analyst
+  console over every line, role-based; what each kind of customer gets, the
+  tools inside, how access works. Written so a new domain (defence first) is
+  one more role. No client, no vendor name.
 - **Procurement numbers** (`/procurement/numbers`, `procurementNumbers.ts`,
   `ProcurementNumbers.astro`): public aggregates from Korean tender data,
   refreshed nightly from `procurement-numbers.json`; no firm is named.

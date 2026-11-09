@@ -1,0 +1,38 @@
+---
+// The console page body in the editorial look, rendered once per locale: hero,
+// what each customer gets as a layer stack (one plate per role, defence last),
+// the tools inside as a list, how access works as a step flow with what it
+// never does, the honesty list and the ask.
+import type { ConsoleCopy } from '../i18n/console';
+import ContactPanel from './ContactPanel.astro';
+import Band from './editorial/Band.astro';
+import LayerStack from './editorial/LayerStack.astro';
+import PageHero from './editorial/PageHero.astro';
+import StepFlow from './editorial/StepFlow.astro';
+interface Props { copy: ConsoleCopy; locale: 'en' | 'ko' }
+const { copy, locale } = Astro.props;
+---
+<PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="platform" />
+
+<div class="line-platform">
+  <Band eyebrow={copy.roles.heading} lede={copy.roles.lead} id="roles">
+    <LayerStack id="console-roles" layers={copy.roles.items.map((r) => ({ title: r.title, body: r.body, state: r.state }))} />
+  </Band>
+
+  <Band eyebrow={copy.inside.heading} lede={copy.inside.lead} tone="raised" id="inside">
+    <ul class="ed-list" data-reveal>{copy.inside.items.map((i) => <li><strong>{i.title}.</strong> {i.body}</li>)}</ul>
+  </Band>
+
+  <Band eyebrow={copy.access.heading} lede={copy.access.lead} id="access">
+    <StepFlow steps={copy.access.steps} />
+    <ul class="ed-list" style="margin-top:2.5rem" data-reveal>{copy.access.never.map((n) => <li>{n}</li>)}</ul>
+  </Band>
+
+  <Band eyebrow={copy.honesty.heading} tone="raised" id="honesty">
+    <ul class="ed-list" data-reveal>{copy.honesty.items.map((i) => <li>{i}</li>)}</ul>
+  </Band>
+
+  <Band eyebrow={copy.ask.heading} lede={copy.ask.body} id="ask">
+    <ContactPanel locale={locale} subject={copy.ask.heading} />
+  </Band>
+</div>
