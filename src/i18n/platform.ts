@@ -11,7 +11,7 @@ export type PlatformLocale = 'en' | 'ko';
 export interface Block { title: string; body: string }
 export interface PlatformCopy {
   title: string; description: string;
-  hero: { eyebrow: string; title: string; lead: string };
+  hero: { eyebrow: string; title: string; lead: string; seeConsole: string };
   question: { heading: string; lead: string; before: string; after: string };
   layers: { heading: string; lead: string; items: (Block & { state: string })[] };
   exchange: { heading: string; lead: string; steps: Block[]; never: string[] };
@@ -25,6 +25,7 @@ export const platform: Record<PlatformLocale, PlatformCopy> = {
     description: 'One entity across every line — narcotics and fraud markets, public procurement, manufacturing, open-source investigation — screened nightly against the sanctions lists, enriched from the corporate registry, read through one role-based console, with a consortium exchange that shares hashes and bands, never an account number.',
     hero: {
       eyebrow: 'Platform',
+      seeConsole: 'What customers see: the console',
       title: 'The same thing, seen from every line at once.',
       lead: 'Each line collects: narcotics and fraud markets, public procurement, manufacturing operations, open-source investigation. The platform joins what they publish into one entity per real-world thing, checks every entity against the lists that matter, lets institutions corroborate a signal without disclosing a customer, and serves it all through one console where each customer sees only their role.',
     },
@@ -76,6 +77,7 @@ export const platform: Record<PlatformLocale, PlatformCopy> = {
     description: '마약·사기 시장, 공공조달, 제조, 공개출처 조사 등 모든 라인의 데이터를 하나의 엔터티로 연결하고, 매일 밤 제재 명단과 대조하며, 기업 등기 정보로 보강하고, 역할 기반의 하나의 콘솔로 제공하며, 계좌번호 대신 해시와 구간만 교환하는 컨소시엄 교환.',
     hero: {
       eyebrow: '플랫폼',
+      seeConsole: '고객이 보는 화면: 콘솔',
       title: '같은 대상을, 모든 라인에서 동시에.',
       lead: '각 라인이 수집합니다: 마약·사기 시장, 공공조달, 제조 운영, 공개출처 조사. 플랫폼은 각 라인이 발행한 것을 실제 대상 하나당 하나의 엔터티로 합치고, 모든 엔터티를 중요한 명단과 대조하며, 기관들이 고객 정보를 공개하지 않고도 신호를 교차 확인하게 하고, 각 고객이 자기 역할만 보는 하나의 콘솔로 제공합니다.',
     },

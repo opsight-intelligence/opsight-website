@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [0.37.1] - 2026-11-10
+
+### Changed
+- The Platform and Console pages link to each other from their heroes: how the
+  data is built, and what a customer sees.
+
 ## [0.37.0] - 2026-11-10
 
 ### Added

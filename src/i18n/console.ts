@@ -9,7 +9,7 @@ export type ConsoleLocale = 'en' | 'ko';
 export interface Block { title: string; body: string }
 export interface ConsoleCopy {
   title: string; description: string;
-  hero: { eyebrow: string; title: string; lead: string };
+  hero: { eyebrow: string; title: string; lead: string; seePlatform: string };
   roles: { heading: string; lead: string; items: (Block & { state: string })[] };
   inside: { heading: string; lead: string; items: Block[] };
   access: { heading: string; lead: string; steps: Block[]; never: string[] };
@@ -23,6 +23,7 @@ export const consoleCopy: Record<ConsoleLocale, ConsoleCopy> = {
     description: 'One analyst console over every Opsight line. Your role decides what you see: narcotics and fraud intelligence, public procurement, manufacturing, and the domains that come next.',
     hero: {
       eyebrow: 'Console',
+      seePlatform: 'How the data behind it is built: the platform',
       title: 'One console. You see what you signed up for.',
       lead: 'Every Opsight line publishes into one platform, and one console reads it. What appears on your screen is set by your role on the server: the markets, the domains and the tools you contracted for, and nothing else.',
     },
@@ -80,6 +81,7 @@ export const consoleCopy: Record<ConsoleLocale, ConsoleCopy> = {
     description: 'Opsight의 모든 라인을 하나로 보는 분석 콘솔. 마약·사기 인텔리전스, 공공조달, 제조, 그리고 다음 분야까지, 무엇을 볼지는 역할이 정합니다.',
     hero: {
       eyebrow: '콘솔',
+      seePlatform: '그 뒤의 데이터가 만들어지는 방식: 플랫폼',
       title: '하나의 콘솔. 계약한 만큼만 보입니다.',
       lead: 'Opsight의 모든 라인은 하나의 플랫폼에 발행되고, 하나의 콘솔이 이를 읽습니다. 화면에 무엇이 보이는지는 서버에서 역할로 정해집니다. 계약한 시장·분야·도구만 보이고, 그 외에는 보이지 않습니다.',
     },

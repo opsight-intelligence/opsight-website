@@ -13,7 +13,8 @@ import StepFlow from './editorial/StepFlow.astro';
 interface Props { copy: PlatformCopy; locale: 'en' | 'ko' }
 const { copy, locale } = Astro.props;
 ---
-<PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="platform">
+<PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} lead={copy.hero.lead} line="platform"
+  secondary={{ label: copy.hero.seeConsole, href: locale === 'ko' ? '/ko/console' : '/console' }}>
   <Fragment slot="art"><Lifecycle /></Fragment>
 </PageHero>
 
