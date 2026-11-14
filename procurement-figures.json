@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-11-14",
+  "as_of": "2026-11-15",
   "rate_by_category": [
     {
       "category": "cnstwk",
       "label": "공사",
-      "awards": 136745,
+      "awards": 136763,
       "p25": 90.11,
       "median": 90.3,
       "p75": 90.45
@@ -12,7 +12,7 @@
     {
       "category": "servc",
       "label": "용역",
-      "awards": 102616,
+      "awards": 102620,
       "p25": 88.01,
       "median": 88.37,
       "p75": 92.45
@@ -20,7 +20,7 @@
     {
       "category": "thng",
       "label": "물품",
-      "awards": 82476,
+      "awards": 82480,
       "p25": 88.04,
       "median": 90.63,
       "p75": 98.18
@@ -95,7 +95,7 @@
     {
       "date": "2026-10-28",
       "notices": 2168,
-      "awards": 2162
+      "awards": 2163
     },
     {
       "date": "2026-10-29",
@@ -115,7 +115,7 @@
     {
       "date": "2026-11-02",
       "notices": 2234,
-      "awards": 597
+      "awards": 598
     },
     {
       "date": "2026-11-03",
@@ -125,17 +125,17 @@
     {
       "date": "2026-11-04",
       "notices": 2159,
-      "awards": 988
+      "awards": 990
     },
     {
       "date": "2026-11-05",
       "notices": 2188,
-      "awards": 992
+      "awards": 993
     },
     {
       "date": "2026-11-06",
       "notices": 1570,
-      "awards": 843
+      "awards": 844
     },
     {
       "date": "2026-11-07",
@@ -150,32 +150,32 @@
     {
       "date": "2026-11-09",
       "notices": 2254,
-      "awards": 650
+      "awards": 653
     },
     {
       "date": "2026-11-10",
       "notices": 2117,
-      "awards": 779
+      "awards": 787
     },
     {
       "date": "2026-11-11",
       "notices": 2297,
-      "awards": 687
+      "awards": 690
     },
     {
       "date": "2026-11-12",
       "notices": 2181,
-      "awards": 581
+      "awards": 582
     },
     {
       "date": "2026-11-13",
       "notices": 1877,
-      "awards": 397
+      "awards": 399
     },
     {
       "date": "2026-11-14",
-      "notices": 3,
-      "awards": 0
+      "notices": 57,
+      "awards": 5
     }
   ]
 }
