@@ -1,8 +1,8 @@
 {
   "label": "synthetic",
   "statement": "Synthetic fleet with known faults written in. The signals, verdicts and actions are exactly what the agent produced, unedited.",
-  "cycle_id": "48ddb4e241c0",
-  "generated_at": "2026-11-12T23:13:35.229307+00:00",
+  "cycle_id": "fa1e59e61261",
+  "generated_at": "2026-11-14T00:22:49.787115+00:00",
   "weeks": 6,
   "planted": [
     {
