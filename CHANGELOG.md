@@ -23,6 +23,11 @@ listed individually.
 - **The home line cards fill their last row.** Three across on a six-track
   grid above 960px, so the last two of five cards share the full width instead
   of leaving an empty slot.
+- **Live tiles show the date only.** The file name after the date
+  (`source stats.json`) was a pipeline detail on a customer page and is gone;
+  the date and the Live badge stay.
+- **The home figures lead with procurement.** Notices and awards come first,
+  then the fraud counts, so the row opens on its largest numbers.
 
 ## [0.37.1] - 2026-11-10
 

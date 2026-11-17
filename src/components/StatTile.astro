@@ -6,7 +6,7 @@ interface Props {
   id: string;        // element id the runtime fetch fills (stat-<key>)
   label: string;
   line: 'fraud' | 'procurement' | 'manufacturing';
-  source: string;    // file name shown as provenance
+  source: string;    // file the runtime fetch reads the date from; not shown
   locale: Locale;
 }
 const { id, label, line, source, locale } = Astro.props;
@@ -17,6 +17,6 @@ const live = common[locale].live;
   <div class="stat__label">{label}</div>
   <div class="stat__meta">
     <span class="badge badge--live">{live.badge}</span>
-    <span>{live.lastWritten} <span data-updated-for={source}>…</span> · {live.source} {source}</span>
+    <span>{live.lastWritten} <span data-updated-for={source}>…</span></span>
   </div>
 </div>
