@@ -8,6 +8,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [Unreleased]
+
+## [0.38.2] - 2026-11-17
+
+### Added
+- **Menu button on narrow screens.** Under 860px the nav links fold behind a
+  button (`aria-expanded`, `aria-controls`), so a phone no longer opens on three
+  rows of links. Without the inline script the button stays hidden and the links
+  wrap as before.
+- **`/.well-known/security.txt`** with the contact address, languages and an
+  expiry date (2027-11-01; renew it before then). The Pages upload step now sets
+  `include-hidden-files`, because the action drops dot-folders otherwise.
+- **`/favicon.ico`** (16, 32 and 48 px) for clients that never read the SVG
+  link, written from `public/favicon.svg` by `scripts/favicon.mjs`.
+- **Integrity hash on the Plotly script** in the six demo dashboards
+  (`integrity` + `crossorigin`), so a changed CDN file is refused by the browser.
+
+### Changed
+- **Korean text breaks between words.** `:lang(ko)` sets `word-break: keep-all`
+  with `overflow-wrap: break-word`, so a headline no longer splits a word across
+  two lines on a narrow screen.
+- **The home line cards fill their last row.** Three across on a six-track
+  grid above 960px, so the last two of five cards share the full width instead
+  of leaving an empty slot.
+- **Live tiles show the date only.** The file name after the date
+  (`source stats.json`) was a pipeline detail on a customer page and is gone;
+  the date and the Live badge stay.
+- **The home figures lead with procurement.** Notices and awards come first,
+  then the fraud counts, so the row opens on its largest numbers.
+- **Dependencies patched** with `npm audit fix` (Astro and its tree, lock file
+  only); the audit reports no known vulnerability.
+
+### Removed
+- **`logs/manufacturing_api.log`**, an empty run log that had been committed;
+  `logs/` and `*.log` are now ignored.
+
 ## [0.37.1] - 2026-11-10
 
 ### Changed

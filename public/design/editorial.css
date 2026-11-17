@@ -83,6 +83,7 @@
 .look-editorial .nav__links a:hover,
 .look-editorial .nav__links a[aria-current="page"] { color: var(--ed-ink); border-bottom-color: var(--ed-accent); }
 .look-editorial .nav__lang { color: var(--ed-ink-faint); }
+.look-editorial .nav__toggle { border-color: var(--ed-line); color: var(--ed-ink); }
 .look-editorial .footer { background: var(--ed-surface); border-top-color: var(--ed-line); color: var(--ed-ink-faint); }
 .look-editorial .footer__inner { max-width: var(--ed-page); }
 .look-editorial main.ed-main { max-width: none; padding: 0; }
@@ -132,6 +133,13 @@
 .ed-lines { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
 @media (max-width: 960px) { .ed-lines { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .ed-lines { grid-template-columns: minmax(0, 1fr); } }
+/* Three across on a six-track grid, so a last row of two shares the full width instead of leaving a hole. */
+@media (min-width: 961px) {
+  .ed-lines { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .ed-lines > * { grid-column: span 2; }
+  .ed-lines > :nth-last-child(2):nth-child(3n + 1),
+  .ed-lines > :last-child:nth-child(3n + 2) { grid-column: span 3; }
+}
 .ed-line { display: flex; flex-direction: column; background: var(--ed-raised); border: 1px solid var(--ed-line); border-radius: 12px; overflow: hidden; transition: border-color 0.2s ease; }
 .ed-line:hover { border-color: var(--line, var(--ed-accent)); }
 .ed-line__art { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 2px solid var(--line, var(--ed-line)); }

@@ -64,6 +64,11 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
   (prompt and seed per drawing), rendered locally with the mlx-toolkit's
   `zimage-gen` (`visuals/render.sh`) and converted to WebP
   (`visuals/publish.sh`). They are invented shapes, never data.
+- **Static extras in `public/`:** `.well-known/security.txt` (has an `Expires`
+  date to renew; it ships only because `pages.yml` sets `include-hidden-files`)
+  and `favicon.ico`, regenerated with `node scripts/favicon.mjs` whenever
+  `favicon.svg` changes. The demo dashboards load Plotly with an `integrity`
+  hash: a Plotly version change needs a new hash.
 - **The design layer** is `public/design/`: `tokens.css` (brand, line accents,
   severity/status, surfaces, type, space — light and dark) and
   `components.css` (nav, hero, stat tile, product card, badges, citation chip,
@@ -91,7 +96,7 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
 - **Copy lives in `src/i18n/<page>.ts`**, one object per locale, with the
   shared nav/footer/live labels in `src/i18n/common.ts`; each page is one
   component (`src/components/<Page>.astro`) inside `src/layouts/Base.astro`
-  (head, hreflang for every locale the page has, nav with a language switch,
+  (head, hreflang for every locale the page has, nav with a language switch, folded behind a menu button under 860px when the inline script has run,
   footer). English at `/…`, Korean at `/ko/…`. `/tr/fraud` is a redirect stub
   since 2026-11-05. `HeroBand.astro` (navy band + `Lifecycle.astro` SVG, or the
   per-line figure `ArtFraud` / `ArtProcurement` / `ArtManufacturing` via the

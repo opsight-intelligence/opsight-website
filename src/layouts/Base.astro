@@ -1,5 +1,6 @@
 ---
-// Base layout: head, nav, footer, and the shared design layer.
+// Base layout: head, nav (folded behind a menu button on narrow screens),
+// footer, and the shared design layer.
 // look="editorial" adds /design/editorial.css and lets the page run its own
 // full-width bands; pages without it keep the classic contained layout.
 // The design CSS is linked from /design/ (served verbatim from public/) rather
@@ -36,6 +37,7 @@ const ogImage = `${site}/og/${current}.png`;
 <title>{title}</title>
 <meta name="description" content={description}>
 <meta name="author" content="Opsight Intelligence">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href={site + here}>
 {locales.map((l) => <link rel="alternate" hreflang={l} href={site + localePath(l, path)} />)}
@@ -63,7 +65,10 @@ const ogImage = `${site}/og/${current}.png`;
 <nav class="nav" aria-label="Primary">
   <div class="container nav__inner">
     <a class="nav__brand" href={localePath(locale, '/')}>{c.nav.brand}</a>
-    <ul class="nav__links">
+    <button class="nav__toggle" type="button" aria-controls="nav-links" aria-expanded="false" aria-label={c.nav.menu}>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <ul class="nav__links" id="nav-links">
       <li><a href={localePath(locale, '/fraud')} aria-current={current === 'fraud' ? 'page' : undefined}>{c.nav.fraud}</a></li>
       <li><a href={localePath(locale, '/procurement')} aria-current={current === 'procurement' ? 'page' : undefined}>{c.nav.procurement}</a></li>
       <li><a href={localePath(locale, '/manufacturing')} aria-current={current === 'manufacturing' ? 'page' : undefined}>{c.nav.manufacturing}</a></li>
@@ -78,6 +83,20 @@ const ogImage = `${site}/og/${current}.png`;
     </ul>
   </div>
 </nav>
+<script is:inline>
+  // Narrow screens fold the links behind a menu button. Without this script the
+  // button stays hidden and the links wrap as before, so nothing is unreachable.
+  (function () {
+    var nav = document.querySelector('.nav');
+    var toggle = nav && nav.querySelector('.nav__toggle');
+    if (!toggle) return;
+    nav.classList.add('nav--js');
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('nav--open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>
 <main class={editorial ? 'ed-main' : 'container'}>
   <slot />
 </main>

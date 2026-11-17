@@ -16,10 +16,10 @@ const { copy, locale } = Astro.props;
 const n = copy.numbers;
 const LIFECYCLE_SEPARATOR = ' → ';
 const figures = [
-  { id: 'stat-entities', label: n.entities, line: 'fraud' as const, source: 'stats.json' },
-  { id: 'stat-clusters', label: n.clusters, line: 'fraud' as const, source: 'stats.json' },
   { id: 'stat-notices', label: n.notices, line: 'procurement' as const, source: 'procurement-stats.json' },
   { id: 'stat-awards', label: n.awards, line: 'procurement' as const, source: 'procurement-stats.json' },
+  { id: 'stat-entities', label: n.entities, line: 'fraud' as const, source: 'stats.json' },
+  { id: 'stat-clusters', label: n.clusters, line: 'fraud' as const, source: 'stats.json' },
 ];
 const lines = ['fraud', 'procurement', 'manufacturing', 'opsentry', 'platform'] as const;
 ---
