@@ -10,6 +10,19 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.38.4] - 2026-11-17
+
+### Removed
+- Two internal working-notes files are no longer published with the site's
+  source: the repository guide for the development setup and an old Cloudflare
+  visibility checklist. Both stay on the operator's machine and are ignored, as
+  is `logs/`.
+
+### Changed
+- The nightly figures refresh no longer bumps VERSION (fixed in the deploy
+  script, opsight-fraud 1.54.2). From here VERSION moves only with a release, so
+  it matches the newest tag again.
+
 ## [0.38.3] - 2026-11-17
 
 ### Fixed

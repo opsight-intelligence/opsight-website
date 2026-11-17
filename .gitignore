@@ -21,3 +21,8 @@ public/sitemap.xml
 # Run logs are never source
 logs/
 *.log
+
+# Internal working notes: kept on the machine, never published
+CLAUDE.md
+website.md
+logs/
