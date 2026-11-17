@@ -109,6 +109,19 @@
 /* .band is 100vw wide, which counts the vertical scrollbar; hide the sliver instead of scrolling (clip does not reach the viewport). */
 html { overflow-x: hidden; }
 
+/* Korean breaks between words, never inside one; a word longer than the line still wraps. */
+:lang(ko) { word-break: keep-all; overflow-wrap: break-word; }
+
+/* The menu button exists only where the script ran (.nav--js) and the screen is narrow. */
+.nav__toggle { display: none; }
+@media (max-width: 860px) {
+  .nav--js .nav__inner { flex-wrap: wrap; }
+  .nav--js .nav__toggle { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; width: 40px; height: 40px; padding: 0; background: none; border: 1px solid var(--border); border-radius: var(--radius); color: var(--ink); cursor: pointer; }
+  .nav--js .nav__links { display: none; flex-basis: 100%; flex-direction: column; gap: 0; margin-left: 0; padding-bottom: var(--s-2); }
+  .nav--js.nav--open .nav__links { display: flex; }
+  .nav--js .nav__links a { display: block; padding-block: var(--s-2); }
+}
+
 @media (max-width: 640px) {
   .nav__inner { flex-wrap: wrap; padding-block: var(--s-2); }
   .nav__links { margin-left: 0; gap: var(--s-3); }

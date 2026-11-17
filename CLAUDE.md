@@ -91,7 +91,7 @@ Supporting pages, each in `en` and `ko` with copy in `src/i18n/<page>.ts`:
 - **Copy lives in `src/i18n/<page>.ts`**, one object per locale, with the
   shared nav/footer/live labels in `src/i18n/common.ts`; each page is one
   component (`src/components/<Page>.astro`) inside `src/layouts/Base.astro`
-  (head, hreflang for every locale the page has, nav with a language switch,
+  (head, hreflang for every locale the page has, nav with a language switch, folded behind a menu button under 860px when the inline script has run,
   footer). English at `/…`, Korean at `/ko/…`. `/tr/fraud` is a redirect stub
   since 2026-11-05. `HeroBand.astro` (navy band + `Lifecycle.astro` SVG, or the
   per-line figure `ArtFraud` / `ArtProcurement` / `ArtManufacturing` via the

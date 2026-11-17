@@ -8,6 +8,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
 listed individually.
 
+## [Unreleased]
+
+### Added
+- **Menu button on narrow screens.** Under 860px the nav links fold behind a
+  button (`aria-expanded`, `aria-controls`), so a phone no longer opens on three
+  rows of links. Without the inline script the button stays hidden and the links
+  wrap as before.
+
+### Changed
+- **Korean text breaks between words.** `:lang(ko)` sets `word-break: keep-all`
+  with `overflow-wrap: break-word`, so a headline no longer splits a word across
+  two lines on a narrow screen.
+- **The home line cards fill their last row.** Three across on a six-track
+  grid above 960px, so the last two of five cards share the full width instead
+  of leaving an empty slot.
+
 ## [0.37.1] - 2026-11-10
 
 ### Changed
