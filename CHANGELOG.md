@@ -10,6 +10,8 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.38.2] - 2026-11-17
+
 ### Added
 - **Menu button on narrow screens.** Under 860px the nav links fold behind a
   button (`aria-expanded`, `aria-controls`), so a phone no longer opens on three
