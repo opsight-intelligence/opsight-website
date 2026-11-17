@@ -10,6 +10,13 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.38.5] - 2026-11-17
+
+### Added
+- `LICENSE`: the repository is published for viewing only, all rights reserved. The
+  self-hosted font in `public/fonts/` keeps its own licence beside it.
+- `.github/CODEOWNERS` naming the maintainer as owner of every path.
+
 ## [0.38.4] - 2026-11-17
 
 ### Removed
