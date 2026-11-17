@@ -15,6 +15,13 @@ listed individually.
   button (`aria-expanded`, `aria-controls`), so a phone no longer opens on three
   rows of links. Without the inline script the button stays hidden and the links
   wrap as before.
+- **`/.well-known/security.txt`** with the contact address, languages and an
+  expiry date (2027-11-01; renew it before then). The Pages upload step now sets
+  `include-hidden-files`, because the action drops dot-folders otherwise.
+- **`/favicon.ico`** (16, 32 and 48 px) for clients that never read the SVG
+  link, written from `public/favicon.svg` by `scripts/favicon.mjs`.
+- **Integrity hash on the Plotly script** in the six demo dashboards
+  (`integrity` + `crossorigin`), so a changed CDN file is refused by the browser.
 
 ### Changed
 - **Korean text breaks between words.** `:lang(ko)` sets `word-break: keep-all`
@@ -28,6 +35,12 @@ listed individually.
   the date and the Live badge stay.
 - **The home figures lead with procurement.** Notices and awards come first,
   then the fraud counts, so the row opens on its largest numbers.
+- **Dependencies patched** with `npm audit fix` (Astro and its tree, lock file
+  only); the audit reports no known vulnerability.
+
+### Removed
+- **`logs/manufacturing_api.log`**, an empty run log that had been committed;
+  `logs/` and `*.log` are now ignored.
 
 ## [0.37.1] - 2026-11-10
 

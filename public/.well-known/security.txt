@@ -1,0 +1,5 @@
+# Report a security problem with opsightintel.com or an Opsight product here.
+Contact: mailto:utku@opsightintel.com
+Expires: 2027-11-01T00:00:00.000Z
+Preferred-Languages: en, ko
+Canonical: https://opsightintel.com/.well-known/security.txt
