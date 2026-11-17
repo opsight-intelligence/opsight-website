@@ -10,6 +10,17 @@ listed individually.
 
 ## [Unreleased]
 
+## [0.38.3] - 2026-11-17
+
+### Fixed
+- **The 0.38.2 deploy never went out.** Its lock file, rewritten by
+  `npm audit fix` on macOS, was rejected by `npm ci` on the Linux Pages runner
+  as out of sync (missing `@emnapi/*` entries), so the build stopped before the
+  site was built. The lock file is back to the one the runner last installed.
+  The dependency patch listed under 0.38.2 is therefore undone, and
+  `npm audit` reports one moderate advisory in Astro again; redo the patch on
+  Linux or in CI, where the lock file can be checked against the runner.
+
 ## [0.38.2] - 2026-11-17
 
 ### Added
