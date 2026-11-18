@@ -28,13 +28,8 @@ function targetExists(url, fromFile) {
   );
 }
 
-// The pre-Astro home page, kept until the new one has had its native read in
-// both languages (company TECHDEBT row 32), links to pages that no longer
-// exist under those names. It is not linked from anywhere; skip it.
-const SKIP = new Set(['index-legacy.html']);
-
 const failures = [];
-const pages = walk(DIST).filter((f) => !SKIP.has(relative(DIST, f).split(sep).join('/')));
+const pages = walk(DIST);
 for (const file of pages) {
   const html = readFileSync(file, 'utf8');
   const name = relative(DIST, file).split(sep).join('/');

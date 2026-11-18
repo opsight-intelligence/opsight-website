@@ -3,8 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/figures.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/sitemap.mjs",
+    "prebuild": "node scripts/sitemap.mjs && node scripts/figures.mjs",
     "build": "astro build",
     "postbuild": "node scripts/check-dist.mjs",
     "preview": "astro preview",

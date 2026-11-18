@@ -1,7 +1,7 @@
 ---
 // The site's first live charts, drawn client-side from procurement-figures.json
-// (written nightly by maritime, shipped by the deploy, read from the repo's
-// raw URL like the counts). Two figures:
+// (written nightly by maritime, shipped by the deploy, read from the
+// same-origin /data/ copy like the counts). Two figures:
 //   1. clearing rate (낙찰률) by category -- a p25–p75 range bar with the median
 //      marked, one row per category, largest first;
 //   2. daily volume for the last 30 days -- thin bars, notices and awards as
@@ -44,7 +44,7 @@ const p = Astro.props;
 
 <script is:inline define:vars={{ noticesLabel: p.noticesLabel, awardsLabel: p.awardsLabel }}>
 (function () {
-  var RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/procurement-figures.json';
+  var DATA_URL = '/data/procurement-figures.json';
   var NS = 'http://www.w3.org/2000/svg';
   function el(tag, attrs, text) {
     var e = document.createElementNS(NS, tag);
@@ -102,7 +102,7 @@ const p = Astro.props;
     host.appendChild(svg);
   }
 
-  fetch(RAW, { cache: 'no-cache' })
+  fetch(DATA_URL, { cache: 'no-cache' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
       if (!d || !d.rate_by_category || !d.daily) return;

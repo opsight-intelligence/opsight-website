@@ -1,24 +1,17 @@
 # Build the Astro site and publish it to GitHub Pages.
 #
-# Triggers only on SOURCE changes on main. The nightly stats deploy
-# (opsight-fraud scripts/deploy_website_stats.py) pushes stats.json,
-# procurement-stats.json, VERSION and CHANGELOG.md to main every prod night;
-# other nightly jobs write procurement-figures/-numbers/-cells.json and
-# agent-demo.json the same way. Those paths are ignored here so a data refresh
-# costs no Actions minutes. The pages read the JSON files from the repo's raw
-# URL, so the numbers still move every night without a build.
+# Triggers on source changes on main AND on the nightly figures push
+# (opsight-fraud scripts/deploy_website_stats.py writes stats.json,
+# procurement-*.json and agent-demo.json at the repo root). The build copies
+# those files into the site (scripts/figures.mjs) and the pages fetch them
+# from their own origin, so a figures push must rebuild for the numbers to
+# move. Docs-only changes still skip the build.
 name: pages
 
 on:
   push:
     branches: [main]
     paths-ignore:
-      - 'stats.json'
-      - 'procurement-stats.json'
-      - 'procurement-figures.json'
-      - 'procurement-numbers.json'
-      - 'procurement-cells.json'
-      - 'agent-demo.json'
       - 'VERSION'
       - 'CHANGELOG.md'
       - 'website.md'

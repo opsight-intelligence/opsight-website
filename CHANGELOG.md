@@ -5,10 +5,32 @@ All notable changes to this site are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Routine `stats.json` refreshes take a PATCH version bump but are grouped rather than
-listed individually.
+Routine figure refreshes take no version bump and are not listed (from 0.38.4).
 
 ## [Unreleased]
+
+## [0.39.0] - 2026-11-18
+
+### Changed
+- Live figures are served from the site's own origin. The build copies the
+  root figure files (`stats.json`, `procurement-*.json`, `agent-demo.json`)
+  into `/data/` (`scripts/figures.mjs`, run before every build and dev server),
+  and every component fetches `/data/<file>` instead of the repository's raw
+  GitHub URL, so a visitor's browser no longer calls GitHub to show a number.
+  File names and locations at the repo root are unchanged. A missing file
+  warns at build time and its section keeps its placeholder or
+  "unavailable" message.
+- The nightly figures push now triggers a Pages build (the figure files left
+  the workflow's ignore list), which is what keeps the served copies fresh.
+- Dependencies: `npm audit fix` moves Astro to 7.4.12, past the dynamic-tag
+  attribute injection advisory. The lock file keeps every optional platform
+  package (`@emnapi/*`, the linux and wasm32 bindings), so `npm ci` installs
+  on the Linux Pages runner. One advisory remains with no patched release
+  upstream (picomatch ReDoS, build-time only).
+
+### Removed
+- The pre-Astro home page `public/index-legacy.html` and the link checker's
+  exception for it.
 
 ## [0.38.5] - 2026-11-17
 

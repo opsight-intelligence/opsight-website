@@ -65,7 +65,7 @@ const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement
 
 <script is:inline>
 (function () {
-  var RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/procurement-numbers.json';
+  var DATA_URL = '/data/procurement-numbers.json';
   var NS = 'http://www.w3.org/2000/svg';
   var root = document.querySelector('[data-numbers]'); if (!root) return;
   var labels = JSON.parse(root.getAttribute('data-labels') || '{}');
@@ -153,6 +153,6 @@ const calcHref = locale === 'ko' ? '/ko/procurement/#calculator' : '/procurement
   }
 
   function load(url) { return fetch(url, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); }); }
-  load(RAW).catch(function () { return load('/procurement-numbers.json'); }).then(render).catch(function () { root.querySelector('[data-n-span]').textContent = root.getAttribute('data-unavailable'); });
+  load(DATA_URL).then(render).catch(function () { root.querySelector('[data-n-span]').textContent = root.getAttribute('data-unavailable'); });
 })();
 </script>

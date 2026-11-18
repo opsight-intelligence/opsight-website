@@ -98,7 +98,7 @@ const p = Astro.props;
 
 <script is:inline>
 (function () {
-  var RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/procurement-cells.json';
+  var DATA_URL = '/data/procurement-cells.json';
   var NS = 'http://www.w3.org/2000/svg';
   var root = document.querySelector('[data-calculator]'); if (!root) return;
   var form = root.querySelector('[data-calc-form]'), status = root.querySelector('[data-calc-status]');
@@ -171,10 +171,10 @@ const p = Astro.props;
       .catch(function () { st.textContent = root.getAttribute('data-failed'); btn.disabled = false; });
   });
 
-  // The raw URL refreshes nightly without a build; a same-origin copy is the
-  // fallback (local checks, a raw-host outage).
+  // Same-origin copy of the root figure file, refreshed by the nightly push
+  // (scripts/figures.mjs copies it into the build).
   function load(url) { return fetch(url, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); }); }
-  load(RAW).catch(function () { return load('/procurement-cells.json'); }).then(function (d) {
+  load(DATA_URL).then(function (d) {
     data = d; status.textContent = '';
     var list = root.querySelector('#calc-agencies');
     d.agencies.forEach(function (a) { var o = document.createElement('option'); o.value = a; list.appendChild(o); });
