@@ -25,7 +25,7 @@ const { heading, lead, tiles, seeRun, updated } = Astro.props;
 
 <script is:inline define:vars={{ updatedPrefix: updated }}>
 (function () {
-  var RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/agent-demo.json';
+  var DATA_URL = '/data/agent-demo.json';
   function countUp(node, target) {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) { node.textContent = String(target); return; }
@@ -37,7 +37,7 @@ const { heading, lead, tiles, seeRun, updated } = Astro.props;
     }
     window.requestAnimationFrame(step);
   }
-  fetch(RAW, { cache: 'no-cache' })
+  fetch(DATA_URL, { cache: 'no-cache' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
       if (!d || !d.machines) return;

@@ -1,13 +1,14 @@
 ---
 // The runtime fetch that fills stat tiles. Include once per page.
-// Reads from the repo's raw files, not the built site, so the nightly stats
-// push needs no site build. A tile that cannot be filled keeps its dash and
-// its date stays blank -- never a stale or invented number.
+// Reads the same-origin copies under /data/ (scripts/figures.mjs copies the
+// root figure files into the build; the nightly push rebuilds the site). A
+// tile that cannot be filled keeps its dash and its date stays blank -- never
+// a stale or invented number.
 interface Props { files: Record<string, Record<string, string>> } // file -> {jsonKey: elementId}
 const { files } = Astro.props;
 ---
 <script is:inline define:vars={{ files }}>
-  const RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/';
+  const DATA_URL = '/data/';
   // Count a numeric value up from zero over ~900ms, keeping any prefix/suffix
   // ("2,300+", "82,729"). Non-numeric values are set directly. Honours
   // prefers-reduced-motion by skipping the animation.
@@ -30,7 +31,7 @@ const { files } = Astro.props;
     requestAnimationFrame(step);
   }
   Object.entries(files).forEach(function ([file, map]) {
-    fetch(RAW + file, { cache: 'no-cache' })
+    fetch(DATA_URL + file, { cache: 'no-cache' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d) return;

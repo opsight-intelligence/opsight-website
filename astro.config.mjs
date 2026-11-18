@@ -1,10 +1,10 @@
 // Opsight website — Astro configuration.
 //
 // Static output to dist/, served by GitHub Pages from a GitHub Actions build
-// (.github/workflows/pages.yml). The nightly stats push does NOT trigger a
-// build: pages fetch stats.json / procurement-stats.json from the repo's raw
-// URL, so the numbers move every night while the site is rebuilt only when
-// its source changes (the org's Actions minutes are the constraint).
+// (.github/workflows/pages.yml). The nightly figures push triggers a build:
+// scripts/figures.mjs copies the root figure files (stats.json and the
+// procurement/agent files) into public/data/, and the pages fetch them from
+// /data/ on the site's own origin, so no visitor's browser calls GitHub.
 //
 // i18n: English at /, Korean at /ko/
 // only (its buyers include Turkish firms). The layout renders the same page

@@ -26,3 +26,6 @@ logs/
 CLAUDE.md
 website.md
 logs/
+
+# Copied from the root figure files by scripts/figures.mjs before every build
+public/data/

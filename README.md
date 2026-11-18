@@ -9,13 +9,17 @@ and architecture; `CONTRIBUTING.md` the branch, version and changelog rules.
 ```sh
 npm ci            # once; Node 22+
 npm run dev       # http://localhost:4321, live reload
-npm run build     # sitemap + build + check-dist (links, titles, canonicals)
+npm run build     # sitemap + figures + build + check-dist (links, titles, canonicals)
 npm run preview   # serve dist/ exactly as Pages will
 ```
 
 Live numbers (`stats.json` and the `procurement-*.json` / `agent-demo.json`
-files at the repo root) are rewritten nightly by other repos and fetched at
-runtime, so they never need a build.
+files at the repo root) are rewritten nightly by other repos. Before every
+build and dev server, `scripts/figures.mjs` copies them into `public/data/`
+(ignored by git), and the pages fetch them from `/data/<file>` on the site's
+own origin, so a visitor's browser never calls a third-party host for them.
+The nightly push to `main` triggers a Pages build, which keeps them fresh. A
+missing file is a warning, not a failed build: its section shows its fallback.
 
 ## Branch guard (pre-push hook)
 

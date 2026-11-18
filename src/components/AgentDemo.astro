@@ -2,7 +2,7 @@
 // The manufacturing page's live demo: one nightly run of the autonomous
 // agent on the synthetic fleet, drawn client-side from agent-demo.json
 // (written by opsight-manufacturing's nightly cycle, shipped by the deploy,
-// read from the repo's raw URL like the other live files). Everything shown
+// read from the same-origin /data/ copy like the other live files). Everything shown
 // is invented data; the reasoning is the engine's, unedited.
 interface Props {
   heading: string; lead: string; statement: string;
@@ -45,7 +45,7 @@ const p = Astro.props;
 
 <script is:inline define:vars={{ actionsLabel: p.actionsLabel, plantedLabel: p.plantedLabel, normalLabel: p.normalLabel }}>
 (function () {
-  var RAW = 'https://raw.githubusercontent.com/opsight-intelligence/opsight-website/main/agent-demo.json';
+  var DATA_URL = '/data/agent-demo.json';
   var NS = 'http://www.w3.org/2000/svg';
   function el(tag, attrs, text) { var e = document.createElementNS(NS, tag); Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); }); if (text !== undefined) e.textContent = text; return e; }
   function h(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
@@ -114,7 +114,7 @@ const p = Astro.props;
     });
   }
 
-  fetch(RAW, { cache: 'no-cache' })
+  fetch(DATA_URL, { cache: 'no-cache' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
       if (!d || !d.machines) return;
