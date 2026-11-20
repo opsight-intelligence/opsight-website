@@ -1,20 +1,20 @@
 {
- "as_of": "2026-11-19",
+ "as_of": "2026-11-20",
  "source": "analytics.award_rate / competition_depth / uncontested_by_agency",
  "span": {
   "from": "2025-09-25",
-  "to": "2026-11-18",
-  "awards": 324888
+  "to": "2026-11-19",
+  "awards": 325947
  },
  "uncontested": {
-  "awards": 324888,
-  "solo": 59055,
+  "awards": 325947,
+  "solo": 59248,
   "share": 0.1818
  },
  "categories": [
   {
    "cat": "cnstwk",
-   "awards": 138228,
+   "awards": 138722,
    "median": 90.3,
    "p25": 90.11,
    "p75": 90.45,
@@ -23,19 +23,19 @@
   },
   {
    "cat": "servc",
-   "awards": 103376,
+   "awards": 103629,
    "median": 88.37,
    "p25": 88.01,
-   "p75": 92.45,
-   "iqr": 4.44,
+   "p75": 92.44,
+   "iqr": 4.43,
    "bidders": 5.0
   },
   {
    "cat": "thng",
-   "awards": 83284,
-   "median": 90.67,
+   "awards": 83596,
+   "median": 90.68,
    "p25": 88.04,
-   "p75": 98.18,
+   "p75": 98.19,
    "iqr": 10.14,
    "bidders": 3.0
   }
@@ -44,107 +44,107 @@
   {
    "cat": "cnstwk",
    "band": "<10M",
-   "awards": 2454,
+   "awards": 2461,
    "bidders": 1.0,
-   "solo_share": 0.532
+   "solo_share": 0.533
   },
   {
    "cat": "cnstwk",
    "band": ">=1B",
-   "awards": 6690,
+   "awards": 6716,
    "bidders": 423.0,
    "solo_share": 0.011
   },
   {
    "cat": "cnstwk",
    "band": "10M-50M",
-   "awards": 39700,
+   "awards": 39834,
    "bidders": 37.0,
    "solo_share": 0.228
   },
   {
    "cat": "cnstwk",
    "band": "200M-1B",
-   "awards": 26813,
+   "awards": 26914,
    "bidders": 341.0,
    "solo_share": 0.014
   },
   {
    "cat": "cnstwk",
    "band": "50M-200M",
-   "awards": 62571,
+   "awards": 62797,
    "bidders": 57.0,
    "solo_share": 0.025
   },
   {
    "cat": "servc",
    "band": "<10M",
-   "awards": 10211,
+   "awards": 10243,
    "bidders": 4.0,
-   "solo_share": 0.373
+   "solo_share": 0.372
   },
   {
    "cat": "servc",
    "band": ">=1B",
-   "awards": 4342,
+   "awards": 4354,
    "bidders": 6.0,
-   "solo_share": 0.269
+   "solo_share": 0.268
   },
   {
    "cat": "servc",
    "band": "10M-50M",
-   "awards": 39567,
+   "awards": 39674,
    "bidders": 4.0,
-   "solo_share": 0.29
+   "solo_share": 0.291
   },
   {
    "cat": "servc",
    "band": "200M-1B",
-   "awards": 12402,
+   "awards": 12430,
    "bidders": 8.0,
-   "solo_share": 0.235
+   "solo_share": 0.234
   },
   {
    "cat": "servc",
    "band": "50M-200M",
-   "awards": 36854,
+   "awards": 36928,
    "bidders": 7.0,
    "solo_share": 0.139
   },
   {
    "cat": "thng",
    "band": "<10M",
-   "awards": 19220,
+   "awards": 19285,
    "bidders": 3.0,
-   "solo_share": 0.156
+   "solo_share": 0.157
   },
   {
    "cat": "thng",
    "band": ">=1B",
-   "awards": 2243,
+   "awards": 2252,
    "bidders": 2.0,
-   "solo_share": 0.47
+   "solo_share": 0.471
   },
   {
    "cat": "thng",
    "band": "10M-50M",
-   "awards": 24367,
+   "awards": 24482,
    "bidders": 3.0,
    "solo_share": 0.314
   },
   {
    "cat": "thng",
    "band": "200M-1B",
-   "awards": 12050,
+   "awards": 12088,
    "bidders": 2.0,
    "solo_share": 0.366
   },
   {
    "cat": "thng",
    "band": "50M-200M",
-   "awards": 25404,
+   "awards": 25489,
    "bidders": 3.0,
-   "solo_share": 0.239
+   "solo_share": 0.238
   }
  ],
  "most_uncontested": [
@@ -171,8 +171,8 @@
   },
   {
    "agency": "국립공원공단국립공원연구원",
-   "awards": 40,
-   "solo": 40,
+   "awards": 42,
+   "solo": 42,
    "share": 1.0,
    "solo_rate": 94.89
   },
@@ -184,18 +184,18 @@
    "solo_rate": 98.96
   },
   {
+   "agency": "서울특별시 강남소방서",
+   "awards": 38,
+   "solo": 38,
+   "share": 1.0,
+   "solo_rate": 95.86
+  },
+  {
    "agency": "나이스인프라 주식회사",
    "awards": 37,
    "solo": 37,
    "share": 1.0,
    "solo_rate": 100.0
-  },
-  {
-   "agency": "서울특별시 강남소방서",
-   "awards": 37,
-   "solo": 37,
-   "share": 1.0,
-   "solo_rate": 95.92
   },
   {
    "agency": "국립공원공단 동부지역본부",
@@ -206,10 +206,10 @@
   },
   {
    "agency": "서울특별시 관악소방서",
-   "awards": 34,
-   "solo": 34,
+   "awards": 35,
+   "solo": 35,
    "share": 1.0,
-   "solo_rate": 95.18
+   "solo_rate": 95.27
   },
   {
    "agency": "외교부",
@@ -247,38 +247,38 @@
    "solo_rate": 98.75
   },
   {
-   "agency": "국가유산청 국립무형유산원",
-   "awards": 100,
-   "solo": 99,
-   "share": 0.99,
-   "solo_rate": 95.0
+   "agency": "서울특별시 용산소방서",
+   "awards": 30,
+   "solo": 30,
+   "share": 1.0,
+   "solo_rate": 95.24
   }
  ],
  "most_contested": [
   {
    "agency": "전북특별자치도 정읍시",
-   "awards": 877,
+   "awards": 878,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
   },
   {
    "agency": "서울특별시",
-   "awards": 536,
+   "awards": 537,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
   },
   {
    "agency": "중소기업은행",
-   "awards": 491,
+   "awards": 492,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
   },
   {
    "agency": "경기도 경기도건설본부",
-   "awards": 423,
+   "awards": 425,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
@@ -292,7 +292,7 @@
   },
   {
    "agency": "부산광역시교육청 부산광역시남부교육지원청",
-   "awards": 395,
+   "awards": 397,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
@@ -327,7 +327,14 @@
   },
   {
    "agency": "경상남도교육청 경상남도진주교육지원청",
-   "awards": 298,
+   "awards": 299,
+   "solo": 0,
+   "share": 0.0,
+   "solo_rate": null
+  },
+  {
+   "agency": "재단법인 한국엘피지사업관리원",
+   "awards": 290,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
@@ -340,7 +347,7 @@
    "solo_rate": null
   },
   {
-   "agency": "재단법인 한국엘피지사업관리원",
+   "agency": "인천광역시교육청 인천광역시남부교육지원청",
    "awards": 287,
    "solo": 0,
    "share": 0.0,
@@ -349,13 +356,6 @@
   {
    "agency": "전라남도 강진군",
    "awards": 287,
-   "solo": 0,
-   "share": 0.0,
-   "solo_rate": null
-  },
-  {
-   "agency": "인천광역시교육청 인천광역시남부교육지원청",
-   "awards": 286,
    "solo": 0,
    "share": 0.0,
    "solo_rate": null
